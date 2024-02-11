@@ -1,0 +1,31 @@
+{
+  "name": "mono-repo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "private": true,
+  "workspaces": [
+    "shared/*",
+    "platforms/*"
+  ],
+  "scripts": {
+    "android:apk": "yarn workspace mobile android:apk",
+    "android:bundle": "yarn workspace mobile android:bundle",
+    "android:clean": "yarn workspace mobile android:clean",
+    "android": "yarn workspace mobile android",
+    "pod": "cd platforms/mobile/ios && pod update && pod install && cd -",
+    "start": "yarn workspace mobile start  --reset-cache"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "react": "18.2.0",
+    "react-native": "0.73.4"
+  },
+  "devDependencies": {
+    "@bam.tech/react-native-graphql-transformer": "^0.1.5",
+    "@tsconfig/react-native": "^3.0.3",
+    "metro-react-native-babel-transformer": "^0.77.0"
+  }
+}
