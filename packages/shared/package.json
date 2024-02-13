@@ -13,5 +13,8 @@
   "peerDependencies": {
     "react": "*",
     "react-native": "*"
+  },
+  "devDependencies": {
+    "typescript": "5.0.4"
   }
 }
