@@ -5,7 +5,7 @@
   "main": "index.js",
   "private": true,
   "workspaces": [
-    "shared/*",
+    "packages/*",
     "platforms/*"
   ],
   "scripts": {
@@ -26,6 +26,7 @@
   "devDependencies": {
     "@bam.tech/react-native-graphql-transformer": "^0.1.5",
     "@tsconfig/react-native": "^3.0.3",
+    "@types/react": "^18.2.55",
     "metro-react-native-babel-transformer": "^0.77.0"
   }
 }
