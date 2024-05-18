@@ -1,5 +1,7 @@
 {
     "compilerOptions": {
+      "jsx": "react",
+      "esModuleInterop": true,
       "sourceMap": true,
       "removeComments": true,
       "strict": true,
@@ -12,10 +14,12 @@
       "noUnusedParameters": true,
       "noImplicitReturns": true,
       "noFallthroughCasesInSwitch": true,
+      "rootDir": "./",
       "paths": {
         "@monorepo/shared":[
-          "./packages/shared"
-        ]
+          "./packages/shared",
+        ],
+        "@/*": ["./*"]
       }
     },
     
