@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "825456558599",
+    "project_id": "izzo-c7096",
+    "storage_bucket": "izzo-c7096.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:825456558599:android:8eee9016e4b7c77e30a0a2",
+        "android_client_info": {
+          "package_name": "com.mobile"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAy9FRlzhRd8DQvHUhdbkTuaTQWIncafPI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

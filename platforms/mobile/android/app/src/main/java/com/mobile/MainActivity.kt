@@ -5,8 +5,10 @@ import com.facebook.react.ReactActivityDelegate
 import com.facebook.react.defaults.DefaultNewArchitectureEntryPoint.fabricEnabled
 import com.facebook.react.defaults.DefaultReactActivityDelegate
 import android.os.Bundle
+import com.google.firebase.analytics.FirebaseAnalytics
 
 class MainActivity : ReactActivity() {
+  private lateinit var firebaseAnalytics: FirebaseAnalytics
 
   /**
    * Returns the name of the main component registered from JavaScript. This is used to schedule
