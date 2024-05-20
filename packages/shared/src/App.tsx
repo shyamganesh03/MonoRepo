@@ -1,17 +1,87 @@
-import React from "react";
-//@ts-ignore
-import type { PropsWithChildren } from "react";
+import React, { useRef } from "react";
+import * as Sentry from "@sentry/react-native";
 import AppNavigator from "./navigation";
-import { NavigationContainer } from "@react-navigation/native";
-import "react-native-gesture-handler";
+import {
+  DarkTheme,
+  DefaultTheme,
+  NavigationContainer,
+} from "@react-navigation/native";
+import { navigationRef } from "./navigation/RootNavigator";
+import { Amplify } from "aws-amplify";
+import { Provider as JotaiProvider, useAtom } from "jotai";
+import {
+  SafeAreaProvider,
+  initialWindowMetrics,
+} from "react-native-safe-area-context";
+import { Platform, View, useWindowDimensions } from "react-native";
+import awsConfig from "../awsConfig";
+import { sentryUrl } from "./config";
+import { appTheme } from "@lib/utils";
 
-//@ts-ignore
-function App(): React.JSX.Element {
+Sentry.init({
+  dsn: sentryUrl,
+  tracesSampleRate: 1.0,
+});
+
+const customLightTheme = {
+  ...DefaultTheme.colors,
+  colors: {
+    ...DefaultTheme.colors,
+  },
+};
+
+const customDarkTheme = {
+  ...DarkTheme.colors,
+  colors: {
+    ...DarkTheme.colors,
+  },
+};
+
+const getThemeColor = (themeState: any) => {
+  if (themeState === "dark") {
+    return customDarkTheme;
+  }
+  return customLightTheme;
+};
+
+const App = () => {
+  Amplify.configure(awsConfig);
+
   return (
-    <NavigationContainer>
-      <AppNavigator />
-    </NavigationContainer>
+    <SafeAreaProvider initialMetrics={initialWindowMetrics}>
+      <JotaiProvider>
+        <AppSubWrapper />
+      </JotaiProvider>
+    </SafeAreaProvider>
   );
-}
+};
 
-export default App;
+const AppSubWrapper = () => {
+  const routeNameRef = useRef();
+  const height = useWindowDimensions().height;
+  const [themeState] = useAtom(appTheme);
+  const theme: any = getThemeColor(themeState);
+  return (
+    <View style={{ minHeight: height }}>
+      <NavigationContainer
+        ref={navigationRef}
+        onReady={() =>
+          (routeNameRef.current = navigationRef.current.getCurrentRoute().name)
+        }
+        theme={theme}
+        onStateChange={async () => {
+          const currentRouteName = navigationRef.current.getCurrentRoute().name;
+          routeNameRef.current = currentRouteName;
+        }}
+        // @ts-ignore
+        linking={{ enabled: true }}
+      >
+        <AppNavigator />
+      </NavigationContainer>
+    </View>
+  );
+};
+
+Sentry.setTag("Platform:", Platform.OS);
+
+export default Sentry.withProfiler(App);

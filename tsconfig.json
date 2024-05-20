@@ -20,7 +20,8 @@
           "./packages/shared",
         ],
         "@/*": ["./*"]
-      }
+      },
     },
+    "include": ["lib/**/*.tsx"]
     
 }

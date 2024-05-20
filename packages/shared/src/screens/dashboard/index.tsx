@@ -1,7 +1,8 @@
-import { ScreenLayout } from "../../lib/utils";
+import { ScreenLayout } from "@lib/utils";
 import { Suspense, useCallback } from "react";
 import DesktopView from "./DesktopView";
 import MobileView from "./MobileView";
+import React from "react";
 
 const Dashboard = () => {
   const viewProps = {};

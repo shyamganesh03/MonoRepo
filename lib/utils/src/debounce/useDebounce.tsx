@@ -1,0 +1,25 @@
+import { useCallback, useRef } from "react";
+
+// hook that takes a function and delay and returns a debounced version of the function
+const useDebounce = (fn: any, delay: number) => {
+  // create ref to store the timeoutId
+  const timer: any = useRef(null);
+
+  // memoize the callback function
+  const debouncedFn = useCallback(fn, [fn, delay]);
+
+  // debounced version of the callback function
+  const execute = useCallback(
+    (...args: any) => {
+      // clear the previous timer
+      clearTimeout(timer.current);
+      // set a new timer
+      timer.current = setTimeout(() => debouncedFn(...args), delay);
+    },
+    [debouncedFn, delay]
+  );
+
+  return execute;
+};
+
+export default useDebounce;
