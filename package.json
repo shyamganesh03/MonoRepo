@@ -13,8 +13,12 @@
     "android:bundle": "yarn workspace mobile android:bundle",
     "android:clean": "yarn workspace mobile android:clean",
     "android": "yarn workspace mobile android",
+    "fix:lintPrettier": "yarn prettierFixAll && yarn lintFixAll",
     "ios": "yarn workspace mobile ios",
+    "lint": "eslint .",
+    "lintFixAll": "eslint 'packages/shared/src/**/*.{ts,tsx}'",
     "pod": "cd platforms/mobile/ios && pod update && pod install && cd -",
+    "prettierFixAll": "prettier --write 'packages/shared/src/**/*.{ts,tsx}'",
     "start": "yarn workspace mobile start  --reset-cache",
     "web": "yarn workspace web start",
     "xcode": "yarn workspace mobile xcode"
@@ -57,6 +61,7 @@
     "react-native-reanimated": "^3.11.0",
     "react-native-safe-area-context": "^4.10.1",
     "react-native-screens": "^3.31.1",
+    "react-native-share": "^10.2.1",
     "react-native-svg": "^15.3.0",
     "react-native-toast-notifications": "^3.4.0",
     "react-native-uuid": "^2.0.2",
@@ -66,10 +71,19 @@
   },
   "devDependencies": {
     "@bam.tech/react-native-graphql-transformer": "^0.1.5",
+    "@eslint/compat": "^1.0.1",
+    "@eslint/js": "^9.3.0",
     "@tsconfig/react-native": "^3.0.3",
     "@types/react": "^18.2.55",
     "babel-plugin-transform-remove-console": "^6.9.4",
     "customize-cra": "^1.0.0",
-    "metro-react-native-babel-transformer": "^0.77.0"
+    "eslint": "9.x",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-react": "^7.34.1",
+    "eslint-plugin-react-native": "^4.1.0",
+    "globals": "^15.3.0",
+    "metro-react-native-babel-transformer": "^0.77.0",
+    "prettier": "^3.2.5",
+    "typescript-eslint": "^7.10.0"
   }
 }

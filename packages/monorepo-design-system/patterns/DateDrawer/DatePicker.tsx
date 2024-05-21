@@ -41,7 +41,7 @@ const DatePicker = ({
   }
 
   const changeHandle = (type, digit) => {
-    // eslint-disable-next-line default-case
+     
     switch (type) {
       case "day":
         date.setDate(digit);
@@ -60,7 +60,7 @@ const DatePicker = ({
       0
     ).getDate();
     if (type !== "day") {
-      // eslint-disable-next-line no-underscore-dangle
+       
       const _days = [...Array(date2)].map((_, index) => index + 1);
 
       setDays(_days);

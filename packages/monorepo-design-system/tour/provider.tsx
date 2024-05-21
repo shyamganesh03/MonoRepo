@@ -1,4 +1,4 @@
-/* eslint-disable no-return-assign */
+ 
 import React, { useState, useRef, useContext } from "react";
 import { View, StyleSheet, Dimensions, Modal } from "react-native";
 import { Button, Row, Text } from "@mono-repo/components";

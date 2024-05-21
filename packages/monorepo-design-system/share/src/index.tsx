@@ -1,26 +1,19 @@
-import { TouchableOpacity } from "react-native";
-import React from "react";
-import Share from "react-native-share";
-import { Audit, testProps } from "@mono-repo/utils";
-import { Behavior, EventAction, TypeofControl } from "@mono-repo/constants";
+import { TouchableOpacity } from 'react-native';
+import React from 'react';
+import Share from 'react-native-share';
+import { Audit, testProps } from '@mono-repo/utils';
+import { Behavior, EventAction, TypeofControl } from '@mono-repo/constants';
 
 export const EdvnzShare = (props) => {
-  const {
-    children,
-    data = {},
-    onClick,
-    onPress,
-    isExternalLink,
-    itemID,
-  } = props;
+  const { children, data = {}, onClick, onPress, isExternalLink, itemID } = props;
 
   const search = (obj) => {
-    var str = [];
-    for (var p in obj)
+    const str = [];
+    for (const p in obj)
       if (obj.hasOwnProperty(p)) {
-        str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+        str.push(encodeURIComponent(p) + '=' + encodeURIComponent(obj[p]));
       }
-    return str.join("&");
+    return str.join('&');
   };
 
   const handleShare = async () => {
@@ -29,18 +22,18 @@ export const EdvnzShare = (props) => {
       : `${data?.appUrl}/${data?.pathName}?${search(data?.params)}`;
 
     const options = {
-      title: data?.title || "Edvanza",
-      subject: data?.text || "",
+      title: data?.title || 'Edvanza',
+      subject: data?.text || '',
       message: url,
     };
 
     await Share.open(options)
       .then(() => {
         onClick();
-        console.log("Share Successfully");
+        console.log('Share Successfully');
       })
       .catch((err) => {
-        console.log("error", err);
+        console.log('error', err);
       });
     if (data?.auditProps) {
       Audit.logEvent({
@@ -67,9 +60,7 @@ export const EdvnzShare = (props) => {
           await handleShare();
         }
       }}
-      {...testProps(
-        `Share_${TypeofControl.BUTTON_ICON}_${Behavior.SHARE}_${itemID}`
-      )}
+      {...testProps(`Share_${TypeofControl.BUTTON_ICON}_${Behavior.SHARE}_${itemID}`)}
     >
       {children}
     </TouchableOpacity>

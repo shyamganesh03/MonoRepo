@@ -1,4 +1,4 @@
-/* eslint-disable react/state-in-constructor */
+ 
 import React, { useContext } from "react";
 import { Animated, StyleSheet, View } from "react-native";
 import EdvnzTheme from "@mono-repo/provider";

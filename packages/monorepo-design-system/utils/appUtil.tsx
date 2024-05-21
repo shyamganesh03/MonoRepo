@@ -18,7 +18,7 @@ const appUtil = {
   parseDetailsFromParams: (item) => {
     if (item && typeof item === 'string') {
       try {
-        // eslint-disable-next-line no-param-reassign
+         
         item = JSON.parse(item)
       } catch (err) {
         //
