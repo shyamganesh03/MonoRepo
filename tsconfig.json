@@ -19,9 +19,12 @@
         "@monorepo/shared":[
           "./packages/shared",
         ],
+        "@mono-repo/*":[
+          "./packages/monorepo-design-system/*",
+          "./packages/monorepo-design-system/*/src"
+        ],
         "@/*": ["./*"]
-      },
+      }
     },
-    "include": ["lib/**/*.tsx"]
-    
+    "include": ["packages/**/*"]
 }
