@@ -7,7 +7,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "prebuild": "rimraf src & rimraf dist",
-    "svgr": "svgr --icon --native --replace-attr-values '#000={props.color},#fff={props.fill}' -d src assets  --out-dir dist/output --index-template index-template.js",
+    "svgr": "svgr --icon --native --replace-attr-values '#000={props.color},#fff={props.fill}' -d src assets --ext tsx  --out-dir dist/output --index-template index-template.tsx",
     "build-lib": "rollup -c",
     "build-icon": "yarn prebuild && yarn svgr && yarn build-lib"
   },
@@ -19,6 +19,7 @@
     "@babel/preset-react": "^7.18.6",
     "@rollup/plugin-alias": "^4.0.2",
     "@rollup/plugin-babel": "^5.3.1",
+    "@rollup/plugin-typescript": "11.1.6",
     "rimraf": "^3.0.2",
     "rollup-plugin-filesize": "^9.1.2",
     "rollup": "^2.78.1"
