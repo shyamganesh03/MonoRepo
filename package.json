@@ -5,8 +5,8 @@
   "private": true,
   "workspaces": [
     "packages/*",
-    "platforms/*",
-    "lib/*"
+    "apps/*",
+    "libs/*"
   ],
   "scripts": {
     "android:apk": "yarn workspace mobile android:apk",
@@ -17,7 +17,7 @@
     "ios": "yarn workspace mobile ios",
     "lint": "eslint .",
     "lintFixAll": "eslint 'packages/shared/src/**/*.{ts,tsx}'",
-    "pod": "cd platforms/mobile/ios && pod update && pod install && cd -",
+    "pod": "cd apps/mobile/ios && pod update && pod install && cd -",
     "prettierFixAll": "prettier --write 'packages/shared/src/**/*.{ts,tsx}'",
     "start": "yarn workspace mobile start  --reset-cache",
     "web": "yarn workspace web start",
@@ -29,6 +29,7 @@
   "dependencies": {
     "@aws-amplify/react-native": "^1.1.1",
     "@aws-sdk/credential-providers": "^3.577.0",
+    "@babel/runtime": "^7.24.5",
     "@react-native-async-storage/async-storage": "^1.23.1",
     "@react-native-community/blur": "^4.4.0",
     "@react-native-firebase/analytics": "^20.0.0",

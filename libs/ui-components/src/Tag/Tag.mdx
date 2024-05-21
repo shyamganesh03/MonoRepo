@@ -1,0 +1,68 @@
+---
+name: Tag
+route: /Tag
+menu: Components
+---
+
+import { Playground, Props } from 'docz'
+import Tag from './Tag'
+import { DarkTheme, spacing } from '@libs/theme'
+
+# Tag
+
+<Props of={Tag} table/>
+
+<Playground>
+  <Tag
+    tagType="alertTag"
+    label={20}
+    bgColor={DarkTheme.colors.alertBorder}
+    style={[
+      {
+        paddingHorizontal: spacing.spacing2,
+        marginLeft: spacing.spacing2,
+      },
+    ]}
+    labelColor={DarkTheme.colors.backgroundSurface1}
+  />
+</Playground>
+
+<Playground>
+  <Tag
+    tagType="modeTag"
+    label="Skills Match"
+    bgColor={DarkTheme.colors.secondary1}
+    labelColor={DarkTheme.colors.backgroundSurface1}
+    style={{ alignSelf: 'baseline' }}
+  />
+</Playground>
+
+<Playground>
+  <Tag
+    tagType="skillTag"
+    label="Skills Match"
+    pointColor={DarkTheme.colors.secondaryVariant2}
+    bgColor={DarkTheme.colors.primaryVariant3}
+    labelColor={DarkTheme.colors.secondaryVariant2}
+    style={{ alignSelf: 'baseline' }}
+  />
+</Playground>
+
+### Usage
+
+```
+import { Tag } from '@libs/components`
+
+<Tag
+    tagType="alertTag"
+    label={option.alertNo}
+    bgColor={colors.functionalError.error300}
+    style={[
+      {
+        paddingHorizontal: spacing.spacing2,
+        marginLeft: 4,
+      },
+    ]}
+    labelColor="black"
+  />
+```
