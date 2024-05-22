@@ -16,10 +16,6 @@
       "noFallthroughCasesInSwitch": true,
       "rootDir": "./",
       "paths": {
-        "@mono-repo/*":[
-          "./packages/monorepo-design-system/*",
-          "./packages/monorepo-design-system/*/src"
-        ],
         "@libs/components": ["./libs/ui-components"],
         "@libs/theme":["./libs/theme"],
         "@libs/utils":["./libs/utils"],

@@ -11,7 +11,7 @@ import { SafeAreaProvider, initialWindowMetrics } from 'react-native-safe-area-c
 import { Platform, View, useWindowDimensions } from 'react-native';
 import awsConfig from '../aws-exports';
 import { sentryUrl } from './config';
-import '../../shared/translations/i18n';
+import '@izzo/shared-translation';
 
 Sentry.init({
   dsn: sentryUrl,
