@@ -1,12 +1,16 @@
 {
-    "extends": "../../tsconfig.json",
     "compilerOptions": {
-      "jsx": "react-native",
-      "target": "es6",
-      "module": "ES6",
+      "target": "es5",
+      "module": "commonjs",
+      "lib": ["dom", "es2015"],
+      "jsx": "react",
+      "outDir": "./dist",
+      "rootDir": "./src",
+      "strict": true,
       "moduleResolution": "node",
-      "outDir": "output/index.tsx",
       "esModuleInterop": true,
-      "declaration": true
-    }
-}
+      "skipLibCheck": true
+    },
+    "include": ["src"]
+  }
+  
