@@ -1,5 +1,5 @@
-import React from 'react'
-import { useWindowDimensions } from 'react-native'
+import React from 'react';
+import { useWindowDimensions } from 'react-native';
 
 export const getScreenTypeLayout = ({
   width,
@@ -8,51 +8,47 @@ export const getScreenTypeLayout = ({
   mobileComponent,
 }) => {
   if (width > 850) {
-    return desktopComponent
+    return desktopComponent;
   }
   if (width > 600) {
-    return tabletComponent
+    return tabletComponent;
   }
-  return mobileComponent
-}
+  return mobileComponent;
+};
 
 export const ScreenTypes = {
   desktop: 'desktop',
   tablet: 'tablet',
   mobile: 'mobile',
-}
+};
 
 export const getScreenType = (width) => {
   if (width > 850) {
-    return ScreenTypes.desktop
+    return ScreenTypes.desktop;
   }
   if (width > 600) {
-    return ScreenTypes.tablet
+    return ScreenTypes.tablet;
   }
-  return ScreenTypes.mobile
-}
+  return ScreenTypes.mobile;
+};
 
 export const isWeb = (width) => {
-  if ([ScreenTypes.desktop].indexOf(getScreenType(width)) !== -1) return true
-  return false
-}
+  if ([ScreenTypes.desktop].indexOf(getScreenType(width)) !== -1) return true;
+  return false;
+};
 
-export const withLayoutView = (
-  DesktopComponent,
-  TabletComponent,
-  MobileComponent,
-) => {
+export const withLayoutView = (DesktopComponent, TabletComponent, MobileComponent) => {
   const LayoutView = (props) => {
-    const { width } = useWindowDimensions()
+    const { width } = useWindowDimensions();
 
     if (width > 850) {
-      return <DesktopComponent {...props} />
+      return React.createElement(DesktopComponent, props);
     }
     if (width > 600) {
-      return <TabletComponent {...props} />
+      return React.createElement(TabletComponent, props);
     }
-    return <MobileComponent {...props} />
-  }
+    return React.createElement(MobileComponent, props);
+  };
 
-  return LayoutView
-}
+  return LayoutView;
+};

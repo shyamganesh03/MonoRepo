@@ -1,13 +1,14 @@
-import { useCallback, useRef } from "react";
+import { useCallback, useRef } from 'react';
 
 // hook that takes a function and delay and returns a debounced version of the function
 const useDebounce = (fn, delay) => {
   // create ref to store the timeoutId
-  const timer: any = useRef(null);
+
+  // memoize the callback function
+  const timer = useRef<NodeJS.Timeout | null>(null);
 
   // memoize the callback function
   const debouncedFn = useCallback(fn, [fn, delay]);
-
   // debounced version of the callback function
   const execute = useCallback(
     (...args) => {

@@ -103,7 +103,7 @@ export const opacity = {
   level9: 0.9,
 };
 
-export const typography: any = {
+export const typography = {
   display1: {
     fontFamily: `${ROC_GROTESK}-Bold`,
     fontSize: 48,
