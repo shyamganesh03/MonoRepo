@@ -188,6 +188,7 @@
 				E235C05ADACE081382539298 /* [CP] Copy Pods Resources */,
 				0EC0AE37B17C7C2AF4AA4318 /* [CP-User] [RNFB] Core Configuration */,
 				A979BEDBF1130BB7F9007D24 /* [CP-User] [RNFB] Crashlytics Configuration */,
+				E2CD6D7CC82C4505A3EE54D0 /* Upload Debug Symbols to Sentry */,
 			);
 			buildRules = (
 			);
@@ -412,6 +413,20 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-mobile-mobileTests/Pods-mobile-mobileTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		E2CD6D7CC82C4505A3EE54D0 /* Upload Debug Symbols to Sentry */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			name = "Upload Debug Symbols to Sentry";
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			shellPath = /bin/sh;
+			shellScript = "/bin/sh ../node_modules/@sentry/react-native/scripts/sentry-xcode-debug-files.sh";
 		};
 /* End PBXShellScriptBuildPhase section */
 
