@@ -24,7 +24,8 @@
         "@libs/container":["./libs/container"],
         "@libs/bottom-sheet":["./libs/bottom-sheet"],
         "@izzo/core":["./packages/core"],
-        "@izzo/jotai-storage":["./packages/jotai-storage"]
+        "@izzo/jotai-storage":["./packages/jotai-storage"],
+        "@izzo/shared-translation":["./packages/shared-translation"]
       }
     },
     "include": ["packages/**/*","libs/**/*","apps/**/*"]
