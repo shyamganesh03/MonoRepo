@@ -28,6 +28,7 @@ import { AppNavigator } from './navigation'
 import { useAtom, Provider as JotaiProvider } from 'jotai'
 import { themeSwitchAtom } from '@izzo/jotai-storage'
 import '@izzo/shared-translation'
+import { PaperProvider } from 'react-native-paper'
 
 Analytics.init()
 
@@ -103,7 +104,7 @@ export const App = () => {
 
   return (
     <SafeAreaProvider initialMetrics={initialWindowMetrics}>
-      <ThemeProvider.Provider value={value}>
+      <PaperProvider theme={theme}>
         {Platform.OS === 'web' && (
           <style type="text/css" suppressHydrationWarning>
             {`
@@ -139,7 +140,7 @@ export const App = () => {
             </QueryClientProvider>
           </JotaiProvider>
         </NavigationContainer>
-      </ThemeProvider.Provider>
+      </PaperProvider>
     </SafeAreaProvider>
   )
 }
