@@ -3,7 +3,7 @@ import { View, StyleSheet } from 'react-native'
 import PropTypes from 'prop-types'
 import { spacing } from '@libs/theme'
 import { Icon } from '../../../icons/output'
-import Text from '../Text/Text'
+import RNPText from '../Text/Text'
 import Row from '../Row/Row'
 import { useTheme } from '@react-navigation/native'
 
@@ -146,9 +146,9 @@ const LabelText = ({
   labelColor: string
   label: string
 }) => (
-  <Text style={{ color: labelColor }} variant={textVariant}>
+  <RNPText style={{ color: labelColor }} variant={textVariant}>
     {label}
-  </Text>
+  </RNPText>
 )
 
 const Tag = (props: TagTypeProps) => {

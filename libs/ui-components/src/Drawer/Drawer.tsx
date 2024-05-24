@@ -13,7 +13,7 @@ import { spacing } from '@libs/theme'
 import { Icon } from '../../../icons/output'
 import { ScreenLayout } from '@libs/utils'
 import { BottomSheet } from '@libs/bottom-sheet'
-import Text from '../Text/Text'
+import RNPText from '../Text/Text'
 import { useTheme } from '@react-navigation/native'
 
 interface DrawerProps {
@@ -142,7 +142,7 @@ const Drawer = (props: DrawerProps) => {
                       width={20}
                       height={20}
                     />
-                    <Text
+                    <RNPText
                       variant="heading2"
                       color={theme.colors.textPrimary}
                       style={{
@@ -150,7 +150,7 @@ const Drawer = (props: DrawerProps) => {
                       }}
                     >
                       {screenName}
-                    </Text>
+                    </RNPText>
                   </TouchableOpacity>
                 )}
                 {children}

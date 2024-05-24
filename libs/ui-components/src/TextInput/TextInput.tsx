@@ -4,7 +4,7 @@ import { spacing } from '@libs/theme'
 import PropTypes from 'prop-types'
 import { Icon } from '../../../icons/output'
 
-import Text from '../Text/Text'
+import RNPText from '../Text/Text'
 import Row from '../Row/Row'
 import { styles } from './styles'
 import { useTheme } from '@react-navigation/native'
@@ -58,14 +58,14 @@ const TextInput = (props: TextInputProps) => {
   return (
     <>
       {!!inputLabel && (
-        <Text
+        <RNPText
           style={styles.inputLabelStyle}
           color={theme.colors.textPrimary}
           variant="body1"
         >
           {inputLabel}
-          {isMandatory && <Text color={theme.colors.textPrimary}>*</Text>}
-        </Text>
+          {isMandatory && <RNPText color={theme.colors.textPrimary}>*</RNPText>}
+        </RNPText>
       )}
 
       <Row
@@ -112,9 +112,9 @@ const TextInput = (props: TextInputProps) => {
               marginRight: spacing.spacing2,
             }}
           />
-          <Text color={theme.colors.alertBorder} variant="utility2">
+          <RNPText color={theme.colors.alertBorder} variant="utility2">
             {errorMessage}
-          </Text>
+          </RNPText>
         </View>
       )}
     </>
