@@ -1,0 +1,20 @@
+---
+name: IconButton
+route: /IconButton
+menu: Components
+---
+
+import { Playground, Props } from 'docz'
+import IconButton from './IconButton'
+import { Icon } from '../../../icons/output'
+
+# IconButton
+
+<Props of={IconButton} table />
+
+<Playground>
+  <IconButton
+    size={40}
+    icon={<Icon name="CloseIcon" color="black" width={20} height={20} />}
+  />
+</Playground>

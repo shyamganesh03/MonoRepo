@@ -1,0 +1,23 @@
+{
+  "name": "@izzo/core",
+  "version": "1.0.0",
+  "main": "src/App.tsx",
+  "description": "",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@libs/theme": "1.0.0"
+  },
+  "peerDependencies": {
+    "react": "*",
+    "react-native": "*"
+  },
+  "devDependencies": {
+    "typescript": "5.0.4"
+  }
+}

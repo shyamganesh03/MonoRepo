@@ -1,0 +1,6 @@
+{
+  "name": "@izzo/shared-translation",
+  "version": "1.0.0",
+  "main": "i18n.ts",
+  "license": "MIT"
+}

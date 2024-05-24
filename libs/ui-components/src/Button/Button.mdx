@@ -1,0 +1,53 @@
+---
+name: Button
+route: /Button
+menu: Components
+---
+
+import { Playground, Props } from 'docz'
+import Button from './Button'
+import { DarkTheme } from '@libs/theme'
+
+# Button
+
+Button make basic actions more accessible and enable users to perform activities more effectively. Buttons utilize labels,size and in some cases, icons to describe the action that will take place when the user pocesses them.
+
+### Props
+
+<Props of={Button} table />
+
+<Playground>
+  <Button label="Sign In" size="large" />
+</Playground>
+
+### Button Appearance
+
+<Playground>
+  <Button label="Sign In" size="large" appearance="filled" />
+  <Button label="Sign In" appearance="outlined" style={{ marginTop: 10 }} />
+  <Button label="Sign In" appearance="text" style={{ marginTop: 10 }} />
+</Playground>
+
+### Button Status
+
+<Playground>
+  <Button label="Sign In" status="inactive" />
+  <Button label="Sign In" status="active" style={{ marginTop: 10 }} />
+</Playground>
+
+### Basic Usage
+
+```
+import { Button } from '@libs/components`
+
+const Example = () => {
+  return (
+    <Button
+      label="Sign In"
+      size="large"
+      style={{ width: "200px" }}
+      appearance="outlined"
+    />
+  )
+}
+```

@@ -1,0 +1,33 @@
+{
+  "compilerOptions": {
+    "resolveJsonModule": true,
+    "jsx": "react",
+    "esModuleInterop": true,
+    "sourceMap": true,
+    "removeComments": true,
+    "strict": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "noImplicitThis": true,
+    "alwaysStrict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "rootDir": "./",
+    "paths": {
+      "@libs/components": ["./libs/ui-components"],
+      "@libs/theme": ["./libs/theme"],
+      "@libs/utils": ["./libs/utils"],
+      "@libs/native-icons": ["./libs/icons"],
+      "@libs/blur-widget": ["./libs/blurWidget"],
+      "@libs/container": ["./libs/container"],
+      "@libs/bottom-sheet": ["./libs/bottom-sheet"],
+      "@izzo/core": ["./packages/core"],
+      "@izzo/jotai-storage": ["./packages/jotai-storage"],
+      "@izzo/shared-translation": ["./packages/shared-translation"]
+    }
+  },
+  "include": ["packages/**/*", "libs/**/*", "apps/**/*"]
+}
