@@ -70,7 +70,7 @@ const AppSubWrapper = () => {
   const height = useWindowDimensions().height
 
   return (
-    <View style={{ minHeight: height }}>
+    <View style={Platform.OS === 'web' ? { minHeight: height } : { flex: 1 }}>
       <AppNavigator />
       <Toast
         ref={(ref) => {
@@ -91,8 +91,6 @@ export const App = () => {
   const themeState = useAtom(themeSwitchAtom)
   const colorScheme = useColorScheme()
   const theme: any = getThemeColor(themeState, colorScheme)
-
-  const value = { theme }
 
   const queryClient = new QueryClient({
     defaultOptions: {
