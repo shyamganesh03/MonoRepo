@@ -1,21 +1,21 @@
 {
   "project_info": {
-    "project_number": "825456558599",
-    "project_id": "izzo-c7096",
-    "storage_bucket": "izzo-c7096.appspot.com"
+    "project_number": "670353450767",
+    "project_id": "izzo-app",
+    "storage_bucket": "izzo-app.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:825456558599:android:8eee9016e4b7c77e30a0a2",
+        "mobilesdk_app_id": "1:670353450767:android:cabf07b59f7b874f99807a",
         "android_client_info": {
-          "package_name": "com.mobile"
+          "package_name": "com.izzo"
         }
       },
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyAy9FRlzhRd8DQvHUhdbkTuaTQWIncafPI"
+          "current_key": "AIzaSyACbArcE5RPOfx8008RLqY3c_Q_Ir03V9A"
         }
       ],
       "services": {

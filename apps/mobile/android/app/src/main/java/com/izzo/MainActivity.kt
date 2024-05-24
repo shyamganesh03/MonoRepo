@@ -1,4 +1,4 @@
-package com.mobile
+package com.izzo
 
 import com.facebook.react.ReactActivity
 import com.facebook.react.ReactActivityDelegate
@@ -17,7 +17,7 @@ class MainActivity : ReactActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(null)
   }
-  override fun getMainComponentName(): String = "mobile"
+  override fun getMainComponentName(): String = "izzo"
 
   /**
    * Returns the instance of the [ReactActivityDelegate]. We use [DefaultReactActivityDelegate]
