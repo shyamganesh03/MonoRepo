@@ -2,7 +2,7 @@ import React from 'react'
 import { View } from 'react-native'
 import { Icon } from '../../../icons/output'
 import { spacing } from '@libs/theme'
-import Text from '../Text/Text'
+import RNPText from '../Text/Text'
 import { useTheme } from '@react-navigation/native'
 
 interface PasswordValidateBoxProps {
@@ -34,7 +34,7 @@ const PasswordValidateBox = ({
           key={index.toString()}
         >
           <RenderIcon data={v} isFocused={isFocused} />
-          <Text
+          <RNPText
             variant="body2"
             color={
               !v?.checkStatus && !isFocused
@@ -44,7 +44,7 @@ const PasswordValidateBox = ({
             style={{ marginLeft: spacing.spacing3 }}
           >
             {v.checkLabel}
-          </Text>
+          </RNPText>
         </View>
       ))}
     </View>
@@ -67,7 +67,7 @@ const ErrorLabelContainer = ({ errorLabel }) => {
         name="ExclamationErrorIcon"
         width={13.33}
       />
-      <Text
+      <RNPText
         color={theme.colors.onAlertContainer}
         style={{
           marginLeft: 3.33,
@@ -75,7 +75,7 @@ const ErrorLabelContainer = ({ errorLabel }) => {
         variant="bodyCompactBold2"
       >
         {errorLabel}
-      </Text>
+      </RNPText>
     </View>
   )
 }
