@@ -24,11 +24,23 @@ import { AppNavigator } from './navigation'
 import notificationService from './utils/notificationHandler'
 import { useAtom, Provider as JotaiProvider } from 'jotai'
 import { themeSwitchAtom } from '@izzo/jotai-storage'
+import { Notifier, Easing } from 'react-native-notifier'
 import '@izzo/shared-translation'
 import { PaperProvider } from 'react-native-paper'
 
 Analytics.init()
 notificationService()
+
+Notifier.showNotification({
+  title: 'John Doe',
+  description: 'Hello! Can you help me with notifications?',
+  duration: 0,
+  showAnimationDuration: 800,
+  showEasing: Easing.bounce,
+  onHidden: () => console.log('Hidden'),
+  onPress: () => console.log('Press'),
+  hideOnPress: false,
+})
 
 const customLightTheme = {
   ...DefaultTheme.colors,
@@ -132,9 +144,7 @@ export const App = () => {
         >
           <JotaiProvider>
             <QueryClientProvider client={queryClient}>
-              <NotifierWrapper>
-                <AppSubWrapper />
-              </NotifierWrapper>
+              <AppSubWrapper />
             </QueryClientProvider>
           </JotaiProvider>
         </NavigationContainer>

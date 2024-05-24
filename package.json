@@ -37,6 +37,7 @@
     "@react-native-firebase/analytics": "^20.0.0",
     "@react-native-firebase/app": "^20.0.0",
     "@react-native-firebase/crashlytics": "^20.0.0",
+    "@react-native-firebase/messaging": "^20.0.0",
     "@react-navigation/bottom-tabs": "^6.5.20",
     "@react-navigation/drawer": "^6.6.15",
     "@react-navigation/native": "^6.1.17",

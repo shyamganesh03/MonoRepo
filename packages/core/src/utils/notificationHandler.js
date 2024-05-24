@@ -1,21 +1,19 @@
 import PushNotification from 'react-native-push-notification'
 import PushNotificationIOS from '@react-native-community/push-notification-ios'
 import messaging from '@react-native-firebase/messaging'
-import { AppState } from 'react-native'
-import DeviceInfo from 'react-native-device-info'
-import { RootNavigator } from '@edvnz/navigation'
-import { store } from '../store/storeProvider'
-import { updatePreLoginUserDeviceInfo } from '../api'
-import { getNotificationNavigation } from '../hooks/getNotificationNavigation'
+import { AppState, PermissionsAndroid } from 'react-native'
+import { navigateWithParams } from '../navigation/RootNavigator'
+import { getNotificationNavigation } from '@izzo/hooks'
 
-const notificationService = () => {
+const notificationService = async () => {
+
   messaging().setBackgroundMessageHandler(async (remoteMessage) => {
     // console.log('Message handled in the background!', remoteMessage)
   })
   PushNotification.configure({
     // (optional) Called when Token is generated (iOS and Android)
     onRegister(token) {
-      // console.log('TOKEN:', token)
+      console.log('TOKEN:', token)
     },
     // (required) Called when a remote or local notification is opened or received
     onNotification(notification) {
@@ -26,7 +24,7 @@ const notificationService = () => {
       if (AppState.currentState === 'background') {
         getNotificationNavigation({
           data: notification.data,
-          navigation: RootNavigator.navigateWithParams,
+          navigation: navigateWithParams,
         })
       } else if (!notification.foreground) {
         store.dispatch({
@@ -38,8 +36,8 @@ const notificationService = () => {
     },
     // (optional) Called when Registered Action is pressed and invokeApp is false, if true onNotification will be called (Android)
     onAction(notification) {
-      // console.log('ACTION:', notification.action)
-      // console.log('NOTIFICATION:', notification)
+      console.log('ACTION:', notification.action)
+      console.log('NOTIFICATION:', notification)
       // process the action
     },
     permissions: {
@@ -55,10 +53,6 @@ export default notificationService
 
 export const getFCMToken = async () => {
   const fcmToken = await messaging().getToken()
-  const deviceId = DeviceInfo?.getUniqueId()
-  await updatePreLoginUserDeviceInfo({
-    deviceId,
-    notificationDeviceId: fcmToken,
-  })
+  console.log({ fcmToken })
   return fcmToken
 }
