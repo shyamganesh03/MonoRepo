@@ -5,12 +5,14 @@ import {
   initialWindowMetrics,
 } from 'react-native-safe-area-context'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { NotifierWrapper } from 'react-native-notifier'
 import Toast from 'react-native-toast-notifications'
 import {
   NavigationContainer,
   DefaultTheme,
   DarkTheme,
 } from '@react-navigation/native'
+
 import {
   LightTheme as LightThemeColors,
   DarkTheme as DarkThemeColors,
@@ -19,12 +21,14 @@ import {
 import { Analytics } from '@libs/utils'
 import * as RootNavigator from './navigation/RootNavigator'
 import { AppNavigator } from './navigation'
+import notificationService from './utils/notificationHandler'
 import { useAtom, Provider as JotaiProvider } from 'jotai'
 import { themeSwitchAtom } from '@izzo/jotai-storage'
 import '@izzo/shared-translation'
 import { PaperProvider } from 'react-native-paper'
 
 Analytics.init()
+notificationService()
 
 const customLightTheme = {
   ...DefaultTheme.colors,
@@ -128,7 +132,9 @@ export const App = () => {
         >
           <JotaiProvider>
             <QueryClientProvider client={queryClient}>
-              <AppSubWrapper />
+              <NotifierWrapper>
+                <AppSubWrapper />
+              </NotifierWrapper>
             </QueryClientProvider>
           </JotaiProvider>
         </NavigationContainer>
