@@ -2,7 +2,7 @@ import { AppRegistry } from 'react-native';
 
 import {App} from '@izzo/core';
 
-AppRegistry.registerComponent('monorepo', () => App);
-AppRegistry.runApplication('monorepo', {
+AppRegistry.registerComponent('izzo', () => App);
+AppRegistry.runApplication('izzo', {
   rootTag: document.getElementById('root'),
 });

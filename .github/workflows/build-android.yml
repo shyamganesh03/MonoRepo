@@ -29,28 +29,28 @@ jobs:
 
       - name: Run Yarn Install
         run: |
-          cd ./packages/mobile/
+          cd ./apps/mobile/
           npm i -g corepack
           yarn install
 
       - name: clean build folder
         run: |
-          cd ./packages/mobile/android
+          cd ./apps/mobile/android
           ./gradlew clean
 
       - name: Build application
         run: |
-          cd ./packages/mobile/android
+          cd ./apps/mobile/android
           ./gradlew bundleRelease
 
       - name: Rebuild
         run: |
-          cd ./packages/mobile/android
+          cd ./apps/mobile/android
           ./gradlew bundleRelease
 
       - name: Upload application
         uses: actions/upload-artifact@v2
         with:
           name: app
-          path: ./packages/mobile/android/app/build/outputs/bundle/release/app-release.aab
+          path: ./apps/mobile/android/app/build/outputs/bundle/release/app-release.aab
           retention-days: 3
