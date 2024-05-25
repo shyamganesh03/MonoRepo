@@ -15,6 +15,7 @@ import Tag from './Tag/Tag'
 import Text from './Text/Text'
 import TextInput from './TextInput/TextInput'
 import ToggleSwitch from './ToggleSwitch/ToggleSwitch'
+import {ProgressBar} from './ProgressBar'
 
 export {
   Button,
@@ -27,6 +28,7 @@ export {
   Loader,
   PasswordInput,
   Popup,
+  ProgressBar,
   RadioButton,
   Row,
   Tab,

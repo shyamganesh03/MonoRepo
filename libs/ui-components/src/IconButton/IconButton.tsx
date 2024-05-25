@@ -1,24 +1,18 @@
-import * as React from 'react';
-import { IconButton as RNPIconButton,  } from 'react-native-paper';
+import React from "react";
+import { TouchableOpacity } from "react-native";
+import {Icon} from "@libs/native-icons";
 
-interface IconButtonProps {
-  icon: string;
-  mode ?: 'outlined' | 'contained' | 'contained-tonal';
-  iconColor?: string;
-  containerColor?: string;
-  selected?: boolean;
-  disabled?: boolean;
-  animated?: boolean;
-  size?: number;
-  onPress?: () => void;
-}
-const IconButton = (props:IconButtonProps) => {
-  return(
-  <RNPIconButton
-  {...props}
-  
-  />
-)
+interface IconButtonProps{
+   name:string;
+   color:string;
+   onPress?:Function;
 }
 
+
+const IconButton=(props:IconButtonProps)=>{
+
+  return <TouchableOpacity>
+     <Icon name={props.name} color={props.color} />
+  </TouchableOpacity>
+}
 export default IconButton;

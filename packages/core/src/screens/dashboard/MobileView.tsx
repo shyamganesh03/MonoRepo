@@ -1,4 +1,4 @@
-import { Button, Text ,Loader,IconButton,Row} from '@libs/components'
+import { Button, Text ,Loader,IconButton,Row,ProgressBar} from '@libs/components'
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { Icon } from '@libs/native-icons'
@@ -16,9 +16,9 @@ const MobileView = () => {
 
   return (
     <View style={{ flex: 1 }}>
-      <ScrollView>
-        <MobileContainer style={{gap: 10}}>
-          {/* <ProgressBar color={colors.primary} progress={0.5} /> */}
+      <ScrollView contentContainerStyle={{flex:1}}>
+        <MobileContainer style={{gap: 1, flex:1 }}>
+            <ProgressBar color={colors.primary} progress={0.5} />  
            {/* <Text style={{ color: colors.primary }} variant="body1">
             {t('AUTH.LOGIN')}
           </Text>
@@ -85,10 +85,10 @@ const MobileView = () => {
           <Button mode="text" onPress={() => {}} label="Check me" />
           <Button mode="elevated" onPress={() => {}} label="Check me" />
           <Button mode="contained-tonal" onPress={() => {}} label="Check me" />  */}
-          {/* <Loader animating={true} color={colors.primary} size={'small'} hidesWhenStopped={true}/> 
+          <Loader  animating={true} color={colors.primary} size='small' /> 
           
-          <IconButton icon="camera" size={100} mode ="contained" iconColor={colors.primary} onPress={() => {}} /> */}
-          <Row elevation={4}/>
+           <IconButton name="HomeIcon" color={colors.primary} onPress={() => {}} />  
+          
         </MobileContainer>
       </ScrollView>
     </View>

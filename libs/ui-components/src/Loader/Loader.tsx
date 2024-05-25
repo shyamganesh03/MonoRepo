@@ -1,28 +1,20 @@
-import { useTheme } from '@react-navigation/native'
 import React from 'react'
-import { ActivityIndicator, Modal, View } from 'react-native'
+import { View } from 'react-native';
+import { ActivityIndicator as RNPActivityIndicator } from 'react-native-paper'
 
 interface LoaderProps {
-  visible: boolean
-  colorVariant?: string
+  animating:boolean;
+
+  color: string;
+  size:'small'|'large'|number;
 }
 
 const Loader = (props: LoaderProps) => {
-  const { visible, colorVariant = 'primaryVariant1' } = props
-  const theme: any = useTheme()
 
   return (
-    <Modal visible={visible} transparent>
-      <View
-        style={{
-          alignItems: 'center',
-          height: '100%',
-          justifyContent: 'center',
-        }}
-      >
-        <ActivityIndicator color={theme.colors[colorVariant]} size="large" />
-      </View>
-    </Modal>
+    <View style={{flex:1,justifyContent:'center', alignItems:'center',}}>
+          <RNPActivityIndicator animating={props.animating}color={props.color} size={props.size} />
+    </View>
   )
 }
 export default Loader
