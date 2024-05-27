@@ -9,6 +9,7 @@ import Loader from './Loader/Loader'
 import PasswordInput from './PasswordInput/PassWordInput'
 import RadioButton from './RadioButton/RadioButton'
 import Flex from './Flex'
+import Wrap from './Wrap'
 import Tab from './Tab/Tab'
 import Tag from './Tag/Tag'
 import Text from './Text/Text'
@@ -36,4 +37,5 @@ export {
   TextInput,
   ToggleSwitch,
   Flex,
+  Wrap,
 }
