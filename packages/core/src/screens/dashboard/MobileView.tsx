@@ -1,4 +1,4 @@
-import { Button, Text } from '@libs/components'
+import { Button, Text ,Loader,IconButton,Row,ProgressBar} from '@libs/components'
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { Icon } from '@libs/native-icons'
@@ -6,15 +6,20 @@ import { useTheme } from '@react-navigation/native'
 import { MobileContainer } from '@libs/container'
 import { ScrollView, View } from 'react-native'
 
+
+
+
+
 const MobileView = () => {
   const { t } = useTranslation()
   const { colors } = useTheme()
 
   return (
     <View style={{ flex: 1 }}>
-      <ScrollView>
-        <MobileContainer style={{gap: 10}}>
-          <Text style={{ color: colors.primary }} variant="body1">
+      <ScrollView contentContainerStyle={{flex:1}}>
+        <MobileContainer style={{gap: 1, flex:1 }}>
+            <ProgressBar color={colors.primary} progress={0.5} />  
+           {/* <Text style={{ color: colors.primary }} variant="body1">
             {t('AUTH.LOGIN')}
           </Text>
           <Text style={{ color: colors.primary }} variant="body2">
@@ -75,15 +80,19 @@ const MobileView = () => {
             {t('AUTH.LOGIN')}
           </Text>
           <Icon name="Home" width={20} height={20} color={'black'}  />
-          <Button mode={'contained'} onPress={() => {}} label="Check me" />
+          <Button mode={'contained'} onPress={() => {}} label="Check me"/>
           <Button mode="outlined" onPress={() => {}} label="Check me" />
           <Button mode="text" onPress={() => {}} label="Check me" />
           <Button mode="elevated" onPress={() => {}} label="Check me" />
-          <Button mode="contained-tonal" onPress={() => {}} label="Check me" />
+          <Button mode="contained-tonal" onPress={() => {}} label="Check me" />  */}
+          <Loader  animating={true} color={colors.primary} size='small' /> 
+          
+           <IconButton name="HomeIcon" color={colors.primary} onPress={() => {}} />  
+          
         </MobileContainer>
       </ScrollView>
     </View>
   )
 }
 
-export default MobileView
+export default MobileView;

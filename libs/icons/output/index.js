@@ -175,7 +175,7 @@ const SvgHomeIcon = props => /*#__PURE__*/React.createElement(Svg, _extends({
   fill: "#807A87"
 }));
 
-const SvgInstagramIcon = props => /*#__PURE__*/React.createElement(Svg, _extends({
+const SvgInstagrammIcon = props => /*#__PURE__*/React.createElement(Svg, _extends({
   width: 24,
   height: 24,
   viewBox: "0 0 30 31",
@@ -197,13 +197,13 @@ const SvgLocationIcon = props => /*#__PURE__*/React.createElement(Svg, _extends(
   xmlns: "http://www.w3.org/2000/svg"
 }, props), /*#__PURE__*/React.createElement(Path, {
   d: "M6.161 8.525c1.234 0 2.234-1.02 2.234-2.28 0-1.258-1-2.278-2.234-2.278-1.233 0-2.233 1.02-2.233 2.279s1 2.279 2.233 2.279Z",
-  stroke: "#1B1820",
+  stroke: props.color,
   strokeWidth: 1.5,
   strokeLinecap: "round",
   strokeLinejoin: "round"
 }), /*#__PURE__*/React.createElement(Path, {
   d: "M6.161 14.602c2.606-2.735 5.212-5.183 5.212-8.204 0-3.021-2.333-5.47-5.212-5.47-2.878 0-5.21 2.449-5.21 5.47 0 3.02 2.605 5.47 5.21 8.204Z",
-  stroke: "#1B1820",
+  stroke: props.color,
   strokeWidth: 1.5,
   strokeLinecap: "round",
   strokeLinejoin: "round"
@@ -288,7 +288,7 @@ const SvgShareIcon = props => /*#__PURE__*/React.createElement(Svg, _extends({
   xmlns: "http://www.w3.org/2000/svg"
 }, props), /*#__PURE__*/React.createElement(Path, {
   d: "M23.092 19.243a3.848 3.848 0 0 0-2.694 1.104L10.263 15.83v-.86l10.135-4.528a3.848 3.848 0 1 0-1.155-2.746v.436L9.108 12.65a3.849 3.849 0 1 0 0 5.49l10.135 4.53v.423a3.848 3.848 0 1 0 3.849-3.849Z",
-  fill: "#FCFBF0"
+  fill: props.color
 }));
 
 const SvgSignOutSqureIcon = props => /*#__PURE__*/React.createElement(Svg, _extends({
