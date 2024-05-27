@@ -29,7 +29,7 @@ const Text = (props: TextProps) => {
       style={StyleSheet.flatten([
         typography[variant],
         { textAlign, color: color || theme.colors.textPrimary },
-        // ...style,
+        style,
       ])}
       numberOfLines={numberOfLines}
     >
