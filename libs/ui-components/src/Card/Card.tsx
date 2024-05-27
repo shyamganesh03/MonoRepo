@@ -1,67 +1,36 @@
-import React from 'react'
-import { StyleSheet, View } from 'react-native'
-import LinearGradient from 'react-native-linear-gradient'
-import PropTypes from 'prop-types'
-import { useTheme } from '@react-navigation/native'
+import * as React from 'react';
+import { Avatar, Button, Card as RNPCard, Text } from 'react-native-paper';
+
+// const LeftContent = props => <Avatar.Icon {...props} icon="folder" />
 
 interface CardProps {
-  backgroundColor: string
-  borderRadius: string
-  children: any
-  colorVariant: string
-  style: any
+   onLongPress?: Function;
+   onPress?: Function;
+   onPressIn?: Function;
+   onPressOut?: Function;
+   delayLongPress?: number;
+   disabled?: boolean;
+   elevation?: 0|1|2|3|4|5;
+   accessible?: boolean;
+   title?:String;
+   subtitle?:String;
+   content?:any;
+   actionContent?:any;
+   style:any;
+
+}
+const  Card = (props:CardProps) => {
+  return(
+  <RNPCard style={props.style}>
+    <RNPCard.Title title={props.title} subtitle={props.subtitle}  />
+    <RNPCard.Content>
+      {props.content}
+      </RNPCard.Content>
+    <RNPCard.Actions>
+      {props.actionContent}
+    </RNPCard.Actions>
+  </RNPCard>
+)
 }
 
-const Card = (props: CardProps) => {
-  const theme: any = useTheme()
-
-  const { backgroundColor, borderRadius, children, colorVariant, style } = props
-  //@ts-ignore
-  const bgColor = theme.colors[colorVariant] || backgroundColor
-
-  if (typeof bgColor === 'object') {
-    return (
-      <LinearGradient
-        style={StyleSheet.flatten([
-          {
-            borderRadius,
-          },
-          style,
-        ])}
-        colors={bgColor}
-      >
-        {children}
-      </LinearGradient>
-    )
-  }
-  return (
-    <View
-      style={StyleSheet.flatten([
-        {
-          backgroundColor: bgColor,
-          borderRadius,
-          width: '100%',
-        },
-        style,
-      ])}
-    >
-      {children}
-    </View>
-  )
-}
-
-Card.propTypes = {
-  backgroundColor: PropTypes.string,
-  borderRadius: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  children: PropTypes.oneOfType([PropTypes.array, PropTypes.element])
-    .isRequired,
-  colorVariant: PropTypes.string,
-}
-
-Card.defaultProps = {
-  backgroundColor: '#fff',
-  borderRadius: 10,
-  colorVariant: 'secondaryVariant4',
-}
-
-export default Card
+export default Card;

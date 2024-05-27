@@ -16,5 +16,6 @@ const Loader = (props: LoaderProps) => {
           <RNPActivityIndicator animating={props.animating}color={props.color} size={props.size} />
     </View>
   )
-}
-export default Loader
+};
+
+export default Loader;

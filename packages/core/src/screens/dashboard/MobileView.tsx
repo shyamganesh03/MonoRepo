@@ -6,6 +6,7 @@ import {
   Text,
   TextInput,
   Flex,
+  Card,
 } from '@libs/components'
 import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -44,6 +45,8 @@ const MobileView = () => {
           backgroundColor={colors.background}
         >
           <Text style={{ color: colors.primary }} variant="body1">
+        <MobileContainer style={{gap: 10}}>
+          {/* <Text style={{ color: colors.primary }} variant="body1">
             {t('AUTH.LOGIN')}
           </Text>
           <Text style={{ color: colors.primary }} variant="body2">
@@ -166,6 +169,8 @@ const MobileView = () => {
             placeholder={'Enter Emaill'}
             style={{ color: colors.textPrimary }}
           />
+          <Button mode="contained-tonal" onPress={() => {}} label="Check me" /> */}
+          <Card style={{marginTop: 40}}title="Card Component"  subtitle="Components of the card" content={<Text>Cards are surfaces that display content and actions on a single topic. The Material UI Card component includes several complementary utility components to handle various use cases</Text>}/>
         </MobileContainer>
       </ScrollView>
     </View>
