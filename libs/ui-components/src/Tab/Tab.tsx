@@ -3,8 +3,8 @@ import { StyleSheet, View, TouchableOpacity } from 'react-native'
 import { spacing } from '@libs/theme'
 import PropTypes from 'prop-types'
 import RNPText from '../Text/Text'
-import Row from '../Row/Row'
-import { useTheme } from '@react-navigation/native'
+import Flex from '../Flex'
+import { useTheme } from 'react-native-paper'
 
 interface TabProps {
   backgroundTab?: number
@@ -33,14 +33,15 @@ const Tab = (props: TabProps) => {
   const theme = useTheme()
 
   return (
-    <Row
+    <Flex direction='row'
       style={StyleSheet.flatten([
         {
-          backgroundColor: bgColor || theme.colors.backgroundSurface2,
+          backgroundColor: bgColor || theme.colors.background,
         },
         styles.tab,
         style,
       ])}
+
     >
       {data.map((option, index) => {
         return (
@@ -50,7 +51,7 @@ const Tab = (props: TabProps) => {
               {
                 backgroundColor:
                   backgroundTab === index
-                    ? tabColor || theme.colors.backgroundSurface
+                    ? tabColor || theme.colors.background
                     : 'transparent',
               },
               styles.tabItems,
@@ -71,7 +72,7 @@ const Tab = (props: TabProps) => {
                 variant="body2"
                 color={
                   backgroundTab === index
-                    ? focusColor || theme.colors.onNeutral
+                    ? focusColor || theme.colors.onPrimary
                     : textColor
                 }
                 style={{ textAlign: 'center' }}
@@ -86,7 +87,7 @@ const Tab = (props: TabProps) => {
                     width: 8,
                     borderRadius: 4,
                     backgroundColor:
-                      indicatorColor || theme.colors.onAlertContainer,
+                      indicatorColor || theme.colors.onBackground,
                   }}
                 />
               ) : (
@@ -96,7 +97,7 @@ const Tab = (props: TabProps) => {
           </TouchableOpacity>
         )
       })}
-    </Row>
+    </Flex>
   )
 }
 

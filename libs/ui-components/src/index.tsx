@@ -9,7 +9,7 @@ import Loader from './Loader/Loader'
 import PasswordInput from './PasswordInput/PassWordInput'
 import Popup from './Popup/Popup'
 import RadioButton from './RadioButton/RadioButton'
-import Row from './Row/Row'
+import Flex from './Flex'
 import Tab from './Tab/Tab'
 import Tag from './Tag/Tag'
 import Text from './Text/Text'
@@ -30,10 +30,10 @@ export {
   Popup,
   ProgressBar,
   RadioButton,
-  Row,
   Tab,
   Tag,
   Text,
   TextInput,
   ToggleSwitch,
+  Flex,
 }

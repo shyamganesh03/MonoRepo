@@ -1,4 +1,4 @@
-import { Button, Text ,Loader,IconButton,Row,ProgressBar} from '@libs/components'
+import { Button, Flex, Text } from '@libs/components'
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { Icon } from '@libs/native-icons'
@@ -16,10 +16,10 @@ const MobileView = () => {
 
   return (
     <View style={{ flex: 1 }}>
-      <ScrollView contentContainerStyle={{flex:1}}>
-        <MobileContainer style={{gap: 1, flex:1 }}>
-            <ProgressBar color={colors.primary} progress={0.5} />  
-           {/* <Text style={{ color: colors.primary }} variant="body1">
+      <ScrollView>
+        <MobileContainer style={{gap: 10}}>
+        
+             {/* <Text style={{ color: colors.primary }} variant="body1">
             {t('AUTH.LOGIN')}
           </Text>
           <Text style={{ color: colors.primary }} variant="body2">
@@ -79,16 +79,24 @@ const MobileView = () => {
           <Text style={{ color: colors.primary }} variant="utilityCompact2">
             {t('AUTH.LOGIN')}
           </Text>
-          <Icon name="Home" width={20} height={20} color={'black'}  />
+          <Icon name="Home" width={20} height={20} color={'black'}  /> 
           <Button mode={'contained'} onPress={() => {}} label="Check me"/>
           <Button mode="outlined" onPress={() => {}} label="Check me" />
           <Button mode="text" onPress={() => {}} label="Check me" />
           <Button mode="elevated" onPress={() => {}} label="Check me" />
-          <Button mode="contained-tonal" onPress={() => {}} label="Check me" />  */}
-          <Loader  animating={true} color={colors.primary} size='small' /> 
+          <Button mode="contained-tonal" onPress={() => {}} label="Check me" />  
+           <Loader animating={true} color={colors.primary} size={'small'} hidesWhenStopped={true}/> 
           
-           <IconButton name="HomeIcon" color={colors.primary} onPress={() => {}} />  
-          
+           */}
+        <Flex direction='row' style={{gap:20}}>
+            <Text>
+              working
+            </Text>
+            <Text>
+              workings
+            </Text>
+        </Flex>
+
         </MobileContainer>
       </ScrollView>
     </View>
