@@ -23,7 +23,6 @@
   },
   "dependencies": {
     "@libs/theme": "1.0.0",
-    "@libs/theme": "1.0.0",
     "@libs/native-icons": "^1.0.0",
     "@libs/components": "1.0.0",
     "react-native-svg": "^12.1.1"

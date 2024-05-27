@@ -1,7 +1,7 @@
 {
-  "name": "@libs/bottom-sheet",
+  "name": "@libs/sheet",
   "version": "1.0.0",
-  "description": "A bottom sheet component for React Native that allows the user to swipe down to dismiss it.",
+  "description": "A sheet component for React Native that allows the user to swipe down to dismiss it.",
   "main": "index.tsx",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

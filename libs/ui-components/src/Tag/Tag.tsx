@@ -4,8 +4,8 @@ import PropTypes from 'prop-types'
 import { spacing } from '@libs/theme'
 import { Icon } from '../../../icons/output'
 import RNPText from '../Text/Text'
-import Row from '../Row/Row'
 import { useTheme } from '@react-navigation/native'
+import Flex from '../Flex'
 
 interface TagTypeProps {
   divider?: boolean
@@ -102,7 +102,7 @@ const TagType = (props: TagTypeProps) => {
 
     default: {
       return (
-        <Row style={{ flex: 1 }}>
+        <Flex direction='row' style={{ flex: 1 }}>
           <View style={{ flexDirection: 'row', alignItems: 'center', flex: 1 }}>
             <View
               style={[
@@ -122,7 +122,7 @@ const TagType = (props: TagTypeProps) => {
           {iconRight && (
             <View style={{ marginLeft: spacing.spacing5 }}>{iconRight}</View>
           )}
-        </Row>
+        </Flex>
       )
     }
   }

@@ -33,9 +33,9 @@ const MyComponent = () => {
   };
 
   return (
-    <BottomSheet dismiss={dismiss}>
+    <Sheet dismiss={dismiss}>
       {/* Content of the bottom sheet */}
-    </BottomSheet>
+    </Sheet>
   );
 };
 
@@ -64,14 +64,14 @@ const MyComponent = () => {
   return (
     <View>
       <Button
-        title="Show bottom sheet"
+        title="Show  sheet"
         onPress={() => setIsVisible(true)}
       />
-      <BottomSheet dismiss={dismiss} isEnable={isVisible}>
+      <Sheet dismiss={dismiss} isEnable={isVisible}>
         <View>
           {/* Content of the bottom sheet */}
         </View>
-      </BottomSheet>
+      </Sheet>
     </View>
   );
 };

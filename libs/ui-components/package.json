@@ -18,7 +18,7 @@
     "@libs/native-icons": "^1.0.0",
     "prop-types": "^15.8.1",
     "@libs/utils": "1.0.0",
-    "@libs/bottom-sheet": "1.0.0"
+    "@libs/sheet": "1.0.0"
   },
   "devDependencies": {
     "@babel/plugin-transform-runtime": "^7.18.10",

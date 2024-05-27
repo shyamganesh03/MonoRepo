@@ -43,5 +43,6 @@ export const LightTheme = {
     surfaceDisabled: 'rgba(29, 27, 30, 0.12)',
     onSurfaceDisabled: 'rgba(29, 27, 30, 0.38)',
     backdrop: 'rgba(52, 46, 55, 0.4)',
+    placeHolderTextColor: '#807A87',
   },
 }

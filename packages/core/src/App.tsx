@@ -52,15 +52,15 @@ const customDarkTheme = {
   spacing,
 }
 
-const getThemeColor = (themeState: any, colorScheme: any) => {
-  if (themeState?.system && colorScheme === 'dark') {
+const getThemeColor = (themeState: any) => {
+  if (themeState === 'dark') {
     return customDarkTheme
   }
-  if (themeState?.system && colorScheme === 'light') {
+  if (themeState === 'light') {
     return customLightTheme
   }
 
-  if (!themeState?.system && !themeState?.dark) {
+  if (!themeState) {
     return customLightTheme
   }
   return customDarkTheme
@@ -88,9 +88,10 @@ const AppSubWrapper = () => {
 
 export const App = () => {
   const routeNameRef = useRef()
-  const themeState = useAtom(themeSwitchAtom)
-  const colorScheme = useColorScheme()
-  const theme: any = getThemeColor(themeState, colorScheme)
+  const [themeState] = useAtom(themeSwitchAtom)
+  console.log(themeState)
+
+  const theme: any = getThemeColor(themeState)
 
   const queryClient = new QueryClient({
     defaultOptions: {

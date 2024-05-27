@@ -43,5 +43,6 @@ export const DarkTheme = {
     surfaceDisabled: 'rgba(231, 225, 229, 0.12)',
     onSurfaceDisabled: 'rgba(231, 225, 229, 0.38)',
     backdrop: 'rgba(52, 46, 55, 0.4)',
+    placeHolderTextColor: '#807A87',
   },
 }
