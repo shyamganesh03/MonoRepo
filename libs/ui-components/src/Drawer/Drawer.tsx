@@ -7,17 +7,19 @@ import {
   Keyboard,
   Platform,
   useWindowDimensions,
+  Animated,
 } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { spacing } from '@libs/theme'
 import { Icon } from '../../../icons/output'
 import { ScreenLayout } from '@libs/utils'
-import { BottomSheet } from '@libs/bottom-sheet'
+import { Sheet } from '@libs/sheet'
 import RNPText from '../Text/Text'
 import { useTheme } from '@react-navigation/native'
 
 interface DrawerProps {
   children: any
+  direction: any
   containerStyle?: any
   drawerColor?: string
   hasBack?: boolean
@@ -36,7 +38,7 @@ const Drawer = (props: DrawerProps) => {
   const {
     children,
     containerStyle,
-    drawerColor = theme.colors.backgroundSurface1,
+    drawerColor = theme.colors.background,
     hasBack,
     isUnlockDrawer = false,
     screenName,
@@ -45,6 +47,7 @@ const Drawer = (props: DrawerProps) => {
     showDrawer = false,
     showSwipeIcon = true,
     isEnable = true,
+    direction = 'right',
   } = props
   const [screenHeight, setScreenHeight] = useState<any>('100%')
   const listenerShow = (e: any) => {
@@ -74,6 +77,23 @@ const Drawer = (props: DrawerProps) => {
     }
   }, [showDrawer])
 
+  const findBorderRadius = (direction: any) => {
+    switch (direction) {
+      case 'right': {
+        return { borderTopLeftRadius: 16, borderBottomLeftRadius: 16 }
+      }
+      case 'left': {
+        return { borderTopRightRadius: 16, borderBottomRightRadius: 16 }
+      }
+      case 'top': {
+        return { borderBottomLeftRadius: 16, borderBottomRightRadius: 16 }
+      }
+      case 'bottom': {
+        return { borderTopLeftRadius: 16, borderTopRightRadius: 16 }
+      }
+    }
+  }
+
   return (
     <Modal
       visible={showDrawer}
@@ -90,7 +110,11 @@ const Drawer = (props: DrawerProps) => {
             style={{ flex: 1 }}
           />
 
-          <BottomSheet dismiss={setShowDrawer} isEnable={isEnable}>
+          <Sheet
+            dismiss={setShowDrawer}
+            isEnable={isEnable}
+            direction={direction}
+          >
             <View style={{ width: '100%', alignItems: 'center' }}>
               <View
                 style={[
@@ -99,6 +123,8 @@ const Drawer = (props: DrawerProps) => {
                     maxWidth: 520,
                     width: '100%',
                     backgroundColor: drawerColor,
+                    height: screenHeight,
+                    ...findBorderRadius(direction),
                   },
                   containerStyle,
                 ]}
@@ -156,7 +182,7 @@ const Drawer = (props: DrawerProps) => {
                 {children}
               </View>
             </View>
-          </BottomSheet>
+          </Sheet>
         </View>
       </View>
     </Modal>
@@ -169,8 +195,6 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   container: {
-    borderTopLeftRadius: 16,
-    borderTopRightRadius: 16,
     bottom: 0,
     paddingBottom: spacing.spacing9,
     paddingTop: spacing.spacing3,

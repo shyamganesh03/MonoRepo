@@ -1,70 +1,137 @@
 import React, { useEffect, useRef } from 'react'
 import { Animated, Dimensions, PanResponder, View } from 'react-native'
 
-export const BottomSheet = (props: {
+export const Sheet = (props: {
   dismiss: any
   isEnable?: boolean
+  direction?: 'bottom' | 'top' | 'left' | 'right'
   children: any
 }) => {
-  const { dismiss, isEnable = true, children } = props
+  const { dismiss, isEnable = true, direction = 'bottom', children } = props
+  const screenWidth = Dimensions.get('screen').width
   const screenHeight = Dimensions.get('screen').height
-  // Ref for Animated.Value
-  const panY = useRef(new Animated.Value(screenHeight)).current
 
-  // Animation to reset position of the bottom sheet
-  const resetPositionAnim = Animated.timing(panY, {
+  const initialPosition =
+    direction === 'bottom'
+      ? screenHeight
+      : direction === 'top'
+        ? -screenHeight
+        : direction === 'left'
+          ? -screenWidth
+          : screenWidth
+
+  const pan = useRef(new Animated.Value(initialPosition)).current
+
+  const resetPositionAnim = Animated.timing(pan, {
     toValue: 0,
     duration: 300,
     useNativeDriver: true,
   })
 
-  // Animation to close the bottom sheet
-  const closeAnim = Animated.timing(panY, {
-    toValue: screenHeight,
+  const closeAnim = Animated.timing(pan, {
+    toValue: initialPosition,
     duration: 500,
     useNativeDriver: true,
   })
 
-  // Interpolation to translate the view along the Y-axis
-  const translateY = panY.interpolate({
-    inputRange: [-1, 0, 1],
-    outputRange: [0, 0, 1],
-  })
-
-  // Function to dismiss the bottom sheet
   const handleDismiss = () => closeAnim.start(() => dismiss())
 
-  // Reset the position when component is mounted
   useEffect(() => {
     resetPositionAnim.start()
   }, [resetPositionAnim])
 
-  // PanResponder to handle swipe gesture
   const panResponders = useRef(
     PanResponder.create({
       onStartShouldSetPanResponder: () => true,
-      onMoveShouldSetPanResponder: () => false,
-      onPanResponderMove: Animated.event([null, { dy: panY }], {
-        useNativeDriver: false,
-      }),
-      onPanResponderRelease: (_, gs) => {
-        // If user swiped down with a velocity > 2 or moved the bottom sheet down more than 1/4 of the screen height
+      onMoveShouldSetPanResponder: () => true,
+      onPanResponderMove: (evt, gestureState) => {
         if (
-          (gs.dy > 0 && gs.vy > 2) ||
-          gs.moveY > screenHeight - screenHeight / 4
+          (direction === 'left' && gestureState.dx < 0) ||
+          (direction === 'right' && gestureState.dx > 0) ||
+          (direction === 'top' && gestureState.dy < 0) ||
+          (direction === 'bottom' && gestureState.dy > 0)
+        ) {
+          Animated.event(
+            [
+              null,
+              direction === 'left' || direction === 'right'
+                ? { dx: pan }
+                : { dy: pan },
+            ],
+            {
+              useNativeDriver: false,
+            },
+          )(evt, gestureState)
+        }
+      },
+      onPanResponderRelease: (_, gs) => {
+        const moveThreshold =
+          direction === 'left' || direction === 'right'
+            ? screenWidth / 4
+            : screenHeight / 4
+        const velocityThreshold = 2
+
+        const shouldNotClose =
+          (direction === 'bottom' && gs.dy < 0) ||
+          (direction === 'top' && gs.dy > 0) ||
+          (direction === 'left' && gs.dx > 0) ||
+          (direction === 'right' && gs.dx < 0)
+
+        if (shouldNotClose) {
+          return resetPositionAnim.start()
+        }
+
+        if (
+          (direction === 'bottom' && gs.dy > 0 && gs.vy > velocityThreshold) ||
+          (direction === 'top' && gs.dy < 0 && gs.vy < -velocityThreshold) ||
+          (direction === 'left' && gs.dx < 0 && gs.vx < -velocityThreshold) ||
+          (direction === 'right' && gs.dx > 0 && gs.vx > velocityThreshold) ||
+          (Math.abs(gs.moveY) > moveThreshold &&
+            (direction === 'bottom' || direction === 'top')) ||
+          (Math.abs(gs.moveX) > moveThreshold &&
+            (direction === 'left' || direction === 'right'))
         ) {
           return handleDismiss()
         }
-        // Reset the position of the bottom sheet
+
         return resetPositionAnim.start()
       },
     }),
   ).current
 
+  const dynamicStyles = {
+    width:
+      direction === 'left' || direction === 'right'
+        ? screenWidth - 100
+        : screenWidth,
+    height:
+      direction === 'bottom' || direction === 'top' ? 'auto' : screenHeight,
+  }
+
+  const findTransform = (direction: any) => {
+    switch (direction) {
+      case 'left': {
+        return { translateX: pan }
+      }
+      case 'right': {
+        return { translateX: pan }
+      }
+      case 'bottom': {
+        return { translateY: pan }
+      }
+      case 'top': {
+        return { translateY: pan }
+      }
+    }
+  }
+
   return isEnable ? (
     <Animated.View
       style={{
-        transform: [{ translateY }],
+        ...dynamicStyles,
+        transform: [findTransform(direction)],
+        position: 'absolute',
+        [direction]: 0,
       }}
       {...panResponders.panHandlers}
     >
