@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 import { Icon } from '../../../icons/output'
 
 import RNPText from '../Text/Text'
-import Row from '../Row/Row'
+import Row from '../Flex'
 import { styles } from './styles'
 import { useTheme } from '@react-navigation/native'
 
