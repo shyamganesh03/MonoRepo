@@ -31,7 +31,7 @@ const MobileView = (props: any) => {
         <IconButton
           name="ArrowLeftIcon"
           color={colors.tertiary}
-          handlePress={() => handleBackNavigation()}
+          onPress={() => handleBackNavigation()}
         />
         <Text
           variant="heading2"
@@ -57,7 +57,7 @@ const MobileView = (props: any) => {
         <FlatList
           data={blogPosts}
           renderItem={isLoading ? renderLoading : renderBlogCard}
-          keyExtractor={(item, index) => index.toString()}
+          keyExtractor={(_, index) => index.toString()}
           horizontal={false}
           showsHorizontalScrollIndicator={false}
           contentContainerStyle={{ paddingBottom: 90 }}

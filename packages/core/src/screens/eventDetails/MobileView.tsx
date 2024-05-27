@@ -4,7 +4,6 @@ import { MobileContainer } from '@libs/container'
 import { ImagePlaceHolder } from 'assets'
 import {
   Button,
-  Card,
   Flex,
   IconButton,
   Image,
@@ -74,7 +73,7 @@ const MobileView = ({ eventData, showMore, setShowMore, isLoading }: any) => {
         <IconButton
           name="ArrowLeftIcon"
           color={colors.textPrimary}
-          handlePress={() => navigation.goBack()}
+          onPress={() => navigation.goBack()}
         />
         <Image
           imageUrl={ImagePlaceHolder}
@@ -168,9 +167,7 @@ const MobileView = ({ eventData, showMore, setShowMore, isLoading }: any) => {
             onPress={() => setShowMore(!showMore)}
           />
         </Flex>
-        <Flex direction="column">
-          <LocationCard eventData={eventData} />
-        </Flex>
+        <LocationCard eventData={eventData} />
         <Flex
           direction="row"
           style={{ gap: spacing.spacing7, justifyContent: 'center' }}
@@ -179,7 +176,7 @@ const MobileView = ({ eventData, showMore, setShowMore, isLoading }: any) => {
           <IconButton
             name="InstagramIcon"
             color={colors.textPrimary}
-            handlePress={() => {
+            onPress={() => {
               Linking.openURL(eventData?.company?.socialMedia)
             }}
           />

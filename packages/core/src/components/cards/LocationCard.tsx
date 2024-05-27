@@ -9,10 +9,11 @@ import MapView, {
 import { Surface, useTheme } from 'react-native-paper'
 import { Flex, Text } from '@libs/components'
 import { useTranslation } from 'react-i18next'
+import { locationCardMapStyle } from '../../constants'
 
 interface LocationCardProps {
   height?: number
-  width?: number
+  width?: any
   borderRadius?: number
   latitudeDelta?: number
   eventData: any
@@ -20,7 +21,7 @@ interface LocationCardProps {
 
 const LocationCard = ({
   height = 151,
-  width = 230,
+  width = 335,
   borderRadius = 10,
   latitudeDelta = 0.0922,
   eventData,
@@ -40,7 +41,7 @@ const LocationCard = ({
     return PROVIDER_DEFAULT
   }
   return (
-    <Surface style={{ padding: 20, borderRadius: 10 }}>
+    <Surface style={{ padding: spacing.spacing6, borderRadius: 10 }}>
       <Text variant="heading2">{t('EVENT_DETAIL.LOCATION')}</Text>
       <Flex direction="column" style={{ marginTop: spacing.spacing2 }}>
         <Text variant="bodyBold1" style={{ color: colors.primary }}>
@@ -61,9 +62,10 @@ const LocationCard = ({
           >
             <MapView
               provider={getProvider()}
+              customMapStyle={locationCardMapStyle}
               initialRegion={{
-                latitude: coordinates[0],
-                longitude: coordinates[1],
+                latitude: Number(coordinates[0]),
+                longitude: Number(coordinates[1]),
                 latitudeDelta: latitudeDelta,
                 longitudeDelta: longitudeDelta,
               }}
@@ -78,8 +80,8 @@ const LocationCard = ({
             >
               <Marker
                 coordinate={{
-                  latitude: coordinates[0],
-                  longitude: coordinates[1],
+                  latitude: Number(coordinates[0]),
+                  longitude: Number(coordinates[1]),
                 }}
               />
             </MapView>
