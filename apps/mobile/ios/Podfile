@@ -30,6 +30,7 @@ end
 
 target 'izzo' do
   config = use_native_modules!
+  rn_maps_path = '../../../node_modules/react-native-maps'
 
   pod 'FirebaseCoreInternal', :modular_headers => true
   pod 'GoogleUtilities', :modular_headers => true
@@ -41,6 +42,9 @@ target 'izzo' do
   pod 'FirebaseSessions', :modular_headers => true
   pod 'FirebaseCore', :modular_headers => true
   pod 'FirebaseCoreExtension', :modular_headers => true
+  pod 'react-native-google-maps', :path => rn_maps_path 
+  pod 'react-native-maps', :path => rn_maps_path 
+
 
   use_react_native!(
     :path => config[:reactNativePath],

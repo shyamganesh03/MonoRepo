@@ -8,13 +8,16 @@ import fingerprint from './fingerPrint'
 import testProps from './testing'
 import useDebounce from './useDebounce'
 import validateEmail from './validateEmail'
+import { dateformat, getDayName } from './dateFunction'
 
 export {
   Analytics,
   appUtil,
+  dateformat,
   debounce,
   fingerprint,
   RootNavigator,
+  getDayName,
   ScreenLayout,
   sort,
   testProps,

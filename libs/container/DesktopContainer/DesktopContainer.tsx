@@ -3,13 +3,14 @@ import React from 'react'
 import { View, StyleSheet } from 'react-native'
 
 interface DesktopContainerProps {
-  children: any
+  children?: any
   maxWidth?: number
-  backgroundColor: string
+  backgroundColor?: string
+  style?: any
 }
 
 const DesktopContainer = (props: DesktopContainerProps) => {
-  const { children, maxWidth = 540, backgroundColor } = props
+  const { children, maxWidth = 540, backgroundColor, style } = props
   const theme: any = useTheme()
 
   return (
@@ -19,6 +20,7 @@ const DesktopContainer = (props: DesktopContainerProps) => {
         {
           backgroundColor: backgroundColor || theme.colors?.backgroundSurface1,
         },
+        style,
       ]}
     >
       <View style={styles.layout}>

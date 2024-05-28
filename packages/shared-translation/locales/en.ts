@@ -19,4 +19,25 @@ export default {
     EMPTY_CARD_TODAY: 'Too bad there is currently no event on today',
     EMPTY_CARD_WEEKEND: 'Too bad there is currently no event on weekend',
   },
+  EVENT_DETAIL: {
+    BY: 'BY',
+    WHEN: 'When',
+    FROM: 'from',
+    AGE_RESTRICTION: 'Age Restriction',
+    MEN: 'Men',
+    WOMEN: 'Women',
+    DESCRIPTION: 'Description',
+    GENRE: 'Genre',
+    LOCATION: 'Location',
+  },
+  LOCATION_CARD: {
+    TICKETS: 'Tickets',
+    PRICES_FROM: 'Prices from',
+  },
+  BUTTON: {
+    BUY_TICKETS: 'Buy Tickets',
+    SAVE_EVENT: 'Save Event',
+    SHOW_MORE: 'Show More',
+    SHOW_LESS: 'Show Less',
+  },
 }

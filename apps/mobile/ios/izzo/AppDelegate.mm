@@ -4,16 +4,18 @@
 
 #import "FirebaseCore/FirebaseCore.h"
 
+#import <GoogleMaps/GoogleMaps.h>
+
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+  [FIRApp configure];
+  [GMSServices provideAPIKey:@"MAPS_API_KEY"];
   self.moduleName = @"izzo";
   // You can add your custom initial props in the dictionary below.
   // They will be passed down to the ViewController used by React Native.
   self.initialProps = @{};
-  [FIRApp configure];
-
   return [super application:application didFinishLaunchingWithOptions:launchOptions];
 }
 

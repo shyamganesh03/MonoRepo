@@ -2,7 +2,7 @@ import { Text as TextElement, StyleSheet } from 'react-native'
 import PropTypes from 'prop-types'
 import React from 'react'
 import { typography } from '@libs/theme'
-import { useTheme } from '@react-navigation/native'
+import { useTheme } from 'react-native-paper'
 
 interface TextProps {
   children: any

@@ -14,8 +14,8 @@ interface TagTypeProps {
   iconLeft?: any
   iconRight?: any
   label: string
-  labelColor: string
-  pointColor: string
+  labelColor?: string
+  pointColor?: string
   tagType: string
   textVariant: string
   bgColor?: string
@@ -33,6 +33,7 @@ const TagType = (props: TagTypeProps) => {
     labelColor,
     tagType,
     textVariant,
+    pointColor,
   } = props
 
   const theme = useTheme()
@@ -102,11 +103,21 @@ const TagType = (props: TagTypeProps) => {
     default: {
       return (
         <Flex direction="row" style={{ flex: 1 }}>
-          <LabelText
-            label={label}
-            labelColor={labelColor}
-            textVariant={textVariant}
-          />
+          <View style={{ flexDirection: 'row', alignItems: 'center', flex: 1 }}>
+            <View
+              style={[
+                {
+                  backgroundColor: pointColor,
+                },
+                styles.pointStyle,
+              ]}
+            />
+            <LabelText
+              label={label}
+              labelColor={labelColor}
+              textVariant={textVariant}
+            />
+          </View>
 
           {iconRight && (
             <View style={{ marginLeft: spacing.spacing5 }}>{iconRight}</View>

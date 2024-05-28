@@ -2,6 +2,7 @@ import React from 'react'
 import { View } from 'react-native'
 import { spacing } from '@libs/theme'
 import KeyBoardView from '../KeyBoardView'
+import { Flex } from '@libs/components'
 
 const MobileContainer = (props: any) => {
   const {
@@ -10,6 +11,7 @@ const MobileContainer = (props: any) => {
     hasPadding = true,
     hasKeyBoard = false,
     backgroundColor,
+    direction = 'column',
     ...rest
   } = props
 
@@ -35,7 +37,8 @@ const MobileContainer = (props: any) => {
     )
   }
   return (
-    <View
+    <Flex
+      direction={direction}
       style={[
         hasPadding
           ? {
@@ -49,7 +52,7 @@ const MobileContainer = (props: any) => {
       {...rest}
     >
       {children}
-    </View>
+    </Flex>
   )
 }
 
