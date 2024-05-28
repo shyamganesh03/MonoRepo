@@ -4,14 +4,13 @@ import DesktopView from './DesktopView'
 import MobileView from './MobileView'
 import React from 'react'
 
-const Dashboard = () => {
-  const viewProps = {}
-
+const Map = () => {
   const LayoutView = useCallback(
     ScreenLayout.withLayoutView(DesktopView, MobileView, MobileView),
     [],
   )
 
+  const viewProps = {}
   return (
     <Suspense fallback={<></>}>
       <LayoutView {...viewProps} />
@@ -19,4 +18,4 @@ const Dashboard = () => {
   )
 }
 
-export default Dashboard
+export default Map

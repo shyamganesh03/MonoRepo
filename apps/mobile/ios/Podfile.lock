@@ -1275,6 +1275,10 @@ PODS:
     - FirebaseCoreExtension
     - React-Core
     - RNFBApp
+  - RNGestureHandler (2.16.2):
+    - glog
+    - RCT-Folly (= 2022.05.16.00)
+    - React-Core
   - RNReanimated (3.11.0):
     - glog
     - RCT-Folly (= 2022.05.16.00)
@@ -1393,6 +1397,7 @@ DEPENDENCIES:
   - "RNFBAnalytics (from `../../../node_modules/@react-native-firebase/analytics`)"
   - "RNFBApp (from `../../../node_modules/@react-native-firebase/app`)"
   - "RNFBCrashlytics (from `../../../node_modules/@react-native-firebase/crashlytics`)"
+  - RNGestureHandler (from `../../../node_modules/react-native-gesture-handler`)
   - RNReanimated (from `../../../node_modules/react-native-reanimated`)
   - RNScreens (from `../../../node_modules/react-native-screens`)
   - "RNSentry (from `../../../node_modules/@sentry/react-native`)"
@@ -1549,6 +1554,8 @@ EXTERNAL SOURCES:
     :path: "../../../node_modules/@react-native-firebase/app"
   RNFBCrashlytics:
     :path: "../../../node_modules/@react-native-firebase/crashlytics"
+  RNGestureHandler:
+    :path: "../../../node_modules/react-native-gesture-handler"
   RNReanimated:
     :path: "../../../node_modules/react-native-reanimated"
   RNScreens:
@@ -1649,6 +1656,7 @@ SPEC CHECKSUMS:
   RNFBAnalytics: 1cee7c9ec9edded92c25ac1a7b0eb032ecbdfe93
   RNFBApp: b404b7224b5e0d3a3bf9c555bac0fe135b13a896
   RNFBCrashlytics: 0a61250c420d9141f4540bf8581b7cfc821c6033
+  RNGestureHandler: 48c9d38f57c7761b4153def57b718f491f4bbb4b
   RNReanimated: a778858330f69f91eab53d9505cf4a49819233d8
   RNScreens: 79c1020e7f52f4edde5ad96540f6e33c8b9b3b6c
   RNSentry: 4a7576f59e802ce1da068f38c26da69af9578a33
@@ -1660,6 +1668,6 @@ SPEC CHECKSUMS:
   UXCam: b92d8d1d0b3f0292716633564b14d9647b74fd5c
   Yoga: 64cd2a583ead952b0315d5135bf39e053ae9be70
 
-PODFILE CHECKSUM: 8f83f75bdf1acca8772af2e56f70ebfd40e67f69
+PODFILE CHECKSUM: dc15feff1f61e61298023ea56d1fc126a7c33efb
 
 COCOAPODS: 1.12.1

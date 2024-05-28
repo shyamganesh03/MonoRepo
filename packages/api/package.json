@@ -1,6 +1,6 @@
 {
   "name": "@izzo/api",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "src/api.ts",
   "license": "MIT"
 }

@@ -20,7 +20,6 @@ import {
   LightTheme as LightThemeColors,
   DarkTheme as DarkThemeColors,
   spacing,
-  ThemeProvider,
 } from '@libs/theme'
 import { Analytics } from '@libs/utils'
 import * as RootNavigator from './navigation/RootNavigator'
@@ -89,7 +88,6 @@ const AppSubWrapper = () => {
 export const App = () => {
   const routeNameRef = useRef()
   const [themeState] = useAtom(themeSwitchAtom)
-  console.log(themeState)
 
   const theme: any = getThemeColor(themeState)
 

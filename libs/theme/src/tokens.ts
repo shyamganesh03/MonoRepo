@@ -1,5 +1,4 @@
-const ROC_GROTESK = 'RocGrotesk'
-const DM_SANS = 'DMSans'
+const SCULPIN = 'Scuplin'
 
 export const opacity = {
   level1: 0.1,
@@ -15,107 +14,107 @@ export const opacity = {
 
 export const typography = {
   display1: {
-    fontFamily: `${ROC_GROTESK}-Bold`,
+    fontFamily: `${SCULPIN}-Bold`,
     fontSize: 48,
     fontWeight: '600',
   },
   display2: {
-    fontFamily: `${ROC_GROTESK}-Bold`,
+    fontFamily: `${SCULPIN}-Bold`,
     fontSize: 42,
     fontWeight: '600',
   },
   display3: {
-    fontFamily: `${ROC_GROTESK}-Bold`,
+    fontFamily: `${SCULPIN}-Bold`,
     fontSize: 36,
     fontWeight: '600',
   },
   display4: {
-    fontFamily: `${ROC_GROTESK}-Bold`,
+    fontFamily: `${SCULPIN}-Bold`,
     fontSize: 32,
     fontWeight: '600',
     lineHeight: 35.2,
   },
   heading1: {
-    fontFamily: `${ROC_GROTESK}-Bold`,
+    fontFamily: `${SCULPIN}-Bold`,
     fontSize: 28,
     fontWeight: '600',
     lineHeight: 33.6,
   },
   heading2: {
-    fontFamily: `${ROC_GROTESK}-Bold`,
+    fontFamily: `${SCULPIN}-Bold`,
     fontSize: 24,
     fontWeight: '600',
     lineHeight: 28.8,
   },
   heading3: {
-    fontFamily: `${ROC_GROTESK}-Bold`,
+    fontFamily: `${SCULPIN}-Bold`,
     fontSize: 20,
     fontWeight: '600',
   },
   heading4: {
-    fontFamily: `${DM_SANS}-Bold`,
+    fontFamily: `${SCULPIN}-Bold`,
     fontSize: 20,
     fontWeight: '700',
   },
   heading5: {
-    fontFamily: `${DM_SANS}-Bold`,
+    fontFamily: `${SCULPIN}-Bold`,
     fontSize: 18,
     fontWeight: '600',
   },
   body1: {
-    fontFamily: `${DM_SANS}-Regular`,
+    fontFamily: `${SCULPIN}-Regular`,
     fontSize: 16,
     fontWeight: '400',
   },
   bodyBold1: {
-    fontFamily: `${DM_SANS}-Bold`,
+    fontFamily: `${SCULPIN}-Bold`,
     fontSize: 16,
     fontWeight: '700',
   },
   body2: {
-    fontFamily: `${DM_SANS}-Regular`,
+    fontFamily: `${SCULPIN}-Regular`,
     fontSize: 14,
     fontWeight: '400',
   },
   bodyCompact2: {
-    fontFamily: `${DM_SANS}-Regular`,
+    fontFamily: `${SCULPIN}-Regular`,
     fontSize: 14,
     fontWeight: '400',
   },
   bodyBold2: {
-    fontFamily: `${DM_SANS}-Bold`,
+    fontFamily: `${SCULPIN}-Bold`,
     fontSize: 14,
     fontWeight: '700',
   },
   bodyCompactBold2: {
-    fontFamily: `${DM_SANS}-Bold`,
+    fontFamily: `${SCULPIN}-Bold`,
     fontSize: 14,
     fontWeight: '700',
   },
   utility1: {
-    fontFamily: `${ROC_GROTESK}-Bold`,
+    fontFamily: `${SCULPIN}-Bold`,
     fontSize: 14,
     fontWeight: '700',
   },
   utility2: {
-    fontFamily: `${DM_SANS}-Regular`,
+    fontFamily: `${SCULPIN}-Regular`,
     fontSize: 12,
     fontWeight: '400',
   },
   utilityCompact2: {
-    fontFamily: `${DM_SANS}-Regular`,
+    fontFamily: `${SCULPIN}-Regular`,
     fontSize: 12,
     fontWeight: '400',
   },
   utilityBold2: {
-    fontFamily: `${DM_SANS}-Bold`,
+    fontFamily: `${SCULPIN}-Bold`,
     fontSize: 12,
     fontWeight: '700',
   },
   functional1: {
-    fontFamily: `${ROC_GROTESK}-Bold`,
+    fontFamily: `${SCULPIN}-Bold`,
     fontSize: 16,
-    fontWeight: '700',
+    fontWeight: '500',
   },
 }
 

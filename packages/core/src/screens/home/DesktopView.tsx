@@ -1,0 +1,18 @@
+import React from 'react'
+import { useTranslation } from 'react-i18next'
+import { useTheme } from '@react-navigation/native'
+import { DesktopContainer } from '@libs/container'
+import { Text } from '@libs/components'
+
+const DesktopView = () => {
+  const { t } = useTranslation()
+  const { colors } = useTheme()
+
+  return (
+    <DesktopContainer backgroundColor={colors.background}>
+      <Text variant="functional1">{t('HOME.DRUNK_MODE')}</Text>
+    </DesktopContainer>
+  )
+}
+
+export default DesktopView

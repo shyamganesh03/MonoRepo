@@ -1,6 +1,6 @@
-import { useTheme } from '@react-navigation/native'
 import React from 'react'
 import { Animated, StyleSheet, View } from 'react-native'
+import { useTheme } from 'react-native-paper'
 
 const getOutputRange = (width: string, isReversed: boolean) =>
   isReversed ? [width, -width] : [-width, width]
@@ -61,14 +61,11 @@ ShimmerPlaceholder.defaultProps = {
 }
 
 const BasedShimmerPlaceholder = (props: BasedShimmerPlaceholder) => {
-  const theme: any = useTheme()
+  const { colors } = useTheme()
   const {
     width = 277,
     height = 15,
-    shimmerColors = [
-      theme.colors.backgroundSurface1,
-      theme.colors.backgroundSurface2,
-    ],
+    shimmerColors = [colors.surfaceVariant, colors.onSurfaceVariant],
     isReversed = false,
     stopAutoRun = false,
     visible,
@@ -80,7 +77,7 @@ const BasedShimmerPlaceholder = (props: BasedShimmerPlaceholder) => {
     children,
     animatedValue,
     beginShimmerPosition,
-    shimmerWidthPercent = 1,
+    shimmerWidthPercent = 0.5,
     containerProps,
     shimmerContainerProps,
     childrenContainerProps,

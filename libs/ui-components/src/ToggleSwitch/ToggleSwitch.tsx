@@ -35,12 +35,13 @@ const ToggleSwitch = (props: ToggleSwitchProps) => {
             backgroundColor: !activeState
               ? theme.colors.textPrimary
               : 'transparent',
+            margin: 2,
           },
         ]}
       />
       <View
         style={[
-          styles.toggleCircle,
+          styles.toggleActiveCircle,
           {
             backgroundColor: !activeState
               ? 'transparent'
@@ -68,17 +69,23 @@ const styles = StyleSheet.create({
   toggleView: {
     borderRadius: 25,
     flexDirection: 'row',
-    height: 23,
-    justifyContent: 'space-between',
-    padding: 5,
-    width: 46,
+    height: 31,
+    width: 51,
   },
   toggleCircle: {
-    alignItems: 'center',
-    borderRadius: 25,
-    height: 13,
+    borderRadius: 100,
+    height: 27,
     justifyContent: 'center',
-    width: 13,
+    width: 27,
+    margin: 2,
+  },
+  toggleActiveCircle: {
+    borderRadius: 100,
+    height: 27,
+    width: 27,
+    position: 'absolute',
+    right: 3,
+    top: 2,
   },
 })
 

@@ -19,7 +19,7 @@ interface TagTypeProps {
   tagType: string
   textVariant: string
   bgColor?: string
-  style?: string
+  style?: any
 }
 
 const TagType = (props: TagTypeProps) => {
@@ -31,7 +31,6 @@ const TagType = (props: TagTypeProps) => {
     iconRight,
     label,
     labelColor,
-    pointColor,
     tagType,
     textVariant,
   } = props
@@ -39,7 +38,7 @@ const TagType = (props: TagTypeProps) => {
   const theme = useTheme()
 
   switch (tagType) {
-    case 'modeTag':
+    case 'eventTag':
       return (
         <>
           {iconLeft && <IconSpacing>{iconLeft}</IconSpacing>}
@@ -102,22 +101,12 @@ const TagType = (props: TagTypeProps) => {
 
     default: {
       return (
-        <Flex direction='row' style={{ flex: 1 }}>
-          <View style={{ flexDirection: 'row', alignItems: 'center', flex: 1 }}>
-            <View
-              style={[
-                {
-                  backgroundColor: pointColor,
-                },
-                styles.pointStyle,
-              ]}
-            />
-            <LabelText
-              label={label}
-              labelColor={labelColor}
-              textVariant={textVariant}
-            />
-          </View>
+        <Flex direction="row" style={{ flex: 1 }}>
+          <LabelText
+            label={label}
+            labelColor={labelColor}
+            textVariant={textVariant}
+          />
 
           {iconRight && (
             <View style={{ marginLeft: spacing.spacing5 }}>{iconRight}</View>
@@ -211,19 +200,19 @@ const styles = StyleSheet.create({
     marginRight: 8,
     width: 8,
   },
-  modeTag: {
+  eventTag: {
     alignSelf: 'center',
-    borderRadius: 8,
+    borderRadius: 16,
     flexDirection: 'row',
-    paddingHorizontal: spacing.spacing3,
-    paddingVertical: spacing.spacing2,
+    paddingHorizontal: 25,
+    paddingVertical: spacing.spacing1,
   },
   alertTag: {
     alignSelf: 'center',
     borderRadius: 16,
     flexDirection: 'row',
-    paddingHorizontal: spacing.spacing3,
-    paddingVertical: spacing.spacing2,
+    paddingHorizontal: spacing.spacing5,
+    paddingVertical: 2,
   },
 })
 
@@ -235,7 +224,7 @@ Tag.propTypes = {
   labelColor: PropTypes.string,
   pointColor: PropTypes.string,
   style: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
-  tagType: PropTypes.oneOf(['modeTag', 'alertTag', 'skillTag', 'skillTag1']),
+  tagType: PropTypes.oneOf(['eventTag', 'alertTag', 'skillTag', 'skillTag1']),
   textVariant: PropTypes.string,
 }
 
@@ -247,7 +236,7 @@ Tag.defaultProps = {
   labelColor: '#FFF',
   pointColor: 'green',
   style: {},
-  tagType: 'modeTag',
+  tagType: 'eventTag',
   textVariant: 'body1',
 }
 
