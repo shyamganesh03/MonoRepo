@@ -18,7 +18,12 @@ const MobileContainer = (props: any) => {
       <KeyBoardView>
         <View
           style={[
-            hasPadding ? { paddingHorizontal: spacing.spacing5 } : '',
+            hasPadding
+              ? {
+                  paddingHorizontal: spacing.spacing7,
+                  paddingVertical: spacing.spacing10,
+                }
+              : '',
             { height: '100%', backgroundColor: backgroundColor },
             style,
           ]}
@@ -32,7 +37,12 @@ const MobileContainer = (props: any) => {
   return (
     <View
       style={[
-        hasPadding ? { paddingHorizontal: spacing.spacing5 } : '',
+        hasPadding
+          ? {
+              paddingHorizontal: spacing.spacing7,
+              paddingVertical: spacing.spacing10,
+            }
+          : '',
         { height: '100%', backgroundColor: backgroundColor },
         style,
       ]}

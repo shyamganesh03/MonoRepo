@@ -32,6 +32,7 @@ export const LightTheme = {
     neutral: '#1B1820',
     textPrimary: '#1B1820',
     textSecondary: '#FFFCEE',
+    backgroundSurface: '#1B1820',
     elevation: {
       level0: 'transparent',
       level1: 'rgb(249, 239, 254)',
@@ -44,5 +45,8 @@ export const LightTheme = {
     onSurfaceDisabled: 'rgba(29, 27, 30, 0.38)',
     backdrop: 'rgba(52, 46, 55, 0.4)',
     placeHolderTextColor: '#807A87',
+    gradient: {
+      primary: ['#8840FF', '#A940FF'],
+    },
   },
 }

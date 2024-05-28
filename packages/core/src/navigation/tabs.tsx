@@ -6,6 +6,7 @@ import HomePage from '../screens/home'
 import Map from '../screens/map'
 import Search from '../screens/search'
 import Profile from '../screens/profile'
+import Auth from '../screens/auth'
 
 const Tab = createBottomTabNavigator()
 
@@ -39,7 +40,7 @@ const Tabs = () => {
       />
       <Tab.Screen
         name="maps"
-        component={Map}
+        component={Auth}
         options={{
           tabBarIcon: ({ focused }) => (
             <Icon
