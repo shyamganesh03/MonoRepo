@@ -33,7 +33,8 @@ const Tab = (props: TabProps) => {
   const theme = useTheme()
 
   return (
-    <Flex direction='row'
+    <Flex
+      direction="row"
       style={StyleSheet.flatten([
         {
           backgroundColor: bgColor || theme.colors.background,
@@ -41,7 +42,6 @@ const Tab = (props: TabProps) => {
         styles.tab,
         style,
       ])}
-
     >
       {data.map((option, index) => {
         return (

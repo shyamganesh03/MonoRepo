@@ -6,7 +6,7 @@ import { Icon } from '@libs/native-icons'
 
 const CheckBox = (props: any) => {
   const {
-    onPress,
+    onPress = () => {},
     size = 15,
     style,
     status = 'unchecked',

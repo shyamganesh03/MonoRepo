@@ -32,6 +32,8 @@ export const DarkTheme = {
     neutral: '#A8A4AD',
     textPrimary: '#FFFCEE',
     textSecondary: '#1B1820',
+    backgroundSurface: '#1B1820',
+    backgroundSurface2: 'rgba(75, 35, 140, 0.3)',
     elevation: {
       level0: 'transparent',
       level1: 'rgb(39, 35, 41)',
@@ -43,5 +45,9 @@ export const DarkTheme = {
     surfaceDisabled: 'rgba(231, 225, 229, 0.12)',
     onSurfaceDisabled: 'rgba(231, 225, 229, 0.38)',
     backdrop: 'rgba(52, 46, 55, 0.4)',
+    placeHolderTextColor: '#807A87',
+    gradient: {
+      primary: ['#8840FF', '#A940FF'],
+    },
   },
 }

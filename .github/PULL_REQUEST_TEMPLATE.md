@@ -5,10 +5,10 @@
 
 ## Code Building and Formatting
 
- - [ ] ✅ Web successfully built (yarn web:build)
- - [ ] ✅ Android successfully built (yarn android:bundle)
- - [ ] ✅ IOS successfully built (Check in XCode build)
- - [ ] ✅ Code formatted properly (yarn format)
+- [ ] ✅ Web successfully built (yarn web:build)
+- [ ] ✅ Android successfully built (yarn android:bundle)
+- [ ] ✅ IOS successfully built (Check in XCode build)
+- [ ] ✅ Code formatted properly (yarn format)
 
 ## Pull request type (mark x)(Please try to limit your pull request to one type, submit multiple pull requests if needed.)
 

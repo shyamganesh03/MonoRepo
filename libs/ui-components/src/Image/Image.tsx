@@ -10,7 +10,7 @@ import React from 'react'
 interface ImageProps {
   aspectRatio: string
   borderRadius: number
-  imageUrl: string
+  imageUrl: any
   resizeMode: ImageResizeMode | undefined
   size: number
   style: any
@@ -24,7 +24,7 @@ const Image = (props: ImageProps) => {
     >
       <ImageComponent
         style={{ width: size, height: size, borderRadius }}
-        source={{ uri: imageUrl }}
+        source={imageUrl}
         resizeMode={resizeMode}
       />
     </View>
