@@ -19,9 +19,7 @@ const TextInput = (props: any) => {
         mode={props?.mode || 'outlined'}
         outlineColor={props.outlineColor || 'transparent'}
         activeOutlineColor={colors.onSurface}
-        placeholderTextColor={
-          props.placeholderTextColor || colors.placeHolderTextColor
-        }
+        placeholderTextColor={props.placeholderTextColor || colors.onSecondary}
         style={{
           ...props?.style,
           backgroundColor: colors.elevation.level5,

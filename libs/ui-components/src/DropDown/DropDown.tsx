@@ -137,7 +137,7 @@ const DropDown = forwardRef((props: any, ref) => {
               pointerEvents="none"
               theme={theme}
               outlineColor={props.outlineColor}
-              placeholderTextColor={colors.placeHolderTextColor}
+              placeholderTextColor={colors.onSecondary}
               error={error}
               style={style}
               {...inputProps}

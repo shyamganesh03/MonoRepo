@@ -1,13 +1,13 @@
 import React from 'react'
 import { createDrawerNavigator } from '@react-navigation/drawer'
-import Dashboard from '../screens/dashboard'
+import HomePage from '../screens/home'
 
 const Drawer = createDrawerNavigator()
 
 const DrawerNavigator = () => {
   return (
-    <Drawer.Navigator initialRouteName="Dashboard">
-      <Drawer.Screen name="Dashboard" component={Dashboard} />
+    <Drawer.Navigator initialRouteName="home">
+      <Drawer.Screen name="home" component={HomePage} />
     </Drawer.Navigator>
   )
 }
