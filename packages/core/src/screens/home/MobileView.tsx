@@ -6,8 +6,8 @@ import { useTheme } from 'react-native-paper'
 import { FlatList, TouchableOpacity, View } from 'react-native'
 import { ShimmerPlaceholder } from '@libs/skeletons'
 import EventCard from '../../components/cards/eventCard'
-import BlogCard from '../../components/cards/BlogCard'
-import GenreCard from '../../components/cards/GenreCard'
+import BlogCard from '../../components/cards/blogCard'
+import GenreCard from '../../components/cards/genreCard'
 
 const MobileView = (props: any) => {
   const { t } = useTranslation()
@@ -115,7 +115,7 @@ const MobileView = (props: any) => {
         data={blogPosts?.slice(0, 4)}
         renderItem={renderBlogCard}
         blogPost={true}
-        navigateTo="viewAllNews"
+        navigateTo="news"
         isViewAll={blogPosts?.length > 4}
       />
     </View>
