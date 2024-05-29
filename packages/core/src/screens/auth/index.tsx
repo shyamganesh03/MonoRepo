@@ -4,7 +4,6 @@ import DesktopView from './DesktopView'
 import MobileView from './MobileView'
 
 const Auth = () => {
-  console.log('first')
   const viewProps = {}
 
   const LayoutView = useCallback(

@@ -3,15 +3,18 @@ import { Button, Flex, Text, TextInput } from '@libs/components'
 import { Divider, useTheme } from 'react-native-paper'
 import { useTranslation } from 'react-i18next'
 import { Icon } from '@libs/native-icons'
+import { useNavigation } from '@react-navigation/native'
 
 const LoginAndSignUp = ({ setState }: any) => {
   const { colors } = useTheme<any>()
   const { t } = useTranslation()
   const [textInputValue, setTextInputValue] = useState('')
+  const navigation = useNavigation()
 
   const handleTextInputChange = (text: any) => {
-    setTextInputValue(text) // Update the state with the new value
+    setTextInputValue(text)
   }
+
   return (
     <Flex direction="column">
       <Flex direction="column">
@@ -67,7 +70,7 @@ const LoginAndSignUp = ({ setState }: any) => {
       <Button
         style={{ marginTop: 32, backgroundColor: colors.secondaryContainer }}
         onPress={() => {
-          console.log(setTextInputValue)
+          navigation.navigate('home')
         }}
         label="Use as Guest"
         labelStyle={{ color: colors.textPrimary }}

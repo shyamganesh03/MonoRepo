@@ -69,7 +69,7 @@ const BasedShimmerPlaceholder = (props: BasedShimmerPlaceholder) => {
     isReversed = false,
     stopAutoRun = false,
     visible,
-    location = [0.3, 0.5, 0.7],
+    location = [0.3, 0.5],
     style,
     contentStyle,
     shimmerStyle,

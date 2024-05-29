@@ -5,8 +5,7 @@ import { Icon } from '@libs/native-icons'
 import { useTheme } from 'react-native-paper'
 import { FlatList, TouchableOpacity, View } from 'react-native'
 import { ShimmerPlaceholder } from '@libs/skeletons'
-import EventCard from '../../components/cards/eventCard'
-import { BlogCard, GenreCard } from '../../components'
+import { BlogCard, GenreCard, EventCard } from '../../components'
 
 const MobileView = (props: any) => {
   const { t } = useTranslation()
@@ -43,7 +42,7 @@ const MobileView = (props: any) => {
         genreDetail={item}
         key={item?._id}
         handleGenreDetailNavigation={(genreDetail: any) =>
-          handleEventDetailNavigation(genreDetail)
+          handleGenreDetailNavigation(genreDetail)
         }
       />
     </View>
@@ -89,7 +88,7 @@ const MobileView = (props: any) => {
         title={t('HOME.GENRES')}
         data={genresData?.slice(7, 15)}
         renderItem={renderGenreCard}
-        navigateTo="search"
+        navigateTo="genres"
         isViewAll={genresData?.length > 8}
       />
 
@@ -181,7 +180,7 @@ const MobileView = (props: any) => {
       data={placeholderData}
       keyExtractor={(_, index) => index.toString()}
       showsVerticalScrollIndicator={false}
-      contentContainerStyle={{ marginTop: 64, paddingBottom: 80 }}
+      contentContainerStyle={{ marginTop: 64, paddingBottom: 150 }}
       ListHeaderComponent={renderHeader}
       renderItem={() => null}
       style={{ backgroundColor: colors.background }}

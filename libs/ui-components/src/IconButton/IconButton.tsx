@@ -5,13 +5,13 @@ import { Icon } from '@libs/native-icons'
 interface IconButtonProps {
   name: string
   color: string
-  onPress?: any
   style?: any
+  handlePress?: () => {}
 }
 
 const IconButton = (props: IconButtonProps) => {
   return (
-    <TouchableOpacity style={props.style} onPress={props.onPress}>
+    <TouchableOpacity style={props.style} onPress={() => props?.handlePress()}>
       <Icon name={props.name} color={props.color} />
     </TouchableOpacity>
   )

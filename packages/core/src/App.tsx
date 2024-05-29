@@ -1,10 +1,5 @@
 import React, { useRef } from 'react'
-import {
-  View,
-  useColorScheme,
-  Platform,
-  useWindowDimensions,
-} from 'react-native'
+import { View, Platform, useWindowDimensions } from 'react-native'
 import {
   SafeAreaProvider,
   initialWindowMetrics,
