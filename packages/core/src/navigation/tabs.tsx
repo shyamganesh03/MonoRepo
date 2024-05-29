@@ -1,12 +1,11 @@
 import React from 'react'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { Icon } from '@libs/native-icons'
-import { useTheme } from '@react-navigation/native'
 import HomePage from '../screens/home'
 import Map from '../screens/map'
 import Search from '../screens/search'
 import Profile from '../screens/profile'
-import Auth from '../screens/auth'
+import { useTheme } from 'react-native-paper'
 
 const Tab = createBottomTabNavigator()
 
@@ -17,7 +16,8 @@ const Tabs = () => {
       screenOptions={{
         tabBarStyle: {
           paddingHorizontal: 30,
-          height: 70,
+          height: 80,
+          backgroundColor: colors.background,
         },
         headerShown: false,
       }}
@@ -40,7 +40,7 @@ const Tabs = () => {
       />
       <Tab.Screen
         name="maps"
-        component={Auth}
+        component={Map}
         options={{
           tabBarIcon: ({ focused }) => (
             <Icon

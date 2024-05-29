@@ -3,7 +3,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import Tabs from './tabs'
 import { NavigationContainer } from '@react-navigation/native'
 import News from '../screens/news'
-import EventDetailScreen from '../screens/eventDetailsScreen'
+import EventDetailScreen from '../screens/eventDetails'
 
 const Stack = createNativeStackNavigator()
 
@@ -17,16 +17,16 @@ const Stacks = () => {
           options={{ headerShown: false }}
         />
         <Stack.Screen
-          name="viewAllScreen"
+          name="viewAll"
           component={News}
           options={{ headerShown: false }}
         />
+        <Stack.Screen
+          name="eventDetail"
+          component={EventDetailScreen}
+          options={{ headerShown: false }}
+        />
       </Stack.Navigator>
-      <Stack.Screen
-        name="eventDetailScreen"
-        component={EventDetailScreen}
-        options={{ headerShown: false }}
-      />
     </NavigationContainer>
   )
 }

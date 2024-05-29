@@ -6,23 +6,25 @@ import React from 'react'
 import { useQuery } from '@tanstack/react-query'
 import { getEventDetails } from '@izzo/api'
 
-const EventDetailScreen = () => {
+const EventDetailScreen = (props: any) => {
+  const route = props?.route
+
   const LayoutView = useCallback(
     ScreenLayout.withLayoutView(DesktopView, MobileView, MobileView),
     [],
   )
   const [showMore, setShowMore] = useState(false)
 
-  const { data: eventData } = useQuery({
+  const { data: eventData, isFetching } = useQuery({
     queryKey: ['getEventDetail'],
     queryFn: async () => {
-      const response: any = await getEventDetails('karaoke--disco-01-06-2024')
+      const response: any = await getEventDetails(route?.params?.eventId)
       return response
     },
     initialData: {},
   })
 
-  const viewProps = { eventData, showMore, setShowMore }
+  const viewProps = { eventData, isLoading: isFetching, showMore, setShowMore }
 
   return (
     <Suspense fallback={<></>}>

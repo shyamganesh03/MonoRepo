@@ -49,3 +49,12 @@ export const getBlogPosts = async () =>
     method: 'GET',
     blogPost: true,
   })
+
+export async function getEventDetails(eventName: string) {
+  try {
+    const eventData = await noAuthCall(`event/${eventName}`, { method: 'GET' })
+    return eventData
+  } catch (error) {
+    console.log({ error })
+  }
+}

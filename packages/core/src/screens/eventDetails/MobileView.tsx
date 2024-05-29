@@ -1,7 +1,7 @@
-import { View, ScrollView, Linking } from 'react-native'
+import { ScrollView, Linking } from 'react-native'
 import React from 'react'
 import { MobileContainer } from '@libs/container'
-import { ImagePlaceHolder, Location } from 'assets'
+import { ImagePlaceHolder } from 'assets'
 import {
   Button,
   Card,
@@ -18,15 +18,49 @@ import { dateformat, getDayName } from '@libs/utils'
 import { useTranslation } from 'react-i18next'
 import LinearGradient from 'react-native-linear-gradient'
 import { LocationCard } from '../../components'
+import { ShimmerPlaceholder } from '@libs/skeletons'
 
-const MobileView = ({ eventData, showMore, setShowMore }: any) => {
+const MobileView = ({ eventData, showMore, setShowMore, isLoading }: any) => {
   const { colors } = useTheme<any>()
   const { t } = useTranslation()
   const coordinates = eventData?.location?.coordinates?.split(',') || []
 
+  if (isLoading) {
+    return (
+      <MobileContainer
+        style={{ gap: spacing.spacing7, flex: 1 }}
+        backgroundColor={colors.background}
+      >
+        <ShimmerPlaceholder
+          style={{ height: 300, width: 300, borderRadius: 10 }}
+        />
+        <Flex direction="column" style={{ gap: 20, alignItems: 'center' }}>
+          <ShimmerPlaceholder
+            style={{ height: 40, width: 200, borderRadius: 50 }}
+          />
+          <ShimmerPlaceholder
+            style={{ height: 40, width: 40, borderRadius: 50 }}
+          />
+          <ShimmerPlaceholder
+            style={{ height: 45, width: 200, borderRadius: 50 }}
+          />
+        </Flex>
+        <ShimmerPlaceholder
+          style={{ height: 45, width: 200, borderRadius: 10 }}
+        />
+        <ShimmerPlaceholder
+          style={{ height: 45, width: 100, borderRadius: 10 }}
+        />
+      </MobileContainer>
+    )
+  }
+
   return (
     <ScrollView>
-      <MobileContainer style={{ gap: spacing.spacing7, flex: 1 }}>
+      <MobileContainer
+        style={{ gap: spacing.spacing7, flex: 1 }}
+        backgroundColor={colors.background}
+      >
         <Image image={ImagePlaceHolder} size={300} borderRadius={10} />
         <Flex
           direction="column"
@@ -57,7 +91,7 @@ const MobileView = ({ eventData, showMore, setShowMore }: any) => {
           />
           {/* <Text variant="utility2">
             {' '}
-            Gespeichert von <Text color={colors.onPrimary}>420 </Text>anderen
+            Gespeichert von <Text color={colors.primary}>420 </Text>anderen
           </Text> */}
         </Flex>
         <Flex direction="column" style={{ gap: spacing.spacing3 }}>
@@ -65,11 +99,11 @@ const MobileView = ({ eventData, showMore, setShowMore }: any) => {
           <Text variant="body1">
             {' '}
             {getDayName(eventData?.startDate)}{' '}
-            <Text color={colors.onPrimary} variant="bodyBold1">
+            <Text color={colors.primary} variant="bodyBold1">
               {dateformat(eventData?.startDate)}{' '}
             </Text>
             {t('EVENT_DETAIL.FROM')}{' '}
-            <Text color={colors.onPrimary} variant="bodyBold1">
+            <Text color={colors.primary} variant="bodyBold1">
               {eventData?.startTime}
             </Text>
           </Text>
@@ -93,13 +127,13 @@ const MobileView = ({ eventData, showMore, setShowMore }: any) => {
           <Text variant="heading2">{t('EVENT_DETAIL.AGE_RESTRICTION')}</Text>
           <Text variant="bodyBold1">
             {t('EVENT_DETAIL.WOMEN')}{' '}
-            <Text color={colors.onPrimary} variant="bodyBold1">
+            <Text color={colors.primary} variant="bodyBold1">
               {eventData?.ageRestrictionWomen}+
             </Text>
           </Text>
           <Text variant="bodyBold1">
             {t('EVENT_DETAIL.MEN')}{' '}
-            <Text color={colors.onPrimary} variant="bodyBold1">
+            <Text color={colors.primary} variant="bodyBold1">
               {eventData?.ageRestrictionMen}+
             </Text>
           </Text>
@@ -113,21 +147,25 @@ const MobileView = ({ eventData, showMore, setShowMore }: any) => {
             mode="text"
             label={showMore ? t('BUTTON.SHOW_LESS') : t('BUTTON.SHOW_MORE')}
             style={{ width: 100 }}
-            labelStyle={{ color: colors.onPrimary }}
+            labelStyle={{ color: colors.primary }}
             onPress={() => setShowMore(!showMore)}
           />
         </Flex>
         <Flex direction="column">
           <Card
+            style={{ padding: 20 }}
             title={<Text variant="heading2">{t('EVENT_DETAIL.LOCATION')}</Text>}
             subtitle={
               <Flex direction="column">
-                <Text variant="bodyBold1" style={{ color: colors.onPrimary }}>
+                <Text variant="bodyBold1" style={{ color: colors.primary }}>
                   {eventData?.company?.name}
                 </Text>
                 <Text variant="body2">{eventData?.company?.address}</Text>
               </Flex>
             }
+            subtitleStyle={{
+              marginTop: spacing.spacing3,
+            }}
             content={
               <Flex direction="column">
                 {coordinates?.length > 1 && (

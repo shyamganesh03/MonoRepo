@@ -17,12 +17,34 @@ interface CardProps {
   content?: any
   actionContent?: any
   style?: any
+  titleStyle?: any
+  titleVariant?: any
+  subtitleStyle?: any
+  contentStyle?: any
+  titleNumberOfLines?: number
+  right?: any
 }
+
 const Card = (props: CardProps) => {
   return (
-    <RNPCard style={[props.style, { padding: 20 }]}>
-      <RNPCard.Title title={props.title} subtitle={props.subtitle} />
-      <RNPCard.Content>{props.content}</RNPCard.Content>
+    <RNPCard style={props.style}>
+      <RNPCard.Title
+        title={props.title}
+        subtitle={props.subtitle}
+        titleStyle={{ ...props.titleStyle }}
+        titleVariant={props?.titleVariant}
+        subtitleStyle={{ ...props?.subtitleStyle }}
+        titleNumberOfLines={props?.titleNumberOfLines}
+        right={props?.right}
+      />
+      <RNPCard.Content
+        style={[
+          { flexDirection: 'row', justifyContent: 'flex-start' },
+          props.contentStyle,
+        ]}
+      >
+        {props.content}
+      </RNPCard.Content>
       <RNPCard.Actions>{props.actionContent}</RNPCard.Actions>
     </RNPCard>
   )

@@ -6,12 +6,11 @@ import { useTheme } from 'react-native-paper'
 import { FlatList, TouchableOpacity, View } from 'react-native'
 import { ShimmerPlaceholder } from '@libs/skeletons'
 import EventCard from '../../components/cards/eventCard'
-import BlogCard from '../../components/cards/blogCard'
-import GenreCard from '../../components/cards/genreCard'
+import { BlogCard, GenreCard } from '../../components'
 
 const MobileView = (props: any) => {
   const { t } = useTranslation()
-  const { colors } = useTheme()
+  const { colors } = useTheme<any>()
   const {
     drunkMode,
     setDrunkMode,
@@ -44,7 +43,7 @@ const MobileView = (props: any) => {
         genreDetail={item}
         key={item?._id}
         handleGenreDetailNavigation={(genreDetail: any) =>
-          handleGenreDetailNavigation(genreDetail)
+          handleEventDetailNavigation(genreDetail)
         }
       />
     </View>
@@ -75,15 +74,7 @@ const MobileView = (props: any) => {
             {t('HOME.DRUNK_MODE')}
           </Text>
         </Flex>
-        <ToggleSwitch
-          style={{
-            backgroundColor: colors.primary,
-            width: 51,
-            height: 31,
-          }}
-          activeState={drunkMode}
-          setActiveState={setDrunkMode}
-        />
+        <ToggleSwitch activeState={drunkMode} setActiveState={setDrunkMode} />
       </Flex>
 
       <Section
@@ -188,11 +179,12 @@ const MobileView = (props: any) => {
   return (
     <FlatList
       data={placeholderData}
-      keyExtractor={(item, index) => index.toString()}
+      keyExtractor={(_, index) => index.toString()}
       showsVerticalScrollIndicator={false}
       contentContainerStyle={{ marginTop: 64, paddingBottom: 80 }}
       ListHeaderComponent={renderHeader}
       renderItem={() => null}
+      style={{ backgroundColor: colors.background }}
     />
   )
 }

@@ -2,15 +2,9 @@ import { useTheme } from 'react-native-paper'
 import React from 'react'
 import { TouchableOpacity, View } from 'react-native'
 import { Text } from '@libs/components'
-import { ShimmerPlaceholder } from '@libs/skeletons'
 
-const GenreCard = ({
-  genreDetail,
-  key,
-  handleGenreDetailNavigation,
-  isLoading,
-}: any) => {
-  const { colors } = useTheme()
+const GenreCard = ({ genreDetail, key, handleGenreDetailNavigation }: any) => {
+  const { colors } = useTheme<any>()
 
   return (
     <TouchableOpacity

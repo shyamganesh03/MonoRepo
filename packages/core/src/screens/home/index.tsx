@@ -6,12 +6,11 @@ import React from 'react'
 import { useQuery } from '@tanstack/react-query'
 import { getAllEvents, getBlogPosts, getGenres } from '@izzo/api'
 import { useNavigation } from '@react-navigation/native'
-import { navigateWithParams } from '../../navigation/RootNavigator'
 
 const HomePage = () => {
   const [drunkMode, setDrunkMode] = useState(false)
 
-  const navigation = useNavigation()
+  const navigation: any = useNavigation()
 
   const LayoutView = useCallback(
     ScreenLayout.withLayoutView(DesktopView, MobileView, MobileView),
@@ -33,11 +32,11 @@ const HomePage = () => {
   })
 
   const handleEventDetailNavigation = (pageId: any) => {
-    navigateWithParams('eventDeatils', { eventId: pageId })
+    navigation.navigate('eventDetail', { eventId: pageId })
   }
 
   const handleGenreDetailNavigation = (genreDetail: any) => {
-    navigateWithParams('search', genreDetail)
+    navigation.navigate('search', genreDetail)
   }
 
   const today = new Date()

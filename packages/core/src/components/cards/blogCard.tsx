@@ -3,6 +3,7 @@ import { Card, Text } from '@libs/components'
 import React from 'react'
 import { View, TouchableOpacity } from 'react-native'
 import { Icon } from '@libs/native-icons'
+import { spacing } from '@libs/theme'
 
 const BlogCard = ({ blogPost }: any) => {
   const { colors } = useTheme()
@@ -18,18 +19,19 @@ const BlogCard = ({ blogPost }: any) => {
   return (
     <TouchableOpacity
       style={{
-        width: '100%',
         borderRadius: 16,
         marginBottom: 11,
       }}
     >
       <Card
-        title={blogPost?.title}
+        title={`${blogPost?.title}`}
         titleStyle={{
           fontWeight: '900',
           fontSize: 20,
           color: `${blogPost?.textColor?.value}`,
-          width: blogPost?.isNew || blogPost?.isPinned ? '80%' : '100%',
+          maxWidth: blogPost?.isNew || blogPost?.isPinned ? '68%' : '100%',
+          marginBottom:
+            blogPost?.isNew || blogPost?.isPinned ? spacing.spacing4 : 0,
         }}
         right={() =>
           showStatus ? (

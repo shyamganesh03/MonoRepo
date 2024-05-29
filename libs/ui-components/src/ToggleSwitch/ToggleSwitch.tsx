@@ -1,7 +1,7 @@
 import React from 'react'
 import { TouchableOpacity, View, StyleSheet } from 'react-native'
 import PropTypes from 'prop-types'
-import { useTheme } from '@react-navigation/native'
+import { useTheme } from 'react-native-paper'
 
 interface ToggleSwitchProps {
   activeState: boolean
@@ -21,7 +21,7 @@ const ToggleSwitch = (props: ToggleSwitchProps) => {
         {
           backgroundColor: activeState
             ? theme.colors.primary
-            : theme.colors.backgroundSurface3,
+            : theme.colors.backgroundSurface2,
         },
         styles.toggleView,
         style,
