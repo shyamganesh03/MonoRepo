@@ -1,3 +1,4 @@
+import { typography } from '@libs/theme'
 import * as React from 'react'
 import { Button as RNPButton } from 'react-native-paper'
 
@@ -8,7 +9,8 @@ const Button = (props: any) => (
     mode={props.mode || 'contained'}
     onPress={props.onPress}
     style={[{ borderRadius: 18 }, props.style]}
-    labelStyle={props.labelStyle}
+    //@ts-ignore
+    labelStyle={[props.labelStyle, typography[props.labelVariant]]}
   >
     {props.label}
   </RNPButton>

@@ -3,7 +3,7 @@ export default {
     TITLE: 'Welcome to IZZO!',
     SUBTITLE: 'Login now and be a part of the IZZO Community',
     CHECKBOX1: 'I accept the AGB’s',
-    CHECKBOX2: 'I want to recieve offers and news',
+    CHECKBOX2: 'I want to receive offers and news',
   },
   CARD: {
     PINNED: 'Pinned',
@@ -12,7 +12,7 @@ export default {
   HOME: {
     DRUNK_MODE: 'Drunk Mode',
     TODAY: 'Today',
-    VIEWALL: 'View all',
+    VIEW_ALL: 'View all',
     GENRES: 'Genres',
     THIS_WEEKEND: 'This Weekend',
     NEWS: 'News',
@@ -39,5 +39,20 @@ export default {
     SAVE_EVENT: 'Save Event',
     SHOW_MORE: 'Show More',
     SHOW_LESS: 'Show Less',
+    SIGN_OUT: 'Sign Out',
+    Login_And_SIGN_UP: 'Login & Sign Up',
+  },
+  PROFILE: {
+    SAVED_EVENTS: 'My Saved Events',
+    PUSH_NOTIFICATION: 'Push Notifications',
+    PROFILE_SETTINGS: 'Profile Settings',
+    DRUNK_MODE: 'Drunk Mode',
+    FAQ: 'FAQ',
+    SUPPORT: 'Support',
+    AGB: "AGB'S",
+    PRIVACY: 'Privacy',
+  },
+  INPUT_TEXT: {
+    EMAIL_PLACEHOLDER: 'max.muster@izzo-app.com',
   },
 }

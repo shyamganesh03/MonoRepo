@@ -1,7 +1,6 @@
 import * as React from 'react'
 import { Card as RNPCard } from 'react-native-paper'
-
-// const LeftContent = props => <Avatar.Icon {...props} icon="folder" />
+import { typography } from '@libs/theme'
 
 interface CardProps {
   onLongPress?: Function
@@ -19,6 +18,7 @@ interface CardProps {
   style?: any
   titleStyle?: any
   titleVariant?: any
+  subTitleVariant?: any
   subtitleStyle?: any
   contentStyle?: any
   titleNumberOfLines?: number
@@ -31,9 +31,13 @@ const Card = (props: CardProps) => {
       <RNPCard.Title
         title={props.title}
         subtitle={props.subtitle}
-        titleStyle={{ ...props.titleStyle }}
-        titleVariant={props?.titleVariant}
-        subtitleStyle={{ ...props?.subtitleStyle }}
+        //@ts-ignore
+        titleStyle={[props.titleStyle, typography[props.titleVariant]]}
+        subtitleStyle={[
+          props?.subtitleStyle,
+          //@ts-ignore
+          typography[props.subTitleVariant],
+        ]}
         titleNumberOfLines={props?.titleNumberOfLines}
         right={props?.right}
       />

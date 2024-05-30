@@ -6,7 +6,7 @@ import { Icon } from '@libs/native-icons'
 import { spacing } from '@libs/theme'
 
 const BlogCard = ({ blogPost }: any) => {
-  const { colors } = useTheme()
+  const { colors } = useTheme<any>()
 
   const formatDate = (blogDate: string) => {
     const [datePart] = blogDate?.split(' ')
@@ -17,17 +17,11 @@ const BlogCard = ({ blogPost }: any) => {
   const showStatus = blogPost?.isPinned || blogPost?.isNew
 
   return (
-    <TouchableOpacity
-      style={{
-        borderRadius: 16,
-        marginBottom: 11,
-      }}
-    >
+    <TouchableOpacity>
       <Card
         title={`${blogPost?.title}`}
+        titleVariant="heading3"
         titleStyle={{
-          fontWeight: '900',
-          fontSize: 20,
           color: `${blogPost?.textColor?.value}`,
           maxWidth: blogPost?.isNew || blogPost?.isPinned ? '68%' : '100%',
           marginBottom:
@@ -48,7 +42,6 @@ const BlogCard = ({ blogPost }: any) => {
                 flexDirection: 'row',
                 alignItems: 'center',
                 justifyContent: 'center',
-                // columnGap: 10,
                 width: 124,
               }}
             >
@@ -82,18 +75,16 @@ const BlogCard = ({ blogPost }: any) => {
           backgroundColor: `${blogPost?.backgroundColor?.value}`,
           width: '100%',
           padding: 10,
+          borderRadius: 16,
+          marginBottom: 11,
         }}
         content={
           <View style={{ flexDirection: 'column' }}>
-            <Text
-              color={`${blogPost?.textColor?.value}`}
-              style={{ lineHeight: 14.5 }}
-              variant="utilityBold2"
-            >
+            <Text color={`${blogPost?.textColor?.value}`} variant="body1">
               {blogPost?.description}
             </Text>
             <Text
-              style={{ marginTop: 8 }}
+              style={{ marginTop: spacing.spacing5 }}
               color={`${blogPost?.textColor?.value}`}
             >
               {formatDate(blogPost?.date)}

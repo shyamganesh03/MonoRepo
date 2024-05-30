@@ -144,7 +144,7 @@ const MobileView = (props: any) => {
                   textDecorationLine: 'underline',
                 }}
               >
-                {t('HOME.VIEWALL')}
+                {t('HOME.VIEW_ALL')}
               </Text>
             </TouchableOpacity>
           ) : null}
@@ -162,7 +162,7 @@ const MobileView = (props: any) => {
         <FlatList
           data={data}
           renderItem={renderItem}
-          keyExtractor={(item, index) => index.toString()}
+          keyExtractor={(_, index) => index.toString()}
           horizontal={!blogPost ? true : false}
           showsHorizontalScrollIndicator={false}
           contentContainerStyle={
@@ -228,7 +228,7 @@ const SkeletonLoader = ({ title, colors, t, blogPost }: any) => {
             textDecorationLine: 'underline',
           }}
         >
-          {t('HOME.VIEWALL')}
+          {t('HOME.VIEW_ALL')}
         </Text>
       </Flex>
       <FlatList

@@ -5,14 +5,22 @@ import Share from 'react-native-share'
 export interface ShareComponentProps {
   children: any
   data?: any
-  onClick: Function
-  onPress: Function
-  isExternalLink: boolean
+  onClick?: Function
+  onPress?: Function
+  isExternalLink?: boolean
+  style?: any
   itemID: string
 }
 
 export const ShareComponent = (props: ShareComponentProps) => {
-  const { children, data = {}, onClick, onPress, isExternalLink } = props
+  const {
+    children,
+    data = {},
+    onClick = () => {},
+    onPress,
+    isExternalLink,
+    style,
+  } = props
 
   const search = (obj: any) => {
     const str = []
@@ -33,7 +41,6 @@ export const ShareComponent = (props: ShareComponentProps) => {
       subject: data?.text || '',
       message: url,
     }
-
     await Share.open(options)
       .then(() => {
         onClick()
@@ -53,6 +60,7 @@ export const ShareComponent = (props: ShareComponentProps) => {
           await handleShare()
         }
       }}
+      style={style}
     >
       {children}
     </TouchableOpacity>

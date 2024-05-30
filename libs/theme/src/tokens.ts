@@ -1,4 +1,4 @@
-const SCULPIN = 'Scuplin'
+const SCULPIN = 'Sculpin'
 
 export const opacity = {
   level1: 0.1,
@@ -49,12 +49,12 @@ export const typography = {
   heading3: {
     fontFamily: `${SCULPIN}-Bold`,
     fontSize: 20,
-    fontWeight: '600',
+    fontWeight: '700',
   },
   heading4: {
     fontFamily: `${SCULPIN}-Bold`,
     fontSize: 20,
-    fontWeight: '700',
+    fontWeight: '600',
   },
   heading5: {
     fontFamily: `${SCULPIN}-Bold`,

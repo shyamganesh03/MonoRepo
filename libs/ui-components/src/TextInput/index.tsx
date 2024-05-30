@@ -23,6 +23,7 @@ const TextInput = (props: any) => {
         style={{
           ...props?.style,
           backgroundColor: colors.elevation.level5,
+          height: 40,
         }}
         onFocus={() => {
           props?.onFocus?.()

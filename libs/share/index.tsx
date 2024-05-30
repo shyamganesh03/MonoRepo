@@ -1,3 +1,3 @@
-import { ShareCOmponent } from './src'
+import { ShareComponent } from './src'
 
-export { ShareCOmponent as Share }
+export { ShareComponent as Share }

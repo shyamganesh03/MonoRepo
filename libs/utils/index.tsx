@@ -7,7 +7,7 @@ import fingerprint from './fingerPrint'
 import testProps from './testing'
 import useDebounce from './useDebounce'
 import validateEmail from './validateEmail'
-import { dateformat, getDayName } from './dateFunction'
+import { formatDate, getDayName, dateformat } from './dateFunction'
 
 export {
   Analytics,
@@ -15,6 +15,7 @@ export {
   dateformat,
   debounce,
   fingerprint,
+  formatDate,
   getDayName,
   ScreenLayout,
   sort,

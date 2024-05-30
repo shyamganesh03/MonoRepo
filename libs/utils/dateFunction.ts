@@ -22,3 +22,9 @@ export function getDayName(dateString: string) {
 
   return dayName
 }
+
+export function formatDate(date: string) {
+  const [datePart] = date?.split(' ')
+  const [year, month, day] = datePart.split('-')
+  return `${day}.${month}.${year}`
+}

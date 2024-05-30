@@ -16,14 +16,16 @@ import { useTheme } from 'react-native-paper'
 import { spacing } from '@libs/theme'
 import { dateformat, getDayName } from '@libs/utils'
 import { useTranslation } from 'react-i18next'
-import LinearGradient from 'react-native-linear-gradient'
 import { LocationCard } from '../../components'
 import { ShimmerPlaceholder } from '@libs/skeletons'
+import { useNavigation } from '@react-navigation/native'
+import { Share } from '@libs/share'
+import { Icon } from '@libs/native-icons'
 
 const MobileView = ({ eventData, showMore, setShowMore, isLoading }: any) => {
   const { colors } = useTheme<any>()
   const { t } = useTranslation()
-  const coordinates = eventData?.location?.coordinates?.split(',') || []
+  const navigation = useNavigation()
 
   if (isLoading) {
     return (
@@ -32,7 +34,15 @@ const MobileView = ({ eventData, showMore, setShowMore, isLoading }: any) => {
         backgroundColor={colors.background}
       >
         <ShimmerPlaceholder
-          style={{ height: 300, width: 300, borderRadius: 10 }}
+          style={{ height: 40, width: 40, borderRadius: 50 }}
+        />
+        <ShimmerPlaceholder
+          style={{
+            height: 300,
+            width: 300,
+            borderRadius: 10,
+            alignSelf: 'center',
+          }}
         />
         <Flex direction="column" style={{ gap: 20, alignItems: 'center' }}>
           <ShimmerPlaceholder
@@ -61,7 +71,17 @@ const MobileView = ({ eventData, showMore, setShowMore, isLoading }: any) => {
         style={{ gap: spacing.spacing7, flex: 1 }}
         backgroundColor={colors.background}
       >
-        <Image image={ImagePlaceHolder} size={300} borderRadius={10} />
+        <IconButton
+          name="ArrowLeftIcon"
+          color={colors.textPrimary}
+          handlePress={() => navigation.goBack()}
+        />
+        <Image
+          imageUrl={ImagePlaceHolder}
+          size={300}
+          borderRadius={10}
+          style={{ alignSelf: 'center' }}
+        />
         <Flex
           direction="column"
           style={{ paddingBottom: spacing.spacing7, alignItems: 'center' }}
@@ -71,14 +91,15 @@ const MobileView = ({ eventData, showMore, setShowMore, isLoading }: any) => {
             {' '}
             {t('EVENT_DETAIL.BY')} {eventData?.company?.name}{' '}
           </Text>
-          <IconButton
-            name="ShareIcon"
-            color={colors.textPrimary}
+          <Share
+            itemID={eventData?.id}
             style={{
               paddingTop: spacing.spacing4,
               paddingBottom: spacing.spacing7,
             }}
-          />
+          >
+            <Icon name="ShareIcon" color={colors.textPrimary} />
+          </Share>
           <Button
             mode="outlined"
             label={t('BUTTON.SAVE_EVENT')}
@@ -89,10 +110,6 @@ const MobileView = ({ eventData, showMore, setShowMore, isLoading }: any) => {
               marginBottom: spacing.spacing3,
             }}
           />
-          {/* <Text variant="utility2">
-            {' '}
-            Gespeichert von <Text color={colors.primary}>420 </Text>anderen
-          </Text> */}
         </Flex>
         <Flex direction="column" style={{ gap: spacing.spacing3 }}>
           <Text variant="heading2">{t('EVENT_DETAIL.WHEN')}</Text>
@@ -152,52 +169,7 @@ const MobileView = ({ eventData, showMore, setShowMore, isLoading }: any) => {
           />
         </Flex>
         <Flex direction="column">
-          <Card
-            style={{ padding: 20 }}
-            title={<Text variant="heading2">{t('EVENT_DETAIL.LOCATION')}</Text>}
-            subtitle={
-              <Flex direction="column">
-                <Text variant="bodyBold1" style={{ color: colors.primary }}>
-                  {eventData?.company?.name}
-                </Text>
-                <Text variant="body2">{eventData?.company?.address}</Text>
-              </Flex>
-            }
-            subtitleStyle={{
-              marginTop: spacing.spacing3,
-            }}
-            content={
-              <Flex direction="column">
-                {coordinates?.length > 1 && (
-                  <LocationCard
-                    latitude={Number(coordinates[0])}
-                    longitude={Number(coordinates[1])}
-                  />
-                )}
-                <Text variant="heading2">{t('LOCATION_CARD.TICKETS')}</Text>
-                <Text variant="body2">
-                  {' '}
-                  {t('LOCATION_CARD.PRICES_FROM')} {eventData?.fromPrice}
-                </Text>
-              </Flex>
-            }
-            actionContent={
-              <LinearGradient
-                colors={colors.gradient.primary}
-                style={{ flex: 1, borderRadius: 12 }}
-              >
-                <Button
-                  label={t('BUTTON.BUY_TICKETS')}
-                  style={{
-                    width: '100%',
-                    backgroundColor: 'transparent',
-                    borderRadius: 12,
-                  }}
-                  labelStyle={{ color: colors.textPrimary }}
-                />
-              </LinearGradient>
-            }
-          />
+          <LocationCard eventData={eventData} />
         </Flex>
         <Flex
           direction="row"
@@ -207,7 +179,7 @@ const MobileView = ({ eventData, showMore, setShowMore, isLoading }: any) => {
           <IconButton
             name="InstagramIcon"
             color={colors.textPrimary}
-            onPress={() => {
+            handlePress={() => {
               Linking.openURL(eventData?.company?.socialMedia)
             }}
           />

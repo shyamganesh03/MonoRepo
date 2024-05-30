@@ -23,10 +23,14 @@ const MobileContainer = (props: any) => {
             hasPadding
               ? {
                   paddingHorizontal: spacing.spacing7,
-                  paddingVertical: spacing.spacing10,
+                  paddingVertical: spacing.spacing8,
                 }
               : '',
-            { height: '100%', backgroundColor: backgroundColor },
+            {
+              height: '100%',
+              backgroundColor: backgroundColor,
+              marginBottom: spacing.spacing10,
+            },
             style,
           ]}
           {...rest}
@@ -43,7 +47,7 @@ const MobileContainer = (props: any) => {
         hasPadding
           ? {
               paddingHorizontal: spacing.spacing7,
-              paddingVertical: spacing.spacing10,
+              paddingVertical: spacing.spacing8,
             }
           : '',
         { height: '100%', backgroundColor: backgroundColor },

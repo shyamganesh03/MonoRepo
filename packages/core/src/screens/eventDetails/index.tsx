@@ -24,7 +24,12 @@ const EventDetailScreen = (props: any) => {
     initialData: {},
   })
 
-  const viewProps = { eventData, isLoading: isFetching, showMore, setShowMore }
+  const viewProps = {
+    eventData: { ...eventData, id: route?.params?.eventId },
+    isLoading: isFetching,
+    showMore,
+    setShowMore,
+  }
 
   return (
     <Suspense fallback={<></>}>

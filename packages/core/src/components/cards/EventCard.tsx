@@ -29,20 +29,17 @@ const EventCard = ({ eventDetail, handleEventDetailNavigation }: any) => {
       <Card
         title={eventDetail?.name}
         titleStyle={{
-          fontWeight: '900',
-          fontSize: 20,
           color: colors.textSecondary,
         }}
+        titleVariant="heading3"
         subtitleStyle={{
-          marginTop: -15,
-          fontWeight: '500',
-          fontSize: 12,
+          marginTop: -10,
           color: colors.textSecondary,
           textTransform: 'uppercase',
           paddingLeft: 2,
         }}
-        titleVariant="displayMedium"
         subtitle={eventDetail?.company?.name}
+        subTitleVariant="utility2"
         style={{
           backgroundColor: colors.textPrimary,
           width: '100%',
@@ -52,7 +49,7 @@ const EventCard = ({ eventDetail, handleEventDetailNavigation }: any) => {
         content={
           <View style={{ marginTop: -5 }}>
             <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 5 }}>
-              {eventDetail?.genres?.map((genres: any, index: any) => (
+              {eventDetail?.genres?.map((genres: any) => (
                 <Tag
                   label={genres.genre}
                   labelColor={colors.textPrimary}
