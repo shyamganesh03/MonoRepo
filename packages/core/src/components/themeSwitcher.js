@@ -2,7 +2,7 @@ import { View, Text, TouchableOpacity } from 'react-native'
 import React from 'react'
 import { useAtom } from 'jotai'
 import { appTheme } from '../utils/atom'
-import { useTheme } from '@react-navigation/native'
+import { useTheme } from 'react-native-paper'
 
 const ThemeSwitcher = () => {
   const [theme, setTheme] = useAtom(appTheme)

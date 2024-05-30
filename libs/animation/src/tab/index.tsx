@@ -2,7 +2,7 @@ import React, { useRef, useState, useEffect } from 'react'
 import { Animated, StyleSheet, TouchableOpacity, View } from 'react-native'
 import { Text } from '@libs/components'
 import { spacing } from '@libs/theme'
-import { useTheme } from '@react-navigation/native'
+import { useTheme } from 'react-native-paper'
 
 const TabAnimation = ({ tabData, activeIndex = 0 }: any) => {
   const theme = useTheme()

@@ -9,7 +9,7 @@ import React, {
 import { Platform, ScrollView, View } from 'react-native'
 import { Checkbox, Menu, TouchableRipple, useTheme } from 'react-native-paper'
 import { Icon } from '@libs/native-icons'
-import TextInput from '../TextInput/TextInput'
+import TextInput from '../TextInput'
 
 // ForwardRef to handle ref forwarding
 const DropDown = forwardRef((props: any, ref) => {

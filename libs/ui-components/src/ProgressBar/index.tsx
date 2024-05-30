@@ -1,5 +1,5 @@
 import React from 'react'
-import { ProgressBar as RNPProgressBar, useTheme } from 'react-native-paper'
+import { ProgressBar as RNPProgressBar } from 'react-native-paper'
 interface progressBarProps {
   color: string
   progress: number
@@ -8,13 +8,18 @@ interface progressBarProps {
   height?: number
 }
 
-export const ProgressBar = (props: progressBarProps) => {
-  const { colors } = useTheme()
+const ProgressBar = (props: progressBarProps) => {
   return (
     <RNPProgressBar
       {...props}
-      style={{ height: 7 || props.height, borderRadius: 40 }}
+      style={{
+        height: 7 || props.height,
+        backgroundColor: props.progressBackDropColor || 'grey',
+        borderRadius: 40,
+      }}
       fillStyle={{ borderRadius: 40 }}
     />
   )
 }
+
+export default ProgressBar

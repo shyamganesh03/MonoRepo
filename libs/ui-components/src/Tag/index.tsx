@@ -3,8 +3,8 @@ import { View, StyleSheet } from 'react-native'
 import PropTypes from 'prop-types'
 import { spacing } from '@libs/theme'
 import { Icon } from '../../../icons/output'
-import RNPText from '../Text/Text'
-import { useTheme } from '@react-navigation/native'
+import RNPText from '../Text'
+import { useTheme } from 'react-native-paper'
 import Flex from '../Flex'
 
 interface TagTypeProps {
@@ -30,13 +30,13 @@ const TagType = (props: TagTypeProps) => {
     iconLeft,
     iconRight,
     label,
-    labelColor,
+    labelColor = '',
     tagType,
     textVariant,
     pointColor,
   } = props
 
-  const theme = useTheme()
+  const theme = useTheme<any>()
 
   switch (tagType) {
     case 'eventTag':
@@ -192,7 +192,7 @@ const Tag = (props: TagTypeProps) => {
   )
 }
 
-const styles = StyleSheet.create({
+const styles: any = StyleSheet.create({
   skillTag: {
     alignItems: 'center',
     flexDirection: 'row',

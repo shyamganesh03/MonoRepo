@@ -2,7 +2,7 @@ import { View, TouchableOpacity } from 'react-native'
 import React from 'react'
 import { spacing } from '@libs/theme'
 import PropTypes from 'prop-types'
-import { useTheme } from '@react-navigation/native'
+import { useTheme } from 'react-native-paper'
 
 interface RadioButtonProps {
   activeState: boolean

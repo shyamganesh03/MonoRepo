@@ -6,7 +6,7 @@ import {
 } from 'react-native-paper'
 
 const TextInput = (props: any) => {
-  const { colors } = useTheme()
+  const { colors } = useTheme<any>()
   return (
     <>
       <RNPTextInput

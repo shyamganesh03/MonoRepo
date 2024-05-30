@@ -2,7 +2,7 @@ import React from 'react'
 import { StyleSheet, View, TouchableOpacity } from 'react-native'
 import { spacing } from '@libs/theme'
 import PropTypes from 'prop-types'
-import RNPText from '../Text/Text'
+import RNPText from '../Text'
 import Flex from '../Flex'
 import { useTheme } from 'react-native-paper'
 

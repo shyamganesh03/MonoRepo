@@ -1,5 +1,5 @@
 import React from 'react'
-import { useTheme } from '@react-navigation/native'
+import { useTheme } from 'react-native-paper'
 import { DesktopContainer } from '@libs/container'
 import { Text } from '@libs/components'
 

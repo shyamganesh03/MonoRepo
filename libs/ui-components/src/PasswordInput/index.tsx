@@ -1,12 +1,11 @@
 /* eslint-disable prefer-regex-literals */
 import PropTypes from 'prop-types'
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { View } from 'react-native'
-import { useTheme } from 'react-native-paper'
 
 import { testProps } from '@libs/utils'
 
-import TextInput from '../TextInput/TextInput'
+import TextInput from '../TextInput'
 import { Icon } from '@libs/native-icons'
 
 const PasswordTextInput = (props: any) => {
@@ -14,24 +13,20 @@ const PasswordTextInput = (props: any) => {
     onFocus = () => {},
     placeholder,
     onBlur = () => {},
-    setIsValidPassword = () => {},
     testName,
     onChangeText = () => {},
   } = props
-  const { colors } = useTheme()
-  const [passwordValue, setPasswordValue] = React.useState('')
   const [showPassword, setShowPassword] = React.useState(true)
   const [label, setLabel] = useState('')
 
-  
   return (
     <View>
       <TextInput
         {...props}
         onChangeText={(text: any) => {
-          setPasswordValue(text)
           onChangeText(text)
         }}
+        placeholder={placeholder}
         onKeyPress={({ nativeEvent }: any) => {
           if (nativeEvent.key === 'Enter') {
             props?.method()

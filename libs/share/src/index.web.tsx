@@ -7,7 +7,7 @@ import { BlurWidget } from '@libs/blurwidget'
 import { Layout } from '@libs/container'
 import { spacing } from '@libs/theme'
 import { ShareComponentProps } from '.'
-import { useTheme } from '@react-navigation/native'
+import { useTheme } from 'react-native-paper'
 
 const externalOpen = (URL: string) => window.open(URL, '_blank', 'noopener')
 

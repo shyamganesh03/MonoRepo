@@ -11,11 +11,11 @@ import {
 } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { spacing } from '@libs/theme'
-import { Icon } from '../../../icons/output'
+import { Icon } from '@libs/native-icons'
 import { ScreenLayout } from '@libs/utils'
 import { Sheet } from '@libs/sheet'
-import RNPText from '../Text/Text'
-import { useTheme } from '@react-navigation/native'
+import RNPText from '../Text'
+import { useTheme } from 'react-native-paper'
 
 interface DrawerProps {
   children: any

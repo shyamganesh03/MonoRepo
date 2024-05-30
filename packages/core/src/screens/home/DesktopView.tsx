@@ -1,6 +1,6 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
-import { useTheme } from '@react-navigation/native'
+import { useTheme } from 'react-native-paper'
 import { DesktopContainer } from '@libs/container'
 import { Text } from '@libs/components'
 

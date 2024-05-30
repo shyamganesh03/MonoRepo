@@ -3,7 +3,7 @@ import { StyleSheet, View } from 'react-native'
 import LinearGradient from 'react-native-web-linear-gradient'
 
 import PropTypes from 'prop-types'
-import { useTheme } from '@react-navigation/native'
+import { useTheme } from 'react-native-paper'
 
 const Card = (props: any) => {
   const theme: any = useTheme()
