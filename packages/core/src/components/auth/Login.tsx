@@ -3,6 +3,7 @@ import { Button, Flex, Text, TextInput } from '@libs/components'
 import { useTheme } from 'react-native-paper'
 import { useTranslation } from 'react-i18next'
 import { Icon } from '@libs/native-icons'
+import { PasswordTextInput } from '@libs/components'
 
 const Login = ({ setState }: { setState: any }) => {
   const { colors } = useTheme<any>()
@@ -43,18 +44,7 @@ const Login = ({ setState }: { setState: any }) => {
             />
           }
         />
-        <TextInput
-          style={{ height: 40 }}
-          placeholder={'Password'}
-          outlineStyle={{ borderWidth: 0 }}
-          right={
-            <TextInput.Icon
-              icon={() => (
-                <Icon name="EyeHiddenIcon" color={colors.onSurfaceVariant} />
-              )}
-            />
-          }
-        />
+        <PasswordTextInput placeholder="Password" style={{ height: 40 }} />
 
         <Button
           style={{ backgroundColor: colors.primary }}

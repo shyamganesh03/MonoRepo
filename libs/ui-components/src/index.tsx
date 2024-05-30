@@ -6,7 +6,7 @@ import Grid from './Grid/Grid'
 import IconButton from './IconButton/IconButton'
 import Image from './Image/Image'
 import Loader from './Loader/Loader'
-import PasswordInput from './PasswordInput/PassWordInput'
+import PasswordTextInput from './PasswordInput/PassWordInput'
 import RadioButton from './RadioButton/RadioButton'
 import Flex from './Flex'
 import Wrap from './Wrap'
@@ -28,7 +28,7 @@ export {
   IconButton,
   Image,
   Loader,
-  PasswordInput,
+  PasswordTextInput,
   ProgressBar,
   RadioButton,
   Tab,

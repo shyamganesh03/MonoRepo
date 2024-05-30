@@ -3,6 +3,7 @@ import {
   Button,
   CheckBox,
   Flex,
+  PasswordTextInput,
   ProgressBar,
   Text,
   TextInput,
@@ -84,30 +85,9 @@ const Registration = () => {
       )}
       {step === 3 && (
         <Flex direction="column" style={{ gap: 14 }}>
-          <TextInput
-            style={{ height: 40 }}
-            placeholder={'Password'}
-            outlineStyle={{ borderWidth: 0 }}
-            right={
-              <TextInput.Icon
-                icon={() => (
-                  <Icon name="EyeHiddenIcon" color={colors.onSurfaceVariant} />
-                )}
-              />
-            }
-          />
-          <TextInput
-            style={{ height: 40 }}
-            placeholder={'Confirm Password'}
-            outlineStyle={{ borderWidth: 0 }}
-            right={
-              <TextInput.Icon
-                icon={() => (
-                  <Icon name="EyeHiddenIcon" color={colors.onSurfaceVariant} />
-                )}
-              />
-            }
-          />
+          <PasswordTextInput placeholder={'Password'} style={{ height: 40 }} />
+
+          <PasswordTextInput placeholder={'Password'} style={{ height: 40 }} />
           <Flex direction="row" style={{ gap: 10, alignItems: 'center' }}>
             <CheckBox style={{ backgroundColor: colors.secondaryContainer }} />
             <Text

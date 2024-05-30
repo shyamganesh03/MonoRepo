@@ -11,7 +11,7 @@ import {
 import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Icon } from '@libs/native-icons'
-import { useTheme } from '@react-navigation/native'
+import { useTheme } from 'react-native-paper'
 import { MobileContainer } from '@libs/container'
 import { ScrollView, View } from 'react-native'
 import Login from '../../components/auth/login'

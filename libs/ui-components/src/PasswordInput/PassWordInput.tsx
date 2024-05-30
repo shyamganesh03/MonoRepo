@@ -12,6 +12,7 @@ import { Icon } from '@libs/native-icons'
 const PasswordTextInput = (props: any) => {
   const {
     onFocus = () => {},
+    placeholder,
     onBlur = () => {},
     setIsValidPassword = () => {},
     testName,
@@ -22,28 +23,7 @@ const PasswordTextInput = (props: any) => {
   const [showPassword, setShowPassword] = React.useState(true)
   const [label, setLabel] = useState('')
 
-  useEffect(() => {
-    if (passwordValue?.length === 0) {
-      return setIsValidPassword(false)
-    }
-    const specialRegex = new RegExp(
-      // eslint-disable-next-line no-useless-escape
-      /[!"`'#%&,:;<>=@{}~\$\(\)\*\+\/\\\?\[\]\^\|._-]+/,
-    )
-    const letterLargeRegex = new RegExp(/^(?=.*[a-z])(?=.*[A-Z])(?!.*\s).{6,}$/)
-    const numericRegex = new RegExp(/[0-9]/)
-
-    if (
-      passwordValue.length >= 6 &&
-      specialRegex.test(passwordValue) &&
-      letterLargeRegex.test(passwordValue) &&
-      numericRegex.test(passwordValue)
-    ) {
-      return setIsValidPassword(false)
-    }
-    setIsValidPassword(true)
-  }, [passwordValue])
-
+  
   return (
     <View>
       <TextInput
