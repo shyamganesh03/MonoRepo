@@ -1,7 +1,7 @@
-import LocationCard from './cards/locationCard'
-import BlogCard from './cards/blogCard'
-import EventCard from './cards/eventCard'
-import GenreCard from './cards/genreCard'
-import { BottomNavLayout } from './mobile-bottom-nav-bar'
+import LocationCard from './cards/LocationCard'
+import BlogCard from './cards/BlogCard'
+import EventCard from './cards/EventCard'
+import GenreCard from './cards/GenreCard'
+import { BottomNavLayout } from './MobileBottomNavigationBar'
 
 export { LocationCard, BlogCard, EventCard, GenreCard, BottomNavLayout }

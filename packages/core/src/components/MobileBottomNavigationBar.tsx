@@ -1,5 +1,5 @@
 import { useNavigation, useNavigationState } from '@react-navigation/native'
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import {
   Platform,
   StyleSheet,
@@ -15,7 +15,7 @@ import { spacing } from '@libs/theme'
 
 export const BottomNavLayout = () => {
   const { colors } = useTheme()
-  const navigation = useNavigation()
+  const navigation: any = useNavigation()
 
   const currentRoute = useNavigationState(
     (state) => state?.routes?.[state.routes.length - 1] || { name: 'home' },
@@ -53,6 +53,7 @@ export const BottomNavLayout = () => {
   return (
     <Surface
       style={{
+        //@ts-ignore
         position: Platform.OS === 'web' ? 'fixed' : 'absolute',
         bottom: 0,
         zIndex: 10,

@@ -19,7 +19,7 @@ const Registration = () => {
 
   return (
     <Flex direction="column">
-      <ProgressBar progress={0.35} color={colors.primary}/>
+      <ProgressBar progress={0.35} color={colors.primary} />
       <Flex direction="column" style={{ marginTop: 32 }}>
         <Text
           variant="heading2"

@@ -4,9 +4,7 @@ import { useTheme } from 'react-native-paper'
 import { useTranslation } from 'react-i18next'
 import { Icon } from '@libs/native-icons'
 
-const Login = (setState:any) => {
-  //
-
+const Login = ({ setState }: { setState: any }) => {
   const { colors } = useTheme<any>()
   const { t } = useTranslation()
   return (
@@ -60,7 +58,7 @@ const Login = (setState:any) => {
 
         <Button
           style={{ backgroundColor: colors.primary }}
-          onPress={() => setState(state + 1)}
+          onPress={() => setState((prevState: number) => prevState + 1)}
           label="Login"
           labelStyle={{ color: colors.textPrimary }}
         />
