@@ -10,6 +10,7 @@ import { Surface, useTheme } from 'react-native-paper'
 import { Flex, Text } from '@libs/components'
 import { useTranslation } from 'react-i18next'
 import { locationCardMapStyle } from '../../constants'
+import { Icon } from '@libs/native-icons'
 
 interface LocationCardProps {
   height?: number
@@ -83,7 +84,9 @@ const LocationCard = ({
                   latitude: Number(coordinates[0]),
                   longitude: Number(coordinates[1]),
                 }}
-              />
+              >
+                <Icon name="Pin2" />
+              </Marker>
             </MapView>
           </View>
         )}
