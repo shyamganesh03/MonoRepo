@@ -5,7 +5,7 @@ import { appTheme } from '../utils/atom'
 import { useTheme } from 'react-native-paper'
 
 const ThemeSwitcher = () => {
-  const [theme, setTheme] = useAtom(appTheme)
+  const [, setTheme] = useAtom(appTheme)
   const { colors } = useTheme()
   return (
     <View style={{ paddingRight: 20, flexDirection: 'row', gap: 20 }}>

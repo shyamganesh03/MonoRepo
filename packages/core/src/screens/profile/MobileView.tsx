@@ -16,6 +16,52 @@ import { spacing } from '@libs/theme'
 import { useTranslation } from 'react-i18next'
 import LinearGradient from 'react-native-linear-gradient'
 
+const ProfileTab = ({
+  leftIconName,
+  rightIconName,
+  isUserCard,
+  heading,
+  description,
+  handlePress = () => {},
+}: any) => {
+  const { colors } = useTheme<any>()
+  const hasLeftIcon = !!leftIconName
+  const hasRightIcon = !!rightIconName
+
+  return (
+    <TouchableOpacity onPress={handlePress}>
+      <Flex
+        direction="row"
+        style={{
+          paddingHorizontal: spacing.spacing5,
+          paddingVertical: isUserCard ? spacing.spacing7 : spacing.spacing5,
+          borderRadius: spacing.spacing5,
+          justifyContent: 'space-between',
+          backgroundColor: colors.onPrimaryContainer,
+        }}
+      >
+        {hasLeftIcon && <Icon name={leftIconName} color={colors.textPrimary} />}
+        <Flex direction="column">
+          {heading && (
+            <Text variant={isUserCard ? 'heading2' : 'functional1'}>
+              {heading}
+            </Text>
+          )}
+          {description && <Text variant="body1">{description}</Text>}
+        </Flex>
+        {hasRightIcon && (
+          <Icon
+            name={rightIconName}
+            color={colors.placeHolderTextColor}
+            height={20}
+            width={20}
+          />
+        )}
+      </Flex>
+    </TouchableOpacity>
+  )
+}
+
 const MobileView = ({
   drunkMode,
   email,
@@ -82,14 +128,12 @@ const MobileView = ({
               </LinearGradient>
             </Flex>
           )}
-          <Flex direction="column">
-            <ProfileTab
-              heading={t('PROFILE.SAVED_EVENTS')}
-              leftIconName="BookmarkIcon"
-              rightIconName="ArrowRightIcon"
-              handlePress={handlePress}
-            />
-          </Flex>
+          <ProfileTab
+            heading={t('PROFILE.SAVED_EVENTS')}
+            leftIconName="BookmarkIcon"
+            rightIconName="ArrowRightIcon"
+            handlePress={handlePress}
+          />
           <Flex direction="column" style={{ gap: spacing.spacing3 }}>
             <ProfileTab
               heading={t('PROFILE.PUSH_NOTIFICATION')}
@@ -150,7 +194,6 @@ const MobileView = ({
               handlePress={handlePress}
             />
           </Flex>
-
           {userDetails && (
             <Button
               onPress={() => {}}
@@ -167,48 +210,4 @@ const MobileView = ({
   )
 }
 
-const ProfileTab = ({
-  leftIconName,
-  rightIconName,
-  isUserCard,
-  heading,
-  description,
-  handlePress = () => {},
-}: any) => {
-  const { colors } = useTheme<any>()
-  return (
-    <TouchableOpacity onPress={handlePress}>
-      <Flex
-        direction="row"
-        style={{
-          paddingHorizontal: spacing.spacing5,
-          paddingVertical: isUserCard ? spacing.spacing7 : spacing.spacing5,
-          borderRadius: spacing.spacing5,
-          justifyContent: 'space-between',
-          backgroundColor: colors.onPrimaryContainer,
-        }}
-      >
-        {leftIconName && (
-          <Icon name={leftIconName} color={colors.textPrimary} />
-        )}
-        <Flex direction="column">
-          {heading && (
-            <Text variant={isUserCard ? 'heading2' : 'functional1'}>
-              {heading}
-            </Text>
-          )}
-          {description && <Text variant="body1">{description}</Text>}
-        </Flex>
-        {rightIconName && (
-          <Icon
-            name={rightIconName}
-            color={colors.placeHolderTextColor}
-            height={20}
-            width={20}
-          />
-        )}
-      </Flex>
-    </TouchableOpacity>
-  )
-}
 export default MobileView

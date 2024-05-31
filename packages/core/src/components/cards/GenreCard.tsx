@@ -3,7 +3,13 @@ import React from 'react'
 import { TouchableOpacity, View } from 'react-native'
 import { Text } from '@libs/components'
 
-const GenreCard = ({ genreDetail, key, handleGenreDetailNavigation }: any) => {
+const GenreCard = ({
+  genreDetail,
+  handleGenreDetailNavigation,
+}: {
+  genreDetail: any
+  handleGenreDetailNavigation: any
+}) => {
   const { colors } = useTheme<any>()
 
   return (
@@ -13,7 +19,7 @@ const GenreCard = ({ genreDetail, key, handleGenreDetailNavigation }: any) => {
         maxWidth: 150,
         borderRadius: 16,
       }}
-      key={key}
+      key={genreDetail?.id}
       onPress={() => handleGenreDetailNavigation(genreDetail)}
     >
       <View

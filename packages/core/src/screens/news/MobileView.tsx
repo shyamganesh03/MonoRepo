@@ -1,13 +1,12 @@
 import React from 'react'
 import { Flex, IconButton, Text } from '@libs/components'
 import { FlatList, View } from 'react-native'
-import { BlogCard } from '../../components/index'
+import { BlogCard } from '../../components'
 import { ShimmerPlaceholder } from '@libs/skeletons'
 import { useTheme } from 'react-native-paper'
 import { t } from 'i18next'
 
-const MobileView = (props: any) => {
-  const { isLoading, blogPosts, handleBackNavigation } = props
+const MobileView = ({ isLoading, blogPosts, handleBackNavigation }: any) => {
   const { colors } = useTheme<any>()
 
   const renderBlogCard = ({ item }: any) => (
@@ -16,7 +15,18 @@ const MobileView = (props: any) => {
     </View>
   )
 
-  const renderLoading = () => <ShimmerPlaceholder />
+  const renderLoading = () => (
+    <ShimmerPlaceholder
+      style={{
+        width: '95%',
+        marginHorizontal: 16,
+        height: 200,
+        marginBottom: 20,
+        marginTop: 10,
+        borderRadius: 20,
+      }}
+    />
+  )
 
   return (
     <>
@@ -31,7 +41,7 @@ const MobileView = (props: any) => {
         <IconButton
           name="ArrowLeftIcon"
           color={colors.textPrimary}
-          onPress={() => handleBackNavigation()}
+          onPress={handleBackNavigation}
         />
         <Text
           variant="heading2"
@@ -40,30 +50,16 @@ const MobileView = (props: any) => {
           {t('HOME.NEWS')}
         </Text>
       </Flex>
-      {isLoading ? (
-        [...Array(7)].map(() => (
-          <ShimmerPlaceholder
-            style={{
-              width: '95%',
-              marginHorizontal: 16,
-              height: 200,
-              marginBottom: 20,
-              marginTop: 10,
-              borderRadius: 20,
-            }}
-          />
-        ))
-      ) : (
-        <FlatList
-          data={blogPosts}
-          renderItem={isLoading ? renderLoading : renderBlogCard}
-          keyExtractor={(_, index) => index.toString()}
-          horizontal={false}
-          showsHorizontalScrollIndicator={false}
-          contentContainerStyle={{ paddingBottom: 90 }}
-        />
-      )}
+      <FlatList
+        data={isLoading ? [...Array(7)] : blogPosts}
+        renderItem={isLoading ? renderLoading : renderBlogCard}
+        keyExtractor={(_, index) => index.toString()}
+        horizontal={false}
+        showsHorizontalScrollIndicator={false}
+        contentContainerStyle={{ paddingBottom: 90 }}
+      />
     </>
   )
 }
+
 export default MobileView

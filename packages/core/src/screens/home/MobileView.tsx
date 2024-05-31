@@ -38,7 +38,6 @@ const MobileView = (props: any) => {
     <View style={{ width: 150, marginRight: 10, height: 88 }}>
       <GenreCard
         genreDetail={item}
-        key={item?._id}
         handleGenreDetailNavigation={(genreDetail: any) =>
           handleGenreDetailNavigation(genreDetail)
         }
@@ -202,6 +201,9 @@ const SkeletonLoader = ({ title, colors, t, blogPost }: any) => {
           height: 150,
           marginVertical: 16,
         }
+      default: {
+        return { height: 175, width: 316 }
+      }
     }
   }
   return (
@@ -243,7 +245,7 @@ const SkeletonLoader = ({ title, colors, t, blogPost }: any) => {
         contentContainerStyle={
           !blogPost ? { paddingLeft: 16, marginTop: 16 } : {}
         }
-        keyExtractor={(item, index) => index.toString()}
+        keyExtractor={(_, index) => index.toString()}
       />
     </>
   )

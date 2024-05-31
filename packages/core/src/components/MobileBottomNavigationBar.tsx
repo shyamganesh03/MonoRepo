@@ -1,4 +1,3 @@
-import { useNavigation, useNavigationState } from '@react-navigation/native'
 import React from 'react'
 import {
   Platform,
@@ -8,26 +7,23 @@ import {
   useWindowDimensions,
 } from 'react-native'
 import { Surface, useTheme } from 'react-native-paper'
-
+import { useNavigation, useNavigationState } from '@react-navigation/native'
 import { Icon } from '@libs/native-icons'
-
 import { spacing } from '@libs/theme'
 
 export const BottomNavLayout = () => {
   const { colors } = useTheme()
-  const navigation: any = useNavigation()
-  const routNames = ['home', 'maps', 'search', 'profile']
-
-  const currentRoute: any = useNavigationState(
+  const navigation = useNavigation()
+  const currentRoute = useNavigationState(
     (state) => state?.routes?.[state.routes.length - 1] || { name: 'home' },
   )
-
   const windowWidth = useWindowDimensions().width
+  const routeNames = ['home', 'maps', 'search', 'profile']
 
   const renderBottomIcon = (
-    name: any,
-    route: any,
-    isDisable = false as boolean,
+    name: string,
+    route: string,
+    isDisabled = false,
   ) => {
     const isActiveIcon = () => route === currentRoute?.name
 
@@ -36,7 +32,7 @@ export const BottomNavLayout = () => {
         onPress={() => {
           navigation.navigate(route)
         }}
-        disabled={isDisable}
+        disabled={isDisabled}
       >
         <View style={styles.iconContainer}>
           <Icon
@@ -50,10 +46,10 @@ export const BottomNavLayout = () => {
       </TouchableOpacity>
     )
   }
+
   return (
     <Surface
       style={{
-        //@ts-ignore
         position: Platform.OS === 'web' ? 'fixed' : 'absolute',
         bottom: 0,
         zIndex: 10,
@@ -62,9 +58,9 @@ export const BottomNavLayout = () => {
         flexDirection: 'row',
         justifyContent: 'space-between',
         paddingVertical: spacing.spacing4,
-        height: routNames.includes(currentRoute?.name) ? 56 : 0,
+        height: routeNames.includes(currentRoute?.name) ? 56 : 0,
         paddingHorizontal: spacing.spacing6,
-        display: routNames.includes(currentRoute?.name) ? 'flex' : 'none',
+        display: routeNames.includes(currentRoute?.name) ? 'flex' : 'none',
       }}
       elevation={1}
     >
@@ -91,3 +87,5 @@ const styles = StyleSheet.create({
   },
   icons: {},
 })
+
+export default BottomNavLayout

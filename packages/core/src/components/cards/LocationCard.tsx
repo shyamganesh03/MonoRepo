@@ -92,7 +92,6 @@ const LocationCard = ({
         )}
         <Text variant="heading2">{t('LOCATION_CARD.TICKETS')}</Text>
         <Text variant="body2">
-          {' '}
           {t('LOCATION_CARD.PRICES_FROM')} {eventData?.fromPrice}
         </Text>
       </Flex>

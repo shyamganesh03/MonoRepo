@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import { Button, Flex, Text, TextInput } from '@libs/components'
-import { Divider, useTheme } from 'react-native-paper'
+import { Button, Flex, Text, TextInput, Divider } from '@libs/components'
+import { useTheme } from 'react-native-paper'
 import { useTranslation } from 'react-i18next'
 import { Icon } from '@libs/native-icons'
 import { useNavigation } from '@react-navigation/native'
@@ -8,11 +8,11 @@ import { useNavigation } from '@react-navigation/native'
 const LoginAndSignUp = ({ setState }: any) => {
   const { colors } = useTheme<any>()
   const { t } = useTranslation()
-  const [textInputValue, setTextInputValue] = useState('')
+  const [email, setEmail] = useState('')
   const navigation = useNavigation()
 
   const handleTextInputChange = (text: any) => {
-    setTextInputValue(text)
+    setEmail(text)
   }
 
   return (
@@ -39,8 +39,8 @@ const LoginAndSignUp = ({ setState }: any) => {
       </Flex>
       <Flex direction="column">
         <TextInput
-          onChangeText={(value: any) => handleTextInputChange(value)}
-          value={textInputValue}
+          onChangeText={handleTextInputChange}
+          value={email}
           outlineStyle={{ borderWidth: 0 }}
           style={{ height: 40 }}
           placeholder={'max.muster@izzo-app.com'}
@@ -63,10 +63,10 @@ const LoginAndSignUp = ({ setState }: any) => {
           mode="contained"
           label="Login & Sign Up"
           labelStyle={{ color: colors.textPrimary }}
-          disabled={textInputValue.trim() === ''}
+          disabled={email.trim() === ''}
         />
       </Flex>
-      <Divider />
+      {email.trim() !== '' && <Divider />}
       <Button
         style={{ marginTop: 32, backgroundColor: colors.secondaryContainer }}
         onPress={() => {

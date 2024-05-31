@@ -3,31 +3,29 @@ import { Flex, IconButton, Text } from '@libs/components'
 import { FlatList, View } from 'react-native'
 import { ShimmerPlaceholder } from '@libs/skeletons'
 import { useTheme } from 'react-native-paper'
-import { GenreCard } from '../../components/index'
+import { GenreCard } from '../../components'
 import { t } from 'i18next'
 
-const MobileView = (props: any) => {
-  const {
-    isLoading,
-    genresData,
-    handleBackNavigation,
-    handleGenreDetailNavigation,
-  } = props
-  const { colors } = useTheme<any>()
+interface MobileViewProps {
+  isLoading: boolean
+  genresData: any[]
+  handleBackNavigation: () => void
+  handleGenreDetailNavigation: (genreDetail: any) => void
+}
 
-  const renderGenreCard = ({ item }: any) => (
-    <View
-      style={{
-        width: 150,
-        height: 88,
-      }}
-    >
+const MobileView: React.FC<MobileViewProps> = ({
+  isLoading,
+  genresData,
+  handleBackNavigation,
+  handleGenreDetailNavigation,
+}) => {
+  const { colors } = useTheme()
+
+  const renderGenreCard = ({ item }: { item: any }) => (
+    <View style={{ width: 150, height: 88 }}>
       <GenreCard
         genreDetail={item}
-        key={item?._id}
-        handleGenreDetailNavigation={(genreDetail: any) =>
-          handleGenreDetailNavigation(genreDetail)
-        }
+        handleGenreDetailNavigation={handleGenreDetailNavigation}
       />
     </View>
   )
@@ -45,7 +43,7 @@ const MobileView = (props: any) => {
         <IconButton
           name="ArrowLeftIcon"
           color={colors.textPrimary}
-          onPress={() => handleBackNavigation()}
+          onPress={handleBackNavigation}
         />
         <Text
           variant="heading2"
@@ -67,7 +65,7 @@ const MobileView = (props: any) => {
         <FlatList
           data={genresData}
           renderItem={renderGenreCard}
-          keyExtractor={(_, index) => index.toString()}
+          keyExtractor={(item) => item?.id}
           contentContainerStyle={{
             paddingBottom: 90,
             flexDirection: 'row',
@@ -85,4 +83,5 @@ const MobileView = (props: any) => {
     </>
   )
 }
+
 export default MobileView

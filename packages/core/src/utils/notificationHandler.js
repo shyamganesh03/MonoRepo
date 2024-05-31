@@ -1,10 +1,8 @@
 import PushNotification from 'react-native-push-notification'
-import PushNotificationIOS from '@react-native-community/push-notification-ios'
 import messaging from '@react-native-firebase/messaging'
-import { AppState, PermissionsAndroid } from 'react-native'
+import { AppState } from 'react-native'
 import * as RootNavigator from '../navigation/RootNavigator'
 import { getNotificationNavigation } from '@izzo/hooks'
-import { useNavigation } from "@react-navigation/native"
 
 const notificationService = async () => {
   try {
@@ -20,10 +18,11 @@ const notificationService = async () => {
       async onNotification(notification) {
         console.log('REMOTE NOTIFICATION ==>', notification.data)
         if (AppState.currentState === 'background') {
-          getNotificationNavigation(notification.data, RootNavigator.navigateWithParams)
+          getNotificationNavigation(
+            notification.data,
+            RootNavigator.navigateWithParams,
+          )
         }
-
-
       },
       // (optional) Called when Registered Action is pressed and invokeApp is false, if true onNotification will be called (Android)
       onAction(notification) {
@@ -42,7 +41,6 @@ const notificationService = async () => {
   } catch (error) {
     console.log({ error })
   }
-
 }
 export default notificationService
 

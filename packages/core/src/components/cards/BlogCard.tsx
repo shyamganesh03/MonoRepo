@@ -5,7 +5,7 @@ import { View, TouchableOpacity } from 'react-native'
 import { Icon } from '@libs/native-icons'
 import { spacing } from '@libs/theme'
 
-const BlogCard = ({ blogPost }: any) => {
+const BlogCard = ({ blogPost }: { blogPost: any }) => {
   const { colors } = useTheme<any>()
 
   const formatDate = (blogDate: string) => {
@@ -13,8 +13,6 @@ const BlogCard = ({ blogPost }: any) => {
     const [year, month, day] = datePart.split('-')
     return `${day}.${month}.${year}`
   }
-
-  const showStatus = blogPost?.isPinned || blogPost?.isNew
 
   return (
     <TouchableOpacity>
@@ -28,7 +26,7 @@ const BlogCard = ({ blogPost }: any) => {
             blogPost?.isNew || blogPost?.isPinned ? spacing.spacing4 : 0,
         }}
         right={() =>
-          showStatus ? (
+          (blogPost?.isPinned || blogPost?.isNew) && (
             <View
               style={{
                 position: 'absolute',
@@ -45,16 +43,16 @@ const BlogCard = ({ blogPost }: any) => {
                 width: 124,
               }}
             >
-              {blogPost?.isPinned ? (
+              {blogPost?.isPinned && (
                 <Icon
                   name="BookmarkIcon"
                   fill={colors.textPrimary}
                   width={16}
                   height={16}
                 />
-              ) : null}
-              {(showStatus && blogPost?.pinnedText?.length > 0) ||
-              (showStatus && blogPost?.isNew.length > 0) ? (
+              )}
+              {(blogPost?.isPinned && blogPost?.pinnedText?.length > 0) ||
+              (blogPost?.isNew && blogPost?.isNew.length > 0) ? (
                 <Text
                   variant="utilityBold2"
                   style={{ textTransform: 'uppercase', marginLeft: 20 }}
@@ -68,7 +66,7 @@ const BlogCard = ({ blogPost }: any) => {
                 </Text>
               ) : null}
             </View>
-          ) : null
+          )
         }
         titleNumberOfLines={0}
         style={{

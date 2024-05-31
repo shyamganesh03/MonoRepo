@@ -1,8 +1,8 @@
-export const noAuthCall = async (url: any, options: any) => {
+export const noAuthCall = async (url: string, options: any) => {
   try {
-    const izzoAppUrl = !options?.blogPost
-      ? 'https://api.izzo-app.com'
-      : 'https://www.izzo-app.com'
+    const baseUrl = options?.blogPost
+      ? 'https://www.izzo-app.com'
+      : 'https://api.izzo-app.com'
 
     const queryString = options?.selectedFilters
       ? '?' + new URLSearchParams(options.selectedFilters).toString()
@@ -18,56 +18,42 @@ export const noAuthCall = async (url: any, options: any) => {
     }
 
     const response = await fetch(
-      `${izzoAppUrl}/${url}${queryString}`,
+      `${baseUrl}/${url}${queryString}`,
       requestOptions,
     )
 
-    if (!response?.ok) {
-      return response
+    if (!response.ok) {
+      throw new Error(`Failed to fetch ${url}: ${response.statusText}`)
     }
 
-    try {
-      const data = await response.json()
-
-      if (data) {
-        return data
-      }
-    } catch (error) {
-      return response
-    }
+    return await response.json()
   } catch (error) {
-    console.log({ error })
-    return error
+    console.error(`Error in noAuthCall for ${url}: ${error}`)
+    throw error
   }
 }
 
 export const getAllEvents = async () =>
-  noAuthCall('event', {
+  await noAuthCall('event', {
     method: 'GET',
   })
 
 export const getGenres = async () =>
-  noAuthCall('genre', {
+  await noAuthCall('genre', {
     method: 'GET',
   })
+
 export const getBlogPosts = async () =>
   await noAuthCall('_next/data/Ben4SLcxvhvzm_DOV0XN2/blog.json?slug=blog', {
     method: 'GET',
     blogPost: true,
   })
 
-export async function getEventDetails(eventName: string) {
-  try {
-    const eventData = await noAuthCall(`event/${eventName}`, { method: 'GET' })
-    return eventData
-  } catch (error) {
-    console.log({ error })
-  }
-}
+export const getEventDetails = async (eventName: string) =>
+  await noAuthCall(`event/${eventName}`, { method: 'GET' })
 
 export const getRegions = async () =>
   await noAuthCall('region', { method: 'GET' })
 
-export const getFilteredEvents = async (selectedFilters: any) => {
-  return await noAuthCall('event/filtered', { method: 'GET', selectedFilters })
-}
+export const getFilteredEvents = async (selectedFilters: any) =>
+  await noAuthCall('event/filtered', { method: 'GET', selectedFilters })

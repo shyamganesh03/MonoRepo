@@ -1,5 +1,5 @@
-import { ScrollView, Linking } from 'react-native'
 import React from 'react'
+import { ScrollView, Linking } from 'react-native'
 import { MobileContainer } from '@libs/container'
 import { ImagePlaceHolder } from 'assets'
 import {
@@ -21,8 +21,20 @@ import { useNavigation } from '@react-navigation/native'
 import { Share } from '@libs/share'
 import { Icon } from '@libs/native-icons'
 
-const MobileView = ({ eventData, showMore, setShowMore, isLoading }: any) => {
-  const { colors } = useTheme<any>()
+interface MobileViewProps {
+  eventData: any
+  showMore: boolean
+  setShowMore: (showMore: boolean) => void
+  isLoading: boolean
+}
+
+const MobileView: React.FC<MobileViewProps> = ({
+  eventData,
+  showMore,
+  setShowMore,
+  isLoading,
+}) => {
+  const { colors } = useTheme()
   const { t } = useTranslation()
   const navigation = useNavigation()
 
@@ -87,8 +99,7 @@ const MobileView = ({ eventData, showMore, setShowMore, isLoading }: any) => {
         >
           <Text variant="heading2">{eventData?.name}</Text>
           <Text variant="body1">
-            {' '}
-            {t('EVENT_DETAIL.BY')} {eventData?.company?.name}{' '}
+            {t('EVENT_DETAIL.BY')} {eventData?.company?.name}
           </Text>
           <Share
             itemID={eventData?.id}
@@ -101,9 +112,7 @@ const MobileView = ({ eventData, showMore, setShowMore, isLoading }: any) => {
               text: eventData?.pressText,
               appUrl: 'izzo://',
               pathName: 'eventDetail',
-              params: {
-                eventId: eventData?.id,
-              },
+              params: { eventId: eventData?.id },
             }}
           >
             <Icon name="ShareIcon" color={colors.textPrimary} />
@@ -122,7 +131,6 @@ const MobileView = ({ eventData, showMore, setShowMore, isLoading }: any) => {
         <Flex direction="column" style={{ gap: spacing.spacing3 }}>
           <Text variant="heading2">{t('EVENT_DETAIL.WHEN')}</Text>
           <Text variant="body1">
-            {' '}
             {getDayName(eventData?.startDate)}{' '}
             <Text color={colors.primary} variant="bodyBold1">
               {dateformat(eventData?.startDate)}{' '}
@@ -136,16 +144,14 @@ const MobileView = ({ eventData, showMore, setShowMore, isLoading }: any) => {
         <Flex direction="column" style={{ gap: spacing.spacing3 }}>
           <Text variant="heading2">{t('EVENT_DETAIL.GENRE')}</Text>
           <Wrap style={{ gap: 10 }}>
-            {eventData?.genres?.map((genreData: any, index: number) => {
-              return (
-                <Tag
-                  style={{ backgroundColor: colors.primary, borderRadius: 100 }}
-                  label={genreData?.genre}
-                  textVariant="bodyCompactBold2"
-                  key={index}
-                />
-              )
-            })}
+            {eventData?.genres?.map((genreData: any, index: number) => (
+              <Tag
+                style={{ backgroundColor: colors.primary, borderRadius: 100 }}
+                label={genreData?.genre}
+                textVariant="bodyCompactBold2"
+                key={index}
+              />
+            ))}
           </Wrap>
         </Flex>
         <Flex direction="column" style={{ gap: spacing.spacing3 }}>
@@ -185,9 +191,7 @@ const MobileView = ({ eventData, showMore, setShowMore, isLoading }: any) => {
           <IconButton
             name="InstagramIcon"
             color={colors.textPrimary}
-            onPress={() => {
-              Linking.openURL(eventData?.company?.socialMedia)
-            }}
+            onPress={() => Linking.openURL(eventData?.company?.socialMedia)}
           />
           <IconButton name="BrowserIcon" color={colors.textPrimary} />
         </Flex>

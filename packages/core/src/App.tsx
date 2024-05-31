@@ -11,7 +11,6 @@ import {
   DefaultTheme,
   DarkTheme,
 } from '@react-navigation/native'
-
 import {
   LightTheme as LightThemeColors,
   DarkTheme as DarkThemeColors,
@@ -29,38 +28,27 @@ import { PaperProvider } from 'react-native-paper'
 Analytics.init()
 notificationService()
 
-const customLightTheme = {
-  ...DefaultTheme.colors,
-  ...LightThemeColors,
+const createCustomTheme = (baseTheme: any, customColors: any) => ({
+  ...baseTheme,
   colors: {
-    ...DefaultTheme.colors,
-    ...LightThemeColors.colors,
+    ...baseTheme.colors,
+    ...customColors.colors,
   },
   spacing,
-}
+})
 
-const customDarkTheme = {
-  ...DarkTheme.colors,
-  ...DarkThemeColors,
-  colors: {
-    ...DarkTheme.colors,
-    ...DarkThemeColors.colors,
-  },
-  spacing,
-}
+const customLightTheme = createCustomTheme(DefaultTheme, LightThemeColors)
+const customDarkTheme = createCustomTheme(DarkTheme, DarkThemeColors)
 
-const getThemeColor = (themeState: any) => {
-  if (themeState === 'dark') {
-    return customDarkTheme
+const getThemeColor = (themeState) => {
+  switch (themeState) {
+    case 'dark':
+      return customDarkTheme
+    case 'light':
+      return customLightTheme
+    default:
+      return customLightTheme
   }
-  if (themeState === 'light') {
-    return customLightTheme
-  }
-
-  if (!themeState) {
-    return customLightTheme
-  }
-  return customDarkTheme
 }
 
 const AppSubWrapper = () => {
@@ -71,7 +59,6 @@ const AppSubWrapper = () => {
       <AppNavigator />
       <Toast
         ref={(ref) => {
-          //@ts-ignore
           global.toast = ref
         }}
         duration={5000}
@@ -86,8 +73,7 @@ const AppSubWrapper = () => {
 export const App = () => {
   const routeNameRef = useRef()
   const [themeState] = useAtom(themeSwitchAtom)
-
-  const theme: any = getThemeColor(themeState)
+  const theme = getThemeColor(themeState)
 
   const queryClient = new QueryClient({
     defaultOptions: {
@@ -119,13 +105,12 @@ export const App = () => {
           routeNameRef.current =
             RootNavigator.navigationRef.current.getCurrentRoute()?.name
         }}
-        onStateChange={async () => {
+        onStateChange={() => {
           const currentRouteName =
             RootNavigator.navigationRef.current.getCurrentRoute()?.name
           routeNameRef.current = currentRouteName
         }}
         theme={theme}
-        //@ts-ignore
         linking={{ enabled: true }}
       >
         <JotaiProvider>

@@ -16,7 +16,7 @@ const News = () => {
   const navigation = useNavigation()
   const isFocused = useIsFocused()
 
-  const { data: blogData, isLoading: isBlogLoading } = useQuery({
+  const { data: blogData, isLoading } = useQuery({
     queryKey: ['getBlog'],
     queryFn: () => getBlogPosts(),
     enabled: !!isFocused,
@@ -27,7 +27,7 @@ const News = () => {
   }
 
   const viewProps = {
-    isLoading: isBlogLoading,
+    isLoading,
     blogPosts: blogData?.pageProps?.story?.content?.body[2].blogPosts || [],
     handleBackNavigation,
   }

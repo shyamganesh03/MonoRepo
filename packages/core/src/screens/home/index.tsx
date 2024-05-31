@@ -4,12 +4,7 @@ import DesktopView from './DesktopView'
 import MobileView from './MobileView'
 import React from 'react'
 import { useQuery } from '@tanstack/react-query'
-import {
-  getAllEvents,
-  getBlogPosts,
-  getFilteredEvents,
-  getGenres,
-} from '@izzo/api'
+import { getBlogPosts, getFilteredEvents, getGenres } from '@izzo/api'
 import { useNavigation } from '@react-navigation/native'
 
 const HomePage = () => {

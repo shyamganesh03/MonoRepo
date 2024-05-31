@@ -4,17 +4,19 @@ import React from 'react'
 import { Text, View, TouchableOpacity } from 'react-native'
 import { Icon } from '@libs/native-icons'
 
-const EventCard = ({ eventDetail, handleEventDetailNavigation }: any) => {
+const EventCard = ({
+  eventDetail,
+  handleEventDetailNavigation,
+}: {
+  eventDetail: any
+  handleEventDetailNavigation: any
+}) => {
   const { colors } = useTheme<any>()
 
   const formatDate = (dateString: string) => {
     const date = new Date(dateString)
-
     const options: any = { day: '2-digit', month: 'short', year: 'numeric' }
-    const formattedDate = date
-      .toLocaleDateString('en-GB', options)
-      .replace(/ /g, ' ')
-    return formattedDate
+    return date.toLocaleDateString('en-GB', options).replace(/ /g, ' ')
   }
 
   return (
@@ -28,9 +30,7 @@ const EventCard = ({ eventDetail, handleEventDetailNavigation }: any) => {
     >
       <Card
         title={eventDetail?.name}
-        titleStyle={{
-          color: colors.textSecondary,
-        }}
+        titleStyle={{ color: colors.textSecondary }}
         titleVariant="heading3"
         subtitleStyle={{
           marginTop: -10,

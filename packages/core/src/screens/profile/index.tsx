@@ -7,30 +7,26 @@ import { useQuery } from '@tanstack/react-query'
 
 const Profile = () => {
   const [drunkMode, setDrunkMode] = useState(false)
-  const [email, setEmail] = useState()
   const LayoutView = useCallback(
     ScreenLayout.withLayoutView(DesktopView, MobileView, MobileView),
     [],
   )
 
-  const { data: userDetails } = useQuery({
+  const { data: userDetails, error: userError } = useQuery({
     queryKey: ['userDetails'],
     queryFn: () => {
       return null
     },
   })
 
-  const handlePress = () => {}
-  const handleLogin = () => {}
+  const handleToggleDrunkMode = () => {
+    setDrunkMode(!drunkMode)
+  }
 
   const viewProps = {
     drunkMode,
-    email,
     userDetails,
-    setDrunkMode,
-    setEmail,
-    handlePress,
-    handleLogin,
+    handleToggleDrunkMode,
   }
   return (
     <Suspense fallback={<></>}>
