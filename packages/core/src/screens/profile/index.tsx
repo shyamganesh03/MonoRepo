@@ -12,7 +12,7 @@ const Profile = () => {
     [],
   )
 
-  const { data: userDetails, error: userError } = useQuery({
+  const { data: userDetails } = useQuery({
     queryKey: ['userDetails'],
     queryFn: () => {
       return null
@@ -23,10 +23,13 @@ const Profile = () => {
     setDrunkMode(!drunkMode)
   }
 
+  const handleLogin = () => {}
+
   const viewProps = {
     drunkMode,
     userDetails,
     handleToggleDrunkMode,
+    handleLogin,
   }
   return (
     <Suspense fallback={<></>}>
