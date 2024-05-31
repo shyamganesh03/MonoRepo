@@ -1,3 +1,3 @@
-import { getNotificationNavigation } from './getNotificationNavigation'
+import { useBackButton } from './useBackButton'
 
-export { getNotificationNavigation }
+export { useBackButton }

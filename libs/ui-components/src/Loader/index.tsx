@@ -4,10 +4,10 @@ import { ActivityIndicator as RNPActivityIndicator } from 'react-native-paper'
 
 interface LoaderProps {
   animating: boolean
-  style: any
+  style?: any
   color: string
   size: 'small' | 'large' | number
-  hidesWhenStopped: boolean
+  hidesWhenStopped?: boolean
 }
 
 const Loader = (props: LoaderProps) => {

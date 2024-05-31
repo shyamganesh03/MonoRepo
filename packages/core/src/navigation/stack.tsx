@@ -8,6 +8,7 @@ import Profile from '../screens/profile'
 import Genres from '../screens/genres'
 import EventDetailScreen from '../screens/eventDetails'
 import Auth from '../screens/auth'
+import WebView from '../screens/webView'
 
 const Stack = createNativeStackNavigator()
 
@@ -52,6 +53,11 @@ const Stacks = () => {
       <Stack.Screen
         name="auth"
         component={Auth}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="webView"
+        component={WebView}
         options={{ headerShown: false }}
       />
     </Stack.Navigator>

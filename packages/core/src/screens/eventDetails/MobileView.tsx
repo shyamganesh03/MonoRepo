@@ -1,5 +1,5 @@
 import React from 'react'
-import { ScrollView, Linking } from 'react-native'
+import { ScrollView } from 'react-native'
 import { MobileContainer } from '@libs/container'
 import { ImagePlaceHolder } from 'assets'
 import {
@@ -36,7 +36,7 @@ const MobileView: React.FC<MobileViewProps> = ({
 }) => {
   const { colors } = useTheme<any>()
   const { t } = useTranslation()
-  const navigation = useNavigation()
+  const navigation: any = useNavigation()
 
   if (isLoading) {
     return (
@@ -191,7 +191,11 @@ const MobileView: React.FC<MobileViewProps> = ({
           <IconButton
             name="InstagramIcon"
             color={colors.textPrimary}
-            onPress={() => Linking.openURL(eventData?.company?.socialMedia)}
+            onPress={() =>
+              navigation.navigate('webView', {
+                uri: eventData?.company?.socialMedia,
+              })
+            }
           />
           <IconButton name="BrowserIcon" color={colors.textPrimary} />
         </Flex>
