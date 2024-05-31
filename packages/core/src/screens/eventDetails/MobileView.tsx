@@ -96,6 +96,15 @@ const MobileView = ({ eventData, showMore, setShowMore, isLoading }: any) => {
               paddingTop: spacing.spacing4,
               paddingBottom: spacing.spacing7,
             }}
+            data={{
+              title: eventData?.name,
+              text: eventData?.pressText,
+              appUrl: 'izzo://',
+              pathName: 'eventDetail',
+              params: {
+                eventId: eventData?.id,
+              },
+            }}
           >
             <Icon name="ShareIcon" color={colors.textPrimary} />
           </Share>

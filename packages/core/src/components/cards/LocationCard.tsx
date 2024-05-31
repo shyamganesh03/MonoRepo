@@ -55,7 +55,7 @@ const LocationCard = ({
             style={{
               marginVertical: spacing.spacing6,
               height: height,
-              width: width,
+              maxWidth: width,
               borderRadius: borderRadius,
               overflow: 'hidden',
             }}
@@ -75,7 +75,7 @@ const LocationCard = ({
               rotateEnabled={false}
               style={{
                 height: height,
-                width: width,
+                maxWidth: width,
               }}
             >
               <Marker

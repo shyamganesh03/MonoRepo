@@ -16,8 +16,9 @@ import { spacing } from '@libs/theme'
 export const BottomNavLayout = () => {
   const { colors } = useTheme()
   const navigation: any = useNavigation()
+  const routNames = ['home', 'maps', 'search', 'profile']
 
-  const currentRoute = useNavigationState(
+  const currentRoute: any = useNavigationState(
     (state) => state?.routes?.[state.routes.length - 1] || { name: 'home' },
   )
 
@@ -32,18 +33,17 @@ export const BottomNavLayout = () => {
 
     return (
       <TouchableOpacity
-        style={styles.iconContainer}
         onPress={() => {
           navigation.navigate(route)
         }}
         disabled={isDisable}
       >
-        <View style={styles.iconStyle}>
+        <View style={styles.iconContainer}>
           <Icon
             color={isActiveIcon() ? colors.primary : colors.onSurface}
             name={name}
-            height={40}
-            width={40}
+            height={24}
+            width={24}
             strokeWidth={isActiveIcon() ? 2 : 1}
           />
         </View>
@@ -62,8 +62,9 @@ export const BottomNavLayout = () => {
         flexDirection: 'row',
         justifyContent: 'space-between',
         paddingVertical: spacing.spacing4,
-        height: 80,
-        paddingHorizontal: 35,
+        height: routNames.includes(currentRoute?.name) ? 56 : 0,
+        paddingHorizontal: spacing.spacing6,
+        display: routNames.includes(currentRoute?.name) ? 'flex' : 'none',
       }}
       elevation={1}
     >
@@ -84,18 +85,9 @@ const styles = StyleSheet.create({
     position: 'absolute',
   },
   iconContainer: {
-    height: 45,
     alignItems: 'center',
-    justifyContent: 'flex-end',
-    width: '100%',
+    justifyContent: 'space-evenly',
+    marginTop: spacing.spacing2,
   },
-  iconStyle: {
-    width: 30,
-    height: 32,
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderRadius: 30,
-    marginBottom: spacing.spacing2,
-  },
-  icons: { flex: 1 },
+  icons: {},
 })

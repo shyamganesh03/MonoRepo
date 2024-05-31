@@ -26,7 +26,7 @@ const HomePage = () => {
     queryKey: ['getGenres'],
     queryFn: () => getGenres(),
   })
-  const { data: eventsData, isLoading: isEventDataLoding } = useQuery({
+  const { data: eventsData, isLoading: isEventDataLoading } = useQuery({
     queryKey: ['getEvents'],
     queryFn: () => getAllEvents(),
   })
@@ -77,7 +77,7 @@ const HomePage = () => {
     genresData,
     eventsData,
     blogPosts: data?.pageProps?.story?.content?.body[2].blogPosts || [],
-    isLoading: isEventDataLoding || isGenreLoading || isBlogLoading,
+    isLoading: isEventDataLoading || isGenreLoading || isBlogLoading,
     handleEventDetailNavigation,
     filterEvents,
     navigation,

@@ -8,7 +8,7 @@ import { t } from 'i18next'
 
 const MobileView = (props: any) => {
   const { isLoading, blogPosts, handleBackNavigation } = props
-  const { colors } = useTheme()
+  const { colors } = useTheme<any>()
 
   const renderBlogCard = ({ item }: any) => (
     <View style={{ paddingHorizontal: 16, marginTop: 16 }}>
@@ -30,7 +30,7 @@ const MobileView = (props: any) => {
       >
         <IconButton
           name="ArrowLeftIcon"
-          color={colors.tertiary}
+          color={colors.textPrimary}
           onPress={() => handleBackNavigation()}
         />
         <Text

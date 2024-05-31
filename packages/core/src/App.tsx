@@ -98,44 +98,44 @@ export const App = () => {
   })
 
   return (
-    <SafeAreaProvider initialMetrics={initialWindowMetrics}>
-      <PaperProvider theme={theme}>
-        {Platform.OS === 'web' && (
-          <style type="text/css" suppressHydrationWarning>
-            {`
+    <PaperProvider theme={theme}>
+      {Platform.OS === 'web' && (
+        <style type="text/css" suppressHydrationWarning>
+          {`
             @font-face {
               font-family: 'MaterialCommunityIcons';
               src: url(${require('react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf')}) format('truetype');
             }
           `}
-          </style>
-        )}
+        </style>
+      )}
 
-        <NavigationContainer
-          documentTitle={{
-            formatter: (options) => `Izzo | ${options?.title || ''}`,
-          }}
-          ref={RootNavigator.navigationRef}
-          onReady={() => {
-            routeNameRef.current =
-              RootNavigator.navigationRef.current.getCurrentRoute()?.name
-          }}
-          onStateChange={async () => {
-            const currentRouteName =
-              RootNavigator.navigationRef.current.getCurrentRoute()?.name
-            routeNameRef.current = currentRouteName
-          }}
-          theme={theme}
-          //@ts-ignore
-          linking={{ enabled: true }}
-        >
-          <JotaiProvider>
-            <QueryClientProvider client={queryClient}>
+      <NavigationContainer
+        documentTitle={{
+          formatter: (options) => `Izzo | ${options?.title || ''}`,
+        }}
+        ref={RootNavigator.navigationRef}
+        onReady={() => {
+          routeNameRef.current =
+            RootNavigator.navigationRef.current.getCurrentRoute()?.name
+        }}
+        onStateChange={async () => {
+          const currentRouteName =
+            RootNavigator.navigationRef.current.getCurrentRoute()?.name
+          routeNameRef.current = currentRouteName
+        }}
+        theme={theme}
+        //@ts-ignore
+        linking={{ enabled: true }}
+      >
+        <JotaiProvider>
+          <QueryClientProvider client={queryClient}>
+            <SafeAreaProvider initialMetrics={initialWindowMetrics}>
               <AppSubWrapper />
-            </QueryClientProvider>
-          </JotaiProvider>
-        </NavigationContainer>
-      </PaperProvider>
-    </SafeAreaProvider>
+            </SafeAreaProvider>
+          </QueryClientProvider>
+        </JotaiProvider>
+      </NavigationContainer>
+    </PaperProvider>
   )
 }

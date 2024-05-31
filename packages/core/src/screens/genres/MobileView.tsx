@@ -13,7 +13,7 @@ const MobileView = (props: any) => {
     handleBackNavigation,
     handleGenreDetailNavigation,
   } = props
-  const { colors } = useTheme()
+  const { colors } = useTheme<any>()
 
   const renderGenreCard = ({ item }: any) => (
     <View
@@ -44,7 +44,7 @@ const MobileView = (props: any) => {
       >
         <IconButton
           name="ArrowLeftIcon"
-          color={colors.tertiary}
+          color={colors.textPrimary}
           onPress={() => handleBackNavigation()}
         />
         <Text
