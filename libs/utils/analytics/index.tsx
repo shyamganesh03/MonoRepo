@@ -1,6 +1,5 @@
 import analytics from '@react-native-firebase/analytics'
 import crashlytics from '@react-native-firebase/crashlytics'
-// import Smartlook from 'smartlook-react-native-wrapper'
 import { BranchEvent } from 'react-native-branch'
 
 const BranchEvents = []
@@ -14,12 +13,6 @@ class Analytics {
     await Promise.all([
       analytics().setUserId(userId),
       crashlytics().setUserId(userId),
-      // this.logEvent({'sign_in'}),
-      // Smartlook.setUserIdentifier(userId),
-      // Smartlook.setUserIdentifier(userId, {
-      //   email: userObject.email,
-      //   firstName: userObject.firstName,
-      // }),
     ])
   }
 
@@ -31,10 +24,6 @@ class Analytics {
       this.logEvent('sign_up'),
     ])
   }
-
-  // static setCurrentScreen = async (screenName) => {
-  //   await analytics().setCurrentScreen(screenName, screenName)
-  // }
 
   static logEvent = (body: any) => {
     if (BranchEvents.includes(body.action)) {
@@ -67,14 +56,6 @@ class Analytics {
       screen_name: currentRouteName,
       screen_class: currentRouteName,
     })
-    // Smartlook.trackNavigationEvent(
-    //   `SCREEN_${previousRouteName}`,
-    //   Smartlook.ViewState.Exit,
-    // )
-    // Smartlook.trackNavigationEvent(
-    //   `SCREEN_${currentRouteName}`,
-    //   Smartlook.ViewState.Enter,
-    // )
   }
 
   static onSignOut = async () => {

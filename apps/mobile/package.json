@@ -14,8 +14,6 @@
     "xcode": "xed ios"
   },
   "dependencies": {
-    "@aws-sdk/credential-providers": "^3.577.0",
-    "@react-native-async-storage/async-storage": "^1.23.1",
     "@react-native-community/blur": "^4.4.0",
     "@react-native-community/push-notification-ios": "^1.11.0",
     "@react-native-firebase/messaging": "^20.0.0",
@@ -23,9 +21,7 @@
     "@react-native-firebase/analytics": "^20.0.0",
     "@react-native-firebase/app": "^20.0.0",
     "@react-native-firebase/crashlytics": "^20.0.0",
-    "@react-navigation/bottom-tabs": "^6.5.20",
     "@react-navigation/drawer": "^6.6.15",
-    "@sentry/react-native": "^5.22.2",
     "react": "18.2.0",
     "react-native": "0.73.4",
     "react-native-branch": "^6.2.1",

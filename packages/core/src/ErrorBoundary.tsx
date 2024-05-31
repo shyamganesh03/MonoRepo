@@ -1,6 +1,5 @@
 /* eslint-disable react-native/no-inline-styles */
 import * as React from 'react'
-// import * as Sentry from '@sentry/react-native'
 import { ErrorBoundary } from 'react-error-boundary'
 import { View, StyleSheet, Alert } from 'react-native'
 import { spacing } from '@libs/theme'

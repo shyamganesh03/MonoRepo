@@ -10,7 +10,6 @@ import PasswordTextInput from './PasswordInput'
 import RadioButton from './RadioButton'
 import Flex from './Flex'
 import Wrap from './Wrap'
-import Tab from './Tab'
 import Tag from './Tag'
 import Text from './Text'
 import TextInput from './TextInput'
@@ -31,7 +30,6 @@ export {
   PasswordTextInput,
   ProgressBar,
   RadioButton,
-  Tab,
   Tag,
   Text,
   TextInput,

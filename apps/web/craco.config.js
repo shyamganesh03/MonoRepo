@@ -27,9 +27,8 @@ module.exports = {
           ...currentWebpackConfig.resolve,
           alias: {
             ...currentWebpackConfig.resolve.alias,
-            '@sentry/react-native': '@sentry/react',
             'react-native-linear-gradient': 'react-native-web-linear-gradient',
-            'react-native-maps':'react-native-web-maps'
+            'react-native-maps': 'react-native-web-maps'
           },
         },
       };

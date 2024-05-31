@@ -1,9 +1,6 @@
 const { getDefaultConfig, mergeConfig } = require('@react-native/metro-config');
 const path = require('path');
 
-const {
-    createSentryMetroSerializer
-} = require("@sentry/react-native/dist/js/tools/sentryMetroSerializer");
 
 /**
  * Metro configuration
@@ -13,10 +10,6 @@ const {
  */
 const config = {
     watchFolders: [path.resolve(__dirname, '../../')],
-
-    serializer: {
-        customSerializer: createSentryMetroSerializer()
-    }
 };
 
 module.exports = mergeConfig(getDefaultConfig(__dirname), config);

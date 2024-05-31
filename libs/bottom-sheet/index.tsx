@@ -122,6 +122,8 @@ export const Sheet = (props: {
       case 'top': {
         return { translateY: pan }
       }
+      default:
+        return {}
     }
   }
 
