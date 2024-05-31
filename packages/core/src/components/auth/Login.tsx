@@ -36,7 +36,7 @@ const Login = ({ setState }: { setState: any }) => {
   const renderEmailInput = () => (
     <TextInput
       style={{ height: 40 }}
-      placeholder={'max.muster@izzo-app.com'}
+      placeholder={t('INPUT_TEXT.EMAIL_PLACEHOLDER')}
       outlineStyle={{ borderWidth: 0 }}
       left={
         <TextInput.Icon

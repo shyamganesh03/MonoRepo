@@ -43,7 +43,7 @@ const LoginAndSignUp = ({ setState }: any) => {
           value={email}
           outlineStyle={{ borderWidth: 0 }}
           style={{ height: 40 }}
-          placeholder={'max.muster@izzo-app.com'}
+          placeholder={t('INPUT_TEXT.EMAIL_PLACEHOLDER')}
           left={
             <TextInput.Icon
               icon={() => (

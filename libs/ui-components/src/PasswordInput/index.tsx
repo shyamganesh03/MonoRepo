@@ -3,8 +3,6 @@ import PropTypes from 'prop-types'
 import React, { useState } from 'react'
 import { View } from 'react-native'
 
-import { testProps } from '@libs/utils'
-
 import TextInput from '../TextInput'
 import { Icon } from '@libs/native-icons'
 
@@ -13,7 +11,6 @@ const PasswordTextInput = (props: any) => {
     onFocus = () => {},
     placeholder,
     onBlur = () => {},
-    testName,
     onChangeText = () => {},
   } = props
   const [showPassword, setShowPassword] = React.useState(true)
@@ -50,7 +47,6 @@ const PasswordTextInput = (props: any) => {
               <Icon name={showPassword ? 'EyeHiddenIcon' : 'EyeIcon'} />
             )}
             onPress={() => setShowPassword(!showPassword)}
-            {...testProps(testName)}
             forceTextInputFocus={false}
           />
         }

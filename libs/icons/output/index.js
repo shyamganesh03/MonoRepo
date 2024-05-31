@@ -37,15 +37,15 @@ const SvgArrowRightIcon = props => /*#__PURE__*/React.createElement(Svg, _extend
 }));
 
 const SvgAtIcon = props => /*#__PURE__*/React.createElement(Svg, _extends({
-  width: 24,
-  height: 24,
+  width: 48,
+  height: 40,
   viewBox: "0 0 48 41",
   fill: "none",
   xmlns: "http://www.w3.org/2000/svg"
 }, props), /*#__PURE__*/React.createElement(Rect, {
   y: 0.594,
-  width: 48,
-  height: 40,
+  width: 600,
+  height: 770,
   rx: 16,
   fill: "#2E2836"
 }), /*#__PURE__*/React.createElement(Path, {
