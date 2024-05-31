@@ -1,7 +1,6 @@
 import React from 'react'
-import { TouchableOpacity } from 'react-native'
+import { TouchableOpacity, View } from 'react-native'
 import { useTheme } from 'react-native-paper'
-
 import { Icon } from '@libs/native-icons'
 
 const CheckBox = (props: any) => {
@@ -22,7 +21,10 @@ const CheckBox = (props: any) => {
       onPress={() => {
         onPress()
       }}
-      style={{
+      
+    >
+      <View
+          style={{
         alignItems: 'center',
         backgroundColor: 'white',
         borderColor: colors.onBackground,
@@ -33,7 +35,7 @@ const CheckBox = (props: any) => {
         width: size,
         ...style,
       }}
-    >
+        >
       {status === 'checked' && (
         <Icon
           color={iconColor || colors.onSurface}
@@ -42,6 +44,8 @@ const CheckBox = (props: any) => {
           width={width}
         />
       )}
+      </View>
+      
     </TouchableOpacity>
   )
 }

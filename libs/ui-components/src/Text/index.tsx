@@ -27,7 +27,8 @@ const Text = (props: TextProps) => {
   return (
     <TextElement
       style={StyleSheet.flatten([
-        typography[variant],
+        //@ts-ignore
+         typography[variant],
         { textAlign, color: color || theme.colors.textPrimary },
         style,
       ])}

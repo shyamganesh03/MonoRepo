@@ -1,6 +1,5 @@
 import React from 'react'
-import { View } from 'react-native'
-import { Flex as RNFlex, Spacer } from 'react-native-flex-layout'
+import { Flex as RNFlex } from 'react-native-flex-layout'
 
 interface FlexProps {
   direction: 'row' | 'column'

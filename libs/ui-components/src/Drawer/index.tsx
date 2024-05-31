@@ -7,8 +7,7 @@ import {
   Keyboard,
   Platform,
   useWindowDimensions,
-  Animated,
-} from 'react-native'
+  } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { spacing } from '@libs/theme'
 import { Icon } from '@libs/native-icons'
@@ -91,6 +90,8 @@ const Drawer = (props: DrawerProps) => {
       case 'bottom': {
         return { borderTopLeftRadius: 16, borderTopRightRadius: 16 }
       }
+      default:
+        return {}
     }
   }
 
@@ -155,13 +156,15 @@ const Drawer = (props: DrawerProps) => {
                     onPress={() => {
                       setShowDrawer(false)
                     }}
+                   
+                  >
+                    <View
                     style={{
                       alignItems: 'center',
                       flexDirection: 'row',
                       marginBottom: spacing.spacing4,
                       paddingHorizontal: spacing.spacing5,
-                    }}
-                  >
+                    }}>
                     <Icon
                       name="LeftIcon"
                       color={theme.colors.textPrimary}
@@ -177,6 +180,7 @@ const Drawer = (props: DrawerProps) => {
                     >
                       {screenName}
                     </RNPText>
+                    </View>
                   </TouchableOpacity>
                 )}
                 {children}
