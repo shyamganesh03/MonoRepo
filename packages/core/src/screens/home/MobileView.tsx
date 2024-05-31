@@ -14,16 +14,14 @@ const MobileView = (props: any) => {
     drunkMode,
     setDrunkMode,
     genresData,
-    eventsData,
+    todayEvents,
     blogPosts,
     isLoading,
     handleEventDetailNavigation,
-    filterEvents,
     navigation,
     handleGenreDetailNavigation,
+    weekendEvents,
   } = props
-
-  const { todayEvents, weekendEvents } = filterEvents(eventsData)
 
   const renderEventCard = ({ item }: any) => (
     <View style={{ width: 316, marginRight: 8 }}>

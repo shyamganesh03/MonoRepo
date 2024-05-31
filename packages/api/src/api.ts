@@ -4,17 +4,23 @@ export const noAuthCall = async (url: any, options: any) => {
       ? 'https://api.izzo-app.com'
       : 'https://www.izzo-app.com'
 
+    const queryString = options?.selectedFilters
+      ? '?' + new URLSearchParams(options.selectedFilters).toString()
+      : ''
+
     const requestOptions = {
       method: options?.method,
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
       },
-
       body: JSON.stringify(options?.payload),
     }
 
-    const response = await fetch(`${izzoAppUrl}/${url}`, requestOptions)
+    const response = await fetch(
+      `${izzoAppUrl}/${url}${queryString}`,
+      requestOptions,
+    )
 
     if (!response?.ok) {
       return response
@@ -57,4 +63,11 @@ export async function getEventDetails(eventName: string) {
   } catch (error) {
     console.log({ error })
   }
+}
+
+export const getRegions = async () =>
+  await noAuthCall('region', { method: 'GET' })
+
+export const getFilteredEvents = async (selectedFilters: any) => {
+  return await noAuthCall('event/filtered', { method: 'GET', selectedFilters })
 }

@@ -4,7 +4,12 @@ import DesktopView from './DesktopView'
 import MobileView from './MobileView'
 import React from 'react'
 import { useQuery } from '@tanstack/react-query'
-import { getAllEvents, getBlogPosts, getGenres } from '@izzo/api'
+import {
+  getAllEvents,
+  getBlogPosts,
+  getFilteredEvents,
+  getGenres,
+} from '@izzo/api'
 import { useNavigation } from '@react-navigation/native'
 
 const HomePage = () => {
@@ -26,9 +31,13 @@ const HomePage = () => {
     queryKey: ['getGenres'],
     queryFn: () => getGenres(),
   })
-  const { data: eventsData, isLoading: isEventDataLoading } = useQuery({
+  const { data: todayEvents, isLoading: isTodayDataLoading } = useQuery({
     queryKey: ['getEvents'],
-    queryFn: () => getAllEvents(),
+    queryFn: () => getFilteredEvents({ when: 'TODAY' }),
+  })
+  const { data: weekendEvents, isLoading: isWeekendDataLoading } = useQuery({
+    queryKey: ['getWeekendEvents'],
+    queryFn: () => getFilteredEvents({ when: 'THIS_WEEKEND' }),
   })
 
   const handleEventDetailNavigation = (pageId: any) => {
@@ -39,48 +48,20 @@ const HomePage = () => {
     navigation.navigate('search', genreDetail)
   }
 
-  const today = new Date()
-  today.setHours(0, 0, 0, 0)
-
-  const nextSaturday = new Date(today)
-  nextSaturday.setDate(today.getDate() + ((6 - today.getDay()) % 7))
-
-  const nextSunday = new Date(nextSaturday)
-  nextSunday.setDate(nextSaturday.getDate() + 1)
-
-  const filterEvents = (events: any) => {
-    const todayEvents: any = []
-    const weekendEvents: any = []
-
-    events?.forEach((event: any) => {
-      const eventDate = new Date(event.startDate)
-      eventDate.setHours(0, 0, 0, 0)
-
-      if (eventDate.getTime() === today.getTime()) {
-        todayEvents.push(event)
-      }
-
-      if (
-        eventDate.getTime() === nextSaturday.getTime() ||
-        eventDate.getTime() === nextSunday.getTime()
-      ) {
-        weekendEvents.push(event)
-      }
-    })
-
-    return { todayEvents, weekendEvents }
-  }
-
   const viewProps = {
     drunkMode,
     setDrunkMode,
     genresData,
-    eventsData,
+    todayEvents,
     blogPosts: data?.pageProps?.story?.content?.body[2].blogPosts || [],
-    isLoading: isEventDataLoading || isGenreLoading || isBlogLoading,
+    isLoading:
+      isTodayDataLoading ||
+      isGenreLoading ||
+      isBlogLoading ||
+      isWeekendDataLoading,
     handleEventDetailNavigation,
-    filterEvents,
     navigation,
+    weekendEvents,
     handleGenreDetailNavigation,
   }
   return (
