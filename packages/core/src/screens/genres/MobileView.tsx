@@ -19,7 +19,7 @@ const MobileView: React.FC<MobileViewProps> = ({
   handleBackNavigation,
   handleGenreDetailNavigation,
 }) => {
-  const { colors } = useTheme()
+  const { colors } = useTheme<any>()
 
   const renderGenreCard = ({ item }: { item: any }) => (
     <View style={{ width: 150, height: 88 }}>

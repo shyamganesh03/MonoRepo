@@ -34,7 +34,7 @@ const MobileView: React.FC<MobileViewProps> = ({
   setShowMore,
   isLoading,
 }) => {
-  const { colors } = useTheme()
+  const { colors } = useTheme<any>()
   const { t } = useTranslation()
   const navigation = useNavigation()
 
