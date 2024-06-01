@@ -26,7 +26,7 @@ export const ShareComponent = (props: ShareComponentProps) => {
     const str = []
     for (const p in obj)
       if (obj.hasOwnProperty(p)) {
-        str.push(encodeURIComponent(p) + '=' + encodeURIComponent(obj[p]))
+        str.push(encodeURIComponent(obj[p]))
       }
     return str.join('&')
   }
@@ -34,7 +34,7 @@ export const ShareComponent = (props: ShareComponentProps) => {
   const handleShare = async () => {
     const url = isExternalLink
       ? data?.appUrl
-      : `${data?.appUrl}/${data?.pathName}?${search(data?.params)}`
+      : `${data?.appUrl}/${data?.pathName}/${search(data?.params)}`
 
     const options = {
       title: data?.title || 'Izzo',

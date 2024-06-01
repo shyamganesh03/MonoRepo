@@ -110,8 +110,8 @@ const MobileView: React.FC<MobileViewProps> = ({
             data={{
               title: eventData?.name,
               text: eventData?.pressText,
-              appUrl: 'izzo://',
-              pathName: 'eventDetail',
+              appUrl: 'www.izzo-app.com',
+              pathName: 'event',
               params: { eventId: eventData?.id },
             }}
           >

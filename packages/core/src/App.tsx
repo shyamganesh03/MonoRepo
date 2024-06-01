@@ -10,6 +10,7 @@ import {
   NavigationContainer,
   DefaultTheme,
   DarkTheme,
+  useNavigation,
 } from '@react-navigation/native'
 import {
   LightTheme as LightThemeColors,
