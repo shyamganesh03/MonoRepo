@@ -1,11 +1,17 @@
 import PushNotification from 'react-native-push-notification'
 import messaging from '@react-native-firebase/messaging'
-import { AppState } from 'react-native'
+import { AppState, PermissionsAndroid, Platform } from 'react-native'
 import * as RootNavigator from '../navigation/RootNavigator'
-import { getNotificationNavigation } from '@izzo/hooks'
+import { getNotificationNavigation } from './getNotificationNavigation'
 
 const notificationService = async () => {
   try {
+    if (Platform.OS === 'android') {
+
+      const granted = await PermissionsAndroid.request(
+        PermissionsAndroid.PERMISSIONS.POST_NOTIFICATIONS,
+      );
+    }
     messaging().setBackgroundMessageHandler(async (remoteMessage) => {
       console.log('Message handled in the background!', remoteMessage)
     })
@@ -16,8 +22,7 @@ const notificationService = async () => {
       },
       // (required) Called when a remote or local notification is opened or received
       async onNotification(notification) {
-        console.log('REMOTE NOTIFICATION ==>', notification.data)
-        if (AppState.currentState === 'background') {
+        if (AppState.currentState === 'background' || AppState.currentState === 'inactive' || AppState.currentState === 'active') {
           getNotificationNavigation(
             notification.data,
             RootNavigator.navigateWithParams,

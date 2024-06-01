@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { useEffect, useRef } from 'react'
 import { View, Platform, useWindowDimensions } from 'react-native'
 import {
   SafeAreaProvider,
@@ -19,14 +19,13 @@ import {
 import { Analytics } from '@libs/utils'
 import * as RootNavigator from './navigation/RootNavigator'
 import { AppNavigator } from './navigation'
-import notificationService from './utils/notificationHandler'
 import { useAtom, Provider as JotaiProvider } from 'jotai'
 import { themeSwitchAtom } from '@izzo/jotai-storage'
 import '@izzo/shared-translation'
 import { PaperProvider } from 'react-native-paper'
+import notificationService from './utils/notificationHandler'
 
 Analytics.init()
-notificationService()
 
 const createCustomTheme = (baseTheme: any, customColors: any) => ({
   ...baseTheme,
@@ -53,6 +52,10 @@ const getThemeColor = (themeState) => {
 
 const AppSubWrapper = () => {
   const height = useWindowDimensions().height
+
+  useEffect(() => {
+    notificationService()
+  }, [])
 
   return (
     <View style={Platform.OS === 'web' ? { minHeight: height } : { flex: 1 }}>
