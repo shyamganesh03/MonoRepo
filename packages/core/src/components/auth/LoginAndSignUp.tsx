@@ -1,21 +1,22 @@
-import React, { useState } from 'react'
-import { Button, Flex, Text, TextInput } from '@libs/components'
-import { useTheme, Divider } from 'react-native-paper'
+
+import { Button, Flex, Text, TextInput} from '@libs/components'
+import { useTheme ,Divider} from 'react-native-paper'
 import { useTranslation } from 'react-i18next'
 import { Icon } from '@libs/native-icons'
 import { useNavigation } from '@react-navigation/native'
+import { ScrollView } from 'react-native'
 
-const LoginAndSignUp = ({ setState }: any) => {
+
+const LoginAndSignUp = ({ handleValidation,userDetails,errorMessage}: any) => {
   const { colors } = useTheme<any>()
   const { t } = useTranslation()
-  const [email, setEmail] = useState('')
+  
   const navigation = useNavigation()
 
-  const handleTextInputChange = (text: any) => {
-    setEmail(text)
-  }
+  
 
   return (
+   
     <Flex direction="column">
       <Flex direction="column">
         <Text
@@ -39,8 +40,8 @@ const LoginAndSignUp = ({ setState }: any) => {
       </Flex>
       <Flex direction="column">
         <TextInput
-          onChangeText={handleTextInputChange}
-          value={email}
+          onChangeText={(value: string) => handleValidation('email',value)}
+          value={userDetails.email}
           outlineStyle={{ borderWidth: 0 }}
           style={{ height: 40 }}
           placeholder={t('INPUT_TEXT.EMAIL_PLACEHOLDER')}
@@ -52,6 +53,7 @@ const LoginAndSignUp = ({ setState }: any) => {
               style={{ position: 'absolute', left: -25 }}
             />
           }
+          error={errorMessage.email}
         />
         <Button
           style={{
@@ -59,23 +61,25 @@ const LoginAndSignUp = ({ setState }: any) => {
             marginBottom: 32,
             backgroundColor: colors.primary,
           }}
-          onPress={() => setState((prevState: number) => prevState + 1)}
+          onPress={()=>{}} 
           mode="contained"
-          label="Login & Sign Up"
+          label={t('BUTTON.Login_And_SIGN_UP')}
           labelStyle={{ color: colors.textPrimary }}
-          disabled={email.trim() === ''}
+          
         />
+       
       </Flex>
-      {email.trim() !== '' && <Divider />}
+      <Divider />
       <Button
         style={{ marginTop: 32, backgroundColor: colors.secondaryContainer }}
         onPress={() => {
           navigation.navigate('home')
         }}
-        label="Use as Guest"
+        label={t('BUTTON.USE_AS_GUEST')}
         labelStyle={{ color: colors.textPrimary }}
       />
     </Flex>
+    
   )
 }
 

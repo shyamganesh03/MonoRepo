@@ -6,9 +6,9 @@ import { Icon } from '@libs/native-icons'
 const CheckBox = (props: any) => {
   const {
     onPress = () => {},
-    size = 15,
+    size = 20,
     style,
-    status = 'unchecked',
+    status = false,
     borderRadius = 4,
     height = 6,
     width = 10,
@@ -23,26 +23,25 @@ const CheckBox = (props: any) => {
       }}
     >
       <View
-        style={{
-          alignItems: 'center',
-          backgroundColor: 'white',
-          borderColor: colors.onBackground,
-          borderRadius,
-          borderWidth: 0.7,
-          height: size,
-          justifyContent: 'center',
-          width: size,
-          ...style,
-        }}
-      >
-        {status === 'checked' && (
-          <Icon
-            color={iconColor || colors.onSurface}
-            name={iconName}
-            height={height}
-            width={width}
+          style={{
+        alignItems: 'center',
+        backgroundColor: 'white',
+        borderColor: colors.onBackground,
+        borderRadius,
+        height: size,
+        justifyContent: 'center',
+        width: size,
+        ...style,
+      }}
+        >
+      {status  && (
+        <Icon
+          color={iconColor || colors.onSecondary}
+          name='SelectionIcon'
+          width={15}
+          height={15}
           />
-        )}
+      )}
       </View>
     </TouchableOpacity>
   )

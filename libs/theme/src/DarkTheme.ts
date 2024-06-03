@@ -48,6 +48,8 @@ export const DarkTheme = {
     placeHolderTextColor: '#807A87',
     gradient: {
       primary: ['#8840FF', '#A940FF'],
+      primary1: '#8840FF',
+      primary2:'#A940FF'
     },
   },
 }

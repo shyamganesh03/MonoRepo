@@ -1,14 +1,18 @@
-import React from 'react'
+
 import { Button, Flex, Text, TextInput } from '@libs/components'
 import { useTheme } from 'react-native-paper'
 import { useTranslation } from 'react-i18next'
 import { Icon } from '@libs/native-icons'
 import { PasswordTextInput } from '@libs/components'
+import { ScrollView } from 'react-native'
 
-const Login = ({ setState }: { setState: any }) => {
+const Login = ({ handleValidation, userDetails, errorMessage }: any) => {
   const { colors } = useTheme<any>()
   const { t } = useTranslation()
+  
 
+  
+  
   const renderTitle = () => (
     <Text
       variant="heading2"
@@ -35,7 +39,11 @@ const Login = ({ setState }: { setState: any }) => {
 
   const renderEmailInput = () => (
     <TextInput
-      style={{ height: 40 }}
+      onChangeText={(value: any) => {
+        handleValidation('email', value)
+      }}
+      value={userDetails.email}
+      style={{height:40}}
       placeholder={t('INPUT_TEXT.EMAIL_PLACEHOLDER')}
       outlineStyle={{ borderWidth: 0 }}
       left={
@@ -44,23 +52,34 @@ const Login = ({ setState }: { setState: any }) => {
           style={{ position: 'absolute', left: -25 }}
         />
       }
+      error={errorMessage.email}
     />
+    
   )
 
   const renderPasswordInput = () => (
-    <PasswordTextInput placeholder="Password" style={{ height: 40 }} />
+    <PasswordTextInput
+      onChangeText={(value: any) => {
+        handleValidation('password', value)
+      }}
+      value={userDetails.password}
+      placeholder={t('INPUT_TEXT.PASSWORD_PLACEHOLDER')}
+      style={{height:40}}
+      error={errorMessage.password}
+    />
   )
 
   const renderLoginButton = () => (
     <Button
       style={{ backgroundColor: colors.primary }}
-      onPress={() => setState((prevState: number) => prevState + 1)}
-      label="Login"
+      onPress={()=>{}}
+      label={t('BUTTON.LOGIN')}
       labelStyle={{ color: colors.textPrimary }}
     />
   )
 
   return (
+    
     <Flex direction="column">
       <Flex direction="column">
         {renderTitle()}
@@ -72,6 +91,7 @@ const Login = ({ setState }: { setState: any }) => {
         {renderLoginButton()}
       </Flex>
     </Flex>
+    
   )
 }
 

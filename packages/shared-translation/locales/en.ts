@@ -42,7 +42,11 @@ export default {
     SHOW_LESS: 'Show Less',
     SIGN_OUT: 'Sign Out',
     Login_And_SIGN_UP: 'Login & Sign Up',
-    SHOW_CURRENT_EVENT: 'Show current Events',
+    LOGIN:'Login',
+    NEXT:'Next',
+    BACK:'Back',
+    SIGN_UP:'SignUp',
+    USE_AS_GUEST:'Use as Guest',
   },
   PROFILE: {
     SAVED_EVENTS: 'My Saved Events',
@@ -56,6 +60,12 @@ export default {
   },
   INPUT_TEXT: {
     EMAIL_PLACEHOLDER: 'max.muster@izzo-app.com',
+    PASSWORD_PLACEHOLDER:'Password',
+    CONFIRM_PASSWORD_PLACEHOLDER:'Confirm Password',
+    ADDRESS_PLACEHOLDER:'Address',
+    CANTON_PLACEHOLDER:'Canton',
+    NAME_PLACEHOLDER:'Name',
+    SURNAME_PLACEHOLDER:'Surname',
   },
   NOTIFICATION_SETTINGS: {
     DESCRIPTION:

@@ -21,7 +21,7 @@ const Stacks = () => {
     <Stack.Navigator initialRouteName="home">
       <Stack.Screen
         name="home"
-        component={HomePage}
+        component={Auth}
         options={{ headerShown: false }}
       />
       <Stack.Screen
