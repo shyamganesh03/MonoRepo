@@ -9,6 +9,10 @@ import Genres from '../screens/genres'
 import EventDetailScreen from '../screens/eventDetails'
 import Auth from '../screens/auth'
 import WebView from '../screens/webView'
+import NotificationSettings from '../screens/notificationSettings'
+import ProfileSettings from '../screens/profileSettings'
+import SavedEvents from '../screens/savedEvents'
+import PdfView from '../screens/pdfView'
 
 const Stack = createNativeStackNavigator()
 
@@ -58,6 +62,26 @@ const Stacks = () => {
       <Stack.Screen
         name="webView"
         component={WebView}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="notificationsettings"
+        component={NotificationSettings}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="profilesettings"
+        component={ProfileSettings}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="savedevents"
+        component={SavedEvents}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="pdfview"
+        component={PdfView}
         options={{ headerShown: false }}
       />
     </Stack.Navigator>

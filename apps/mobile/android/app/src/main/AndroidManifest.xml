@@ -38,4 +38,10 @@
       </intent-filter>
     </service>
   </application>
+  <queries>
+      <intent>    
+      <action android:name="android.intent.action.VIEW" />
+      <data android:mimeType="application/pdf" />
+      </intent>
+  </queries>
 </manifest>

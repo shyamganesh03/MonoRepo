@@ -4,6 +4,7 @@ import DesktopView from './DesktopView'
 import MobileView from './MobileView'
 import React from 'react'
 import { useQuery } from '@tanstack/react-query'
+import { useNavigation } from '@react-navigation/native'
 
 const Profile = () => {
   const [drunkMode, setDrunkMode] = useState(false)
@@ -12,12 +13,26 @@ const Profile = () => {
     [],
   )
 
+  const navigation = useNavigation()
+
+  const user = { email: 'logeshwaran.t@increscotech.com', name: 'Logeshwaran ' }
+
   const { data: userDetails } = useQuery({
     queryKey: ['userDetails'],
     queryFn: () => {
       return null
     },
   })
+
+  const handleNavigation = (path: string, isWeb: boolean) => {
+    if (isWeb && path.endsWith('.pdf')) {
+      return navigation.navigate('pdfview', { uri: path })
+    }
+    if (isWeb) {
+      return navigation.navigate('webView', { uri: path })
+    }
+    navigation.navigate(path)
+  }
 
   const handleToggleDrunkMode = () => {
     setDrunkMode(!drunkMode)
@@ -30,6 +45,8 @@ const Profile = () => {
     userDetails,
     handleToggleDrunkMode,
     handleLogin,
+    setDrunkMode,
+    handleNavigation,
   }
   return (
     <Suspense fallback={<></>}>

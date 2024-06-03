@@ -143,18 +143,18 @@ const DropDown = forwardRef((props: any, ref) => {
               {...props}
             />
             <Icon
-              name={'ArrowLeftIcon'}
+              name={'ArrowDownIcon'}
               color={error ? 'red' : colors.onSecondary}
               style={[
                 {
                   height: 20,
                   width: 20,
                   position: 'absolute',
-                  right: '5%',
-                  top: Platform.OS === 'web' ? '35%' : '30%',
+                  right: !showDropDown ? '3%' : '5%',
+                  top: !showDropDown ? '38%' : '10%',
                   opacity: disabled ? 0.5 : 1,
                   transform: [
-                    showDropDown ? { rotate: '90deg' } : { rotate: '-90deg' },
+                    showDropDown ? { rotate: '180deg' } : { rotate: '0deg' },
                   ],
                 },
                 iconStyle,

@@ -1,16 +1,15 @@
 import { useTheme } from 'react-native-paper'
-import { Card, Tag } from '@libs/components'
+import { Card, Flex, Tag, Text } from '@libs/components'
 import React from 'react'
-import { Text, View, TouchableOpacity } from 'react-native'
+import { View, TouchableOpacity, useWindowDimensions } from 'react-native'
 import { Icon } from '@libs/native-icons'
+import { dateformat } from '@libs/utils'
 
 const EventCard = ({
   eventDetail,
   handleEventDetailNavigation,
-}: {
-  eventDetail: any
-  handleEventDetailNavigation: any
-}) => {
+  isSearch,
+}: any) => {
   const { colors } = useTheme<any>()
 
   const formatDate = (dateString: string) => {
@@ -19,11 +18,13 @@ const EventCard = ({
     return date.toLocaleDateString('en-GB', options).replace(/ /g, ' ')
   }
 
+  const maxWidth = useWindowDimensions().width
+
   return (
     <TouchableOpacity
       style={{
         width: '100%',
-        maxWidth: 316,
+        maxWidth: !isSearch ? 316 : maxWidth,
         borderRadius: 16,
       }}
       onPress={() => handleEventDetailNavigation(eventDetail?.pageId)}
@@ -42,13 +43,68 @@ const EventCard = ({
         subTitleVariant="utility2"
         style={{
           backgroundColor: colors.textPrimary,
-          width: '100%',
-          maxWidth: 316,
-          height: 175,
         }}
+        right={() =>
+          isSearch && (
+            <View style={{ marginTop: 5 }}>
+              <Flex direction="column" style={{ paddingRight: 18 }}>
+                <Text
+                  variant="heading1"
+                  style={{
+                    fontWeight: '900',
+                    fontSize: 20,
+                    color: colors.primary,
+                  }}
+                >
+                  {dateformat(eventDetail?.startDate)}
+                </Text>
+                <Text
+                  variant="utility2"
+                  style={{
+                    color: colors.textSecondary,
+                    fontWeight: '500',
+                    textAlign: 'right',
+                    marginTop: -6,
+                  }}
+                >
+                  at {eventDetail?.startTime}
+                </Text>
+                <TouchableOpacity
+                  style={{
+                    backgroundColor: colors.tertiary,
+                    alignSelf: 'flex-end',
+                    position: 'absolute',
+                    right: 0,
+                    bottom: -115,
+                    paddingVertical: 6,
+                    paddingHorizontal: 14,
+                    borderTopLeftRadius: 12,
+                    borderBottomRightRadius: 12,
+                  }}
+                  onPress={() => {}}
+                >
+                  <Icon name="StarIcon" />
+                </TouchableOpacity>
+              </Flex>
+            </View>
+          )
+        }
         content={
-          <View style={{ marginTop: -5 }}>
-            <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 5 }}>
+          <View
+            style={{
+              marginTop: -5,
+              flexDirection: 'column',
+              alignContent: 'flex-end',
+            }}
+          >
+            <View
+              style={{
+                flexDirection: 'row',
+                flexWrap: 'wrap',
+                gap: 5,
+                marginTop: 5,
+              }}
+            >
               {eventDetail?.genres?.map((genres: any) => (
                 <Tag
                   label={genres.genre}
@@ -60,22 +116,25 @@ const EventCard = ({
               ))}
             </View>
 
-            <Text
-              style={{
-                marginTop: 25,
-                fontWeight: '500',
-                fontSize: 12,
-                color: colors.textSecondary,
-              }}
-            >
-              {formatDate(eventDetail?.startDate)} at {eventDetail?.startTime}
-            </Text>
+            {!isSearch && (
+              <Text
+                style={{
+                  marginTop: 25,
+                  fontWeight: '500',
+                  fontSize: 12,
+                  color: colors.textSecondary,
+                }}
+              >
+                {formatDate(eventDetail?.startDate)} at {eventDetail?.startTime}
+              </Text>
+            )}
             <View
               style={{
                 flexDirection: 'row',
                 alignItems: 'center',
                 columnGap: 5,
-                marginTop: 5,
+                marginTop: isSearch ? 43 : 5,
+                marginLeft: isSearch ? 0 : -3,
               }}
             >
               <Icon name="LocationIcon" width={15} height={15} />

@@ -4,7 +4,7 @@ import DesktopView from './DesktopView'
 import MobileView from './MobileView'
 import React from 'react'
 
-const WebView = (props: any) => {
+const PdfView = (props: any) => {
   const LayoutView = useCallback(
     ScreenLayout.withLayoutView(DesktopView, MobileView, MobileView),
     [],
@@ -20,4 +20,4 @@ const WebView = (props: any) => {
   )
 }
 
-export default WebView
+export default PdfView
