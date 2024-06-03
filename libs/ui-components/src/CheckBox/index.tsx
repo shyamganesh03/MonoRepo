@@ -21,31 +21,29 @@ const CheckBox = (props: any) => {
       onPress={() => {
         onPress()
       }}
-      
     >
       <View
-          style={{
-        alignItems: 'center',
-        backgroundColor: 'white',
-        borderColor: colors.onBackground,
-        borderRadius,
-        borderWidth: 0.7,
-        height: size,
-        justifyContent: 'center',
-        width: size,
-        ...style,
-      }}
-        >
-      {status === 'checked' && (
-        <Icon
-          color={iconColor || colors.onSurface}
-          name={iconName}
-          height={height}
-          width={width}
-        />
-      )}
+        style={{
+          alignItems: 'center',
+          backgroundColor: 'white',
+          borderColor: colors.onBackground,
+          borderRadius,
+          borderWidth: 0.7,
+          height: size,
+          justifyContent: 'center',
+          width: size,
+          ...style,
+        }}
+      >
+        {status === 'checked' && (
+          <Icon
+            color={iconColor || colors.onSurface}
+            name={iconName}
+            height={height}
+            width={width}
+          />
+        )}
       </View>
-      
     </TouchableOpacity>
   )
 }

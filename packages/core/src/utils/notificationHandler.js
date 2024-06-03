@@ -7,10 +7,9 @@ import { getNotificationNavigation } from './getNotificationNavigation'
 const notificationService = async () => {
   try {
     if (Platform.OS === 'android') {
-
       const granted = await PermissionsAndroid.request(
         PermissionsAndroid.PERMISSIONS.POST_NOTIFICATIONS,
-      );
+      )
     }
     messaging().setBackgroundMessageHandler(async (remoteMessage) => {
       console.log('Message handled in the background!', remoteMessage)
@@ -22,7 +21,11 @@ const notificationService = async () => {
       },
       // (required) Called when a remote or local notification is opened or received
       async onNotification(notification) {
-        if (AppState.currentState === 'background' || AppState.currentState === 'inactive' || AppState.currentState === 'active') {
+        if (
+          AppState.currentState === 'background' ||
+          AppState.currentState === 'inactive' ||
+          AppState.currentState === 'active'
+        ) {
           getNotificationNavigation(
             notification.data,
             RootNavigator.navigateWithParams,

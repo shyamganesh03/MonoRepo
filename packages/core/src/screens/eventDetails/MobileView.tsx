@@ -127,9 +127,11 @@ const MobileView: React.FC<MobileViewProps> = ({
           direction="column"
           style={{ paddingBottom: spacing.spacing7, alignItems: 'center' }}
         >
-          <Text variant="heading2">{eventData?.name}</Text>
+          <Text variant="heading2" style={{ fontWeight: 700 }}>
+            {eventData?.name}
+          </Text>
           <Text variant="body1">
-            {t('EVENT_DETAIL.BY')} {eventData?.company?.name}
+            {t('EVENT_DETAIL.BY')} {eventData?.company?.name?.toUpperCase()}
           </Text>
           <Share
             itemID={eventData?.id}
@@ -155,6 +157,7 @@ const MobileView: React.FC<MobileViewProps> = ({
               borderColor: colors.onBackground,
               borderWidth: 2,
               marginBottom: spacing.spacing3,
+              width: '50%',
             }}
             onPress={() => {}}
           />

@@ -13,7 +13,6 @@ import TextInput from '../TextInput'
 
 // ForwardRef to handle ref forwarding
 const DropDown = forwardRef((props: any, ref) => {
-  
   const { colors } = useTheme<any>()
 
   const {
@@ -57,16 +56,16 @@ const DropDown = forwardRef((props: any, ref) => {
   useEffect(() => {
     if (multiSelect) {
       const labels = list
-        .filter((_:any) => value.indexOf(_.value) !== -1)
-        .map((_:any) => _.label)
+        .filter((_: any) => value.indexOf(_.value) !== -1)
+        .map((_: any) => _.label)
         .join(', ')
       setDisplayValue(labels)
     } else {
       let labelLocal
       if (field) {
-        labelLocal = list?.find((_:any) => _?.[field] === value)?.[field]
+        labelLocal = list?.find((_: any) => _?.[field] === value)?.[field]
       } else {
-        labelLocal = list?.find((_:any) => _?.value === value)?.label
+        labelLocal = list?.find((_: any) => _?.value === value)?.label
       }
       if (labelLocal) {
         setDisplayValue(labelLocal)
@@ -183,7 +182,7 @@ const DropDown = forwardRef((props: any, ref) => {
             : { maxHeight: dropDownContainerMaxHeight || 200 }),
         }}
       >
-        {list?.map((_item:any) => (
+        {list?.map((_item: any) => (
           <Fragment key={_item.value}>
             <TouchableRipple
               style={{
@@ -199,7 +198,7 @@ const DropDown = forwardRef((props: any, ref) => {
                 <Menu.Item
                   titleStyle={{
                     color: isActive(_item?.displayName || _item?.value)
-                      ? activeColor ||  colors.textPrimary
+                      ? activeColor || colors.textPrimary
                       : colors.textPrimary,
                     ...(isActive(_item.value)
                       ? dropDownItemSelectedTextStyle
@@ -222,8 +221,7 @@ const DropDown = forwardRef((props: any, ref) => {
                 {multiSelect && (
                   <Checkbox.Android
                     theme={{
-                      colors: { accent: 
-                        colors.primary },
+                      colors: { accent: colors.primary },
                     }}
                     status={isActive(_item.value) ? 'checked' : 'unchecked'}
                     onPress={() => setActive(_item)}
