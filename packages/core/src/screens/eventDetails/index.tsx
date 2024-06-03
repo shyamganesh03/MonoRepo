@@ -24,9 +24,12 @@ const EventDetailScreen = (props: any) => {
     initialData: {},
   })
 
+  const isPastEvent = new Date() > new Date(eventData?.startDate)
+
   const viewProps = {
     eventData: { ...eventData, id: route?.params?.eventId },
     isLoading: isFetching,
+    isPastEvent,
     showMore,
     setShowMore,
   }

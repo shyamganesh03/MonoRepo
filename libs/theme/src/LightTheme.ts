@@ -29,7 +29,7 @@ export const LightTheme = {
     inverseSurface: 'rgb(50, 47, 51)',
     inverseOnSurface: 'rgb(246, 239, 243)',
     inversePrimary: 'rgb(223, 183, 255)',
-    neutral: '#1B1820',
+    neutral: '#676170',
     textPrimary: '#1B1820',
     textSecondary: '#FFFCEE',
     backgroundSurface: '#1B1820',

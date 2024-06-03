@@ -2,17 +2,43 @@ import { typography } from '@libs/theme'
 import * as React from 'react'
 import { Button as RNPButton } from 'react-native-paper'
 
-const Button = (props: any) => (
+interface ButtonProps {
+  disabled?: boolean
+  icon?: any
+  mode?:
+    | 'text'
+    | 'contained'
+    | 'outlined'
+    | 'elevated'
+    | 'contained-tonal'
+    | undefined
+  style?: any
+  labelStyle?: any
+  labelVariant?: any
+  label: string
+  onPress: any
+}
+
+const Button = ({
+  disabled,
+  icon,
+  mode,
+  onPress,
+  style,
+  labelStyle,
+  labelVariant,
+  label,
+}: ButtonProps) => (
   <RNPButton
-    disabled={props.disabled}
-    icon={props.icon}
-    mode={props.mode || 'contained'}
-    onPress={props.onPress}
-    style={[{ borderRadius: 18 }, props.style]}
+    disabled={disabled}
+    icon={icon}
+    mode={mode || 'text'}
+    onPress={onPress}
+    style={[{ borderRadius: 18 }, style]}
     //@ts-ignore
-    labelStyle={[props.labelStyle, typography[props.labelVariant]]}
+    labelStyle={[labelStyle, typography[labelVariant]]}
   >
-    {props.label}
+    {label}
   </RNPButton>
 )
 

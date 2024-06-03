@@ -29,7 +29,7 @@ export const DarkTheme = {
     inverseSurface: 'rgb(231, 225, 229)',
     inverseOnSurface: 'rgb(50, 47, 51)',
     inversePrimary: 'rgb(139, 14, 225)',
-    neutral: '#A8A4AD',
+    neutral: '#676170',
     textPrimary: '#FFFCEE',
     textSecondary: '#1B1820',
     backgroundSurface: '#1B1820',
