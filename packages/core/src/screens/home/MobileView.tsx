@@ -6,6 +6,7 @@ import { useTheme } from 'react-native-paper'
 import { FlatList, TouchableOpacity, View } from 'react-native'
 import { ShimmerPlaceholder } from '@libs/skeletons'
 import { BlogCard, GenreCard, EventCard } from '../../components'
+import { spacing } from '@libs/theme'
 
 const MobileView = (props: any) => {
   const { t } = useTranslation()
@@ -21,8 +22,6 @@ const MobileView = (props: any) => {
     navigation,
     handleGenreDetailNavigation,
     weekendEvents,
-    handleLanguages,
-    selectedLanguage,
   } = props
 
   const renderEventCard = ({ item }: any) => (
@@ -68,7 +67,7 @@ const MobileView = (props: any) => {
       >
         <Flex direction="row" style={{ alignItems: 'center', columnGap: 20 }}>
           <Icon name="CocktailIcon" width={24} height={24} />
-          <Text variant="functional1" color={colors.textPrimary}>
+          <Text variant="titleMedium" color={colors.textPrimary}>
             {t('HOME.DRUNK_MODE')}
           </Text>
         </Flex>
@@ -128,9 +127,7 @@ const MobileView = (props: any) => {
             alignItems: 'center',
           }}
         >
-          <Text variant="heading2" style={{ fontWeight: '700' }}>
-            {title}
-          </Text>
+          <Text variant="headlineMedium">{title}</Text>
           {isViewAll ? (
             <TouchableOpacity
               onPress={() => navigation.navigate(navigateTo)}
@@ -138,10 +135,8 @@ const MobileView = (props: any) => {
             >
               <Text
                 color={colors.primary}
-                variant="functional1"
-                style={{
-                  textDecorationLine: 'underline',
-                }}
+                variant="titleMedium"
+                textDecorationLine="underline"
               >
                 {t('HOME.VIEW_ALL')}
               </Text>
@@ -179,7 +174,10 @@ const MobileView = (props: any) => {
       data={placeholderData}
       keyExtractor={(_, index) => index.toString()}
       showsVerticalScrollIndicator={false}
-      contentContainerStyle={{ marginTop: 64, paddingBottom: 150 }}
+      contentContainerStyle={{
+        marginTop: spacing.spacing8,
+        paddingBottom: spacing.spacing13,
+      }}
       ListHeaderComponent={renderHeader}
       renderItem={() => null}
       style={{ backgroundColor: colors.background }}
@@ -219,16 +217,12 @@ const SkeletonLoader = ({ title, colors, t, blogPost }: any) => {
           marginTop: 32,
         }}
       >
-        <Text variant="heading2" style={{ fontWeight: '700' }}>
-          {title}
-        </Text>
+        <Text variant="headlineMedium">{title}</Text>
 
         <Text
           color={colors.primary}
-          variant="functional1"
-          style={{
-            textDecorationLine: 'underline',
-          }}
+          variant="titleMedium"
+          textDecorationLine="underline"
         >
           {t('HOME.VIEW_ALL')}
         </Text>

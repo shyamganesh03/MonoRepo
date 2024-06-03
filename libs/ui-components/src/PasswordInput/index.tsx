@@ -51,7 +51,7 @@ const PasswordTextInput = (props: any) => {
             forceTextInputFocus={false}
           />
         }
-         errorMessage={errorMessage}
+        errorMessage={errorMessage}
       />
     </View>
   )

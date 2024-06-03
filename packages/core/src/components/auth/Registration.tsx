@@ -10,13 +10,13 @@ import {
 import { useTheme } from 'react-native-paper'
 import { useTranslation } from 'react-i18next'
 import { Icon } from '@libs/native-icons'
+import { View } from 'react-native'
 import { useState } from 'react'
-import { KeyboardAvoidingView, ScrollView } from 'react-native'
 
 const Registration = ({ handleValidation, userDetails, errorMessage }: any) => {
   const { colors } = useTheme<any>()
   const { t } = useTranslation()
-  const [currentStep, setCurrentStep] = useState(1);
+  const [currentStep, setCurrentStep] = useState(1)
   const [checkBoxes, setCheckBoxes] = useState({
     checkbox1: false,
     checkbox2: false,
@@ -32,13 +32,13 @@ const Registration = ({ handleValidation, userDetails, errorMessage }: any) => {
   const isButtonDisabled = !(checkBoxes.checkbox1 && checkBoxes.checkbox2)
 
   const handleNextStep = () => {
-    setCurrentStep(currentStep + 1);
-  };
+    setCurrentStep(currentStep + 1)
+  }
 
   const handlePreviousStep = () => {
-    setCurrentStep(currentStep - 1);
-  };
-  
+    setCurrentStep(currentStep - 1)
+  }
+
   const renderStep = () => {
     switch (currentStep) {
       case 1:
@@ -49,7 +49,7 @@ const Registration = ({ handleValidation, userDetails, errorMessage }: any) => {
                 handleValidation('username', value)
               }}
               value={userDetails.username}
-              style={{height:40}}
+              style={{ height: 40 }}
               outlineStyle={{ borderWidth: 0 }}
               placeholder={t('INPUT_TEXT.NAME_PLACEHOLDER')}
             />
@@ -58,7 +58,7 @@ const Registration = ({ handleValidation, userDetails, errorMessage }: any) => {
                 handleValidation('surname', value)
               }}
               value={userDetails.surname}
-              style={{height:40}}
+              style={{ height: 40 }}
               outlineStyle={{ borderWidth: 0 }}
               placeholder={t('INPUT_TEXT.SURNAME_PLACEHOLDER')}
             />
@@ -134,11 +134,7 @@ const Registration = ({ handleValidation, userDetails, errorMessage }: any) => {
                 onPress={() => handleCheckBox('checkbox1')}
                 status={checkBoxes.checkbox1}
               />
-              <Text
-                variant="bodyBold1"
-                color={colors.textPrimary}
-                style={{ fontWeight: 700 }}
-              >
+              <Text variant="titleLarge" color={colors.textPrimary}>
                 {t('AUTH.CHECKBOX1')}
               </Text>
             </Flex>
@@ -148,12 +144,7 @@ const Registration = ({ handleValidation, userDetails, errorMessage }: any) => {
                 style={{ backgroundColor: colors.secondaryContainer }}
                 status={checkBoxes.checkbox2}
               />
-
-              <Text
-                variant="bodyBold1"
-                color={colors.textPrimary}
-                style={{ fontWeight: 700 }}
-              >
+              <Text variant="titleLarge" color={colors.textPrimary}>
                 {t('AUTH.CHECKBOX2')}
               </Text>
             </Flex>
@@ -165,36 +156,28 @@ const Registration = ({ handleValidation, userDetails, errorMessage }: any) => {
   }
 
   return (
-    
-    
     <Flex direction="column">
       <ProgressBar progress={0.35} color={colors.primary} />
       <Flex direction="column" style={{ marginTop: 32 }}>
-        <Text
-          variant="heading2"
-          color={colors.textPrimary}
-          style={{ fontWeight: 700 }}
-        >
+        <Text variant="headlineMedium" color={colors.textPrimary}>
           {t('AUTH.TITLE')}
         </Text>
-        <Text
-          variant="body2"
+        <View
           style={{
             paddingTop: 24,
             paddingBottom: 27,
-            fontWeight: 500,
             maxWidth: 240,
           }}
         >
-          {t('AUTH.SUBTITLE')}
-        </Text>
+          <Text variant="labelMedium">{t('AUTH.SUBTITLE')}</Text>
+        </View>
       </Flex>
       {renderStep()}
       <Flex direction="column" style={{ gap: 14, marginTop: 32 }}>
         <Button
           style={{ backgroundColor: colors.primary }}
           onPress={handleNextStep}
-        //   disabled={isButtonDisabled}
+          //   disabled={isButtonDisabled}
           label={t('BUTTON.NEXT')}
           labelStyle={{ color: colors.textPrimary }}
         />
@@ -207,8 +190,6 @@ const Registration = ({ handleValidation, userDetails, errorMessage }: any) => {
         />
       </Flex>
     </Flex>
-   
-   
   )
 }
 

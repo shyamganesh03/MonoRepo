@@ -13,33 +13,40 @@ const BlogCard = ({ blogPost }: { blogPost: any }) => {
     const [year, month, day] = datePart.split('-')
     return `${day}.${month}.${year}`
   }
+  const pinTitle = blogPost?.isPinned
+    ? blogPost?.pinnedText
+    : blogPost?.isNew
+      ? blogPost?.newText
+      : ''
 
   return (
     <TouchableOpacity>
       <Card
         title={`${blogPost?.title}`}
-        titleVariant="heading3"
+        titleVariant="headlineSmall"
         titleStyle={{
           color: `${blogPost?.textColor?.value}`,
           maxWidth: blogPost?.isNew || blogPost?.isPinned ? '68%' : '100%',
           marginBottom:
             blogPost?.isNew || blogPost?.isPinned ? spacing.spacing4 : 0,
+          lineHeight: 20,
         }}
         right={() =>
           (blogPost?.isPinned || blogPost?.isNew) && (
             <View
               style={{
                 position: 'absolute',
-                right: -10,
-                top: -46,
+                right: -16,
+                top: -48,
                 backgroundColor: colors.primary,
-                paddingHorizontal: 15,
-                paddingVertical: 10,
-                borderBottomLeftRadius: 16,
-                borderTopRightRadius: 16,
+                paddingHorizontal: spacing.spacing5,
+                paddingVertical: spacing.spacing3,
+                borderBottomLeftRadius: spacing.spacing5,
+                borderTopRightRadius: spacing.spacing5,
                 flexDirection: 'row',
                 alignItems: 'center',
-                justifyContent: 'center',
+                justifyContent:
+                  pinTitle && blogPost?.isPinned ? 'center' : 'flex-start',
                 width: 124,
               }}
             >
@@ -53,17 +60,15 @@ const BlogCard = ({ blogPost }: { blogPost: any }) => {
               )}
               {(blogPost?.isPinned && blogPost?.pinnedText?.length > 0) ||
               (blogPost?.isNew && blogPost?.isNew.length > 0) ? (
-                <Text
-                  variant="utilityBold2"
-                  style={{ textTransform: 'uppercase', marginLeft: 20 }}
-                  color={colors.textPrimary}
-                >
-                  {blogPost?.isPinned
-                    ? blogPost?.pinnedText
-                    : blogPost?.isNew
-                      ? blogPost?.newText
-                      : null}
-                </Text>
+                <View style={{ marginLeft: 20 }}>
+                  <Text
+                    variant="labelLarge"
+                    color={colors.textPrimary}
+                    textTransform="uppercase"
+                  >
+                    {pinTitle}
+                  </Text>
+                </View>
               ) : null}
             </View>
           )
@@ -72,19 +77,17 @@ const BlogCard = ({ blogPost }: { blogPost: any }) => {
         style={{
           backgroundColor: `${blogPost?.backgroundColor?.value}`,
           width: '100%',
-          padding: 10,
-          borderRadius: 16,
-          marginBottom: 11,
+          paddingHorizontal: spacing.spacing5,
+          paddingVertical: spacing.spacing4,
+          borderRadius: spacing.spacing5,
         }}
         content={
-          <View style={{ flexDirection: 'column' }}>
-            <Text color={`${blogPost?.textColor?.value}`} variant="body1">
+          <View style={{ flexDirection: 'column', gap: spacing.spacing5 }}>
+            <Text color={`${blogPost?.textColor?.value}`} variant="labelLarge">
               {blogPost?.description}
             </Text>
-            <Text
-              style={{ marginTop: spacing.spacing5 }}
-              color={`${blogPost?.textColor?.value}`}
-            >
+
+            <Text color={`${blogPost?.textColor?.value}`} variant="labelLarge">
               {formatDate(blogPost?.date)}
             </Text>
           </View>

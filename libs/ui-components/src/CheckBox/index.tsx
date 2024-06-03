@@ -23,25 +23,25 @@ const CheckBox = (props: any) => {
       }}
     >
       <View
-          style={{
-        alignItems: 'center',
-        backgroundColor: 'white',
-        borderColor: colors.onBackground,
-        borderRadius,
-        height: size,
-        justifyContent: 'center',
-        width: size,
-        ...style,
-      }}
-        >
-      {status  && (
-        <Icon
-          color={iconColor || colors.onSecondary}
-          name='SelectionIcon'
-          width={15}
-          height={15}
+        style={{
+          alignItems: 'center',
+          backgroundColor: 'white',
+          borderColor: colors.onBackground,
+          borderRadius,
+          height: size,
+          justifyContent: 'center',
+          width: size,
+          ...style,
+        }}
+      >
+        {status && (
+          <Icon
+            color={iconColor || colors.onSecondary}
+            name="SelectionIcon"
+            width={15}
+            height={15}
           />
-      )}
+        )}
       </View>
     </TouchableOpacity>
   )

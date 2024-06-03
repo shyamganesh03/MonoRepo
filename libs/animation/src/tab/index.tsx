@@ -5,7 +5,7 @@ import { spacing } from '@libs/theme'
 import { useTheme } from 'react-native-paper'
 
 const TabAnimation = ({ tabData, activeIndex = 0 }: any) => {
-  const theme = useTheme()
+  const theme = useTheme<any>()
   const [btnContainerWidth, setWidth] = useState(0)
   const btnWidth = btnContainerWidth / tabData.length
   const translateX = useRef(new Animated.Value(activeIndex * btnWidth)).current
@@ -47,7 +47,7 @@ const TabAnimation = ({ tabData, activeIndex = 0 }: any) => {
             tab.onPress()
           }}
         >
-          <Text variant="body2" color={theme.colors.textHints}>
+          <Text variant="labelMedium" color={theme.colors.textHints}>
             {tab.title}
           </Text>
         </TouchableOpacity>
@@ -76,7 +76,7 @@ const TabAnimation = ({ tabData, activeIndex = 0 }: any) => {
               },
             ]}
           >
-            <Text variant="body2" color={theme.colors.onNeutral}>
+            <Text variant="labelMedium" color={theme.colors.onNeutral}>
               {tab.title}
             </Text>
           </Animated.View>

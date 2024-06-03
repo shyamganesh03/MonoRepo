@@ -7,12 +7,13 @@ interface IconButtonProps {
   color: string
   onPress?: any
   style?: any
+  iconStyle?: any
 }
 
 const IconButton = (props: IconButtonProps) => {
   return (
     <TouchableOpacity style={props.style} onPress={props.onPress}>
-      <Icon name={props.name} color={props.color} />
+      <Icon name={props.name} color={props.color} {...props.iconStyle} />
     </TouchableOpacity>
   )
 }

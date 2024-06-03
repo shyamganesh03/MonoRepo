@@ -1,16 +1,17 @@
-import { Text as TextElement, StyleSheet } from 'react-native'
+import { StyleSheet } from 'react-native'
 import PropTypes from 'prop-types'
 import React from 'react'
 import { typography } from '@libs/theme'
-import { useTheme } from 'react-native-paper'
+import { useTheme, Text as TextElement } from 'react-native-paper'
 
 interface TextProps {
   children: any
   color?: string
   numberOfLines?: number
-  style?: any
   textAlign?: string
   variant?: string
+  textDecorationLine?: string
+  textTransform?: string
 }
 
 const Text = (props: TextProps) => {
@@ -18,48 +19,46 @@ const Text = (props: TextProps) => {
     children,
     color = '',
     numberOfLines,
-    style = {},
     textAlign,
-    variant = 'body1',
+    variant = 'bodyMedium',
+    textDecorationLine = 'none',
+    textTransform = 'none',
   } = props
   const theme: any = useTheme()
 
+  const defaultStyle = [
+    //@ts-ignore
+    typography[variant],
+    {
+      textAlign,
+      color: color || theme.colors.textPrimary,
+      textDecorationLine,
+      textTransform,
+    },
+  ]
   return (
-    <TextElement
-      style={StyleSheet.flatten([
-        //@ts-ignore
-        typography[variant],
-        { textAlign, color: color || theme.colors.textPrimary },
-        style,
-      ])}
-      numberOfLines={numberOfLines}
-    >
+    <TextElement style={defaultStyle} numberOfLines={numberOfLines}>
       {children}
     </TextElement>
   )
 }
 
 const variants = [
-  'body1',
-  'body2',
-  'bodyBold1',
-  'bodyBold2',
-  'bodyCompact2',
-  'bodyCompactBold2',
-  'display1',
-  'display2',
-  'display3',
-  'display4',
-  'functional1',
-  'heading1',
-  'heading2',
-  'heading3',
-  'heading4',
-  'heading5',
-  'utility1',
-  'utility2',
-  'utilityBold2',
-  'utilityCompact2',
+  'displaySmall',
+  'displayMedium',
+  'displayLarge',
+  'headlineSmall',
+  'headlineMedium',
+  'headlineLarge',
+  'titleSmall',
+  'titleMedium',
+  'titleLarge',
+  'labelSmall',
+  'labelMedium',
+  'labelLarge',
+  'bodySmall',
+  'bodyMedium',
+  'bodyLarge',
 ]
 
 Text.propTypes = {

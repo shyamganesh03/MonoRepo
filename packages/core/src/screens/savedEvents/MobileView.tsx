@@ -1,10 +1,9 @@
 import React from 'react'
-import { Flex, IconButton, Text } from '@libs/components'
 import { FlatList, View } from 'react-native'
 import { ShimmerPlaceholder } from '@libs/skeletons'
 import { useTheme } from 'react-native-paper'
 import { EventCard } from '../../components'
-import { t } from 'i18next'
+import { MobileContainer } from '@libs/container'
 
 interface MobileViewProps {
   isLoading: boolean
@@ -16,7 +15,6 @@ interface MobileViewProps {
 const MobileView: React.FC<MobileViewProps> = ({
   isLoading,
   savedEvents,
-  handleBackNavigation,
   handleEventDetailNavigation,
 }) => {
   const { colors } = useTheme<any>()
@@ -34,7 +32,7 @@ const MobileView: React.FC<MobileViewProps> = ({
   )
 
   return (
-    <>
+    <MobileContainer backgroundColor={colors.background}>
       {isLoading ? (
         <ShimmerPlaceholder
           style={{
@@ -55,7 +53,7 @@ const MobileView: React.FC<MobileViewProps> = ({
           }}
         />
       )}
-    </>
+    </MobileContainer>
   )
 }
 

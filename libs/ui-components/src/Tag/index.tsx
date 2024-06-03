@@ -196,14 +196,14 @@ const styles: any = StyleSheet.create({
   skillTag: {
     alignItems: 'center',
     flexDirection: 'row',
-    paddingHorizontal: spacing.spacing3,
-    paddingVertical: spacing.spacing5,
+    paddingHorizontal: spacing.spacing4,
+    paddingVertical: spacing.spacing2,
   },
   skillTag1: {
     alignItems: 'center',
     flexDirection: 'row',
-    paddingHorizontal: spacing.spacing5,
-    paddingVertical: spacing.spacing4,
+    paddingHorizontal: spacing.spacing4,
+    paddingVertical: spacing.spacing2,
   },
   pointStyle: {
     borderRadius: 6,
@@ -215,15 +215,15 @@ const styles: any = StyleSheet.create({
     alignSelf: 'center',
     borderRadius: 16,
     flexDirection: 'row',
-    paddingHorizontal: 25,
-    paddingVertical: spacing.spacing1,
+    paddingHorizontal: spacing.spacing4,
+    paddingVertical: spacing.spacing2,
   },
   alertTag: {
     alignSelf: 'center',
     borderRadius: 16,
     flexDirection: 'row',
-    paddingHorizontal: spacing.spacing5,
-    paddingVertical: 2,
+    paddingHorizontal: spacing.spacing4,
+    paddingVertical: spacing.spacing2,
   },
 })
 
@@ -248,7 +248,7 @@ Tag.defaultProps = {
   pointColor: 'green',
   style: {},
   tagType: 'eventTag',
-  textVariant: 'body1',
+  textVariant: 'bodyMedium',
 }
 
 export default Tag

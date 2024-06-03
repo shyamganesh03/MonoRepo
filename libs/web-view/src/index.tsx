@@ -57,14 +57,10 @@ const WebView = (props: any) => {
             size={32}
           />
           <Flex direction="column">
-            <Text style={{ color: colors.textPrimary }} variant="body2">
+            <Text color={colors.textPrimary} variant="labelMedium">
               {t('IZZ0')}
             </Text>
-            <Text
-              style={{ color: colors.textPrimary }}
-              variant="body2"
-              numberOfLines={1}
-            >
+            <Text color={colors.textPrimary} variant="labelMedium">
               {currentUrl}
             </Text>
           </Flex>

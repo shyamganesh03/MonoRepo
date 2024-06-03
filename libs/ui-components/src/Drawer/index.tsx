@@ -172,7 +172,7 @@ const Drawer = (props: DrawerProps) => {
                         height={20}
                       />
                       <RNPText
-                        variant="heading2"
+                        variant="headlineMedium"
                         color={theme.colors.textPrimary}
                         style={{
                           marginLeft: spacing.spacing5,

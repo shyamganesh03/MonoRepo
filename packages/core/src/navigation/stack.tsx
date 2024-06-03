@@ -13,17 +13,17 @@ import NotificationSettings from '../screens/notificationSettings'
 import ProfileSettings from '../screens/profileSettings'
 import SavedEvents from '../screens/savedEvents'
 import PdfView from '../screens/pdfView'
-import { Icon } from '../../../../libs/icons/output'
-import { Flex, IconButton, Text } from '../../../../libs/ui-components/src'
+import { Flex, IconButton, Text } from '@libs/components'
 import { useNavigation } from '@react-navigation/native'
 import { useTheme } from 'react-native-paper'
 import { t } from 'i18next'
+import { View } from 'react-native'
 
 const Stack = createNativeStackNavigator()
 
 const Stacks = () => {
   const navigation = useNavigation()
-  const { colors } = useTheme()
+  const { colors } = useTheme<any>()
   return (
     <Stack.Navigator initialRouteName="home">
       <Stack.Screen
@@ -62,7 +62,17 @@ const Stacks = () => {
         options={{ headerShown: false }}
       />
       <Stack.Screen
-        name="auth"
+        name="loginAndSignUp"
+        component={Auth}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="login"
+        component={Auth}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="register"
         component={Auth}
         options={{ headerShown: false }}
       />
@@ -72,7 +82,7 @@ const Stacks = () => {
         options={{ headerShown: false }}
       />
       <Stack.Screen
-        name="notificationsettings"
+        name="notificationSettings"
         component={NotificationSettings}
         options={{
           header: () => (
@@ -88,22 +98,22 @@ const Stacks = () => {
               <IconButton
                 name="ArrowLeftIcon"
                 color={colors.textPrimary}
+                iconStyle={{ height: 20, width: 20 }}
                 onPress={() => {
                   navigation.goBack()
                 }}
               />
-              <Text
-                variant="heading2"
-                style={{ flex: 1, textAlign: 'center', marginRight: 20 }}
-              >
-                {t('NOTIFICATION_SETTINGS.NOTIFICATION_SETTINGS')}
-              </Text>
+              <View style={{ flex: 1, marginRight: 20 }}>
+                <Text variant="headlineMedium" textAlign="center">
+                  {t('NOTIFICATION_SETTINGS.NOTIFICATION_SETTINGS')}
+                </Text>
+              </View>
             </Flex>
           ),
         }}
       />
       <Stack.Screen
-        name="profilesettings"
+        name="profileSettings"
         component={ProfileSettings}
         options={{
           header: () => (
@@ -123,18 +133,17 @@ const Stacks = () => {
                   navigation.goBack()
                 }}
               />
-              <Text
-                variant="heading2"
-                style={{ flex: 1, textAlign: 'center', marginRight: 20 }}
-              >
-                {t('PROFILE.PROFILE_SETTINGS')}
-              </Text>
+              <View style={{ flex: 1, marginRight: 20 }}>
+                <Text variant="titleMedium" textAlign="center">
+                  {t('PROFILE.PROFILE_SETTINGS')}
+                </Text>
+              </View>
             </Flex>
           ),
         }}
       />
       <Stack.Screen
-        name="savedevents"
+        name="savedEvents"
         component={SavedEvents}
         options={{
           header: () => (
@@ -150,22 +159,22 @@ const Stacks = () => {
               <IconButton
                 name="ArrowLeftIcon"
                 color={colors.textPrimary}
+                iconStyle={{ height: 20, width: 20 }}
                 onPress={() => {
                   navigation.goBack()
                 }}
               />
-              <Text
-                variant="heading2"
-                style={{ flex: 1, textAlign: 'center', marginRight: 20 }}
-              >
-                {t('SAVED_EVENTS.TITLE')}
-              </Text>
+              <View style={{ flex: 1, marginRight: 20 }}>
+                <Text variant="headlineMedium" textAlign="center">
+                  {t('SAVED_EVENTS.TITLE')}
+                </Text>
+              </View>
             </Flex>
           ),
         }}
       />
       <Stack.Screen
-        name="pdfview"
+        name="pdfView"
         component={PdfView}
         options={{ headerShown: false }}
       />

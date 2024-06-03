@@ -49,7 +49,7 @@ export const DarkTheme = {
     gradient: {
       primary: ['#8840FF', '#A940FF'],
       primary1: '#8840FF',
-      primary2:'#A940FF'
+      primary2: '#A940FF',
     },
   },
 }

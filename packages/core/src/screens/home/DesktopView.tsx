@@ -10,7 +10,7 @@ const DesktopView = () => {
 
   return (
     <DesktopContainer backgroundColor={colors.background}>
-      <Text variant="functional1">{t('HOME.DRUNK_MODE')}</Text>
+      <Text variant="titleMedium">{t('HOME.DRUNK_MODE')}</Text>
     </DesktopContainer>
   )
 }

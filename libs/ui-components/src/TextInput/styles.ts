@@ -4,7 +4,7 @@ import { typography } from '@libs/theme'
 
 export const styles = StyleSheet.create({
   inputStyle: {
-    ...typography.body1,
+    ...typography.bodyMedium,
     borderColor: 'transparent',
     borderWidth: 0.5,
     flex: 1,

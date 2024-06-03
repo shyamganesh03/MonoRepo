@@ -7,7 +7,7 @@ import {
   TextInput,
   ToggleSwitch,
 } from '@libs/components'
-import { ScrollView, TouchableOpacity, View } from 'react-native'
+import { ScrollView, TouchableOpacity } from 'react-native'
 import { MobileContainer } from '@libs/container'
 import { Izzo } from 'assets'
 import { Icon } from '@libs/native-icons'
@@ -58,11 +58,11 @@ const ProfileTab = ({
             <Icon name={leftIconName} color={colors.textPrimary} />
           )}
           {heading && (
-            <Text variant={isUserCard ? 'heading2' : 'functional1'}>
+            <Text variant={isUserCard ? 'headlineMedium' : 'titleMedium'}>
               {heading}
             </Text>
           )}
-          {description && <Text variant="body1">{description}</Text>}
+          {description && <Text variant="bodyMedium">{description}</Text>}
         </Flex>
         {hasRightIcon && (
           <Icon
@@ -92,7 +92,7 @@ const MobileView = ({
 
   return (
     <ScrollView>
-      <MobileContainer hasKeyBoard style={{ paddingHorizontal: 16 }}>
+      <MobileContainer hasKeyBoard backgroundColor={colors.background}>
         <Flex
           direction="row"
           style={{
@@ -112,60 +112,48 @@ const MobileView = ({
               style={{ marginBottom: 32 }}
             />
           ) : (
-            <View style={{ marginTop: 10 }}>
-              <Flex direction="column" style={{ rowGap: 17 }}>
-                <Text variant="heading2" style={{ fontWeight: '700' }}>
-                  {t('AUTH.TITLE')}
-                </Text>
-                <Text variant="bodyCompact2" style={{ letterSpacing: 0.5 }}>
-                  {t('AUTH.SUBTITLE')}
-                </Text>
-              </Flex>
-              <Flex direction="column" style={{ marginTop: 32, rowGap: 5 }}>
-                <TextInput
-                  placeholder={t('INPUT_TEXT.EMAIL_PLACEHOLDER')}
-                  outlineStyle={{ borderWidth: 0 }}
-                  onChangeText={(value: string) => setEmail(value)}
-                  value={email}
-                  dense={true}
-                  contentStyle={{ fontSize: 16, fontWeight: '500' }}
-                  left={
-                    <TextInput.Icon
-                      icon={() => (
-                        <Icon name="AtIcon" color={colors.onSurfaceVariant} />
-                      )}
-                      style={{ position: 'absolute', left: -25 }}
-                    />
-                  }
-                />
-                <LinearGradient
-                  colors={['red', 'blue']}
-                  start={{ x: 1, y: 1 }}
-                  end={{ x: 1, y: 1 }}
-                  locations={[0.1, 0.6]}
-                  style={{
-                    marginTop: 14,
-                    marginBottom: 32,
-                    borderRadius: 16,
-                  }}
-                >
-                  <Button
-                    onPress={() => handleLogin()}
-                    mode="contained"
-                    label={t('BUTTON.Login_And_SIGN_UP')}
-                    labelVariant="bodyBold1"
-                    labelStyle={{ color: colors.textPrimary }}
+            <Flex direction="column" style={{ gap: spacing.spacing7 }}>
+              <TextInput
+                placeholder={t('INPUT_TEXT.EMAIL_PLACEHOLDER')}
+                outlineStyle={{ borderWidth: 0 }}
+                onChangeText={(value: string) => setEmail(value)}
+                value={email}
+                left={
+                  <TextInput.Icon
+                    icon={() => (
+                      <Icon name="AtIcon" color={colors.onSurfaceVariant} />
+                    )}
+                    style={{ position: 'absolute', left: -25 }}
                   />
-                </LinearGradient>
-              </Flex>
-            </View>
+                }
+              />
+              <LinearGradient
+                colors={['red', 'blue']}
+                start={{ x: 1, y: 1 }}
+                end={{ x: 1, y: 1 }}
+                locations={[0.1, 0.6]}
+                style={{
+                  marginTop: 14,
+                  marginBottom: 32,
+                  borderRadius: 16,
+                }}
+              >
+                <Button
+                  onPress={() => handleLogin()}
+                  mode="contained"
+                  label={t('BUTTON.Login_And_SIGN_UP')}
+                  labelVariant="titleLarge"
+                  labelStyle={{ color: colors.textPrimary }}
+                />
+              </LinearGradient>
+            </Flex>
           )}
           <ProfileTab
             heading={t('PROFILE.SAVED_EVENTS')}
             leftIconName="BookmarkIcon"
             rightIconName={userDetails?.email ? 'ArrowRightIcon' : 'LockIcon'}
             handlePress={() =>
-              userDetails?.email ? handleNavigation('savedevents') : {}
+              userDetails?.email ? handleNavigation('savedEvents') : {}
             }
             style={{ marginBottom: 32 }}
           />
@@ -177,7 +165,7 @@ const MobileView = ({
               heading={t('PROFILE.PUSH_NOTIFICATION')}
               leftIconName="BellIcon"
               rightIconName="ArrowRightIcon"
-              handlePress={() => handleNavigation('notificationsettings')}
+              handlePress={() => handleNavigation('notificationSettings')}
             />
             {userDetails?.email ? (
               <ProfileTab
@@ -185,7 +173,7 @@ const MobileView = ({
                 leftIconName="UserIcon"
                 rightIconName="ArrowRightIcon"
                 handlePress={() =>
-                  userDetails?.email ? handleNavigation('profilesettings') : {}
+                  userDetails?.email ? handleNavigation('profileSettings') : {}
                 }
               />
             ) : null}
@@ -206,7 +194,7 @@ const MobileView = ({
               style={{ alignItems: 'center', columnGap: 8 }}
             >
               <Icon name="CocktailIcon" width={24} height={24} />
-              <Text variant="functional1" color={colors.textPrimary}>
+              <Text variant="titleMedium" color={colors.textPrimary}>
                 {t('PROFILE.DRUNK_MODE')}
               </Text>
             </Flex>
@@ -243,7 +231,7 @@ const MobileView = ({
               mode="contained"
               label={t('BUTTON.SIGN_OUT')}
               labelStyle={{ color: colors.textPrimary }}
-              labelVariant="bodyBold1"
+              labelVariant="titleLarge"
               style={{
                 backgroundColor: colors.secondaryContainer,
                 marginTop: 32,

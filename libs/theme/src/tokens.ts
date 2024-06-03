@@ -1,3 +1,5 @@
+import { Platform } from 'react-native'
+
 const SCULPIN = 'Sculpin'
 
 export const opacity = {
@@ -13,108 +15,101 @@ export const opacity = {
 }
 
 export const typography = {
-  display1: {
-    fontFamily: `${SCULPIN}-Bold`,
-    fontSize: 48,
-    fontWeight: '600',
+  displaySmall: {
+    fontFamily: `${SCULPIN}-Regular`,
+    fontSize: 20,
+    letterSpacing: 0,
+    fontWeight: Platform.OS === 'android' ? '' : '400',
   },
-  display2: {
-    fontFamily: `${SCULPIN}-Bold`,
-    fontSize: 42,
-    fontWeight: '600',
+  displayMedium: {
+    fontFamily: `${SCULPIN}-Regular`,
+    fontSize: 22,
+    letterSpacing: 0,
+    fontWeight: Platform.OS === 'android' ? '' : '400',
   },
-  display3: {
-    fontFamily: `${SCULPIN}-Bold`,
-    fontSize: 36,
-    fontWeight: '600',
+  displayLarge: {
+    fontFamily: `${SCULPIN}-Regular`,
+    fontSize: 24,
+    letterSpacing: 0,
+    fontWeight: Platform.OS === 'android' ? '' : '400',
   },
-  display4: {
+  headlineSmall: {
     fontFamily: `${SCULPIN}-Bold`,
-    fontSize: 32,
-    fontWeight: '600',
-    lineHeight: 35.2,
+    fontSize: 20,
+    letterSpacing: 0,
+    fontWeight: Platform.OS === 'android' ? '' : '700',
   },
-  heading1: {
-    fontFamily: `${SCULPIN}-Bold`,
-    fontSize: 28,
-    fontWeight: '600',
-    lineHeight: 33.6,
-  },
-  heading2: {
+  headlineMedium: {
     fontFamily: `${SCULPIN}-Bold`,
     fontSize: 24,
-    fontWeight: '600',
-    lineHeight: 28.8,
+    letterSpacing: 0,
+    fontWeight: Platform.OS === 'android' ? '' : '700',
   },
-  heading3: {
+  headlineLarge: {
     fontFamily: `${SCULPIN}-Bold`,
+    fontSize: 28,
+    letterSpacing: 0,
+    fontWeight: Platform.OS === 'android' ? '' : '700',
+  },
+  titleSmall: {
+    fontFamily: `${SCULPIN}-Medium`,
+    fontSize: 14,
+    letterSpacing: 0.1,
+    fontWeight: Platform.OS === 'android' ? '' : '500',
+  },
+  titleMedium: {
+    fontFamily: `${SCULPIN}-Medium`,
+    fontSize: 16,
+    letterSpacing: 0.15,
+    fontWeight: Platform.OS === 'android' ? '' : '500',
+  },
+  titleLarge: {
+    fontFamily: `${SCULPIN}-Bold`,
+    fontSize: 16,
+    letterSpacing: 0,
+    fontWeight: Platform.OS === 'android' ? '' : '700',
+  },
+  titleXL: {
+    fontFamily: `${SCULPIN}-Medium`,
     fontSize: 20,
-    fontWeight: '700',
+    letterSpacing: 0.1,
+    fontWeight: Platform.OS === 'android' ? '' : '500',
   },
-  heading4: {
-    fontFamily: `${SCULPIN}-Bold`,
-    fontSize: 20,
-    fontWeight: '600',
+  labelSmall: {
+    fontFamily: `${SCULPIN}-Medium`,
+    fontSize: 11,
+    letterSpacing: 0.5,
+    fontWeight: Platform.OS === 'android' ? '' : '500',
   },
-  heading5: {
-    fontFamily: `${SCULPIN}-Bold`,
-    fontSize: 18,
-    fontWeight: '600',
-  },
-  body1: {
-    fontFamily: `${SCULPIN}-Regular`,
-    fontSize: 16,
-    fontWeight: '400',
-  },
-  bodyBold1: {
-    fontFamily: `${SCULPIN}-Bold`,
-    fontSize: 16,
-    fontWeight: '700',
-  },
-  body2: {
-    fontFamily: `${SCULPIN}-Regular`,
-    fontSize: 14,
-    fontWeight: '400',
-  },
-  bodyCompact2: {
-    fontFamily: `${SCULPIN}-Regular`,
-    fontSize: 14,
-    fontWeight: '500',
-  },
-  bodyBold2: {
-    fontFamily: `${SCULPIN}-Bold`,
-    fontSize: 14,
-    fontWeight: '700',
-  },
-  bodyCompactBold2: {
-    fontFamily: `${SCULPIN}-Bold`,
-    fontSize: 14,
-    fontWeight: '700',
-  },
-  utility1: {
-    fontFamily: `${SCULPIN}-Bold`,
-    fontSize: 14,
-    fontWeight: '700',
-  },
-  utility2: {
-    fontFamily: `${SCULPIN}-Regular`,
+  labelMedium: {
+    fontFamily: `${SCULPIN}-Medium`,
     fontSize: 12,
-    fontWeight: '400',
+    letterSpacing: 0.5,
+    fontWeight: Platform.OS === 'android' ? '' : '500',
   },
-  utilityCompact2: {
-    fontFamily: `${SCULPIN}-Regular`,
-    fontSize: 12,
-    fontWeight: '400',
-  },
-  utilityBold2: {
+  labelLarge: {
     fontFamily: `${SCULPIN}-Bold`,
     fontSize: 12,
-    fontWeight: '700',
+    letterSpacing: 0.1,
+    fontWeight: Platform.OS === 'android' ? '' : '700',
   },
-  functional1: {
-    fontFamily: `${SCULPIN}-Bold`,
+  bodySmall: {
+    fontFamily: `${SCULPIN}-Regular`,
+    fontSize: 12,
+    letterSpacing: 0.4,
+    fontWeight: Platform.OS === 'android' ? '' : '400',
+  },
+  bodyMedium: {
+    fontFamily: `${SCULPIN}-Regular`,
+    fontSize: 14,
+    letterSpacing: 0.25,
+    fontWeight: Platform.OS === 'android' ? '' : '400',
+  },
+  bodyLarge: {
+    fontFamily: `${SCULPIN}-Regular`,
     fontSize: 16,
-    fontWeight: '500',
+    letterSpacing: 0.15,
+    fontWeight: Platform.OS === 'android' ? '' : '400',
   },
 }
 

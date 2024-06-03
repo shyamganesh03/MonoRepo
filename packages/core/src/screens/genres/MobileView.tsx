@@ -5,6 +5,8 @@ import { ShimmerPlaceholder } from '@libs/skeletons'
 import { useTheme } from 'react-native-paper'
 import { GenreCard } from '../../components'
 import { t } from 'i18next'
+import { MobileContainer } from '@libs/container'
+import { spacing } from '@libs/theme'
 
 interface MobileViewProps {
   isLoading: boolean
@@ -31,13 +33,12 @@ const MobileView: React.FC<MobileViewProps> = ({
   )
 
   return (
-    <>
+    <MobileContainer backgroundColor={colors.background}>
       <Flex
         direction="row"
         style={{
-          paddingHorizontal: 16,
-          marginVertical: 16,
           alignItems: 'center',
+          paddingBottom: spacing.spacing7,
         }}
       >
         <IconButton
@@ -45,12 +46,16 @@ const MobileView: React.FC<MobileViewProps> = ({
           color={colors.textPrimary}
           onPress={handleBackNavigation}
         />
-        <Text
-          variant="heading2"
-          style={{ flex: 1, textAlign: 'center', marginRight: 20 }}
+        <View
+          style={{
+            flex: 1,
+            marginRight: 20,
+          }}
         >
-          {t('HOME.GENRES')}
-        </Text>
+          <Text variant="headlineMedium" textAlign="center">
+            {t('HOME.GENRES')}
+          </Text>
+        </View>
       </Flex>
       {isLoading ? (
         <ShimmerPlaceholder
@@ -66,8 +71,8 @@ const MobileView: React.FC<MobileViewProps> = ({
           data={genresData}
           renderItem={renderGenreCard}
           keyExtractor={(item) => item?.id}
+          style={{ backgroundColor: colors.background }}
           contentContainerStyle={{
-            paddingBottom: 90,
             flexDirection: 'row',
             flexWrap: 'wrap',
             gap: 15,
@@ -80,7 +85,7 @@ const MobileView: React.FC<MobileViewProps> = ({
           }
         />
       )}
-    </>
+    </MobileContainer>
   )
 }
 
