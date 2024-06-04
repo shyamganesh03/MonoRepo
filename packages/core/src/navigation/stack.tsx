@@ -13,15 +13,22 @@ import NotificationSettings from '../screens/notificationSettings'
 import ProfileSettings from '../screens/profileSettings'
 import SavedEvents from '../screens/savedEvents'
 import PdfView from '../screens/pdfView'
+import { Icon } from '../../../../libs/icons/output'
+import { Flex, IconButton, Text } from '../../../../libs/ui-components/src'
+import { useNavigation } from '@react-navigation/native'
+import { useTheme } from 'react-native-paper'
+import { t } from 'i18next'
 
 const Stack = createNativeStackNavigator()
 
 const Stacks = () => {
+  const navigation = useNavigation()
+  const { colors } = useTheme()
   return (
     <Stack.Navigator initialRouteName="home">
       <Stack.Screen
         name="home"
-        component={Auth}
+        component={HomePage}
         options={{ headerShown: false }}
       />
       <Stack.Screen
@@ -67,17 +74,95 @@ const Stacks = () => {
       <Stack.Screen
         name="notificationsettings"
         component={NotificationSettings}
-        options={{ headerShown: false }}
+        options={{
+          header: () => (
+            <Flex
+              direction="row"
+              style={{
+                paddingHorizontal: 16,
+                paddingVertical: 32,
+                alignItems: 'center',
+                backgroundColor: colors.background,
+              }}
+            >
+              <IconButton
+                name="ArrowLeftIcon"
+                color={colors.textPrimary}
+                onPress={() => {
+                  navigation.goBack()
+                }}
+              />
+              <Text
+                variant="heading2"
+                style={{ flex: 1, textAlign: 'center', marginRight: 20 }}
+              >
+                {t('NOTIFICATION_SETTINGS.NOTIFICATION_SETTINGS')}
+              </Text>
+            </Flex>
+          ),
+        }}
       />
       <Stack.Screen
         name="profilesettings"
         component={ProfileSettings}
-        options={{ headerShown: false }}
+        options={{
+          header: () => (
+            <Flex
+              direction="row"
+              style={{
+                paddingHorizontal: 16,
+                paddingVertical: 32,
+                alignItems: 'center',
+                backgroundColor: colors.background,
+              }}
+            >
+              <IconButton
+                name="ArrowLeftIcon"
+                color={colors.textPrimary}
+                onPress={() => {
+                  navigation.goBack()
+                }}
+              />
+              <Text
+                variant="heading2"
+                style={{ flex: 1, textAlign: 'center', marginRight: 20 }}
+              >
+                {t('PROFILE.PROFILE_SETTINGS')}
+              </Text>
+            </Flex>
+          ),
+        }}
       />
       <Stack.Screen
         name="savedevents"
         component={SavedEvents}
-        options={{ headerShown: false }}
+        options={{
+          header: () => (
+            <Flex
+              direction="row"
+              style={{
+                paddingHorizontal: 16,
+                paddingVertical: 32,
+                alignItems: 'center',
+                backgroundColor: colors.background,
+              }}
+            >
+              <IconButton
+                name="ArrowLeftIcon"
+                color={colors.textPrimary}
+                onPress={() => {
+                  navigation.goBack()
+                }}
+              />
+              <Text
+                variant="heading2"
+                style={{ flex: 1, textAlign: 'center', marginRight: 20 }}
+              >
+                {t('SAVED_EVENTS.TITLE')}
+              </Text>
+            </Flex>
+          ),
+        }}
       />
       <Stack.Screen
         name="pdfview"

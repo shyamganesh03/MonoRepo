@@ -14,8 +14,7 @@ import { useTheme } from 'react-native-paper'
 
 const MobileView = (props: any) => {
   const { colors } = useTheme()
-  const { handleBackNavigation, userDetails, regionsData, handleChangeText } =
-    props
+  const { userDetails, regionsData, handleChangeText } = props
 
   return (
     <KeyboardAvoidingView
@@ -23,28 +22,6 @@ const MobileView = (props: any) => {
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
     >
       <ScrollView contentContainerStyle={{ paddingHorizontal: 16 }}>
-        <Flex
-          direction="row"
-          style={{
-            marginVertical: 16,
-            alignItems: 'center',
-            marginTop: 56,
-          }}
-        >
-          <IconButton
-            name="ArrowLeftIcon"
-            color={colors.textPrimary}
-            onPress={() => {
-              handleBackNavigation()
-            }}
-          />
-          <Text
-            variant="heading2"
-            style={{ flex: 1, textAlign: 'center', marginRight: 20 }}
-          >
-            {t('PROFILE_SETTINGS.TITLE')}
-          </Text>
-        </Flex>
         <View style={{ marginTop: 16 }}>
           <Text variant="bodyBold1">{t('PROFILE_SETTINGS.NAME')}</Text>
           <Flex direction="column" style={{ marginTop: 16, rowGap: 8 }}>
