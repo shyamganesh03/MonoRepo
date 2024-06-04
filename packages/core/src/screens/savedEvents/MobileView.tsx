@@ -35,26 +35,6 @@ const MobileView: React.FC<MobileViewProps> = ({
 
   return (
     <>
-      <Flex
-        direction="row"
-        style={{
-          paddingHorizontal: 16,
-          marginVertical: 32,
-          alignItems: 'center',
-        }}
-      >
-        <IconButton
-          name="ArrowLeftIcon"
-          color={colors.textPrimary}
-          onPress={handleBackNavigation}
-        />
-        <Text
-          variant="heading2"
-          style={{ flex: 1, textAlign: 'center', marginRight: 20 }}
-        >
-          {t('SAVED_EVENTS.TITLE')}
-        </Text>
-      </Flex>
       {isLoading ? (
         <ShimmerPlaceholder
           style={{

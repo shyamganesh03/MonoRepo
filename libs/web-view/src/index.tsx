@@ -13,6 +13,7 @@ const WebView = (props: any) => {
   const webViewRef: any = useRef(null)
   const { colors } = useTheme<any>()
   const navigation = useNavigation()
+  const targetLanguage = 'en'
 
   useEffect(() => {
     const onBackPress = () => {
@@ -59,7 +60,11 @@ const WebView = (props: any) => {
             <Text style={{ color: colors.textPrimary }} variant="body2">
               {t('IZZ0')}
             </Text>
-            <Text style={{ color: colors.textPrimary }} variant="body2">
+            <Text
+              style={{ color: colors.textPrimary }}
+              variant="body2"
+              numberOfLines={1}
+            >
               {currentUrl}
             </Text>
           </Flex>
@@ -67,7 +72,9 @@ const WebView = (props: any) => {
       )}
       <WebViewComponent
         source={{
-          uri: currentUrl,
+          uri: currentUrl.includes('izzo')
+            ? `https://translate.google.com/translate?sl=auto&tl=${targetLanguage}&u=${props?.uri}`
+            : currentUrl,
         }}
         startInLoadingState
         onContentProcessDidTerminate={() => webViewRef.current.reload()}

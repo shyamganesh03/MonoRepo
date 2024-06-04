@@ -42,9 +42,11 @@ const Profile = () => {
 
   const viewProps = {
     drunkMode,
-    userDetails,
+    userDetails: user,
     handleToggleDrunkMode,
     handleLogin,
+    handleNavigation,
+    setDrunkMode,
   }
   return (
     <Suspense fallback={<></>}>

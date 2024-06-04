@@ -7,7 +7,7 @@ import {
   TextInput,
   ToggleSwitch,
 } from '@libs/components'
-import { Linking, ScrollView, TouchableOpacity, View } from 'react-native'
+import { ScrollView, TouchableOpacity, View } from 'react-native'
 import { MobileContainer } from '@libs/container'
 import { Izzo } from 'assets'
 import { Icon } from '@libs/native-icons'
@@ -15,8 +15,12 @@ import { useTheme } from 'react-native-paper'
 import { spacing } from '@libs/theme'
 import { useTranslation } from 'react-i18next'
 import LinearGradient from 'react-native-linear-gradient'
-import { faqUrl, privacyPolicyUrl, supportUrl } from '../../utils/redirectUrl'
-import { Link } from '@react-navigation/native'
+import {
+  agbUrl,
+  faqUrl,
+  privacyPolicyUrl,
+  supportUrl,
+} from '../../utils/redirectUrl'
 
 const ProfileTab = ({
   leftIconName,
@@ -225,7 +229,7 @@ const MobileView = ({
             <ProfileTab
               heading={t('PROFILE.AGB')}
               rightIconName="SignOutSquareIcon"
-              handlePress={handlePress}
+              handlePress={() => handleNavigation(agbUrl, true)}
             />
             <ProfileTab
               heading={t('PROFILE.PRIVACY')}

@@ -21,6 +21,8 @@ const MobileView = (props: any) => {
     navigation,
     handleGenreDetailNavigation,
     weekendEvents,
+    handleLanguages,
+    selectedLanguage,
   } = props
 
   const renderEventCard = ({ item }: any) => (
