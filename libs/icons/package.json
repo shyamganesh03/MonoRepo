@@ -7,7 +7,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "prebuild": "rimraf src & rimraf dist",
-    "svgr": "svgr --icon --native --replace-attr-values '#A940FF={props.color}' -d src assets  --out-dir dist/output --index-template index-template.js",
+    "svgr": "svgr --icon --native --replace-attr-values '#A940FF={props.color};#807A87={props.color}' -d src assets  --out-dir dist/output --index-template index-template.js",
     "build-lib": "rollup -c",
     "build-icon": "yarn prebuild && yarn svgr && yarn build-lib"
   },

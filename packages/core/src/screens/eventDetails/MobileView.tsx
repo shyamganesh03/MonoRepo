@@ -1,5 +1,5 @@
 import React from 'react'
-import { ScrollView } from 'react-native'
+import { ScrollView, TouchableOpacity } from 'react-native'
 import { MobileContainer } from '@libs/container'
 import { ImagePlaceHolder } from 'assets'
 import {
@@ -26,6 +26,7 @@ interface MobileViewProps {
   showMore: boolean
   setShowMore: (showMore: boolean) => void
   isLoading: boolean
+  isPastEvent: boolean
 }
 
 const MobileView: React.FC<MobileViewProps> = ({
@@ -33,6 +34,7 @@ const MobileView: React.FC<MobileViewProps> = ({
   showMore,
   setShowMore,
   isLoading,
+  isPastEvent,
 }) => {
   const { colors } = useTheme<any>()
   const { t } = useTranslation()
@@ -87,19 +89,49 @@ const MobileView: React.FC<MobileViewProps> = ({
           color={colors.textPrimary}
           onPress={() => navigation.goBack()}
         />
-        <Image
-          imageUrl={ImagePlaceHolder}
-          size={300}
-          borderRadius={10}
-          style={{ alignSelf: 'center' }}
-        />
+        {eventData.flyerActive && (
+          <Image
+            imageUrl={ImagePlaceHolder}
+            size={300}
+            borderRadius={10}
+            style={{ alignSelf: 'center' }}
+          />
+        )}
+        {isPastEvent && (
+          <Flex
+            direction="column"
+            style={{
+              alignItems: 'center',
+              gap: spacing.spacing5,
+              backgroundColor: colors.onPrimaryContainer,
+              padding: spacing.spacing5,
+              borderRadius: spacing.spacing5,
+            }}
+          >
+            <Icon name="InformationCircle" />
+            <Text color={colors.neutral} variant="functional1">
+              {t('EVENT_DETAIL.PAST_EVENT_HEADING')}
+            </Text>
+            <TouchableOpacity>
+              <Text
+                variant="bodyBold1"
+                color={colors.primary}
+                style={{ textDecorationLine: 'underline' }}
+              >
+                {t('BUTTON.SHOW_CURRENT_EVENT')}
+              </Text>
+            </TouchableOpacity>
+          </Flex>
+        )}
         <Flex
           direction="column"
           style={{ paddingBottom: spacing.spacing7, alignItems: 'center' }}
         >
-          <Text variant="heading2">{eventData?.name}</Text>
+          <Text variant="heading2" style={{ fontWeight: 700 }}>
+            {eventData?.name}
+          </Text>
           <Text variant="body1">
-            {t('EVENT_DETAIL.BY')} {eventData?.company?.name}
+            {t('EVENT_DETAIL.BY')} {eventData?.company?.name?.toUpperCase()}
           </Text>
           <Share
             itemID={eventData?.id}
@@ -125,7 +157,9 @@ const MobileView: React.FC<MobileViewProps> = ({
               borderColor: colors.onBackground,
               borderWidth: 2,
               marginBottom: spacing.spacing3,
+              width: '50%',
             }}
+            onPress={() => {}}
           />
         </Flex>
         <Flex direction="column" style={{ gap: spacing.spacing3 }}>
@@ -174,13 +208,15 @@ const MobileView: React.FC<MobileViewProps> = ({
           <Text variant="utility2" numberOfLines={!showMore ? 4 : 0}>
             {eventData?.pressText}
           </Text>
-          <Button
-            mode="text"
-            label={showMore ? t('BUTTON.SHOW_LESS') : t('BUTTON.SHOW_MORE')}
-            style={{ width: 100 }}
-            labelStyle={{ color: colors.primary }}
-            onPress={() => setShowMore(!showMore)}
-          />
+          {eventData?.pressText.length > 250 && (
+            <Button
+              mode="text"
+              label={showMore ? t('BUTTON.SHOW_LESS') : t('BUTTON.SHOW_MORE')}
+              style={{ width: 100 }}
+              labelStyle={{ color: colors.primary }}
+              onPress={() => setShowMore(!showMore)}
+            />
+          )}
         </Flex>
         <LocationCard eventData={eventData} />
         <Flex

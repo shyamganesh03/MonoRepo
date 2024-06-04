@@ -29,6 +29,7 @@ export default {
     DESCRIPTION: 'Description',
     GENRE: 'Genre',
     LOCATION: 'Location',
+    PAST_EVENT_HEADING: 'This Event is in the Past!',
   },
   LOCATION_CARD: {
     TICKETS: 'Tickets',
@@ -41,6 +42,7 @@ export default {
     SHOW_LESS: 'Show Less',
     SIGN_OUT: 'Sign Out',
     Login_And_SIGN_UP: 'Login & Sign Up',
+    SHOW_CURRENT_EVENT: 'Show current Events',
   },
   PROFILE: {
     SAVED_EVENTS: 'My Saved Events',

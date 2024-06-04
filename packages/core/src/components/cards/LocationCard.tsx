@@ -7,10 +7,12 @@ import MapView, {
   PROVIDER_DEFAULT,
 } from 'react-native-maps'
 import { Surface, useTheme } from 'react-native-paper'
-import { Flex, Text } from '@libs/components'
+import { Button, Flex, Text } from '@libs/components'
 import { useTranslation } from 'react-i18next'
 import { locationCardMapStyle } from '../../constants'
 import { Icon } from '@libs/native-icons'
+import LinearGradient from 'react-native-linear-gradient'
+import { useNavigation } from '@react-navigation/native'
 
 interface LocationCardProps {
   height?: number
@@ -29,6 +31,8 @@ const LocationCard = ({
 }: LocationCardProps) => {
   const { t } = useTranslation()
   const { colors } = useTheme<any>()
+  const navigation: any = useNavigation()
+
   const coordinates = eventData?.location?.coordinates?.split(',') || []
 
   const longitudeDelta = latitudeDelta * (height / width)
@@ -90,11 +94,36 @@ const LocationCard = ({
             </MapView>
           </View>
         )}
-        <Text variant="heading2">{t('LOCATION_CARD.TICKETS')}</Text>
-        <Text variant="body2">
-          {t('LOCATION_CARD.PRICES_FROM')} {eventData?.fromPrice}
-        </Text>
+
+        {eventData?.fromPrice && (
+          <>
+            <Text variant="heading2">{t('LOCATION_CARD.TICKETS')}</Text>
+            <Text variant="body2">
+              {t('LOCATION_CARD.PRICES_FROM')} {eventData?.fromPrice}
+            </Text>
+          </>
+        )}
       </Flex>
+      <LinearGradient
+        colors={colors.gradient.primary}
+        style={{
+          marginTop: spacing.spacing4,
+          borderRadius: 16,
+        }}
+      >
+        <Button
+          onPress={() =>
+            navigation.navigate('webView', {
+              uri: eventData?.ticketLink,
+            })
+          }
+          mode="contained"
+          label={t('BUTTON.BUY_TICKETS')}
+          labelVariant="bodyBold1"
+          labelStyle={{ color: colors.textPrimary }}
+          disabled={!eventData?.ticketLink}
+        />
+      </LinearGradient>
     </Surface>
   )
 }

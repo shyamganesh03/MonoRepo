@@ -7,7 +7,7 @@ import {
   Keyboard,
   Platform,
   useWindowDimensions,
-  } from 'react-native'
+} from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { spacing } from '@libs/theme'
 import { Icon } from '@libs/native-icons'
@@ -156,30 +156,30 @@ const Drawer = (props: DrawerProps) => {
                     onPress={() => {
                       setShowDrawer(false)
                     }}
-                   
                   >
                     <View
-                    style={{
-                      alignItems: 'center',
-                      flexDirection: 'row',
-                      marginBottom: spacing.spacing4,
-                      paddingHorizontal: spacing.spacing5,
-                    }}>
-                    <Icon
-                      name="LeftIcon"
-                      color={theme.colors.textPrimary}
-                      width={20}
-                      height={20}
-                    />
-                    <RNPText
-                      variant="heading2"
-                      color={theme.colors.textPrimary}
                       style={{
-                        marginLeft: spacing.spacing5,
+                        alignItems: 'center',
+                        flexDirection: 'row',
+                        marginBottom: spacing.spacing4,
+                        paddingHorizontal: spacing.spacing5,
                       }}
                     >
-                      {screenName}
-                    </RNPText>
+                      <Icon
+                        name="LeftIcon"
+                        color={theme.colors.textPrimary}
+                        width={20}
+                        height={20}
+                      />
+                      <RNPText
+                        variant="heading2"
+                        color={theme.colors.textPrimary}
+                        style={{
+                          marginLeft: spacing.spacing5,
+                        }}
+                      >
+                        {screenName}
+                      </RNPText>
                     </View>
                   </TouchableOpacity>
                 )}
