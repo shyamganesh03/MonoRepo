@@ -10,11 +10,12 @@ import PasswordTextInput from './PasswordInput'
 import RadioButton from './RadioButton'
 import Flex from './Flex'
 import Wrap from './Wrap'
+
 import Tag from './Tag'
 import Text from './Text'
 import TextInput from './TextInput'
 import ToggleSwitch from './ToggleSwitch'
-import ProgressBar from './ProgressBar'
+import  ProgressBar  from './ProgressBar'
 import DropDown from './DropDown'
 
 export {

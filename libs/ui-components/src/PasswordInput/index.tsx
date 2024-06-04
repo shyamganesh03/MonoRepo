@@ -12,6 +12,7 @@ const PasswordTextInput = (props: any) => {
     placeholder,
     onBlur = () => {},
     onChangeText = () => {},
+    errorMessage,
   } = props
   const [showPassword, setShowPassword] = React.useState(true)
   const [label, setLabel] = useState('')
@@ -50,6 +51,7 @@ const PasswordTextInput = (props: any) => {
             forceTextInputFocus={false}
           />
         }
+         errorMessage={errorMessage}
       />
     </View>
   )

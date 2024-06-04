@@ -51,7 +51,7 @@ const TextInput = (props: any) => {
           numberOfLines={2}
           style={{ width: '95%' }}
         >
-          {props?.error?.message || props?.error?.type}
+          {props?.error|| props?.error?.type}
         </HelperText>
       )}
     </>

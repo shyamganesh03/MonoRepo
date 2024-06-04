@@ -5,6 +5,8 @@ const DesktopView = () => {
   return (
     <View>
       <Text>DesktopView</Text>
+      
+      
     </View>
   )
 }

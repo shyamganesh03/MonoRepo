@@ -1,4 +1,3 @@
-import React, { useState } from 'react'
 import {
   Button,
   CheckBox,
@@ -11,36 +10,63 @@ import {
 import { useTheme } from 'react-native-paper'
 import { useTranslation } from 'react-i18next'
 import { Icon } from '@libs/native-icons'
+import { useState } from 'react'
+import { KeyboardAvoidingView, ScrollView } from 'react-native'
 
-const Registration = () => {
+const Registration = ({ handleValidation, userDetails, errorMessage }: any) => {
   const { colors } = useTheme<any>()
   const { t } = useTranslation()
-  const [step, setStep] = useState(1)
+  const [currentStep, setCurrentStep] = useState(1);
+  const [checkBoxes, setCheckBoxes] = useState({
+    checkbox1: false,
+    checkbox2: false,
+  })
+
+  const handleCheckBox = (checkboxName: any) => {
+    setCheckBoxes({
+      ...checkBoxes,
+      [checkboxName]: !checkBoxes[checkboxName],
+    })
+  }
+
+  const isButtonDisabled = !(checkBoxes.checkbox1 && checkBoxes.checkbox2)
 
   const handleNextStep = () => {
-    setStep(step + 1)
-  }
+    setCurrentStep(currentStep + 1);
+  };
 
-  const handlePrevStep = () => {
-    setStep(step - 1)
-  }
-
+  const handlePreviousStep = () => {
+    setCurrentStep(currentStep - 1);
+  };
+  
   const renderStep = () => {
-    switch (step) {
+    switch (currentStep) {
       case 1:
         return (
           <Flex direction="column" style={{ gap: 14 }}>
             <TextInput
-              style={{ height: 40 }}
+              onChangeText={(value: any) => {
+                handleValidation('username', value)
+              }}
+              value={userDetails.username}
+              style={{height:40}}
               outlineStyle={{ borderWidth: 0 }}
-              placeholder={'Name'}
+              placeholder={t('INPUT_TEXT.NAME_PLACEHOLDER')}
             />
             <TextInput
-              style={{ height: 40 }}
+              onChangeText={(value: any) => {
+                handleValidation('surname', value)
+              }}
+              value={userDetails.surname}
+              style={{height:40}}
               outlineStyle={{ borderWidth: 0 }}
-              placeholder={'Surname'}
+              placeholder={t('INPUT_TEXT.SURNAME_PLACEHOLDER')}
             />
             <TextInput
+              onChangeText={(value: any) => {
+                handleValidation('email', value)
+              }}
+              value={userDetails.email}
               style={{ height: 40 }}
               placeholder={t('INPUT_TEXT.EMAIL_PLACEHOLDER')}
               outlineStyle={{ borderWidth: 0 }}
@@ -52,6 +78,7 @@ const Registration = () => {
                   style={{ position: 'absolute', left: -25 }}
                 />
               }
+              error={errorMessage.email}
             />
           </Flex>
         )
@@ -59,14 +86,22 @@ const Registration = () => {
         return (
           <Flex direction="column" style={{ gap: 14 }}>
             <TextInput
+              onChangeText={(value: any) => {
+                handleValidation('address', value)
+              }}
+              value={userDetails.address}
               style={{ height: 40 }}
               outlineStyle={{ borderWidth: 0 }}
-              placeholder={'Address'}
+              placeholder={t('INPUT_TEXT.ADDRESS_PLACEHOLDER')}
             />
             <TextInput
+              onChangeText={(value: any) => {
+                handleValidation('canon', value)
+              }}
+              value={userDetails.canon}
               style={{ height: 40 }}
               outlineStyle={{ borderWidth: 0 }}
-              placeholder={'Canton'}
+              placeholder={t('INPUT_TEXT.CANTON_PLACEHOLDER')}
             />
           </Flex>
         )
@@ -74,16 +109,30 @@ const Registration = () => {
         return (
           <Flex direction="column" style={{ gap: 14 }}>
             <PasswordTextInput
-              placeholder={'Password'}
+              onChangeText={(value: any) => {
+                handleValidation('password', value)
+              }}
+              value={userDetails.password}
+              placeholder={t('INPUT_TEXT.PASSWORD_PLACEHOLDER')}
               style={{ height: 40 }}
+              error={errorMessage.password}
             />
+
             <PasswordTextInput
-              placeholder={'Password'}
+              onChangeText={(value: any) => {
+                handleValidation('confirmPassword', value)
+              }}
+              value={userDetails.confirmPassword}
+              placeholder={t('INPUT_TEXT.CONFIRM_PASSWORD_PLACEHOLDER')}
               style={{ height: 40 }}
+              error={errorMessage.confirmPassword}
             />
+
             <Flex direction="row" style={{ gap: 10, alignItems: 'center' }}>
               <CheckBox
                 style={{ backgroundColor: colors.secondaryContainer }}
+                onPress={() => handleCheckBox('checkbox1')}
+                status={checkBoxes.checkbox1}
               />
               <Text
                 variant="bodyBold1"
@@ -95,8 +144,11 @@ const Registration = () => {
             </Flex>
             <Flex direction="row" style={{ gap: 10, alignItems: 'center' }}>
               <CheckBox
+                onPress={() => handleCheckBox('checkbox2')}
                 style={{ backgroundColor: colors.secondaryContainer }}
+                status={checkBoxes.checkbox2}
               />
+
               <Text
                 variant="bodyBold1"
                 color={colors.textPrimary}
@@ -113,6 +165,8 @@ const Registration = () => {
   }
 
   return (
+    
+    
     <Flex direction="column">
       <ProgressBar progress={0.35} color={colors.primary} />
       <Flex direction="column" style={{ marginTop: 32 }}>
@@ -139,20 +193,22 @@ const Registration = () => {
       <Flex direction="column" style={{ gap: 14, marginTop: 32 }}>
         <Button
           style={{ backgroundColor: colors.primary }}
-          onPress={step < 3 ? handleNextStep : () => {}}
-          label={step < 3 ? 'Next' : 'Sign Up'}
+          onPress={handleNextStep}
+        //   disabled={isButtonDisabled}
+          label={t('BUTTON.NEXT')}
           labelStyle={{ color: colors.textPrimary }}
         />
-        {step > 1 && (
-          <Button
-            style={{ backgroundColor: colors.secondaryContainer }}
-            onPress={handlePrevStep}
-            label={'Back'}
-            labelStyle={{ color: colors.textPrimary }}
-          />
-        )}
+
+        <Button
+          style={{ backgroundColor: colors.secondaryContainer }}
+          onPress={handlePreviousStep}
+          label={t('BUTTON.BACK')}
+          labelStyle={{ color: colors.textPrimary }}
+        />
       </Flex>
     </Flex>
+   
+   
   )
 }
 

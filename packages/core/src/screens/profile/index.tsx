@@ -45,8 +45,6 @@ const Profile = () => {
     userDetails,
     handleToggleDrunkMode,
     handleLogin,
-    setDrunkMode,
-    handleNavigation,
   }
   return (
     <Suspense fallback={<></>}>
