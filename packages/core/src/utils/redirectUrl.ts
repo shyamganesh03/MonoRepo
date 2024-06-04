@@ -1,0 +1,4 @@
+export const faqUrl = 'https://www.izzo-app.com/faq'
+export const supportUrl = 'https://www.izzo-app.com/contact'
+export const privacyPolicyUrl =
+  'https://a.storyblok.com/f/158785/x/f305c2a81a/datenschutzbestimmungen_izzo_v2.pdf'

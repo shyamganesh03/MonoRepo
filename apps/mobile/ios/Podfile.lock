@@ -1330,6 +1330,8 @@ PODS:
     - glog
     - RCT-Folly (= 2022.05.16.00)
     - React-Core
+  - RNPDF (0.14.0):
+    - React
   - RNReanimated (3.11.0):
     - glog
     - RCT-Folly (= 2022.05.16.00)
@@ -1447,6 +1449,7 @@ DEPENDENCIES:
   - "RNFBCrashlytics (from `../../../node_modules/@react-native-firebase/crashlytics`)"
   - "RNFBMessaging (from `../../../node_modules/@react-native-firebase/messaging`)"
   - RNGestureHandler (from `../../../node_modules/react-native-gesture-handler`)
+  - RNPDF (from `../../../node_modules/react-native-view-pdf`)
   - RNReanimated (from `../../../node_modules/react-native-reanimated`)
   - RNScreens (from `../../../node_modules/react-native-screens`)
   - RNShare (from `../../../node_modules/react-native-share`)
@@ -1614,6 +1617,8 @@ EXTERNAL SOURCES:
     :path: "../../../node_modules/@react-native-firebase/messaging"
   RNGestureHandler:
     :path: "../../../node_modules/react-native-gesture-handler"
+  RNPDF:
+    :path: "../../../node_modules/react-native-view-pdf"
   RNReanimated:
     :path: "../../../node_modules/react-native-reanimated"
   RNScreens:
@@ -1720,6 +1725,7 @@ SPEC CHECKSUMS:
   RNFBCrashlytics: 0a61250c420d9141f4540bf8581b7cfc821c6033
   RNFBMessaging: 98ef21f3db1a54d82aa228d88eee36c02b0d938e
   RNGestureHandler: 48c9d38f57c7761b4153def57b718f491f4bbb4b
+  RNPDF: 8526c7210ff375c29d2461c51945e2f5480f7b60
   RNReanimated: a778858330f69f91eab53d9505cf4a49819233d8
   RNScreens: 79c1020e7f52f4edde5ad96540f6e33c8b9b3b6c
   RNShare: 0fad69ae2d71de9d1f7b9a43acf876886a6cb99c
@@ -1729,6 +1735,6 @@ SPEC CHECKSUMS:
   UXCam: b92d8d1d0b3f0292716633564b14d9647b74fd5c
   Yoga: 64cd2a583ead952b0315d5135bf39e053ae9be70
 
-PODFILE CHECKSUM: a6534802e4d7145531e8982267fed701bffb61cc
+PODFILE CHECKSUM: 0e93b259392ac627337f12abeab7967523cf9022
 
 COCOAPODS: 1.12.1

@@ -56,6 +56,7 @@ const iconList = {
 
 export const ShareComponent = (props: ShareComponentProps) => {
   const { children, data = {}, onClick, onPress, isExternalLink } = props
+
   const theme: any = useTheme()
   const [isOpen, setIsOpen] = useState(false)
 
@@ -66,10 +67,8 @@ export const ShareComponent = (props: ShareComponentProps) => {
 
   if (data?.appUrl) {
     url = isExternalLink
-      ? new URL(data?.appUrl)
-      : new URL(`${data?.appUrl}/${data?.pathName}`)
-
-    url.search = new URLSearchParams(data?.params)
+      ? data?.appUrl
+      : `${data?.appUrl}/${data?.pathName}/${data?.params.eventId}`
   }
 
   const options = {

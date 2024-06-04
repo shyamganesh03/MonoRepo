@@ -3,16 +3,20 @@ import { Suspense, useCallback } from 'react'
 import DesktopView from './DesktopView'
 import MobileView from './MobileView'
 import React from 'react'
+import { useNavigation } from '@react-navigation/native'
 
-const WebView = (props: any) => {
+const NotificationSettings = () => {
   const LayoutView = useCallback(
     ScreenLayout.withLayoutView(DesktopView, MobileView, MobileView),
     [],
   )
+  const navigation = useNavigation()
 
-  const uri = props?.route?.params?.uri
+  const handleBackNavigation = () => {
+    navigation.goBack()
+  }
 
-  const viewProps = { uri }
+  const viewProps = { handleBackNavigation }
   return (
     <Suspense fallback={<></>}>
       <LayoutView {...viewProps} />
@@ -20,4 +24,4 @@ const WebView = (props: any) => {
   )
 }
 
-export default WebView
+export default NotificationSettings

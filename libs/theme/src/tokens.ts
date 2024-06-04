@@ -79,7 +79,7 @@ export const typography = {
   bodyCompact2: {
     fontFamily: `${SCULPIN}-Regular`,
     fontSize: 14,
-    fontWeight: '400',
+    fontWeight: '500',
   },
   bodyBold2: {
     fontFamily: `${SCULPIN}-Bold`,

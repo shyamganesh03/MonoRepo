@@ -1,18 +1,12 @@
-import { Platform, View } from 'react-native'
+import { View } from 'react-native'
 import React from 'react'
 import { spacing } from '@libs/theme'
-import MapView, {
-  Marker,
-  PROVIDER_GOOGLE,
-  PROVIDER_DEFAULT,
-} from 'react-native-maps'
 import { Surface, useTheme } from 'react-native-paper'
 import { Button, Flex, Text } from '@libs/components'
 import { useTranslation } from 'react-i18next'
-import { locationCardMapStyle } from '../../constants'
-import { Icon } from '@libs/native-icons'
-import LinearGradient from 'react-native-linear-gradient'
+import Map from '@libs/map-view/src'
 import { useNavigation } from '@react-navigation/native'
+import LinearGradient from 'react-native-linear-gradient'
 
 interface LocationCardProps {
   height?: number
@@ -26,7 +20,6 @@ const LocationCard = ({
   height = 151,
   width = 335,
   borderRadius = 10,
-  latitudeDelta = 0.0922,
   eventData,
 }: LocationCardProps) => {
   const { t } = useTranslation()
@@ -35,16 +28,6 @@ const LocationCard = ({
 
   const coordinates = eventData?.location?.coordinates?.split(',') || []
 
-  const longitudeDelta = latitudeDelta * (height / width)
-  const getProvider = () => {
-    if (Platform.OS === 'android') {
-      return PROVIDER_GOOGLE
-    }
-    if (Platform.OS === 'ios') {
-      return PROVIDER_DEFAULT
-    }
-    return PROVIDER_DEFAULT
-  }
   return (
     <Surface style={{ padding: spacing.spacing6, borderRadius: 10 }}>
       <Text variant="heading2">{t('EVENT_DETAIL.LOCATION')}</Text>
@@ -65,33 +48,7 @@ const LocationCard = ({
               overflow: 'hidden',
             }}
           >
-            <MapView
-              provider={getProvider()}
-              customMapStyle={locationCardMapStyle}
-              initialRegion={{
-                latitude: Number(coordinates[0]),
-                longitude: Number(coordinates[1]),
-                latitudeDelta: latitudeDelta,
-                longitudeDelta: longitudeDelta,
-              }}
-              scrollEnabled={false}
-              zoomEnabled={false}
-              pitchEnabled={false}
-              rotateEnabled={false}
-              style={{
-                height: height,
-                maxWidth: width,
-              }}
-            >
-              <Marker
-                coordinate={{
-                  latitude: Number(coordinates[0]),
-                  longitude: Number(coordinates[1]),
-                }}
-              >
-                <Icon name="Pin2" />
-              </Marker>
-            </MapView>
+            <Map eventData={eventData} />
           </View>
         )}
 

@@ -57,4 +57,24 @@ export default {
   INPUT_TEXT: {
     EMAIL_PLACEHOLDER: 'max.muster@izzo-app.com',
   },
+  NOTIFICATION_SETTINGS: {
+    DESCRIPTION:
+      'To manage your notifications, go to your settings under Notification Preferences',
+    NOTIFICATION_SETTINGS: 'Notification Settings',
+    BUTTON: 'Open Settings',
+  },
+  SAVED_EVENTS: {
+    TITLE: 'Saved Event',
+  },
+  IZZ0: 'Izzo',
+  PROFILE_SETTINGS: {
+    TITLE: 'Profile Settings',
+    NAME: 'Name',
+    EMAIL: 'Email',
+    PHONE_NUMBER: 'Phone Number',
+    ADDRESS: 'Address',
+    SAVE: 'Save',
+    ACCOUNT_DELETION: 'Account Deletion',
+    DELETE_BUTTON: 'Delete Account',
+  },
 }

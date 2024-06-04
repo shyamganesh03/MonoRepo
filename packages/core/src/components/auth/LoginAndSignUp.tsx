@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import { Button, Flex, Text, TextInput, Divider } from '@libs/components'
-import { useTheme } from 'react-native-paper'
+import { Button, Flex, Text, TextInput } from '@libs/components'
+import { useTheme, Divider } from 'react-native-paper'
 import { useTranslation } from 'react-i18next'
 import { Icon } from '@libs/native-icons'
 import { useNavigation } from '@react-navigation/native'

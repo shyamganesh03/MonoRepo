@@ -11,7 +11,6 @@ import { spacing } from '@libs/theme'
 import { Icon } from '@libs/native-icons'
 import { Text } from '@libs/components'
 
-import { testProps } from '@libs/utils'
 import Layout from '../Layout'
 
 interface ScreenDrawerProps {
@@ -83,9 +82,6 @@ const ScreenDrawer = (props: ScreenDrawerProps) => {
                     ? window.history.go(-1)
                     : navigation.goBack()
                 }
-                {...testProps(
-                  `${screenName.replace(' ', '')}_btn_navigate_back`,
-                )}
                 style={{ marginLeft: !hasPadding ? spacing.spacing6 : 0 }}
               >
                 <Icon
