@@ -30,12 +30,12 @@ const LocationCard = ({
 
   return (
     <Surface style={{ padding: spacing.spacing6, borderRadius: 10 }}>
-      <Text variant="heading2">{t('EVENT_DETAIL.LOCATION')}</Text>
+      <Text variant="headlineMedium">{t('EVENT_DETAIL.LOCATION')}</Text>
       <Flex direction="column" style={{ marginTop: spacing.spacing2 }}>
-        <Text variant="bodyBold1" style={{ color: colors.primary }}>
+        <Text variant="titleLarge" color={colors.primary}>
           {eventData?.company?.name}
         </Text>
-        <Text variant="body2">{eventData?.company?.address}</Text>
+        <Text variant="titleMedium">{eventData?.company?.address}</Text>
       </Flex>
       <Flex direction="column">
         {coordinates?.length > 1 && (
@@ -54,8 +54,8 @@ const LocationCard = ({
 
         {eventData?.fromPrice && (
           <>
-            <Text variant="heading2">{t('LOCATION_CARD.TICKETS')}</Text>
-            <Text variant="body2">
+            <Text variant="headlineMedium">{t('LOCATION_CARD.TICKETS')}</Text>
+            <Text variant="labelMedium">
               {t('LOCATION_CARD.PRICES_FROM')} {eventData?.fromPrice}
             </Text>
           </>
@@ -76,7 +76,7 @@ const LocationCard = ({
           }
           mode="contained"
           label={t('BUTTON.BUY_TICKETS')}
-          labelVariant="bodyBold1"
+          labelVariant="titleLarge"
           labelStyle={{ color: colors.textPrimary }}
           disabled={!eventData?.ticketLink}
         />

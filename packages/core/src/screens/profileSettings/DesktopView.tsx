@@ -8,7 +8,7 @@ const DesktopView = () => {
 
   return (
     <DesktopContainer backgroundColor={colors.background}>
-      <Text variant="functional1">Profile Settings DesktopView</Text>
+      <Text variant="titleMedium">Profile Settings DesktopView</Text>
     </DesktopContainer>
   )
 }

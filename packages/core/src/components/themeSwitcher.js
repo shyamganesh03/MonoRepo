@@ -1,8 +1,9 @@
-import { View, Text, TouchableOpacity } from 'react-native'
+import { View, TouchableOpacity } from 'react-native'
 import React from 'react'
 import { useAtom } from 'jotai'
 import { appTheme } from '../utils/atom'
 import { useTheme } from 'react-native-paper'
+import { Text } from '@libs/components'
 
 const ThemeSwitcher = () => {
   const [, setTheme] = useAtom(appTheme)
@@ -10,10 +11,10 @@ const ThemeSwitcher = () => {
   return (
     <View style={{ paddingRight: 20, flexDirection: 'row', gap: 20 }}>
       <TouchableOpacity onPress={() => setTheme('light')}>
-        <Text style={{ color: colors.text }}>Light</Text>
+        <Text color={colors.text}>Light</Text>
       </TouchableOpacity>
       <TouchableOpacity onPress={() => setTheme('dark')}>
-        <Text style={{ color: colors.text }}>Dark</Text>
+        <Text color={colors.text}>Dark</Text>
       </TouchableOpacity>
     </View>
   )

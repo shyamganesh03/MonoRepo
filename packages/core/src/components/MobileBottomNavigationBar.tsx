@@ -18,7 +18,7 @@ export const BottomNavLayout = () => {
     (state) => state?.routes?.[state.routes.length - 1] || { name: 'home' },
   )
   const windowWidth = useWindowDimensions().width
-  const routeNames = ['home', 'maps', 'search', 'profile', 'savedevents']
+  const routeNames = ['home', 'maps', 'search', 'profile', 'savedEvents']
 
   const renderBottomIcon = (
     name: string,

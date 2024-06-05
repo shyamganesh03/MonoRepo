@@ -93,15 +93,18 @@ const ScreenDrawer = (props: ScreenDrawerProps) => {
               </TouchableOpacity>
             )}
             {screenName && (
-              <Text
-                variant="heading2"
-                color={textColor || theme.colors.textPrimary}
+              <View
                 style={{
                   marginLeft: spacing.spacing5,
                 }}
               >
-                {screenName}
-              </Text>
+                <Text
+                  variant="headlineMedium"
+                  color={textColor || theme.colors.textPrimary}
+                >
+                  {screenName}
+                </Text>
+              </View>
             )}
           </View>
         </Layout>

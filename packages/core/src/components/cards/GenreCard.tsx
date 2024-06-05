@@ -37,8 +37,9 @@ const GenreCard = ({
         }}
       >
         <Text
-          style={{ color: colors.textPrimary, textAlign: 'center' }}
-          variant="bodyBold1"
+          variant="titleLarge"
+          color={colors.textPrimary}
+          textAlign="center"
         >
           {genreDetail?.genre}
         </Text>

@@ -35,12 +35,12 @@ const PdfView = (props: any) => {
           onPress={() => navigation.goBack()}
         />
         <Flex direction="column">
-          <Text style={{ color: colors.textPrimary }} variant="body2">
+          <Text style={{ color: colors.textPrimary }} variant="labelMedium">
             {t('IZZ0')}
           </Text>
           <Text
             style={{ color: colors.textPrimary }}
-            variant="body2"
+            variant="labelMedium"
             numberOfLines={1}
           >
             {resources?.url}
@@ -65,7 +65,7 @@ const PdfView = (props: any) => {
 
       {isPageCountVisible && (
         <View style={styles.pageCount}>
-          <Text style={{ color: colors.textPrimary }} variant="body2">
+          <Text style={{ color: colors.textPrimary }} variant="labelMedium">
             {currentPage} / {totalPages}
           </Text>
         </View>

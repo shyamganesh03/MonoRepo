@@ -13,8 +13,9 @@ import { t } from 'i18next'
 import { useTheme } from 'react-native-paper'
 
 const MobileView = (props: any) => {
-  const { colors } = useTheme()
-  const { userDetails, regionsData, handleChangeText } = props
+  const { colors } = useTheme<any>()
+  const { handleBackNavigation, userDetails, regionsData, handleChangeText } =
+    props
 
   return (
     <KeyboardAvoidingView
@@ -22,8 +23,29 @@ const MobileView = (props: any) => {
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
     >
       <ScrollView contentContainerStyle={{ paddingHorizontal: 16 }}>
+        <Flex
+          direction="row"
+          style={{
+            marginVertical: 16,
+            alignItems: 'center',
+            marginTop: 56,
+          }}
+        >
+          <IconButton
+            name="ArrowLeftIcon"
+            color={colors.textPrimary}
+            onPress={() => {
+              handleBackNavigation()
+            }}
+          />
+          <View style={{ flex: 1, marginRight: 20 }}>
+            <Text variant="headlineMedium" textAlign="center">
+              {t('PROFILE_SETTINGS.TITLE')}
+            </Text>
+          </View>
+        </Flex>
         <View style={{ marginTop: 16 }}>
-          <Text variant="bodyBold1">{t('PROFILE_SETTINGS.NAME')}</Text>
+          <Text variant="titleLarge">{t('PROFILE_SETTINGS.NAME')}</Text>
           <Flex direction="column" style={{ marginTop: 16, rowGap: 8 }}>
             <TextInput
               onChangeText={(onChangeName: string) =>
@@ -44,7 +66,7 @@ const MobileView = (props: any) => {
           </Flex>
         </View>
         <Flex style={{ marginTop: 32, rowGap: 8 }} direction="column">
-          <Text variant="bodyBold1">{t('PROFILE_SETTINGS.EMAIL')}</Text>
+          <Text variant="titleLarge">{t('PROFILE_SETTINGS.EMAIL')}</Text>
           <TextInput
             onChangeText={(onChangeEmail: string) =>
               handleChangeText('email', onChangeEmail)
@@ -55,7 +77,7 @@ const MobileView = (props: any) => {
           />
         </Flex>
         <Flex style={{ marginTop: 32, rowGap: 8 }} direction="column">
-          <Text variant="bodyBold1">{t('PROFILE_SETTINGS.PHONE_NUMBER')}</Text>
+          <Text variant="titleLarge">{t('PROFILE_SETTINGS.PHONE_NUMBER')}</Text>
           <TextInput
             onChangeText={(onChangePhoneNumber: string) =>
               handleChangeText('phone', onChangePhoneNumber)
@@ -67,7 +89,7 @@ const MobileView = (props: any) => {
         </Flex>
 
         <View style={{ marginTop: 16 }}>
-          <Text variant="bodyBold1">{t('PROFILE_SETTINGS.ADDRESS')}</Text>
+          <Text variant="titleLarge">{t('PROFILE_SETTINGS.ADDRESS')}</Text>
           <Flex direction="column" style={{ marginTop: 16, rowGap: 8 }}>
             <TextInput
               outlineStyle={{ borderWidth: 0, borderRadius: 16 }}
@@ -107,11 +129,7 @@ const MobileView = (props: any) => {
               )
             }
           />
-          <Text
-            variant="bodyBold1"
-            color={colors.textPrimary}
-            style={{ fontWeight: 700 }}
-          >
+          <Text variant="titleLarge" color={colors.textPrimary}>
             {t('AUTH.CHECKBOX2')}
           </Text>
         </Flex>
@@ -119,10 +137,11 @@ const MobileView = (props: any) => {
           style={{ backgroundColor: colors.primary, marginTop: 32 }}
           onPress={() => {}}
           label={t('PROFILE_SETTINGS.SAVE')}
+          labelVariant="titleLarge"
           labelStyle={{ color: colors.textPrimary }}
         />
         <Flex direction="column" style={{ marginTop: 32 }}>
-          <Text variant="bodyBold1">
+          <Text variant="titleLarge">
             {t('PROFILE_SETTINGS.ACCOUNT_DELETION')}
           </Text>
           <Button
@@ -133,6 +152,7 @@ const MobileView = (props: any) => {
             }}
             onPress={() => {}}
             label={t('PROFILE_SETTINGS.DELETE_BUTTON')}
+            labelVariant="titleLarge"
             labelStyle={{ color: colors.textPrimary }}
           />
         </Flex>

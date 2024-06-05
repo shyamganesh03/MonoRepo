@@ -10,7 +10,13 @@ const MobileView = ({ isLoading, blogPosts, handleBackNavigation }: any) => {
   const { colors } = useTheme<any>()
 
   const renderBlogCard = ({ item }: any) => (
-    <View style={{ paddingHorizontal: 16, marginTop: 16 }}>
+    <View
+      style={{
+        paddingHorizontal: 16,
+        marginTop: 16,
+        backgroundColor: colors.background,
+      }}
+    >
       <BlogCard blogPost={item} key={item?.id} />
     </View>
   )
@@ -36,6 +42,7 @@ const MobileView = ({ isLoading, blogPosts, handleBackNavigation }: any) => {
           paddingHorizontal: 16,
           marginVertical: 16,
           alignItems: 'center',
+          backgroundColor: colors.background,
         }}
       >
         <IconButton
@@ -43,12 +50,11 @@ const MobileView = ({ isLoading, blogPosts, handleBackNavigation }: any) => {
           color={colors.textPrimary}
           onPress={handleBackNavigation}
         />
-        <Text
-          variant="heading2"
-          style={{ flex: 1, textAlign: 'center', marginRight: 20 }}
-        >
-          {t('HOME.NEWS')}
-        </Text>
+        <View style={{ flex: 1, marginRight: 20 }}>
+          <Text variant="headlineMedium" textAlign="center">
+            {t('HOME.NEWS')}
+          </Text>
+        </View>
       </Flex>
       <FlatList
         data={isLoading ? [...Array(7)] : blogPosts}
@@ -56,7 +62,10 @@ const MobileView = ({ isLoading, blogPosts, handleBackNavigation }: any) => {
         keyExtractor={(_, index) => index.toString()}
         horizontal={false}
         showsHorizontalScrollIndicator={false}
-        contentContainerStyle={{ paddingBottom: 90 }}
+        contentContainerStyle={{
+          paddingBottom: 90,
+          backgroundColor: colors.background,
+        }}
       />
     </>
   )

@@ -8,9 +8,15 @@ import Registration from '../../components/auth/Registration'
 import { Izzo } from 'assets'
 import Login from '../../components/auth/Login'
 
-const MobileView: React.FC = ({handleValidation,userDetails,errorMessage,handleCheckBox,showLogin,toggleRegistration}:any) => {
+const MobileView: React.FC = ({
+  handleValidation,
+  userDetails,
+  errorMessage,
+  handleCheckBox,
+  showLogin,
+  toggleRegistration,
+}: any) => {
   const { colors } = useTheme()
-  
 
   return (
     <KeyboardAvoidingView
@@ -18,9 +24,12 @@ const MobileView: React.FC = ({handleValidation,userDetails,errorMessage,handleC
       behavior={Platform.OS === 'ios' ? 'padding' : undefined}
       keyboardVerticalOffset={Platform.OS === 'ios' ? 25 : 100} // adjust this value according to your UI
     >
-      <ScrollView contentContainerStyle={{ flex: 1 }} keyboardShouldPersistTaps="handled">
+      <ScrollView
+        contentContainerStyle={{ flex: 1 }}
+        keyboardShouldPersistTaps="handled"
+      >
         <MobileContainer hasKeyBoard>
-          <Flex direction="row" style={{justifyContent:"center"}}>
+          <Flex direction="row" style={{ justifyContent: 'center' }}>
             <Image
               imageUrl={Izzo}
               size={150}
@@ -28,14 +37,18 @@ const MobileView: React.FC = ({handleValidation,userDetails,errorMessage,handleC
               style={{ marginBottom: 40 }}
             />
           </Flex>
-          
-           {/* <LoginAndSignUp   handleValidation={handleValidation} userDetails={userDetails} errorMessage={errorMessage} />  */}
-         {/* <Login  handleValidation={handleValidation} userDetails={userDetails} errorMessage={{...errorMessage}}/>  */}
-            <Registration handleValidation={handleValidation} userDetails={userDetails} errorMessage={{...errorMessage}} handleCheckBox={handleCheckBox}/>
-        
+
+          {/* <LoginAndSignUp   handleValidation={handleValidation} userDetails={userDetails} errorMessage={errorMessage} />  */}
+          {/* <Login  handleValidation={handleValidation} userDetails={userDetails} errorMessage={{...errorMessage}}/>  */}
+          <Registration
+            handleValidation={handleValidation}
+            userDetails={userDetails}
+            errorMessage={{ ...errorMessage }}
+            handleCheckBox={handleCheckBox}
+          />
         </MobileContainer>
-    </ScrollView>
-   </KeyboardAvoidingView>
+      </ScrollView>
+    </KeyboardAvoidingView>
   )
 }
 

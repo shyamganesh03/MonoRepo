@@ -152,7 +152,7 @@ export const ShareComponent = (props: ShareComponentProps) => {
             }}
             onPress={onClose}
           >
-            <Text variant="functional1">Close</Text>
+            <Text variant="titleMedium">Close</Text>
           </TouchableOpacity>
         </Drawer>
       )}

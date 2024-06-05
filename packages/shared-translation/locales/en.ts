@@ -31,6 +31,9 @@ export default {
     LOCATION: 'Location',
     PAST_EVENT_HEADING: 'This Event is in the Past!',
   },
+  EVENT_CARD: {
+    AT: 'at',
+  },
   LOCATION_CARD: {
     TICKETS: 'Tickets',
     PRICES_FROM: 'Prices from',

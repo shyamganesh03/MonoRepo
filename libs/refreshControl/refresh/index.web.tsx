@@ -1,12 +1,12 @@
 import React, { useRef, useEffect, useCallback, useMemo } from 'react'
 import {
   View,
-  Text,
   PanResponder,
   Animated,
   ActivityIndicator,
   findNodeHandle,
 } from 'react-native'
+import { Text } from '@libs/components'
 
 export default function RefreshControl({
   refreshing,
@@ -148,11 +148,11 @@ export default function RefreshControl({
               style={{ marginVertical: 10 }}
             />
             {title && (
-              <Text
-                style={{ color: titleColor, textAlign: 'center', marginTop: 5 }}
-              >
-                {title}
-              </Text>
+              <View style={{ marginTop: 5 }}>
+                <Text color={titleColor} textAlign="center">
+                  {title}
+                </Text>
+              </View>
             )}
           </>
         )}

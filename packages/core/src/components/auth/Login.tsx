@@ -1,40 +1,30 @@
-
 import { Button, Flex, Text, TextInput } from '@libs/components'
 import { useTheme } from 'react-native-paper'
 import { useTranslation } from 'react-i18next'
 import { Icon } from '@libs/native-icons'
 import { PasswordTextInput } from '@libs/components'
-import { ScrollView } from 'react-native'
+import { View } from 'react-native'
 
 const Login = ({ handleValidation, userDetails, errorMessage }: any) => {
   const { colors } = useTheme<any>()
   const { t } = useTranslation()
-  
 
-  
-  
   const renderTitle = () => (
-    <Text
-      variant="heading2"
-      color={colors.textPrimary}
-      style={{ fontWeight: 700 }}
-    >
+    <Text variant="headlineMedium" color={colors.textPrimary}>
       {t('AUTH.TITLE')}
     </Text>
   )
 
   const renderSubtitle = () => (
-    <Text
-      variant="body2"
+    <View
       style={{
         paddingTop: 24,
         paddingBottom: 27,
-        fontWeight: 500,
         maxWidth: 240,
       }}
     >
-      {t('AUTH.SUBTITLE')}
-    </Text>
+      <Text variant="labelMedium">{t('AUTH.SUBTITLE')}</Text>
+    </View>
   )
 
   const renderEmailInput = () => (
@@ -43,7 +33,7 @@ const Login = ({ handleValidation, userDetails, errorMessage }: any) => {
         handleValidation('email', value)
       }}
       value={userDetails.email}
-      style={{height:40}}
+      style={{ height: 40 }}
       placeholder={t('INPUT_TEXT.EMAIL_PLACEHOLDER')}
       outlineStyle={{ borderWidth: 0 }}
       left={
@@ -54,7 +44,6 @@ const Login = ({ handleValidation, userDetails, errorMessage }: any) => {
       }
       error={errorMessage.email}
     />
-    
   )
 
   const renderPasswordInput = () => (
@@ -64,7 +53,7 @@ const Login = ({ handleValidation, userDetails, errorMessage }: any) => {
       }}
       value={userDetails.password}
       placeholder={t('INPUT_TEXT.PASSWORD_PLACEHOLDER')}
-      style={{height:40}}
+      style={{ height: 40 }}
       error={errorMessage.password}
     />
   )
@@ -72,14 +61,13 @@ const Login = ({ handleValidation, userDetails, errorMessage }: any) => {
   const renderLoginButton = () => (
     <Button
       style={{ backgroundColor: colors.primary }}
-      onPress={()=>{}}
+      onPress={() => {}}
       label={t('BUTTON.LOGIN')}
       labelStyle={{ color: colors.textPrimary }}
     />
   )
 
   return (
-    
     <Flex direction="column">
       <Flex direction="column">
         {renderTitle()}
@@ -91,7 +79,6 @@ const Login = ({ handleValidation, userDetails, errorMessage }: any) => {
         {renderLoginButton()}
       </Flex>
     </Flex>
-    
   )
 }
 

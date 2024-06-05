@@ -4,7 +4,7 @@ import Analytics from '../analytics'
 import appUtil from './appUtil'
 import fingerprint from './fingerPrint'
 import useDebounce from './useDebounce'
-import {isValidEmail} from './validation'
+import { isValidEmail } from './validation'
 import { formatDate, getDayName, dateformat } from './dateFunction'
 
 export {

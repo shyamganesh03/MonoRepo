@@ -29,9 +29,9 @@
       "@izzo/jotai-storage": ["./packages/jotai-storage"],
       "@izzo/shared-translation": ["./packages/shared-translation"],
       "@izzo/hooks": ["./packages/shared-hooks"],
-      "@libs/pdf-view":["./libs/pdf-view"],
-      "@libs/map-view":["./libs/map-view"],
-      "@libs/web-view":["./libs/web-view"]
+      "@libs/pdf-view": ["./libs/pdf-view"],
+      "@libs/map-view": ["./libs/map-view"],
+      "@libs/web-view": ["./libs/web-view"]
     }
   },
   "include": ["packages/**/*", "libs/**/*", "apps/**/*"]

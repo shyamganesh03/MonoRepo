@@ -1,5 +1,5 @@
 import React from 'react'
-import { ScrollView, TouchableOpacity } from 'react-native'
+import { ScrollView, TouchableOpacity, View } from 'react-native'
 import { MobileContainer } from '@libs/container'
 import { ImagePlaceHolder } from 'assets'
 import {
@@ -109,14 +109,14 @@ const MobileView: React.FC<MobileViewProps> = ({
             }}
           >
             <Icon name="InformationCircle" />
-            <Text color={colors.neutral} variant="functional1">
+            <Text color={colors.neutral} variant="titleMedium">
               {t('EVENT_DETAIL.PAST_EVENT_HEADING')}
             </Text>
             <TouchableOpacity>
               <Text
-                variant="bodyBold1"
+                variant="titleLarge"
                 color={colors.primary}
-                style={{ textDecorationLine: 'underline' }}
+                textDecorationLine="underline"
               >
                 {t('BUTTON.SHOW_CURRENT_EVENT')}
               </Text>
@@ -127,11 +127,9 @@ const MobileView: React.FC<MobileViewProps> = ({
           direction="column"
           style={{ paddingBottom: spacing.spacing7, alignItems: 'center' }}
         >
-          <Text variant="heading2" style={{ fontWeight: 700 }}>
-            {eventData?.name}
-          </Text>
-          <Text variant="body1">
-            {t('EVENT_DETAIL.BY')} {eventData?.company?.name?.toUpperCase()}
+          <Text variant="headlineMedium">{eventData?.name}</Text>
+          <Text variant="bodyLarge">
+            {t('EVENT_DETAIL.BY')} {eventData?.company?.name}
           </Text>
           <Share
             itemID={eventData?.id}
@@ -153,70 +151,71 @@ const MobileView: React.FC<MobileViewProps> = ({
             mode="outlined"
             label={t('BUTTON.SAVE_EVENT')}
             labelStyle={{ color: colors.textPrimary }}
+            labelVariant="bodyMedium"
             style={{
               borderColor: colors.onBackground,
               borderWidth: 2,
               marginBottom: spacing.spacing3,
-              width: '50%',
+              width: 200,
             }}
             onPress={() => {}}
           />
         </Flex>
         <Flex direction="column" style={{ gap: spacing.spacing3 }}>
-          <Text variant="heading2">{t('EVENT_DETAIL.WHEN')}</Text>
-          <Text variant="body1">
+          <Text variant="headlineMedium">{t('EVENT_DETAIL.WHEN')}</Text>
+          <Text variant="titleXL">
             {getDayName(eventData?.startDate)}{' '}
-            <Text color={colors.primary} variant="bodyBold1">
+            <Text color={colors.primary} variant="headlineSmall">
               {dateformat(eventData?.startDate)}{' '}
             </Text>
             {t('EVENT_DETAIL.FROM')}{' '}
-            <Text color={colors.primary} variant="bodyBold1">
+            <Text color={colors.primary} variant="headlineSmall">
               {eventData?.startTime}
             </Text>
           </Text>
         </Flex>
         <Flex direction="column" style={{ gap: spacing.spacing3 }}>
-          <Text variant="heading2">{t('EVENT_DETAIL.GENRE')}</Text>
+          <Text variant="headlineMedium">{t('EVENT_DETAIL.GENRE')}</Text>
           <Wrap style={{ gap: 10 }}>
             {eventData?.genres?.map((genreData: any, index: number) => (
               <Tag
                 style={{ backgroundColor: colors.primary, borderRadius: 100 }}
                 label={genreData?.genre}
-                textVariant="bodyCompactBold2"
+                textVariant="bodyMedium"
                 key={index}
               />
             ))}
           </Wrap>
         </Flex>
         <Flex direction="column" style={{ gap: spacing.spacing3 }}>
-          <Text variant="heading2">{t('EVENT_DETAIL.AGE_RESTRICTION')}</Text>
-          <Text variant="bodyBold1">
+          <Text variant="headlineMedium">
+            {t('EVENT_DETAIL.AGE_RESTRICTION')}
+          </Text>
+          <Text variant="titleXL">
             {t('EVENT_DETAIL.WOMEN')}{' '}
-            <Text color={colors.primary} variant="bodyBold1">
+            <Text color={colors.primary} variant="headlineSmall">
               {eventData?.ageRestrictionWomen}+
             </Text>
           </Text>
-          <Text variant="bodyBold1">
+          <Text variant="titleXL">
             {t('EVENT_DETAIL.MEN')}{' '}
-            <Text color={colors.primary} variant="bodyBold1">
+            <Text color={colors.primary} variant="headlineSmall">
               {eventData?.ageRestrictionMen}+
             </Text>
           </Text>
         </Flex>
         <Flex direction="column" style={{ gap: spacing.spacing3 }}>
-          <Text variant="heading2">{t('EVENT_DETAIL.DESCRIPTION')}</Text>
-          <Text variant="utility2" numberOfLines={!showMore ? 4 : 0}>
+          <Text variant="headlineMedium">{t('EVENT_DETAIL.DESCRIPTION')}</Text>
+          <Text variant="bodySmall" numberOfLines={!showMore ? 4 : 0}>
             {eventData?.pressText}
           </Text>
-          {eventData?.pressText.length > 250 && (
-            <Button
-              mode="text"
-              label={showMore ? t('BUTTON.SHOW_LESS') : t('BUTTON.SHOW_MORE')}
-              style={{ width: 100 }}
-              labelStyle={{ color: colors.primary }}
-              onPress={() => setShowMore(!showMore)}
-            />
-          )}
+          <TouchableOpacity onPress={() => setShowMore(!showMore)}>
+            <View style={{}}>
+              <Text variant="titleSmall" color={colors.primary}>
+                {showMore ? t('BUTTON.SHOW_LESS') : t('BUTTON.SHOW_MORE')}
+              </Text>
+            </View>
+          </TouchableOpacity>
         </Flex>
         <LocationCard eventData={eventData} />
         <Flex

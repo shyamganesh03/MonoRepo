@@ -1,46 +1,40 @@
-
-import { Button, Flex, Text, TextInput} from '@libs/components'
-import { useTheme ,Divider} from 'react-native-paper'
+import React, { useState } from 'react'
+import { Button, Flex, Text, TextInput } from '@libs/components'
+import { Divider, useTheme } from 'react-native-paper'
 import { useTranslation } from 'react-i18next'
 import { Icon } from '@libs/native-icons'
 import { useNavigation } from '@react-navigation/native'
-import { ScrollView } from 'react-native'
+import { View } from 'react-native'
 
-
-const LoginAndSignUp = ({ handleValidation,userDetails,errorMessage}: any) => {
+const LoginAndSignUp = ({
+  handleValidation,
+  userDetails,
+  errorMessage,
+}: any) => {
   const { colors } = useTheme<any>()
   const { t } = useTranslation()
-  
+
   const navigation = useNavigation()
 
-  
-
   return (
-   
     <Flex direction="column">
       <Flex direction="column">
-        <Text
-          variant="heading2"
-          color={colors.textPrimary}
-          style={{ fontWeight: 700 }}
-        >
+        <Text variant="headlineMedium" color={colors.textPrimary}>
           {t('AUTH.TITLE')}
         </Text>
-        <Text
-          variant="body2"
+        <View
           style={{
             paddingTop: 24,
             paddingBottom: 27,
-            fontWeight: 500,
             maxWidth: 240,
           }}
         >
-          {t('AUTH.SUBTITLE')}
-        </Text>
+          <Text variant="labelMedium">{t('AUTH.SUBTITLE')}</Text>
+        </View>
       </Flex>
       <Flex direction="column">
         <TextInput
-          onChangeText={(value: string) => handleValidation('email',value)}
+          onChangeText={(value: string) => handleValidation('email', value)}
           value={userDetails.email}
           outlineStyle={{ borderWidth: 0 }}
           style={{ height: 40 }}
@@ -61,13 +55,11 @@ const LoginAndSignUp = ({ handleValidation,userDetails,errorMessage}: any) => {
             marginBottom: 32,
             backgroundColor: colors.primary,
           }}
-          onPress={()=>{}} 
+          onPress={() => {}}
           mode="contained"
           label={t('BUTTON.Login_And_SIGN_UP')}
           labelStyle={{ color: colors.textPrimary }}
-          
         />
-       
       </Flex>
       <Divider />
       <Button
@@ -79,7 +71,6 @@ const LoginAndSignUp = ({ handleValidation,userDetails,errorMessage}: any) => {
         labelStyle={{ color: colors.textPrimary }}
       />
     </Flex>
-    
   )
 }
 

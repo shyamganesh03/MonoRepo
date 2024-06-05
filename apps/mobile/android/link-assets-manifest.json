@@ -1,0 +1,17 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "assets/fonts/Sculpin-Bold.ttf",
+      "sha1": "27709c00326db34d4924217a44764fe532dd799b"
+    },
+    {
+      "path": "assets/fonts/Sculpin-Medium.ttf",
+      "sha1": "149955e5f17c76aca498ad5feeca54b9356ebf38"
+    },
+    {
+      "path": "assets/fonts/Sculpin-Regular.ttf",
+      "sha1": "3d960e86357085035b4dfd15141a2aaad4d92ed8"
+    }
+  ]
+}

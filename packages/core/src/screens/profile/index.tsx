@@ -26,7 +26,7 @@ const Profile = () => {
 
   const handleNavigation = (path: string, isWeb: boolean) => {
     if (isWeb && path.endsWith('.pdf')) {
-      return navigation.navigate('pdfview', { uri: path })
+      return navigation.navigate('pdfView', { uri: path })
     }
     if (isWeb) {
       return navigation.navigate('webView', { uri: path })

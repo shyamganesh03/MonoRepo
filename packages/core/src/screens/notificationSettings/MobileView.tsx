@@ -1,19 +1,19 @@
 import React from 'react'
-import { Button, Flex, IconButton, Text } from '@libs/components'
+import { Button, Flex, Text } from '@libs/components'
 
 import { Linking } from 'react-native'
 
 import { t } from 'i18next'
 import { useTheme } from 'react-native-paper'
+import { MobileContainer } from '@libs/container'
 
-const MobileView = (props: any) => {
-  const { colors } = useTheme()
-  const { handleBackNavigation } = props
+const MobileView = () => {
+  const { colors } = useTheme<any>()
 
   return (
-    <>
-      <Flex direction="column" style={{ paddingHorizontal: 16 }}>
-        <Text variant="body1" style={{ fontWeight: '500', marginTop: 8 }}>
+    <MobileContainer backgroundColor={colors.background}>
+      <Flex direction="column" style={{ paddingHorizontal: 16, marginTop: 8 }}>
+        <Text variant="bodyMedium">
           {t('NOTIFICATION_SETTINGS.DESCRIPTION')}
         </Text>
         <Button
@@ -28,7 +28,7 @@ const MobileView = (props: any) => {
           labelStyle={{ color: colors.textPrimary }}
         />
       </Flex>
-    </>
+    </MobileContainer>
   )
 }
 export default MobileView

@@ -10,12 +10,12 @@ import {
   NavigationContainer,
   DefaultTheme,
   DarkTheme,
-  useNavigation,
 } from '@react-navigation/native'
 import {
   LightTheme as LightThemeColors,
   DarkTheme as DarkThemeColors,
   spacing,
+  typography as customVariants,
 } from '@libs/theme'
 import { Analytics } from '@libs/utils'
 import * as RootNavigator from './navigation/RootNavigator'
@@ -23,10 +23,60 @@ import { AppNavigator } from './navigation'
 import { useAtom, Provider as JotaiProvider } from 'jotai'
 import { themeSwitchAtom } from '@izzo/jotai-storage'
 import '@izzo/shared-translation'
-import { PaperProvider } from 'react-native-paper'
+import {
+  MD2DarkTheme,
+  MD2LightTheme,
+  PaperProvider,
+  configureFonts,
+} from 'react-native-paper'
 import notificationService from './utils/notificationHandler'
 
 Analytics.init()
+
+const fontConfig = {
+  web: {
+    regular: {
+      fontFamily: 'Sculpin-Regular',
+      fontWeight: 'normal',
+    },
+    medium: {
+      fontFamily: 'Sculpin-Medium',
+      fontWeight: 'normal',
+    },
+    bold: {
+      fontFamily: 'Sculpin-Bold',
+      fontWeight: 'normal',
+    },
+  },
+  ios: {
+    regular: {
+      fontFamily: 'Sculpin-Regular',
+      fontWeight: 'normal',
+    },
+    medium: {
+      fontFamily: 'Sculpin-Medium',
+      fontWeight: 'normal',
+    },
+    bold: {
+      fontFamily: 'Sculpin-Bold',
+      fontWeight: 'normal',
+    },
+  },
+  android: {
+    regular: {
+      fontFamily: 'Sculpin-Regular',
+      fontWeight: 'normal',
+    },
+    medium: {
+      fontFamily: 'Sculpin-Medium',
+      fontWeight: 'normal',
+    },
+    bold: {
+      fontFamily: 'Sculpin-Bold',
+      fontWeight: 'normal',
+    },
+  },
+}
 
 const createCustomTheme = (baseTheme: any, customColors: any) => ({
   ...baseTheme,
@@ -34,20 +84,24 @@ const createCustomTheme = (baseTheme: any, customColors: any) => ({
     ...baseTheme.colors,
     ...customColors.colors,
   },
+  fonts: configureFonts({
+    config: { ...fontConfig, ...customVariants },
+    isV3: false,
+  }),
   spacing,
 })
 
-const customLightTheme = createCustomTheme(DefaultTheme, LightThemeColors)
-const customDarkTheme = createCustomTheme(DarkTheme, DarkThemeColors)
+const customLightTheme = createCustomTheme(MD2LightTheme, LightThemeColors)
+const customDarkTheme = createCustomTheme(MD2DarkTheme, DarkThemeColors)
 
-const getThemeColor = (themeState) => {
+const getThemeColor = (themeState: string) => {
   switch (themeState) {
     case 'dark':
       return customDarkTheme
     case 'light':
       return customLightTheme
     default:
-      return customLightTheme
+      return customDarkTheme
   }
 }
 
@@ -63,6 +117,7 @@ const AppSubWrapper = () => {
       <AppNavigator />
       <Toast
         ref={(ref) => {
+          //@ts-ignore
           global.toast = ref
         }}
         duration={5000}
@@ -114,8 +169,7 @@ export const App = () => {
             RootNavigator.navigationRef.current.getCurrentRoute()?.name
           routeNameRef.current = currentRouteName
         }}
-        theme={theme}
-        linking={{ enabled: true }}
+        linking={{ enabled: true, prefixes: [] }}
       >
         <JotaiProvider>
           <QueryClientProvider client={queryClient}>

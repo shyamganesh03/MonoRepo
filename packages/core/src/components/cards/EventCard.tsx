@@ -1,9 +1,11 @@
 import { useTheme } from 'react-native-paper'
 import { Card, Flex, Tag, Text } from '@libs/components'
 import React from 'react'
-import { View, TouchableOpacity, useWindowDimensions } from 'react-native'
+import { View, TouchableOpacity } from 'react-native'
 import { Icon } from '@libs/native-icons'
 import { dateformat } from '@libs/utils'
+import { useTranslation } from 'react-i18next'
+import { spacing } from '@libs/theme'
 
 const EventCard = ({
   eventDetail,
@@ -11,6 +13,7 @@ const EventCard = ({
   isSearch,
 }: any) => {
   const { colors } = useTheme<any>()
+  const { t } = useTranslation()
 
   const formatDate = (dateString: string) => {
     const date = new Date(dateString)
@@ -18,56 +21,38 @@ const EventCard = ({
     return date.toLocaleDateString('en-GB', options).replace(/ /g, ' ')
   }
 
-  const maxWidth = useWindowDimensions().width
-
   return (
     <TouchableOpacity
-      style={{
-        width: '100%',
-        maxWidth: !isSearch ? 316 : maxWidth,
-        borderRadius: 16,
-      }}
       onPress={() => handleEventDetailNavigation(eventDetail?.pageId)}
     >
       <Card
         title={eventDetail?.name}
         titleStyle={{ color: colors.textSecondary }}
-        titleVariant="heading3"
+        titleVariant="headlineSmall"
         subtitleStyle={{
-          marginTop: -10,
           color: colors.textSecondary,
           textTransform: 'uppercase',
           paddingLeft: 2,
         }}
         subtitle={eventDetail?.company?.name}
-        subTitleVariant="utility2"
+        subTitleVariant="labelMedium"
         style={{
           backgroundColor: colors.textPrimary,
+          borderRadius: spacing.spacing4,
         }}
         right={() =>
           isSearch && (
             <View style={{ marginTop: 5 }}>
               <Flex direction="column" style={{ paddingRight: 18 }}>
-                <Text
-                  variant="heading1"
-                  style={{
-                    fontWeight: '900',
-                    fontSize: 20,
-                    color: colors.primary,
-                  }}
-                >
+                <Text variant="headlineSmall" color={colors.primary}>
                   {dateformat(eventDetail?.startDate)}
                 </Text>
                 <Text
-                  variant="utility2"
-                  style={{
-                    color: colors.textSecondary,
-                    fontWeight: '500',
-                    textAlign: 'right',
-                    marginTop: -6,
-                  }}
+                  variant="bodyMedium"
+                  color={colors.textSecondary}
+                  textAlign="right"
                 >
-                  at {eventDetail?.startTime}
+                  {t('EVENT_CARD.AT')} {eventDetail?.startTime}
                 </Text>
                 <TouchableOpacity
                   style={{
@@ -75,11 +60,11 @@ const EventCard = ({
                     alignSelf: 'flex-end',
                     position: 'absolute',
                     right: 0,
-                    bottom: -115,
+                    bottom: -111,
                     paddingVertical: 6,
                     paddingHorizontal: 14,
-                    borderTopLeftRadius: 12,
-                    borderBottomRightRadius: 12,
+                    borderTopLeftRadius: spacing.spacing4,
+                    borderBottomRightRadius: spacing.spacing4,
                   }}
                   onPress={() => {}}
                 >
@@ -112,41 +97,34 @@ const EventCard = ({
                   bgColor={colors.primary}
                   tagType="eventTag"
                   key={genres.id}
+                  textVariant="labelLarge"
                 />
               ))}
             </View>
-
-            {!isSearch && (
-              <Text
-                style={{
-                  marginTop: 25,
-                  fontWeight: '500',
-                  fontSize: 12,
-                  color: colors.textSecondary,
-                }}
-              >
+            <View
+              style={{
+                marginTop: 25,
+              }}
+            >
+              <Text color={colors.textSecondary} variant="labelMedium">
                 {formatDate(eventDetail?.startDate)} at {eventDetail?.startTime}
               </Text>
-            )}
+            </View>
             <View
               style={{
                 flexDirection: 'row',
                 alignItems: 'center',
                 columnGap: 5,
-                marginTop: isSearch ? 43 : 5,
-                marginLeft: isSearch ? 0 : -3,
+                marginTop: 5,
+                marginLeft: -3,
               }}
             >
               <Icon name="LocationIcon" width={15} height={15} />
-              <Text
-                style={{
-                  fontWeight: '700',
-                  fontSize: 12,
-                  color: colors.textSecondary,
-                }}
-              >
-                {eventDetail?.location?.street}
-              </Text>
+              <View>
+                <Text color={colors.textSecondary} variant="labelLarge">
+                  {eventDetail?.location?.street}
+                </Text>
+              </View>
             </View>
           </View>
         }

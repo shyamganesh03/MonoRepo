@@ -1,11 +1,55 @@
+@font-face {
+  font-family: 'NotoSerif-Bold';
+  src: url(/assets/fonts/NotoSerif-Bold.ttf) format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'NotoSerif-Regular';
+  src: url(/assets/fonts/NotoSerif-Regular.ttf) format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'NotoSerif-Medium';
+  src: url(/assets/fonts/NotoSerif-Medium.ttf) format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Sculpin-Bold';
+  src: url(/assets/fonts/Sculpin-Bold.ttf) format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Sculpin-Regular';
+  src: url(/assets/fonts/Sculpin-Regular.ttf) format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Sculpin-Medium';
+  src: url(/assets/fonts/Sculpin-Medium.ttf) format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: 'NotoSerif-Bold', 'NotoSerif-Regular', 'NotoSerif-Medium','Sculpin-Bold','Sculpin-Regular','Sculpin-Medium',sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
