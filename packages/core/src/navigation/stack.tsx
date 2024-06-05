@@ -13,12 +13,12 @@ import NotificationSettings from '../screens/notificationSettings'
 import ProfileSettings from '../screens/profileSettings'
 import SavedEvents from '../screens/savedEvents'
 import PdfView from '../screens/pdfView'
-import { View } from 'react-native'
 import { Flex, IconButton, Text } from '@libs/components'
 import { useNavigation } from '@react-navigation/native'
 import { useTheme } from 'react-native-paper'
 import { t } from 'i18next'
 import LanguageSelector from '../screens/language'
+import { View } from 'react-native'
 
 const Stack = createNativeStackNavigator()
 

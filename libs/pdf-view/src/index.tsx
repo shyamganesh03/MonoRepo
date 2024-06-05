@@ -89,10 +89,7 @@ const PdfView = (props: any) => {
 
       <Button
         label="Download PDF"
-        labelStyle={{
-          color: colors.textPrimary,
-        }}
-        style={{ paddingVertical: 5 }}
+        labelStyle={{ color: colors.textPrimary }}
         onPress={() => downloadPdf()}
       />
 
