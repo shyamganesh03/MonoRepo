@@ -6,12 +6,13 @@ import React from 'react'
 import { useQuery } from '@tanstack/react-query'
 import { getBlogPosts, getFilteredEvents, getGenres } from '@izzo/api'
 import { useIsFocused, useNavigation } from '@react-navigation/native'
-import { getItemAsync } from '@izzo/async-local-storage'
+import { getItemAsync } from '@izzo/shared-async-storage'
+import { izzoBaseUrl } from '../../utils/redirectUrl'
 import { useTranslation } from 'react-i18next'
 
 const HomePage = () => {
   const [drunkMode, setDrunkMode] = useState(false)
-  const [selectedLanguage, setSelectedLanguage] = useState('')
+  const [selectedLanguage, setSelectedLanguage] = useState('de')
 
   const navigation: any = useNavigation()
   const isFocused = useIsFocused()
@@ -23,9 +24,9 @@ const HomePage = () => {
   )
 
   useEffect(() => {
-    getItemAsync('preferredLanguage').then((res: any) => {
-      setSelectedLanguage(res)
-      i18n.changeLanguage(res)
+    getItemAsync('preferredLanguage').then((prevSelectedLanguage: any) => {
+      setSelectedLanguage(prevSelectedLanguage)
+      i18n.changeLanguage(prevSelectedLanguage)
     })
   }, [isFocused])
 
@@ -55,6 +56,12 @@ const HomePage = () => {
     navigation.navigate('search', genreDetail)
   }
 
+  const handleBlogPage = (slug: any) => {
+    navigation.navigate('webView', {
+      uri: `${izzoBaseUrl}${slug}`,
+    })
+  }
+
   const viewProps = {
     drunkMode,
     setDrunkMode,
@@ -71,6 +78,7 @@ const HomePage = () => {
     weekendEvents,
     handleGenreDetailNavigation,
     selectedLanguage,
+    handleBlogPage,
   }
   return (
     <Suspense fallback={<></>}>

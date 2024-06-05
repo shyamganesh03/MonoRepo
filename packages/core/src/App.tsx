@@ -30,6 +30,7 @@ import {
   configureFonts,
 } from 'react-native-paper'
 import notificationService from './utils/notificationHandler'
+import { setItemAsync, getItemAsync } from '@izzo/shared-async-storage'
 
 Analytics.init()
 
@@ -110,6 +111,11 @@ const AppSubWrapper = () => {
 
   useEffect(() => {
     notificationService()
+    getItemAsync('preferredLanguage').then((language: any) => {
+      if (!language) {
+        setItemAsync('preferredLanguage', 'de')
+      }
+    })
   }, [])
 
   return (

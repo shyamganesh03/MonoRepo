@@ -3,7 +3,7 @@ import { Suspense, useCallback, useEffect, useState } from 'react'
 import DesktopView from './DesktopView'
 import MobileView from './MobileView'
 import React from 'react'
-import { getItemAsync, setItemAsync } from '@izzo/async-local-storage'
+import { getItemAsync, setItemAsync } from '@izzo/shared-async-storage'
 import { useTranslation } from 'react-i18next'
 import { useNavigation } from '@react-navigation/native'
 
@@ -17,9 +17,9 @@ const LanguageSelector = () => {
   const navigation = useNavigation()
 
   useEffect(() => {
-    getItemAsync('preferredLanguage').then((res: any) => {
-      i18n.changeLanguage(res)
-      setSelectedLanguage(res)
+    getItemAsync('preferredLanguage').then((prevSelectedLanguage: any) => {
+      i18n.changeLanguage(prevSelectedLanguage)
+      setSelectedLanguage(prevSelectedLanguage)
     })
   }, [])
 

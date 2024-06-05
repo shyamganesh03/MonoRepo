@@ -23,6 +23,7 @@ const MobileView = (props: any) => {
     handleGenreDetailNavigation,
     weekendEvents,
     selectedLanguage,
+    handleBlogPage,
   } = props
 
   const renderEventCard = ({ item }: any) => (
@@ -49,7 +50,12 @@ const MobileView = (props: any) => {
 
   const renderBlogCard = ({ item }: any) => (
     <View style={{ paddingHorizontal: 16, marginTop: 16 }}>
-      <BlogCard blogPost={item} key={item?.id} />
+      <BlogCard
+        blogPost={item}
+        key={item?.id}
+        titleNumberOfLines={2}
+        handleBlogPage={handleBlogPage}
+      />
     </View>
   )
 
@@ -205,7 +211,7 @@ const MobileView = (props: any) => {
       data={placeholderData}
       keyExtractor={(_, index) => index.toString()}
       showsVerticalScrollIndicator={false}
-      contentContainerStyle={{ marginTop: 20, paddingBottom: 150 }}
+      contentContainerStyle={{ marginTop: 20, paddingBottom: 100 }}
       ListHeaderComponent={renderHeader}
       renderItem={() => null}
       style={{ backgroundColor: colors.background }}

@@ -4,18 +4,17 @@ import { BlogCard } from '../../components'
 import { ShimmerPlaceholder } from '@libs/skeletons'
 import { useTheme } from 'react-native-paper'
 
-const MobileView = ({ isLoading, blogPosts }: any) => {
+const MobileView = ({ isLoading, blogPosts, handleBlogPage }: any) => {
   const { colors } = useTheme<any>()
 
   const renderBlogCard = ({ item }: any) => (
-    <View
-      style={{
-        paddingHorizontal: 16,
-        backgroundColor: colors.background,
-        marginBottom: 16,
-      }}
-    >
-      <BlogCard blogPost={item} key={item?.id} />
+    <View style={{ paddingHorizontal: 16, marginTop: 16 }}>
+      <BlogCard
+        blogPost={item}
+        key={item?.id}
+        titleNumberOfLines={0}
+        handleBlogPage={handleBlogPage}
+      />
     </View>
   )
 

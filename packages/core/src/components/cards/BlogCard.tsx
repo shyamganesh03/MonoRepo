@@ -1,11 +1,19 @@
 import { useTheme } from 'react-native-paper'
-import { Card, Text } from '@libs/components'
 import React from 'react'
-import { View, TouchableOpacity } from 'react-native'
+import { View, TouchableOpacity, StyleSheet } from 'react-native'
+import { Text } from '@libs/components'
 import { Icon } from '@libs/native-icons'
 import { spacing } from '@libs/theme'
 
-const BlogCard = ({ blogPost }: { blogPost: any }) => {
+const BlogCard = ({
+  blogPost,
+  titleNumberOfLines,
+  handleBlogPage,
+}: {
+  blogPost: any
+  titleNumberOfLines: number
+  handleBlogPage: any
+}) => {
   const { colors } = useTheme<any>()
 
   const formatDate = (blogDate: string) => {
@@ -20,36 +28,28 @@ const BlogCard = ({ blogPost }: { blogPost: any }) => {
       : ''
 
   return (
-    <TouchableOpacity>
-      <Card
-        title={`${blogPost?.title}`}
-        titleVariant="headlineSmall"
-        titleStyle={{
-          color: `${blogPost?.textColor?.value}`,
-          maxWidth: blogPost?.isNew || blogPost?.isPinned ? '68%' : '100%',
-          marginBottom:
-            blogPost?.isNew || blogPost?.isPinned ? spacing.spacing4 : 0,
-          lineHeight: 20,
-        }}
-        right={() =>
-          (blogPost?.isPinned || blogPost?.isNew) && (
-            <View
-              style={{
-                position: 'absolute',
-                right: -16,
-                top: -48,
-                backgroundColor: colors.primary,
-                paddingHorizontal: spacing.spacing5,
-                paddingVertical: spacing.spacing3,
-                borderBottomLeftRadius: spacing.spacing5,
-                borderTopRightRadius: spacing.spacing5,
-                flexDirection: 'row',
-                alignItems: 'center',
-                justifyContent:
-                  pinTitle && blogPost?.isPinned ? 'center' : 'flex-start',
-                width: 124,
-              }}
-            >
+    <TouchableOpacity
+      onPress={() => handleBlogPage(blogPost?.link?.cached_url)}
+    >
+      <View
+        style={[
+          styles.card,
+          { backgroundColor: blogPost?.backgroundColor?.value },
+        ]}
+      >
+        <View style={[styles.titleContainer]}>
+          <View
+            style={{
+              maxWidth: blogPost?.isNew || blogPost?.isPinned ? '68%' : '100%',
+            }}
+          >
+            <Text color={blogPost?.textColor?.value} variant="headlineSmall">
+              {blogPost?.title}
+            </Text>
+          </View>
+
+          {(blogPost?.isPinned || blogPost?.isNew) && (
+            <View style={[styles.badge, { backgroundColor: colors.primary }]}>
               {blogPost?.isPinned && (
                 <Icon
                   name="BookmarkIcon"
@@ -60,41 +60,77 @@ const BlogCard = ({ blogPost }: { blogPost: any }) => {
               )}
               {(blogPost?.isPinned && blogPost?.pinnedText?.length > 0) ||
               (blogPost?.isNew && blogPost?.isNew.length > 0) ? (
-                <View style={{ marginLeft: 20 }}>
+                <View style={styles.badgeText}>
                   <Text
                     variant="labelLarge"
-                    color={colors.textPrimary}
                     textTransform="uppercase"
+                    color={colors.textPrimary}
                   >
-                    {pinTitle}
+                    {blogPost?.isPinned
+                      ? blogPost?.pinnedText
+                      : blogPost?.isNew
+                        ? blogPost?.newText
+                        : null}
                   </Text>
                 </View>
               ) : null}
             </View>
-          )
-        }
-        titleNumberOfLines={0}
-        style={{
-          backgroundColor: `${blogPost?.backgroundColor?.value}`,
-          width: '100%',
-          paddingHorizontal: spacing.spacing5,
-          paddingVertical: spacing.spacing4,
-          borderRadius: spacing.spacing5,
-        }}
-        content={
-          <View style={{ flexDirection: 'column', gap: spacing.spacing5 }}>
-            <Text color={`${blogPost?.textColor?.value}`} variant="labelLarge">
-              {blogPost?.description}
-            </Text>
-
-            <Text color={`${blogPost?.textColor?.value}`} variant="labelLarge">
+          )}
+        </View>
+        <View style={styles.contentContainer}>
+          <Text
+            color={blogPost?.textColor?.value}
+            variant="labelLarge"
+            numberOfLines={titleNumberOfLines}
+          >
+            {blogPost?.description}
+          </Text>
+          <View style={{ marginTop: spacing.spacing3 }}>
+            <Text color={blogPost?.textColor?.value} variant="labelLarge">
               {formatDate(blogPost?.date)}
             </Text>
           </View>
-        }
-      />
+        </View>
+      </View>
     </TouchableOpacity>
   )
 }
+
+const styles = StyleSheet.create({
+  card: {
+    width: '100%',
+    paddingHorizontal: 18,
+    paddingVertical: 13,
+    borderRadius: 16,
+    gap: 3,
+  },
+  titleContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: spacing.spacing2,
+  },
+
+  badge: {
+    position: 'absolute',
+    right: -18,
+    top: -13,
+    paddingHorizontal: 15,
+    paddingVertical: 10,
+    borderBottomLeftRadius: 16,
+    borderTopRightRadius: 16,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: 124,
+  },
+  badgeText: {
+    textTransform: 'uppercase',
+    marginLeft: 20,
+  },
+  contentContainer: {
+    flexDirection: 'column',
+  },
+})
 
 export default BlogCard

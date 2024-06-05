@@ -32,7 +32,7 @@
       "@libs/pdf-view":["./libs/pdf-view"],
       "@libs/map-view":["./libs/map-view"],
       "@libs/web-view":["./libs/web-view"],
-      "@izzo/async-local-storage":["./packages/async-local-storage"]
+      "@izzo/shared-async-storage":["./packages/async-local-storage"]
     }
   },
   "include": ["packages/**/*", "libs/**/*", "apps/**/*"]
