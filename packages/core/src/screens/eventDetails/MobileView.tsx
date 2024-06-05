@@ -15,11 +15,11 @@ import { useTheme } from 'react-native-paper'
 import { spacing } from '@libs/theme'
 import { dateformat, getDayName } from '@libs/utils'
 import { useTranslation } from 'react-i18next'
-import LocationCard from '@libs/map-view/src'
 import { ShimmerPlaceholder } from '@libs/skeletons'
 import { useNavigation } from '@react-navigation/native'
 import { Share } from '@libs/share'
 import { Icon } from '@libs/native-icons'
+import { LocationCard } from '../../components'
 
 interface MobileViewProps {
   eventData: any
@@ -160,6 +160,13 @@ const MobileView: React.FC<MobileViewProps> = ({
             }}
             onPress={() => {}}
           />
+          <Text variant="labelMedium" color={colors.textPrimary}>
+            {t('EVENT_CARD.SAVED_BY')}{' '}
+            <Text variant="labelLarge" color={colors.primary}>
+              {eventData?.savedCount || 0}
+            </Text>{' '}
+            {t('EVENT_CARD.OTHERS')}{' '}
+          </Text>
         </Flex>
         <Flex direction="column" style={{ gap: spacing.spacing3 }}>
           <Text variant="headlineMedium">{t('EVENT_DETAIL.WHEN')}</Text>

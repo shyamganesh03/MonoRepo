@@ -33,6 +33,8 @@ export default {
   },
   EVENT_CARD: {
     AT: 'at',
+    SAVED_BY: 'Saved by',
+    OTHERS: 'others',
   },
   LOCATION_CARD: {
     TICKETS: 'Tickets',

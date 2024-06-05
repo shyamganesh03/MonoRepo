@@ -55,8 +55,8 @@ const LocationCard = ({
         {eventData?.fromPrice && (
           <>
             <Text variant="headlineMedium">{t('LOCATION_CARD.TICKETS')}</Text>
-            <Text variant="labelMedium">
-              {t('LOCATION_CARD.PRICES_FROM')} {eventData?.fromPrice}
+            <Text variant="titleSmall">
+              {t('LOCATION_CARD.PRICES_FROM')} {eventData?.fromPrice}.-
             </Text>
           </>
         )}
