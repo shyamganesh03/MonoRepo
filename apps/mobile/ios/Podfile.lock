@@ -1349,6 +1349,10 @@ PODS:
   - RNUxcam (5.4.15):
     - React-Core
     - UXCam (~> 3.6.11)
+  - Smartlook (1.8.9)
+  - smartlook-react-native-bridge (1.2.8):
+    - React
+    - Smartlook (~> 1.8.6)
   - SocketRocket (0.6.1)
   - UXCam (3.6.13)
   - Yoga (1.14.0)
@@ -1455,6 +1459,7 @@ DEPENDENCIES:
   - RNShare (from `../../../node_modules/react-native-share`)
   - RNSVG (from `../../../node_modules/react-native-svg`)
   - RNUxcam (from `../../../node_modules/react-native-ux-cam`)
+  - smartlook-react-native-bridge (from `../../../node_modules/smartlook-react-native-wrapper`)
   - Yoga (from `../../../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
@@ -1490,6 +1495,7 @@ SPEC REPOS:
     - OpenSSL-Universal
     - PromisesObjC
     - PromisesSwift
+    - Smartlook
     - SocketRocket
     - UXCam
 
@@ -1629,6 +1635,8 @@ EXTERNAL SOURCES:
     :path: "../../../node_modules/react-native-svg"
   RNUxcam:
     :path: "../../../node_modules/react-native-ux-cam"
+  smartlook-react-native-bridge:
+    :path: "../../../node_modules/smartlook-react-native-wrapper"
   Yoga:
     :path: "../../../node_modules/react-native/ReactCommon/yoga"
 
@@ -1731,6 +1739,8 @@ SPEC CHECKSUMS:
   RNShare: 0fad69ae2d71de9d1f7b9a43acf876886a6cb99c
   RNSVG: 7c3f3fac9de6d67eee5525a8bafffafaaf022991
   RNUxcam: 687f2f8194a945977a77203f31d462e826e92799
+  Smartlook: 9a49d32502f9c659045c1a599aad495c2a0b9480
+  smartlook-react-native-bridge: 64fcd1c83495e1895ca14d2df9ccdf1b7b8a9f3c
   SocketRocket: f32cd54efbe0f095c4d7594881e52619cfe80b17
   UXCam: b92d8d1d0b3f0292716633564b14d9647b74fd5c
   Yoga: 64cd2a583ead952b0315d5135bf39e053ae9be70

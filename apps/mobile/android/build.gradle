@@ -21,6 +21,13 @@ buildscript {
         classpath("de.undercouch:gradle-download-task:5.5.0")
         classpath "com.google.android.libraries.mapsplatform.secrets-gradle-plugin:secrets-gradle-plugin:2.0.1"
     }
+allprojects {
+  repositories {
+    maven {
+      url "https://sdk.smartlook.com/android/release"
+    }
+  }
+}
 }
 
 apply plugin: "com.facebook.react.rootproject"
