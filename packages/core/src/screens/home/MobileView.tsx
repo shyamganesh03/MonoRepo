@@ -22,6 +22,7 @@ const MobileView = (props: any) => {
     navigation,
     handleGenreDetailNavigation,
     weekendEvents,
+    selectedLanguage,
   } = props
 
   const renderEventCard = ({ item }: any) => (
@@ -54,6 +55,35 @@ const MobileView = (props: any) => {
 
   const renderHeader = () => (
     <View style={{ flex: 1 }}>
+      <TouchableOpacity
+        style={{
+          flexDirection: 'row',
+          justifyContent: 'flex-end',
+          paddingHorizontal: 16,
+        }}
+        onPress={() => navigation.navigate('languageSettings')}
+      >
+        <Flex
+          direction="row"
+          style={{
+            paddingHorizontal: 12,
+            paddingVertical: 10,
+            borderWidth: 1,
+            borderColor: colors.neutral,
+            justifyContent: 'flex-end',
+            width: '20%',
+            borderRadius: 16,
+            alignItems: 'center',
+            columnGap: 10,
+          }}
+        >
+          <Icon name={selectedLanguage} width={24} height={24} />
+          <Text variant="titleSmall" textTransform="uppercase">
+            {selectedLanguage}
+          </Text>
+        </Flex>
+      </TouchableOpacity>
+
       <Flex
         style={{
           backgroundColor: colors.onPrimaryContainer,
@@ -62,6 +92,7 @@ const MobileView = (props: any) => {
           paddingVertical: 20,
           paddingHorizontal: 16,
           justifyContent: 'space-between',
+          marginTop: 30,
         }}
         direction="row"
       >
@@ -174,10 +205,7 @@ const MobileView = (props: any) => {
       data={placeholderData}
       keyExtractor={(_, index) => index.toString()}
       showsVerticalScrollIndicator={false}
-      contentContainerStyle={{
-        marginTop: spacing.spacing8,
-        paddingBottom: spacing.spacing13,
-      }}
+      contentContainerStyle={{ marginTop: 20, paddingBottom: 150 }}
       ListHeaderComponent={renderHeader}
       renderItem={() => null}
       style={{ backgroundColor: colors.background }}

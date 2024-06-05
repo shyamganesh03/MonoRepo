@@ -7,7 +7,7 @@ import {
   TextInput,
   ToggleSwitch,
 } from '@libs/components'
-import { ScrollView, TouchableOpacity } from 'react-native'
+import { ScrollView, TouchableOpacity, View } from 'react-native'
 import { MobileContainer } from '@libs/container'
 import { Izzo } from 'assets'
 import { Icon } from '@libs/native-icons'
@@ -20,6 +20,7 @@ import {
   privacyPolicyUrl,
   supportUrl,
 } from '../../utils/redirectUrl'
+import LinearGradient from 'react-native-linear-gradient'
 
 const ProfileTab = ({
   leftIconName,
@@ -51,7 +52,10 @@ const ProfileTab = ({
       >
         <Flex
           direction={!isUserCard ? 'row' : 'column'}
-          style={{ columnGap: 8 }}
+          style={[
+            { columnGap: 8 },
+            !isUserCard ? { alignItems: 'center' } : {},
+          ]}
         >
           {hasLeftIcon && (
             <Icon name={leftIconName} color={colors.textPrimary} />
@@ -113,38 +117,63 @@ const MobileView = ({
               style={{ marginBottom: 32 }}
             />
           ) : (
-            <Flex
-              direction="column"
-              style={{ gap: spacing.spacing7, marginBottom: spacing.spacing7 }}
-            >
-              <TextInput
-                onChangeText={(value: any) => {
-                  setEmail(value)
+            <>
+              <Flex
+                direction="column"
+                style={{
+                  gap: spacing.spacing7,
+                  marginBottom: spacing.spacing7,
                 }}
-                value={email}
-                style={{ height: 40 }}
-                placeholder={t('INPUT_TEXT.EMAIL_PLACEHOLDER')}
-                outlineStyle={{ borderWidth: 0 }}
-                left={
-                  <TextInput.Icon
-                    icon={() => (
-                      <Icon name="AtIcon" color={colors.onSurfaceVariant} />
-                    )}
-                    style={{ position: 'absolute', left: -18 }}
-                  />
-                }
-              />
+              >
+                <TextInput
+                  onChangeText={(value: any) => {
+                    setEmail(value)
+                  }}
+                  value={email}
+                  style={{ height: 40 }}
+                  placeholder={t('INPUT_TEXT.EMAIL_PLACEHOLDER')}
+                  outlineStyle={{ borderWidth: 0 }}
+                  left={
+                    <TextInput.Icon
+                      icon={() => (
+                        <Icon name="AtIcon" color={colors.onSurfaceVariant} />
+                      )}
+                      style={{ position: 'absolute', left: -18 }}
+                    />
+                  }
+                />
 
-              <Button
-                onPress={() => handleLogin()}
-                mode="contained"
-                label={t('BUTTON.Login_And_SIGN_UP')}
-                labelVariant="titleLarge"
-                labelStyle={{ color: colors.textPrimary }}
-                isLinearGradient
-                gradientColors={colors.gradient.primary}
-              />
-            </Flex>
+                <Button
+                  onPress={() => handleLogin()}
+                  mode="contained"
+                  label={t('BUTTON.Login_And_SIGN_UP')}
+                  labelVariant="titleLarge"
+                  labelStyle={{ color: colors.textPrimary }}
+                  isLinearGradient
+                  gradientColors={colors.gradient.primary}
+                />
+              </Flex>
+
+              <LinearGradient
+                colors={['red', 'blue']}
+                start={{ x: 1, y: 1 }}
+                end={{ x: 1, y: 1 }}
+                locations={[0.1, 0.6]}
+                style={{
+                  marginTop: 18,
+                  marginBottom: 32,
+                  borderRadius: 16,
+                }}
+              >
+                <Button
+                  onPress={() => handleLogin()}
+                  mode="contained"
+                  label={t('BUTTON.Login_And_SIGN_UP')}
+                  labelVariant="titleLarge"
+                  labelStyle={{ color: colors.textPrimary }}
+                />
+              </LinearGradient>
+            </>
           )}
           <ProfileTab
             heading={t('PROFILE.SAVED_EVENTS')}

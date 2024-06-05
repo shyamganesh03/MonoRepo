@@ -32,16 +32,23 @@ const MobileView: React.FC<MobileViewProps> = ({
   )
 
   return (
-    <MobileContainer backgroundColor={colors.background}>
+    <MobileContainer
+      backgroundColor={colors.background}
+      hasPadding={false}
+      style={{ paddingHorizontal: 16 }}
+    >
       {isLoading ? (
-        <ShimmerPlaceholder
-          style={{
-            width: '95%',
-            marginHorizontal: 16,
-            height: 150,
-            marginVertical: 16,
-          }}
-        />
+        [...Array(5)].map(() => (
+          <ShimmerPlaceholder
+            style={{
+              width: '95%',
+              marginHorizontal: 16,
+              height: 150,
+              marginVertical: 16,
+              borderRadius: 20,
+            }}
+          />
+        ))
       ) : (
         <FlatList
           data={savedEvents}
@@ -49,7 +56,6 @@ const MobileView: React.FC<MobileViewProps> = ({
           keyExtractor={(item) => item?.id}
           contentContainerStyle={{
             paddingBottom: 90,
-            paddingHorizontal: 16,
           }}
         />
       )}

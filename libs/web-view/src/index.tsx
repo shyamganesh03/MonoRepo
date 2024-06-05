@@ -5,15 +5,20 @@ import { Flex, IconButton, Loader, Text } from '@libs/components'
 import { useTheme } from 'react-native-paper'
 import { useNavigation } from '@react-navigation/native'
 import { t } from 'i18next'
+import { getItemAsync } from '@izzo/async-local-storage'
 
 const WebView = (props: any) => {
   const [currentUrl, setCurrentUrl] = useState(props?.uri)
   const [canGoBack, setCanGoBack] = useState(false)
   const [isLoading, setIsLoading] = useState(true)
+  const [targetLanguage, setTargetLanguage] = useState('')
   const webViewRef: any = useRef(null)
   const { colors } = useTheme<any>()
   const navigation = useNavigation()
-  const targetLanguage = 'en'
+
+  useEffect(() => {
+    getItemAsync('preferredLanguage').then((res: any) => setTargetLanguage(res))
+  }, [])
 
   useEffect(() => {
     const onBackPress = () => {
@@ -54,21 +59,24 @@ const WebView = (props: any) => {
             name="CloseRoundIcon"
             color="white"
             onPress={() => navigation.goBack()}
-            size={32}
           />
           <Flex direction="column">
             <Text color={colors.textPrimary} variant="labelMedium">
               {t('IZZ0')}
             </Text>
-            <Text color={colors.textPrimary} variant="labelMedium">
-              {currentUrl}
+            <Text
+              color={colors.textPrimary}
+              variant="labelMedium"
+              numberOfLines={1}
+            >
+              {props?.uri}
             </Text>
           </Flex>
         </View>
       )}
       <WebViewComponent
         source={{
-          uri: currentUrl.includes('izzo')
+          uri: currentUrl?.includes('izzo')
             ? `https://translate.google.com/translate?sl=auto&tl=${targetLanguage}&u=${props?.uri}`
             : currentUrl,
         }}
@@ -100,6 +108,7 @@ const WebView = (props: any) => {
             <Loader animating color={colors.textPrimary} size="small" />
           </View>
         )}
+        style={{ marginTop: -60 }}
       />
     </>
   )

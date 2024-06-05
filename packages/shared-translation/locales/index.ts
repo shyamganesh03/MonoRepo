@@ -1,2 +1,2 @@
 export { default as en } from './en'
-export { default as ta } from './de'
+export { default as de } from './de'

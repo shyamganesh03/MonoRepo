@@ -1,10 +1,12 @@
 import React from 'react'
 import { Text } from '@libs/components'
-import { useRoute } from '@react-navigation/native'
+import { MobileContainer } from '@libs/container'
 
 const MobileView = (props: any) => {
-  const route = useRoute()
-
-  return <Text>Search MobileView</Text>
+  return (
+    <MobileContainer>
+      <Text>Search MobileView</Text>
+    </MobileContainer>
+  )
 }
 export default MobileView

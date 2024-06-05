@@ -1,12 +1,9 @@
 import React from 'react'
-import { Flex, IconButton, Text } from '@libs/components'
 import { FlatList, View } from 'react-native'
 import { ShimmerPlaceholder } from '@libs/skeletons'
 import { useTheme } from 'react-native-paper'
 import { GenreCard } from '../../components'
-import { t } from 'i18next'
 import { MobileContainer } from '@libs/container'
-import { spacing } from '@libs/theme'
 
 interface MobileViewProps {
   isLoading: boolean
@@ -18,13 +15,13 @@ interface MobileViewProps {
 const MobileView: React.FC<MobileViewProps> = ({
   isLoading,
   genresData,
-  handleBackNavigation,
+
   handleGenreDetailNavigation,
 }) => {
   const { colors } = useTheme<any>()
 
   const renderGenreCard = ({ item }: { item: any }) => (
-    <View style={{ width: 150, height: 88 }}>
+    <View style={{ width: 160, height: 88 }}>
       <GenreCard
         genreDetail={item}
         handleGenreDetailNavigation={handleGenreDetailNavigation}
@@ -34,29 +31,6 @@ const MobileView: React.FC<MobileViewProps> = ({
 
   return (
     <MobileContainer backgroundColor={colors.background}>
-      <Flex
-        direction="row"
-        style={{
-          alignItems: 'center',
-          paddingBottom: spacing.spacing7,
-        }}
-      >
-        <IconButton
-          name="ArrowLeftIcon"
-          color={colors.textPrimary}
-          onPress={handleBackNavigation}
-        />
-        <View
-          style={{
-            flex: 1,
-            marginRight: 20,
-          }}
-        >
-          <Text variant="headlineMedium" textAlign="center">
-            {t('HOME.GENRES')}
-          </Text>
-        </View>
-      </Flex>
       {isLoading ? (
         <ShimmerPlaceholder
           style={{

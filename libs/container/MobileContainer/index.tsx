@@ -3,6 +3,7 @@ import { View } from 'react-native'
 import { spacing } from '@libs/theme'
 import KeyBoardView from '../KeyBoardView'
 import { Flex } from '@libs/components'
+import { useTheme } from 'react-native-paper'
 
 const MobileContainer = (props: any) => {
   const {
@@ -14,6 +15,8 @@ const MobileContainer = (props: any) => {
     direction = 'column',
     ...rest
   } = props
+
+  const { colors } = useTheme()
 
   if (hasKeyBoard) {
     return (
@@ -30,7 +33,6 @@ const MobileContainer = (props: any) => {
               flex: 1,
               height: '100%',
               backgroundColor: backgroundColor,
-              marginBottom: spacing.spacing10,
             },
             style,
           ]}
@@ -51,7 +53,10 @@ const MobileContainer = (props: any) => {
               paddingVertical: spacing.spacing8,
             }
           : '',
-        { height: '100%', backgroundColor: backgroundColor },
+        {
+          height: '100%',
+          backgroundColor: backgroundColor || colors.background,
+        },
         style,
       ]}
       {...rest}

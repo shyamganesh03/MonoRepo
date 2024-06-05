@@ -4,7 +4,6 @@ import {
   CheckBox,
   DropDown,
   Flex,
-  IconButton,
   Text,
   TextInput,
 } from '@libs/components'
@@ -14,36 +13,14 @@ import { useTheme } from 'react-native-paper'
 
 const MobileView = (props: any) => {
   const { colors } = useTheme<any>()
-  const { handleBackNavigation, userDetails, regionsData, handleChangeText } =
-    props
+  const { userDetails, regionsData, handleChangeText } = props
 
   return (
     <KeyboardAvoidingView
-      style={{ flex: 1 }}
+      style={{ flex: 1, backgroundColor: colors.background }}
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
     >
       <ScrollView contentContainerStyle={{ paddingHorizontal: 16 }}>
-        <Flex
-          direction="row"
-          style={{
-            marginVertical: 16,
-            alignItems: 'center',
-            marginTop: 56,
-          }}
-        >
-          <IconButton
-            name="ArrowLeftIcon"
-            color={colors.textPrimary}
-            onPress={() => {
-              handleBackNavigation()
-            }}
-          />
-          <View style={{ flex: 1, marginRight: 20 }}>
-            <Text variant="headlineMedium" textAlign="center">
-              {t('PROFILE_SETTINGS.TITLE')}
-            </Text>
-          </View>
-        </Flex>
         <View style={{ marginTop: 16 }}>
           <Text variant="titleLarge">{t('PROFILE_SETTINGS.NAME')}</Text>
           <Flex direction="column" style={{ marginTop: 16, rowGap: 8 }}>
@@ -121,7 +98,7 @@ const MobileView = (props: any) => {
         >
           <CheckBox
             style={{ backgroundColor: colors.secondaryContainer }}
-            status={userDetails?.isSendOffersAndNews ? 'checked' : 'unchecked'}
+            status={userDetails?.isSendOffersAndNews}
             onPress={() =>
               handleChangeText(
                 'isSendOffersAndNews',

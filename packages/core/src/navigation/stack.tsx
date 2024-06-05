@@ -13,11 +13,12 @@ import NotificationSettings from '../screens/notificationSettings'
 import ProfileSettings from '../screens/profileSettings'
 import SavedEvents from '../screens/savedEvents'
 import PdfView from '../screens/pdfView'
+import { View } from 'react-native'
 import { Flex, IconButton, Text } from '@libs/components'
 import { useNavigation } from '@react-navigation/native'
 import { useTheme } from 'react-native-paper'
 import { t } from 'i18next'
-import { View } from 'react-native'
+import LanguageSelector from '../screens/language'
 
 const Stack = createNativeStackNavigator()
 
@@ -49,12 +50,68 @@ const Stacks = () => {
       <Stack.Screen
         name="news"
         component={News}
-        options={{ headerShown: false }}
+        options={{
+          header: () => (
+            <Flex
+              direction="row"
+              style={{
+                paddingHorizontal: 16,
+                paddingVertical: 32,
+                alignItems: 'center',
+                backgroundColor: colors.background,
+              }}
+            >
+              <IconButton
+                name="ArrowLeftIcon"
+                color={colors.textPrimary}
+                iconStyle={{ height: 20, width: 20 }}
+                onPress={() => {
+                  navigation.goBack()
+                }}
+              />
+              <View style={{ flex: 1, marginRight: 20 }}>
+                <Text variant="headlineMedium" textAlign="center">
+                  {t('HOME.NEWS')}
+                </Text>
+              </View>
+            </Flex>
+          ),
+        }}
       />
       <Stack.Screen
         name="genres"
         component={Genres}
-        options={{ headerShown: false }}
+        options={{
+          header: () => (
+            <Flex
+              direction="row"
+              style={{
+                paddingHorizontal: 16,
+                paddingVertical: 32,
+                alignItems: 'center',
+                backgroundColor: colors.background,
+              }}
+            >
+              <IconButton
+                name="ArrowLeftIcon"
+                color={colors.textPrimary}
+                onPress={() => {
+                  navigation.goBack()
+                }}
+              />
+              <View
+                style={{
+                  flex: 1,
+                  marginRight: 20,
+                }}
+              >
+                <Text variant="headlineMedium" textAlign="center">
+                  {t('HOME.GENRES')}
+                </Text>
+              </View>
+            </Flex>
+          ),
+        }}
       />
       <Stack.Screen
         name="eventDetail"
@@ -177,6 +234,37 @@ const Stacks = () => {
         name="pdfView"
         component={PdfView}
         options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="languageSettings"
+        component={LanguageSelector}
+        options={{
+          header: () => (
+            <Flex
+              direction="row"
+              style={{
+                paddingHorizontal: 16,
+                paddingVertical: 32,
+                alignItems: 'center',
+                backgroundColor: colors.background,
+              }}
+            >
+              <IconButton
+                name="ArrowLeftIcon"
+                color={colors.textPrimary}
+                iconStyle={{ height: 20, width: 20 }}
+                onPress={() => {
+                  navigation.goBack()
+                }}
+              />
+              <View style={{ flex: 1, marginRight: 20 }}>
+                <Text variant="headlineMedium" textAlign="center">
+                  {t('BUTTON.CHANGE_LANGUAGE')}
+                </Text>
+              </View>
+            </Flex>
+          ),
+        }}
       />
     </Stack.Navigator>
   )

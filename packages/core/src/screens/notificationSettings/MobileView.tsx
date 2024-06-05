@@ -12,14 +12,14 @@ const MobileView = () => {
 
   return (
     <MobileContainer backgroundColor={colors.background}>
-      <Flex direction="column" style={{ paddingHorizontal: 16, marginTop: 8 }}>
+      <Flex direction="column">
         <Text variant="bodyMedium">
           {t('NOTIFICATION_SETTINGS.DESCRIPTION')}
         </Text>
         <Button
           style={{
-            marginTop: 14,
             marginBottom: 32,
+            marginTop: 20,
             backgroundColor: colors.primary,
           }}
           onPress={() => Linking.openSettings()}

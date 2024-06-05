@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
 import { View, StyleSheet } from 'react-native'
 import PDFView from 'react-native-view-pdf'
-import { Flex, IconButton, Text } from '@libs/components'
+import { Button, Flex, IconButton, Text } from '@libs/components'
 import { t } from 'i18next'
 import { useTheme } from 'react-native-paper'
 import { useNavigation } from '@react-navigation/native'
+import RNFetchBlob from 'rn-fetch-blob'
 
 const PdfView = (props: any) => {
   const [isLoading, setIsLoading] = useState(true)
@@ -17,8 +18,37 @@ const PdfView = (props: any) => {
   }
   const navigation = useNavigation()
 
+  async function downloadPdf() {
+    const fileName = resources?.url?.includes('agb')
+      ? 'IzzoAGBs.pdf'
+      : 'IzzoPrivacyPolicy.pdf'
+    try {
+      const { config, fs } = RNFetchBlob
+      const downloads = fs.dirs.DownloadDir
+      const filePath = `${downloads}/${fileName}`
+      const exists = await fs.exists(filePath)
+
+      if (exists) {
+        await fs.unlink(filePath)
+      }
+
+      await config({
+        fileCache: true,
+        addAndroidDownloads: {
+          useDownloadManager: true,
+          notification: true,
+          path: filePath,
+          description: 'Downloading PDF document',
+          mediaScannable: true,
+        },
+      }).fetch('GET', resources?.url)
+    } catch (err) {
+      console.warn(err)
+    }
+  }
+
   return (
-    <View style={{ flex: 1 }}>
+    <View style={{ flex: 1, backgroundColor: colors.textSecondary }}>
       <View
         style={{
           flexDirection: 'row',
@@ -35,14 +65,8 @@ const PdfView = (props: any) => {
           onPress={() => navigation.goBack()}
         />
         <Flex direction="column">
-          <Text style={{ color: colors.textPrimary }} variant="labelMedium">
-            {t('IZZ0')}
-          </Text>
-          <Text
-            style={{ color: colors.textPrimary }}
-            variant="labelMedium"
-            numberOfLines={1}
-          >
+          <Text variant="labelMedium">{t('IZZ0')}</Text>
+          <Text variant="labelMedium" numberOfLines={1}>
             {resources?.url}
           </Text>
         </Flex>
@@ -63,9 +87,18 @@ const PdfView = (props: any) => {
         }}
       />
 
+      <Button
+        label="Download PDF"
+        labelStyle={{
+          color: colors.textPrimary,
+        }}
+        style={{ paddingVertical: 5 }}
+        onPress={() => downloadPdf()}
+      />
+
       {isPageCountVisible && (
         <View style={styles.pageCount}>
-          <Text style={{ color: colors.textPrimary }} variant="labelMedium">
+          <Text color={colors.textPrimary} variant="labelMedium">
             {currentPage} / {totalPages}
           </Text>
         </View>

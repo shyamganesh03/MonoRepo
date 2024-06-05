@@ -53,6 +53,7 @@ export default {
     BACK: 'Back',
     SIGN_UP: 'SignUp',
     USE_AS_GUEST: 'Use as Guest',
+    CHANGE_LANGUAGE: 'Change Language',
   },
   PROFILE: {
     SAVED_EVENTS: 'My Saved Events',

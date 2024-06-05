@@ -4,3 +4,5 @@ include ':app'
 includeBuild('../../../node_modules/@react-native/gradle-plugin')
 include ':react-native-view-pdf'
 project(':react-native-view-pdf').projectDir = new File(rootProject.projectDir, '../../../node_modules/react-native-view-pdf/android')
+include ':react-native-async-storage'
+project(':react-native-async-storage').projectDir = new File(rootProject.projectDir, '../../../node_modules/@react-native-async-storage/async-storage/android')

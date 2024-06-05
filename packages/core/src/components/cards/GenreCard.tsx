@@ -16,7 +16,7 @@ const GenreCard = ({
     <TouchableOpacity
       style={{
         width: '100%',
-        maxWidth: 150,
+        maxWidth: 160,
         borderRadius: 16,
       }}
       key={genreDetail?.id}
@@ -27,7 +27,7 @@ const GenreCard = ({
           backgroundColor: colors.primaryContainer,
           width: '100%',
           maxWidth: 150,
-          paddingHorizontal: 30,
+          paddingHorizontal: 25,
           height: '100%',
           maxHeight: 87.5,
           borderRadius: 16,
