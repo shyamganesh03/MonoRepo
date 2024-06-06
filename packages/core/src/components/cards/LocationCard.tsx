@@ -6,7 +6,6 @@ import { Button, Flex, Text } from '@libs/components'
 import { useTranslation } from 'react-i18next'
 import Map from '@libs/map-view/src'
 import { useNavigation } from '@react-navigation/native'
-import LinearGradient from 'react-native-linear-gradient'
 
 interface LocationCardProps {
   height?: number
@@ -61,26 +60,21 @@ const LocationCard = ({
           </>
         )}
       </Flex>
-      <LinearGradient
-        colors={colors.gradient.primary}
-        style={{
-          marginTop: spacing.spacing4,
-          borderRadius: 16,
-        }}
-      >
-        <Button
-          onPress={() =>
-            navigation.navigate('webView', {
-              uri: eventData?.ticketLink,
-            })
-          }
-          mode="contained"
-          label={t('BUTTON.BUY_TICKETS')}
-          labelVariant="titleLarge"
-          labelStyle={{ color: colors.textPrimary }}
-          disabled={!eventData?.ticketLink}
-        />
-      </LinearGradient>
+
+      <Button
+        onPress={() =>
+          navigation.navigate('webView', {
+            uri: eventData?.ticketLink,
+          })
+        }
+        mode="contained"
+        label={t('BUTTON.BUY_TICKETS')}
+        labelVariant="titleLarge"
+        labelStyle={{ color: colors.textPrimary }}
+        disabled={!eventData?.ticketLink}
+        isLinearGradient
+        gradientColors={colors.gradient.primary}
+      />
     </Surface>
   )
 }
