@@ -3,8 +3,11 @@ import { ScreenLayout } from '@libs/utils'
 import DesktopView from './DesktopView'
 import MobileView from './MobileView'
 import { isValidEmail } from '@libs/utils'
+import Login from '../../components/auth/Login'
+import LoginAndSignUp from '../../components/auth/LoginAndSignUp'
+import Registration from '../../components/auth/Registration'
 
-const Auth = () => {
+const Auth = (props: any) => {
   const [userDetails, setUserDetails] = useState({
     email: '',
     password: '',
@@ -12,12 +15,21 @@ const Auth = () => {
     surname: '',
     address: '',
     canon: '',
+    agb: false,
+    canSendOfferAndNews: false,
   })
   const [errorMessage, setErrorMessage] = useState<any>({
     email: '',
     password: '',
-    confirmPassword: '',
+    username: '',
+    surname: '',
+    address: '',
+    canon: '',
+    agb: false,
+    canSendOfferAndNews: false,
   })
+
+  const currentRoute = props.route
 
   const handleValidation = (name: string, value: string) => {
     setUserDetails({ ...userDetails, [name]: value })
@@ -55,7 +67,36 @@ const Auth = () => {
     ScreenLayout.withLayoutView(DesktopView, MobileView, MobileView),
     [],
   )
-  const viewProps = { userDetails, handleValidation, errorMessage }
+  const routes = {
+    loginAndSignUp: (
+      <LoginAndSignUp
+        handleValidation={handleValidation}
+        userDetails={userDetails}
+        errorMessage={errorMessage}
+      />
+    ),
+    login: (
+      <Login
+        handleValidation={handleValidation}
+        userDetails={userDetails}
+        errorMessage={{ ...errorMessage }}
+      />
+    ),
+    register: (
+      <Registration
+        handleValidation={handleValidation}
+        userDetails={userDetails}
+        errorMessage={{ ...errorMessage }}
+      />
+    ),
+  }
+  const viewProps = {
+    userDetails,
+    handleValidation,
+    errorMessage,
+    //@ts-ignore
+    renderComponent: routes[currentRoute.name],
+  }
 
   return (
     <Suspense fallback={<></>}>

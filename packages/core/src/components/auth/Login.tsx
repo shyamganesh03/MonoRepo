@@ -33,13 +33,12 @@ const Login = ({ handleValidation, userDetails, errorMessage }: any) => {
         handleValidation('email', value)
       }}
       value={userDetails.email}
-      style={{ height: 40 }}
       placeholder={t('INPUT_TEXT.EMAIL_PLACEHOLDER')}
       outlineStyle={{ borderWidth: 0 }}
       left={
         <TextInput.Icon
           icon={() => <Icon name="AtIcon" color={colors.onSurfaceVariant} />}
-          style={{ position: 'absolute', left: -25 }}
+          style={{ position: 'absolute', left: -18 }}
         />
       }
       error={errorMessage.email}
@@ -54,7 +53,7 @@ const Login = ({ handleValidation, userDetails, errorMessage }: any) => {
       value={userDetails.password}
       placeholder={t('INPUT_TEXT.PASSWORD_PLACEHOLDER')}
       style={{ height: 40 }}
-      error={errorMessage.password}
+      errorMessage={errorMessage.password}
     />
   )
 

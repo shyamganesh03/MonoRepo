@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Button, Flex, Text, TextInput } from '@libs/components'
 import { Divider, useTheme } from 'react-native-paper'
 import { useTranslation } from 'react-i18next'
@@ -44,7 +44,7 @@ const LoginAndSignUp = ({
               icon={() => (
                 <Icon name="AtIcon" color={colors.onSurfaceVariant} />
               )}
-              style={{ position: 'absolute', left: -25 }}
+              style={{ position: 'absolute', left: -18 }}
             />
           }
           error={errorMessage.email}

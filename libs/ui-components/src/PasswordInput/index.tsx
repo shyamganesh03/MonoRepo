@@ -6,13 +6,32 @@ import { View } from 'react-native'
 import TextInput from '../TextInput'
 import { Icon } from '@libs/native-icons'
 
-const PasswordTextInput = (props: any) => {
+interface PasswordTextInputProps {
+  onFocus?: any
+  placeholder: string
+  onBlur?: any
+  onChangeText?: any
+  errorMessage?: any
+  outlineColor?: string
+  mode?: 'outlined' | 'flat' | undefined
+  placeholderTextColor?: string
+  label?: string
+  value?: any
+  style?: any
+}
+
+const PasswordTextInput = (props: PasswordTextInputProps) => {
   const {
     onFocus = () => {},
     placeholder,
     onBlur = () => {},
     onChangeText = () => {},
     errorMessage,
+    outlineColor,
+    mode,
+    placeholderTextColor,
+    value,
+    style,
   } = props
   const [showPassword, setShowPassword] = React.useState(true)
   const [label, setLabel] = useState('')
@@ -21,21 +40,22 @@ const PasswordTextInput = (props: any) => {
     <View>
       <TextInput
         {...props}
+        style={style}
         onChangeText={(text: any) => {
           onChangeText(text)
         }}
         placeholder={placeholder}
         onKeyPress={({ nativeEvent }: any) => {
           if (nativeEvent.key === 'Enter') {
-            props?.method()
           }
         }}
-        outlineColor={props.outlineColor}
-        mode={props?.mode || 'outlined'}
-        placeholderTextColor={props?.placeholderTextColor}
+        outlineColor={outlineColor}
+        value={value}
+        mode={mode || 'outlined'}
+        placeholderTextColor={placeholderTextColor}
         secureTextEntry={showPassword}
         onFocus={() => {
-          setLabel(props.label)
+          setLabel(label)
           onFocus()
         }}
         label={label}

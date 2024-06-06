@@ -130,7 +130,7 @@ const MobileView = ({
                     icon={() => (
                       <Icon name="AtIcon" color={colors.onSurfaceVariant} />
                     )}
-                    style={{ position: 'absolute', left: -20 }}
+                    style={{ position: 'absolute', left: -18 }}
                   />
                 }
               />

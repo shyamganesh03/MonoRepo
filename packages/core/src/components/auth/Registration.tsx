@@ -17,19 +17,6 @@ const Registration = ({ handleValidation, userDetails, errorMessage }: any) => {
   const { colors } = useTheme<any>()
   const { t } = useTranslation()
   const [currentStep, setCurrentStep] = useState(1)
-  const [checkBoxes, setCheckBoxes] = useState({
-    checkbox1: false,
-    checkbox2: false,
-  })
-
-  const handleCheckBox = (checkboxName: any) => {
-    setCheckBoxes({
-      ...checkBoxes,
-      [checkboxName]: !checkBoxes[checkboxName],
-    })
-  }
-
-  const isButtonDisabled = !(checkBoxes.checkbox1 && checkBoxes.checkbox2)
 
   const handleNextStep = () => {
     setCurrentStep(currentStep + 1)
@@ -75,7 +62,7 @@ const Registration = ({ handleValidation, userDetails, errorMessage }: any) => {
                   icon={() => (
                     <Icon name="AtIcon" color={colors.onSurfaceVariant} />
                   )}
-                  style={{ position: 'absolute', left: -25 }}
+                  style={{ position: 'absolute', left: -18 }}
                 />
               }
               error={errorMessage.email}
@@ -115,7 +102,7 @@ const Registration = ({ handleValidation, userDetails, errorMessage }: any) => {
               value={userDetails.password}
               placeholder={t('INPUT_TEXT.PASSWORD_PLACEHOLDER')}
               style={{ height: 40 }}
-              error={errorMessage.password}
+              errorMessage={errorMessage.password}
             />
 
             <PasswordTextInput
@@ -125,14 +112,14 @@ const Registration = ({ handleValidation, userDetails, errorMessage }: any) => {
               value={userDetails.confirmPassword}
               placeholder={t('INPUT_TEXT.CONFIRM_PASSWORD_PLACEHOLDER')}
               style={{ height: 40 }}
-              error={errorMessage.confirmPassword}
+              errorMessage={errorMessage.confirmPassword}
             />
 
             <Flex direction="row" style={{ gap: 10, alignItems: 'center' }}>
               <CheckBox
                 style={{ backgroundColor: colors.secondaryContainer }}
-                onPress={() => handleCheckBox('checkbox1')}
-                status={checkBoxes.checkbox1}
+                onPress={(value: any) => handleValidation('agb', value)}
+                status={userDetails.agb}
               />
               <Text variant="titleLarge" color={colors.textPrimary}>
                 {t('AUTH.CHECKBOX1')}
@@ -140,9 +127,11 @@ const Registration = ({ handleValidation, userDetails, errorMessage }: any) => {
             </Flex>
             <Flex direction="row" style={{ gap: 10, alignItems: 'center' }}>
               <CheckBox
-                onPress={() => handleCheckBox('checkbox2')}
+                onPress={(value: any) =>
+                  handleValidation('canSendOfferAndNews', value)
+                }
                 style={{ backgroundColor: colors.secondaryContainer }}
-                status={checkBoxes.checkbox2}
+                status={userDetails.canSendOfferAndNews}
               />
               <Text variant="titleLarge" color={colors.textPrimary}>
                 {t('AUTH.CHECKBOX2')}
