@@ -96,7 +96,11 @@ const MobileView = ({
     <ScrollView
       contentContainerStyle={{ flex: 1, backgroundColor: colors.background }}
     >
-      <MobileContainer hasKeyBoard backgroundColor={colors.background}>
+      <MobileContainer
+        hasKeyBoard
+        backgroundColor={colors.background}
+        style={{ paddingHorizontal: 16 }}
+      >
         <Flex
           direction="row"
           style={{
@@ -113,7 +117,7 @@ const MobileView = ({
               description={userDetails.email}
               handlePress={handlePress}
               isUserCard
-              style={{ marginBottom: 32 }}
+              style={{ marginBottom: 32, marginTop: 10 }}
             />
           ) : (
             <View style={{ marginTop: 16 }}>

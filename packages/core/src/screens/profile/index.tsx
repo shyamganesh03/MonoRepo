@@ -40,7 +40,7 @@ const Profile = () => {
 
   const viewProps = {
     drunkMode,
-    userDetails, //: { email: 'logeshwaran.t@increscotech.com', name: 'Logeshwaran ' },
+    userDetails,
     handleToggleDrunkMode,
     handleLogin,
     handleNavigation,
