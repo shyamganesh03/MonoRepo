@@ -15,8 +15,6 @@ const Profile = () => {
 
   const navigation = useNavigation()
 
-  const user = { email: 'logeshwaran.t@increscotech.com', name: 'Logeshwaran ' }
-
   const { data: userDetails } = useQuery({
     queryKey: ['userDetails'],
     queryFn: () => {
@@ -42,7 +40,7 @@ const Profile = () => {
 
   const viewProps = {
     drunkMode,
-    userDetails: user,
+    userDetails, //: { email: 'logeshwaran.t@increscotech.com', name: 'Logeshwaran ' },
     handleToggleDrunkMode,
     handleLogin,
     handleNavigation,

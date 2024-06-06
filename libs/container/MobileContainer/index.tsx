@@ -27,6 +27,7 @@ const MobileContainer = (props: any) => {
                 }
               : '',
             {
+              flex: 1,
               height: '100%',
               backgroundColor: backgroundColor,
               marginBottom: spacing.spacing10,

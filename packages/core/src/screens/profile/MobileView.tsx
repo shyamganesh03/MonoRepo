@@ -14,7 +14,6 @@ import { Icon } from '@libs/native-icons'
 import { useTheme } from 'react-native-paper'
 import { spacing } from '@libs/theme'
 import { useTranslation } from 'react-i18next'
-import LinearGradient from 'react-native-linear-gradient'
 import {
   agbUrl,
   faqUrl,
@@ -91,7 +90,9 @@ const MobileView = ({
   const { colors } = useTheme<any>()
 
   return (
-    <ScrollView>
+    <ScrollView
+      contentContainerStyle={{ flex: 1, backgroundColor: colors.background }}
+    >
       <MobileContainer hasKeyBoard backgroundColor={colors.background}>
         <Flex
           direction="row"
@@ -112,40 +113,37 @@ const MobileView = ({
               style={{ marginBottom: 32 }}
             />
           ) : (
-            <Flex direction="column" style={{ gap: spacing.spacing7 }}>
+            <Flex
+              direction="column"
+              style={{ gap: spacing.spacing7, marginBottom: spacing.spacing7 }}
+            >
               <TextInput
+                onChangeText={(value: any) => {
+                  setEmail(value)
+                }}
+                value={email}
+                style={{ height: 40 }}
                 placeholder={t('INPUT_TEXT.EMAIL_PLACEHOLDER')}
                 outlineStyle={{ borderWidth: 0 }}
-                onChangeText={(value: string) => setEmail(value)}
-                value={email}
                 left={
                   <TextInput.Icon
                     icon={() => (
                       <Icon name="AtIcon" color={colors.onSurfaceVariant} />
                     )}
-                    style={{ position: 'absolute', left: -25 }}
+                    style={{ position: 'absolute', left: -20 }}
                   />
                 }
               />
-              <LinearGradient
-                colors={['red', 'blue']}
-                start={{ x: 1, y: 1 }}
-                end={{ x: 1, y: 1 }}
-                locations={[0.1, 0.6]}
-                style={{
-                  marginTop: 14,
-                  marginBottom: 32,
-                  borderRadius: 16,
-                }}
-              >
-                <Button
-                  onPress={() => handleLogin()}
-                  mode="contained"
-                  label={t('BUTTON.Login_And_SIGN_UP')}
-                  labelVariant="titleLarge"
-                  labelStyle={{ color: colors.textPrimary }}
-                />
-              </LinearGradient>
+
+              <Button
+                onPress={() => handleLogin()}
+                mode="contained"
+                label={t('BUTTON.Login_And_SIGN_UP')}
+                labelVariant="titleLarge"
+                labelStyle={{ color: colors.textPrimary }}
+                isLinearGradient
+                gradientColors={colors.gradient.primary}
+              />
             </Flex>
           )}
           <ProfileTab
