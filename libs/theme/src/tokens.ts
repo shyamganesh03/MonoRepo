@@ -14,102 +14,105 @@ export const opacity = {
   level9: 0.9,
 }
 
+const getFontWeight = (weight: string) =>
+  Platform.OS === 'android' ? undefined : weight
+
 export const typography = {
   displaySmall: {
     fontFamily: `${SCULPIN}-Regular`,
     fontSize: 20,
     letterSpacing: 0,
-    fontWeight: Platform.OS === 'android' ? '' : '400',
+    fontWeight: getFontWeight('400'),
   },
   displayMedium: {
     fontFamily: `${SCULPIN}-Regular`,
     fontSize: 22,
     letterSpacing: 0,
-    fontWeight: Platform.OS === 'android' ? '' : '400',
+    fontWeight: getFontWeight('400'),
   },
   displayLarge: {
     fontFamily: `${SCULPIN}-Regular`,
     fontSize: 24,
     letterSpacing: 0,
-    fontWeight: Platform.OS === 'android' ? '' : '400',
+    fontWeight: getFontWeight('400'),
   },
   headlineSmall: {
     fontFamily: `${SCULPIN}-Bold`,
     fontSize: 20,
     letterSpacing: 0,
-    fontWeight: Platform.OS === 'android' ? '' : '700',
+    fontWeight: getFontWeight('700'),
   },
   headlineMedium: {
     fontFamily: `${SCULPIN}-Bold`,
     fontSize: 24,
     letterSpacing: 0,
-    fontWeight: Platform.OS === 'android' ? '' : '700',
+    fontWeight: getFontWeight('700'),
   },
   headlineLarge: {
     fontFamily: `${SCULPIN}-Bold`,
     fontSize: 28,
     letterSpacing: 0,
-    fontWeight: Platform.OS === 'android' ? '' : '700',
+    fontWeight: getFontWeight('700'),
   },
   titleSmall: {
     fontFamily: `${SCULPIN}-Medium`,
     fontSize: 14,
     letterSpacing: 0.1,
-    fontWeight: Platform.OS === 'android' ? '' : '500',
+    fontWeight: getFontWeight('500'),
   },
   titleMedium: {
     fontFamily: `${SCULPIN}-Medium`,
     fontSize: 16,
     letterSpacing: 0.15,
-    fontWeight: Platform.OS === 'android' ? '' : '500',
+    fontWeight: getFontWeight('500'),
   },
   titleLarge: {
     fontFamily: `${SCULPIN}-Bold`,
     fontSize: 16,
     letterSpacing: 0,
-    fontWeight: Platform.OS === 'android' ? '' : '700',
+    fontWeight: getFontWeight('700'),
   },
   titleXL: {
     fontFamily: `${SCULPIN}-Medium`,
     fontSize: 20,
     letterSpacing: 0.1,
-    fontWeight: Platform.OS === 'android' ? '' : '500',
+    fontWeight: getFontWeight('500'),
   },
   labelSmall: {
     fontFamily: `${SCULPIN}-Medium`,
     fontSize: 11,
     letterSpacing: 0.5,
-    fontWeight: Platform.OS === 'android' ? '' : '500',
+    fontWeight: getFontWeight('500'),
   },
   labelMedium: {
     fontFamily: `${SCULPIN}-Medium`,
     fontSize: 12,
     letterSpacing: 0.5,
-    fontWeight: Platform.OS === 'android' ? '' : '500',
+    fontWeight: getFontWeight('500'),
   },
   labelLarge: {
     fontFamily: `${SCULPIN}-Bold`,
     fontSize: 12,
     letterSpacing: 0.1,
-    fontWeight: Platform.OS === 'android' ? '' : '700',
+    fontWeight: getFontWeight('700'),
   },
   bodySmall: {
     fontFamily: `${SCULPIN}-Regular`,
     fontSize: 12,
     letterSpacing: 0.4,
-    fontWeight: Platform.OS === 'android' ? '' : '400',
+    fontWeight: getFontWeight('400'),
   },
   bodyMedium: {
     fontFamily: `${SCULPIN}-Regular`,
     fontSize: 14,
     letterSpacing: 0.25,
-    fontWeight: Platform.OS === 'android' ? '' : '400',
+    fontWeight: getFontWeight('400'),
   },
   bodyLarge: {
     fontFamily: `${SCULPIN}-Regular`,
     fontSize: 16,
     letterSpacing: 0.15,
-    fontWeight: Platform.OS === 'android' ? '' : '400',
+    fontWeight: getFontWeight('400'),
   },
 }
 

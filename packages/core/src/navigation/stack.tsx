@@ -26,7 +26,7 @@ const Stacks = () => {
   const navigation = useNavigation()
   const { colors } = useTheme<any>()
   return (
-    <Stack.Navigator initialRouteName="login">
+    <Stack.Navigator initialRouteName="home">
       <Stack.Screen
         name="home"
         component={HomePage}

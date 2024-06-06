@@ -1126,6 +1126,10 @@ PODS:
   - react-native-branch (6.2.1):
     - BranchSDK (= 3.4.1)
     - React-Core
+  - react-native-geolocation (3.2.1):
+    - glog
+    - RCT-Folly (= 2022.05.16.00)
+    - React-Core
   - react-native-google-maps (1.15.4):
     - Google-Maps-iOS-Utils (= 4.2.2)
     - GoogleMaps (= 7.4.0)
@@ -1422,6 +1426,7 @@ DEPENDENCIES:
   - React-Mapbuffer (from `../../../node_modules/react-native/ReactCommon`)
   - "react-native-blur (from `../../../node_modules/@react-native-community/blur`)"
   - react-native-branch (from `../../../node_modules/react-native-branch`)
+  - "react-native-geolocation (from `../../../node_modules/@react-native-community/geolocation`)"
   - react-native-google-maps (from `../../../node_modules/react-native-maps`)
   - react-native-maps (from `../../../node_modules/react-native-maps`)
   - react-native-safe-area-context (from `../../../node_modules/react-native-safe-area-context`)
@@ -1561,6 +1566,8 @@ EXTERNAL SOURCES:
     :path: "../../../node_modules/@react-native-community/blur"
   react-native-branch:
     :path: "../../../node_modules/react-native-branch"
+  react-native-geolocation:
+    :path: "../../../node_modules/@react-native-community/geolocation"
   react-native-google-maps:
     :path: "../../../node_modules/react-native-maps"
   react-native-maps:
@@ -1702,6 +1709,7 @@ SPEC CHECKSUMS:
   React-Mapbuffer: 63913773ed7f96b814a2521e13e6d010282096ad
   react-native-blur: 27113acc008facbc8accae5fb3a78b8424f64cfd
   react-native-branch: 7b2bc2b465629b1c06512464fe1185e80e9d472d
+  react-native-geolocation: 0ac6e11c1097d61b3836ab570c48c2bebb052604
   react-native-google-maps: f19b116daa81b3fb347227373eccf26efe800c32
   react-native-maps: aa8d9dece9896ff1b74dd969a7bd7a5896bba832
   react-native-safe-area-context: dcab599c527c2d7de2d76507a523d20a0b83823d

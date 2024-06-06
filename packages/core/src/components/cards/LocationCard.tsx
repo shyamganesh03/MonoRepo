@@ -52,12 +52,12 @@ const LocationCard = ({
         )}
 
         {eventData?.fromPrice && (
-          <>
+          <View style={{ marginBottom: 10 }}>
             <Text variant="headlineMedium">{t('LOCATION_CARD.TICKETS')}</Text>
             <Text variant="titleSmall">
               {t('LOCATION_CARD.PRICES_FROM')} {eventData?.fromPrice}.-
             </Text>
-          </>
+          </View>
         )}
       </Flex>
 

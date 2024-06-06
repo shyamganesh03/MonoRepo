@@ -6,11 +6,7 @@ import { getNotificationNavigation } from './getNotificationNavigation'
 
 const notificationService = async () => {
   try {
-    if (Platform.OS === 'android') {
-      const granted = await PermissionsAndroid.request(
-        PermissionsAndroid.PERMISSIONS.POST_NOTIFICATIONS,
-      )
-    }
+
     messaging().setBackgroundMessageHandler(async (remoteMessage) => {
       console.log('Message handled in the background!', remoteMessage)
     })

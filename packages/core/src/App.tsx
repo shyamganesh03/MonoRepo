@@ -1,16 +1,17 @@
 import React, { useEffect, useRef } from 'react'
-import { View, Platform, useWindowDimensions } from 'react-native'
+import {
+  View,
+  Platform,
+  useWindowDimensions,
+  PermissionsAndroid,
+} from 'react-native'
 import {
   SafeAreaProvider,
   initialWindowMetrics,
 } from 'react-native-safe-area-context'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import Toast from 'react-native-toast-notifications'
-import {
-  NavigationContainer,
-  DefaultTheme,
-  DarkTheme,
-} from '@react-navigation/native'
+import { NavigationContainer, useIsFocused } from '@react-navigation/native'
 import {
   LightTheme as LightThemeColors,
   DarkTheme as DarkThemeColors,
@@ -108,15 +109,30 @@ const getThemeColor = (themeState: string) => {
 
 const AppSubWrapper = () => {
   const height = useWindowDimensions().height
+  const isFocused = useIsFocused()
+  const checkRequiredPermission = async () => {
+    if (Platform.OS === 'android') {
+      await PermissionsAndroid.request(
+        PermissionsAndroid.PERMISSIONS.POST_NOTIFICATIONS,
+      )
+      await PermissionsAndroid.request(
+        PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
+      )
+    }
+  }
 
   useEffect(() => {
-    notificationService()
-    getItemAsync('preferredLanguage').then((language: any) => {
-      if (!language) {
-        setItemAsync('preferredLanguage', 'de')
-      }
-    })
-  }, [])
+    if (!isFocused) return
+    ;(async () => {
+      await checkRequiredPermission()
+      await notificationService()
+      getItemAsync('preferredLanguage').then((language: any) => {
+        if (!language) {
+          setItemAsync('preferredLanguage', 'de')
+        }
+      })
+    })()
+  }, [isFocused])
 
   return (
     <View style={Platform.OS === 'web' ? { minHeight: height } : { flex: 1 }}>
