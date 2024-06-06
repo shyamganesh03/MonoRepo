@@ -12,18 +12,21 @@ import { useTranslation } from 'react-i18next'
 import { Icon } from '@libs/native-icons'
 import { View } from 'react-native'
 import { useState } from 'react'
+import { useNavigation } from '@react-navigation/native'
 
 const Registration = ({ handleValidation, userDetails, errorMessage }: any) => {
   const { colors } = useTheme<any>()
   const { t } = useTranslation()
   const [currentStep, setCurrentStep] = useState(1)
+  const navigation = useNavigation()
 
   const handleNextStep = () => {
     setCurrentStep(currentStep + 1)
   }
 
   const handlePreviousStep = () => {
-    setCurrentStep(currentStep - 1)
+    if (currentStep > 1) setCurrentStep(currentStep - 1)
+    else navigation.goBack()
   }
 
   const renderStep = () => {

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import News from '../screens/news'
 import HomePage from '../screens/home'
@@ -19,14 +19,41 @@ import { useTheme } from 'react-native-paper'
 import { t } from 'i18next'
 import LanguageSelector from '../screens/language'
 import { View } from 'react-native'
+import auth from '@react-native-firebase/auth';
 
 const Stack = createNativeStackNavigator()
 
+
+
+
+
 const Stacks = () => {
-  const navigation = useNavigation()
+
+  const [routeName,setRoteName] = useState('loginAndSignUp')
+ 
+  const handleAuth = (user:any) => {
+    if (user) {
+      setRoteName('home')
+
+    } else {
+      setRoteName('login')
+
+    }
+  };
+  
   const { colors } = useTheme<any>()
+  useEffect(() => {
+    const unsubscribe = auth().onAuthStateChanged(handleAuth);
+    
+    return () => unsubscribe();
+  }, [routeName]);
+ 
+
+
+
+  
   return (
-    <Stack.Navigator initialRouteName="home">
+    <Stack.Navigator initialRouteName={routeName}>
       <Stack.Screen
         name="home"
         component={HomePage}

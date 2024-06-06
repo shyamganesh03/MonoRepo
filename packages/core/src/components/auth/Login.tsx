@@ -2,12 +2,26 @@ import { Button, Flex, Text, TextInput } from '@libs/components'
 import { useTheme } from 'react-native-paper'
 import { useTranslation } from 'react-i18next'
 import { Icon } from '@libs/native-icons'
+import { useNavigation } from '@react-navigation/native'
 import { PasswordTextInput } from '@libs/components'
 import { View } from 'react-native'
+import {handleLogin} from '@izzo/api/src/auth'
 
 const Login = ({ handleValidation, userDetails, errorMessage }: any) => {
   const { colors } = useTheme<any>()
   const { t } = useTranslation()
+  const navigation:any = useNavigation()
+  const handleSubmit = async () => {
+    try {
+      const isLoggedIn = await handleLogin(userDetails.email, userDetails.password);
+      if (isLoggedIn) {
+        navigation.navigate('home');
+      }
+    } catch (error) {
+      console.error('Error during login:', error);
+      
+    }
+  };
 
   const renderTitle = () => (
     <Text variant="headlineMedium" color={colors.textPrimary}>
@@ -60,7 +74,7 @@ const Login = ({ handleValidation, userDetails, errorMessage }: any) => {
   const renderLoginButton = () => (
     <Button
       style={{ backgroundColor: colors.primary }}
-      onPress={() => {}}
+      onPress={()=>handleSubmit()}
       label={t('BUTTON.LOGIN')}
       labelStyle={{ color: colors.textPrimary }}
     />

@@ -5,6 +5,8 @@ import { useTranslation } from 'react-i18next'
 import { Icon } from '@libs/native-icons'
 import { useNavigation } from '@react-navigation/native'
 import { View } from 'react-native'
+import { checkEmailExists } from '@izzo/api/src/auth'
+import { setItemAsync } from '@izzo/shared-async-storage'
 
 const LoginAndSignUp = ({
   handleValidation,
@@ -14,7 +16,17 @@ const LoginAndSignUp = ({
   const { colors } = useTheme<any>()
   const { t } = useTranslation()
 
-  const navigation = useNavigation()
+  const navigation:any = useNavigation()
+
+  const handleSubmit = async()=>{
+   const isExists = await checkEmailExists(userDetails.email)
+   if(isExists){
+    navigation.navigate('login')
+   }else{
+    navigation.navigate('register')
+   }
+
+  }
 
   return (
     <Flex direction="column">
@@ -55,7 +67,7 @@ const LoginAndSignUp = ({
             marginBottom: 32,
             backgroundColor: colors.primary,
           }}
-          onPress={() => {}}
+          onPress={() => handleSubmit()}
           mode="contained"
           label={t('BUTTON.Login_And_SIGN_UP')}
           labelStyle={{ color: colors.textPrimary }}
@@ -65,6 +77,7 @@ const LoginAndSignUp = ({
       <Button
         style={{ marginTop: 32, backgroundColor: colors.secondaryContainer }}
         onPress={() => {
+          setItemAsync('userType','GuestUser');
           navigation.navigate('home')
         }}
         label={t('BUTTON.USE_AS_GUEST')}
