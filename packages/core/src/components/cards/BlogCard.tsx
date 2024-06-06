@@ -122,7 +122,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    width: 124,
   },
   badgeText: {
     textTransform: 'uppercase',
