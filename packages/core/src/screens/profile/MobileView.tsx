@@ -20,7 +20,6 @@ import {
   privacyPolicyUrl,
   supportUrl,
 } from '../../utils/redirectUrl'
-import LinearGradient from 'react-native-linear-gradient'
 
 const ProfileTab = ({
   leftIconName,
@@ -117,63 +116,40 @@ const MobileView = ({
               style={{ marginBottom: 32 }}
             />
           ) : (
-            <>
-              <Flex
-                direction="column"
-                style={{
-                  gap: spacing.spacing7,
-                  marginBottom: spacing.spacing7,
-                }}
-              >
+            <View style={{ marginTop: 16 }}>
+              <Flex direction="column" style={{ rowGap: 17 }}>
+                <Text variant="headlineMedium">{t('AUTH.TITLE')}</Text>
+                <Text variant="titleSmall">{t('AUTH.SUBTITLE')}</Text>
+              </Flex>
+              <Flex direction="column" style={{ marginTop: 32, rowGap: 5 }}>
                 <TextInput
-                  onChangeText={(value: any) => {
-                    setEmail(value)
-                  }}
-                  value={email}
-                  style={{ height: 40 }}
                   placeholder={t('INPUT_TEXT.EMAIL_PLACEHOLDER')}
                   outlineStyle={{ borderWidth: 0 }}
+                  onChangeText={(value: string) => setEmail(value)}
+                  value={email}
+                  dense={true}
+                  contentStyle={{ fontSize: 16, fontWeight: '500' }}
                   left={
                     <TextInput.Icon
                       icon={() => (
                         <Icon name="AtIcon" color={colors.onSurfaceVariant} />
                       )}
-                      style={{ position: 'absolute', left: -18 }}
+                      style={{ position: 'absolute', left: -20 }}
                     />
                   }
                 />
-
-                <Button
-                  onPress={() => handleLogin()}
-                  mode="contained"
-                  label={t('BUTTON.Login_And_SIGN_UP')}
-                  labelVariant="titleLarge"
-                  labelStyle={{ color: colors.textPrimary }}
-                  isLinearGradient
-                  gradientColors={colors.gradient.primary}
-                />
               </Flex>
-
-              <LinearGradient
-                colors={['red', 'blue']}
-                start={{ x: 1, y: 1 }}
-                end={{ x: 1, y: 1 }}
-                locations={[0.1, 0.6]}
-                style={{
-                  marginTop: 18,
-                  marginBottom: 32,
-                  borderRadius: 16,
-                }}
-              >
-                <Button
-                  onPress={() => handleLogin()}
-                  mode="contained"
-                  label={t('BUTTON.Login_And_SIGN_UP')}
-                  labelVariant="titleLarge"
-                  labelStyle={{ color: colors.textPrimary }}
-                />
-              </LinearGradient>
-            </>
+              <Button
+                onPress={() => handleLogin()}
+                mode="contained"
+                label={t('BUTTON.Login_And_SIGN_UP')}
+                labelVariant="titleLarge"
+                labelStyle={{ color: colors.textPrimary }}
+                isLinearGradient
+                gradientColors={colors.gradient.primary}
+                style={{ marginTop: 18, marginBottom: 32 }}
+              />
+            </View>
           )}
           <ProfileTab
             heading={t('PROFILE.SAVED_EVENTS')}

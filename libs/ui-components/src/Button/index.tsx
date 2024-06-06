@@ -40,13 +40,15 @@ const Button = ({
       <TouchableOpacity onPress={onPress}>
         <LinearGradient
           colors={gradientColors}
-          style={{
-            flex: 1,
-            borderRadius: spacing.spacing5,
-            height: spacing.spacing8,
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}
+          style={[
+            {
+              borderRadius: spacing.spacing5,
+              height: spacing.spacing8,
+              alignItems: 'center',
+              justifyContent: 'center',
+            },
+            style,
+          ]}
           start={{ y: 0.0, x: 0.3 }}
           end={{ y: 0.0, x: 1.0 }}
         >
