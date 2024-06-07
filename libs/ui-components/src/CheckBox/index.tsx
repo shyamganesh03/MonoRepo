@@ -19,13 +19,12 @@ const CheckBox = (props: any) => {
   return (
     <TouchableOpacity
       onPress={() => {
-        onPress()
+        onPress(!status)
       }}
     >
       <View
         style={{
           alignItems: 'center',
-          backgroundColor: 'white',
           borderColor: colors.onBackground,
           borderRadius,
           height: size,

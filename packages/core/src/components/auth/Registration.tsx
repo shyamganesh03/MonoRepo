@@ -1,3 +1,10 @@
+import React, { useState, useEffect } from 'react';
+import { View } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import { useTheme } from 'react-native-paper';
+import { useTranslation } from 'react-i18next';
+import auth from '@react-native-firebase/auth';
+import firestore from '@react-native-firebase/firestore';
 import {
   Button,
   CheckBox,
@@ -6,28 +13,59 @@ import {
   ProgressBar,
   Text,
   TextInput,
-} from '@libs/components'
-import { useTheme } from 'react-native-paper'
-import { useTranslation } from 'react-i18next'
-import { Icon } from '@libs/native-icons'
-import { View } from 'react-native'
-import { useState } from 'react'
-import { useNavigation } from '@react-navigation/native'
+} from '@libs/components';
+import { Icon } from '@libs/native-icons';
 
 const Registration = ({ handleValidation, userDetails, errorMessage }: any) => {
-  const { colors } = useTheme<any>()
-  const { t } = useTranslation()
-  const [currentStep, setCurrentStep] = useState(1)
-  const navigation = useNavigation()
+  const { colors } = useTheme();
+  const { t } = useTranslation();
+  const [currentStep, setCurrentStep] = useState(1);
+  const navigation = useNavigation();
+  const [isButtonDisabled, setIsButtonDisabled] = useState(true);
 
   const handleNextStep = () => {
-    setCurrentStep(currentStep + 1)
-  }
+    setCurrentStep(currentStep + 1);
+  };
 
   const handlePreviousStep = () => {
-    if (currentStep > 1) setCurrentStep(currentStep - 1)
-    else navigation.goBack()
-  }
+    if (currentStep > 1) setCurrentStep(currentStep - 1);
+    else navigation.goBack();
+  };
+
+  useEffect(() => {
+    const checkIfAllFieldsFilled = () => {
+      const stepFields = {
+        1: ['username', 'surname', 'email'],
+        2: ['address', 'canon'],
+        3: ['password', 'confirmPassword', 'agb'],
+      };
+      const fields = stepFields[currentStep];
+      const allFieldsFilled = fields.every((field) => !!userDetails[field]);
+      setIsButtonDisabled(!allFieldsFilled);
+    };
+
+    checkIfAllFieldsFilled();
+  }, [userDetails, currentStep]);
+
+  const handleRegistration = async () => {
+    try {
+      const { email, password, username, surname, address, canon } = userDetails;
+      const userCredential = await auth().createUserWithEmailAndPassword(email, password);
+
+     
+      const user = userCredential.user;
+      await firestore().collection('users').doc(email).set({
+        username,
+        surname,
+        address,
+        canon,
+      });
+      navigation.navigate('home');
+    } catch (error) {
+      console.error(error);
+      
+    }
+  };
 
   const renderStep = () => {
     switch (currentStep) {
@@ -36,7 +74,7 @@ const Registration = ({ handleValidation, userDetails, errorMessage }: any) => {
           <Flex direction="column" style={{ gap: 14 }}>
             <TextInput
               onChangeText={(value: any) => {
-                handleValidation('username', value)
+                handleValidation('username', value);
               }}
               value={userDetails.username}
               style={{ height: 40 }}
@@ -45,7 +83,7 @@ const Registration = ({ handleValidation, userDetails, errorMessage }: any) => {
             />
             <TextInput
               onChangeText={(value: any) => {
-                handleValidation('surname', value)
+                handleValidation('surname', value);
               }}
               value={userDetails.surname}
               style={{ height: 40 }}
@@ -54,7 +92,7 @@ const Registration = ({ handleValidation, userDetails, errorMessage }: any) => {
             />
             <TextInput
               onChangeText={(value: any) => {
-                handleValidation('email', value)
+                handleValidation('email', value);
               }}
               value={userDetails.email}
               style={{ height: 40 }}
@@ -71,13 +109,13 @@ const Registration = ({ handleValidation, userDetails, errorMessage }: any) => {
               error={errorMessage.email}
             />
           </Flex>
-        )
+        );
       case 2:
         return (
           <Flex direction="column" style={{ gap: 14 }}>
             <TextInput
               onChangeText={(value: any) => {
-                handleValidation('address', value)
+                handleValidation('address', value);
               }}
               value={userDetails.address}
               style={{ height: 40 }}
@@ -86,7 +124,7 @@ const Registration = ({ handleValidation, userDetails, errorMessage }: any) => {
             />
             <TextInput
               onChangeText={(value: any) => {
-                handleValidation('canon', value)
+                handleValidation('canon', value);
               }}
               value={userDetails.canon}
               style={{ height: 40 }}
@@ -94,13 +132,13 @@ const Registration = ({ handleValidation, userDetails, errorMessage }: any) => {
               placeholder={t('INPUT_TEXT.CANTON_PLACEHOLDER')}
             />
           </Flex>
-        )
+        );
       case 3:
         return (
           <Flex direction="column" style={{ gap: 14 }}>
             <PasswordTextInput
               onChangeText={(value: any) => {
-                handleValidation('password', value)
+                handleValidation('password', value);
               }}
               value={userDetails.password}
               placeholder={t('INPUT_TEXT.PASSWORD_PLACEHOLDER')}
@@ -110,7 +148,7 @@ const Registration = ({ handleValidation, userDetails, errorMessage }: any) => {
 
             <PasswordTextInput
               onChangeText={(value: any) => {
-                handleValidation('confirmPassword', value)
+                handleValidation('confirmPassword', value);
               }}
               value={userDetails.confirmPassword}
               placeholder={t('INPUT_TEXT.CONFIRM_PASSWORD_PLACEHOLDER')}
@@ -141,15 +179,15 @@ const Registration = ({ handleValidation, userDetails, errorMessage }: any) => {
               </Text>
             </Flex>
           </Flex>
-        )
+        );
       default:
-        return null
+        return null;
     }
-  }
+  };
 
   return (
     <Flex direction="column">
-      <ProgressBar progress={0.35} color={colors.primary} />
+      <ProgressBar progress={(currentStep - 1) / 2} color={colors.primary} />
       <Flex direction="column" style={{ marginTop: 32 }}>
         <Text variant="headlineMedium" color={colors.textPrimary}>
           {t('AUTH.TITLE')}
@@ -168,9 +206,9 @@ const Registration = ({ handleValidation, userDetails, errorMessage }: any) => {
       <Flex direction="column" style={{ gap: 14, marginTop: 32 }}>
         <Button
           style={{ backgroundColor: colors.primary }}
-          onPress={handleNextStep}
-          //   disabled={isButtonDisabled}
-          label={t('BUTTON.NEXT')}
+          onPress={currentStep === 3 ? handleRegistration : handleNextStep}
+          disabled={isButtonDisabled}
+          label={currentStep === 3 ? t('BUTTON.SIGN_UP') : t('BUTTON.NEXT')}
           labelStyle={{ color: colors.textPrimary }}
         />
 
@@ -182,7 +220,7 @@ const Registration = ({ handleValidation, userDetails, errorMessage }: any) => {
         />
       </Flex>
     </Flex>
-  )
-}
+  );
+};
 
-export default Registration
+export default Registration;
