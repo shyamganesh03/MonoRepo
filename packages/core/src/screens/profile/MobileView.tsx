@@ -93,6 +93,7 @@ const MobileView = ({
   handlePress,
   handleLogin,
   handleNavigation,
+  handleSignOut,
 }: any) => {
   const { t } = useTranslation()
   const { colors } = useTheme<any>()
@@ -240,7 +241,7 @@ const MobileView = ({
           </Flex>
           {userDetails && (
             <Button
-              onPress={() => {}}
+              onPress={() => handleSignOut()}
               mode="contained"
               label={t('BUTTON.SIGN_OUT')}
               labelStyle={{ color: colors.textPrimary }}
