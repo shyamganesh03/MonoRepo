@@ -11,9 +11,13 @@ const MobileView = () => {
   const { colors } = useTheme<any>()
 
   return (
-    <MobileContainer backgroundColor={colors.background}>
+    <MobileContainer
+      backgroundColor={colors.background}
+      style={{ paddingHorizontal: 16 }}
+      hasPadding={false}
+    >
       <Flex direction="column">
-        <Text variant="bodyMedium">
+        <Text variant="titleMedium">
           {t('NOTIFICATION_SETTINGS.DESCRIPTION')}
         </Text>
         <Button

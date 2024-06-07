@@ -7,8 +7,13 @@ import {
   TextInput,
   ToggleSwitch,
 } from '@libs/components'
-import { ScrollView, TouchableOpacity, View } from 'react-native'
-import { MobileContainer } from '@libs/container'
+import {
+  KeyboardAvoidingView,
+  Platform,
+  ScrollView,
+  TouchableOpacity,
+  View,
+} from 'react-native'
 import { Izzo } from 'assets'
 import { Icon } from '@libs/native-icons'
 import { useTheme } from 'react-native-paper'
@@ -93,13 +98,14 @@ const MobileView = ({
   const { colors } = useTheme<any>()
 
   return (
-    <ScrollView
-      contentContainerStyle={{ flex: 1, backgroundColor: colors.background }}
+    <KeyboardAvoidingView
+      style={{ flex: 1, backgroundColor: colors.background }}
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
     >
-      <MobileContainer
-        hasKeyBoard
-        backgroundColor={colors.background}
-        style={{ paddingHorizontal: 16 }}
+      <ScrollView
+        contentContainerStyle={{
+          paddingHorizontal: 16,
+        }}
       >
         <Flex
           direction="row"
@@ -246,8 +252,9 @@ const MobileView = ({
             />
           )}
         </Flex>
-      </MobileContainer>
-    </ScrollView>
+        <View style={{ marginBottom: 100 }} />
+      </ScrollView>
+    </KeyboardAvoidingView>
   )
 }
 
