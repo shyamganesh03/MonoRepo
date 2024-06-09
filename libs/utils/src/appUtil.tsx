@@ -35,7 +35,7 @@ const appUtil = {
   getPlurals: (word) => {
     if (!word || word === '') return ''
     const lastChar = word[word.length - 1]
-    console.log(lastChar)
+
     switch (lastChar) {
       case 's':
         return word

@@ -5,18 +5,15 @@ import { BottomNavLayout } from '../components/index'
 import { useNavigation } from '@react-navigation/native'
 import auth from '@react-native-firebase/auth'
 
-
 export function AppNavigator() {
-  const navigation = useNavigation()
-
-  useEffect(()=>{
-    auth().signOut()
-  },[])
+  const navigation: any = useNavigation()
 
   useEffect(() => {
-    const handleOpenURL = ({ url }) => {
-      console.log(url)
+    auth().signOut()
+  }, [])
 
+  useEffect(() => {
+    const handleOpenURL = ({ url }: any) => {
       navigateToScreen(url)
     }
 

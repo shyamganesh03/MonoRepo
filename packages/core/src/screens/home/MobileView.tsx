@@ -6,7 +6,6 @@ import { useTheme } from 'react-native-paper'
 import { FlatList, TouchableOpacity, View } from 'react-native'
 import { ShimmerPlaceholder } from '@libs/skeletons'
 import { BlogCard, GenreCard, EventCard } from '../../components'
-import { spacing } from '@libs/theme'
 
 const MobileView = (props: any) => {
   const { t } = useTranslation()

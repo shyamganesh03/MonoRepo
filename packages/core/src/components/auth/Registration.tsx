@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import { View } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
-import { useTheme } from 'react-native-paper';
-import { useTranslation } from 'react-i18next';
-import auth from '@react-native-firebase/auth';
-import firestore from '@react-native-firebase/firestore';
+import React, { useState, useEffect } from 'react'
+import { View } from 'react-native'
+import { useNavigation } from '@react-navigation/native'
+import { useTheme } from 'react-native-paper'
+import { useTranslation } from 'react-i18next'
+import auth from '@react-native-firebase/auth'
+import firestore from '@react-native-firebase/firestore'
 import {
   Button,
   CheckBox,
@@ -13,24 +13,24 @@ import {
   ProgressBar,
   Text,
   TextInput,
-} from '@libs/components';
-import { Icon } from '@libs/native-icons';
+} from '@libs/components'
+import { Icon } from '@libs/native-icons'
 
 const Registration = ({ handleValidation, userDetails, errorMessage }: any) => {
-  const { colors } = useTheme();
-  const { t } = useTranslation();
-  const [currentStep, setCurrentStep] = useState(1);
-  const navigation = useNavigation();
-  const [isButtonDisabled, setIsButtonDisabled] = useState(true);
+  const { colors } = useTheme()
+  const { t } = useTranslation()
+  const [currentStep, setCurrentStep] = useState(1)
+  const navigation = useNavigation()
+  const [isButtonDisabled, setIsButtonDisabled] = useState(true)
 
   const handleNextStep = () => {
-    setCurrentStep(currentStep + 1);
-  };
+    setCurrentStep(currentStep + 1)
+  }
 
   const handlePreviousStep = () => {
-    if (currentStep > 1) setCurrentStep(currentStep - 1);
-    else navigation.goBack();
-  };
+    if (currentStep > 1) setCurrentStep(currentStep - 1)
+    else navigation.goBack()
+  }
 
   useEffect(() => {
     const checkIfAllFieldsFilled = () => {
@@ -38,34 +38,35 @@ const Registration = ({ handleValidation, userDetails, errorMessage }: any) => {
         1: ['username', 'surname', 'email'],
         2: ['address', 'canon'],
         3: ['password', 'confirmPassword', 'agb'],
-      };
-      const fields = stepFields[currentStep];
-      const allFieldsFilled = fields.every((field) => !!userDetails[field]);
-      setIsButtonDisabled(!allFieldsFilled);
-    };
+      }
+      const fields = stepFields[currentStep]
+      const allFieldsFilled = fields.every((field) => !!userDetails[field])
+      setIsButtonDisabled(!allFieldsFilled)
+    }
 
-    checkIfAllFieldsFilled();
-  }, [userDetails, currentStep]);
+    checkIfAllFieldsFilled()
+  }, [userDetails, currentStep])
 
   const handleRegistration = async () => {
     try {
-      const { email, password, username, surname, address, canon } = userDetails;
-      const userCredential = await auth().createUserWithEmailAndPassword(email, password);
+      const { email, password, username, surname, address, canon } = userDetails
+      const userCredential = await auth().createUserWithEmailAndPassword(
+        email,
+        password,
+      )
 
-     
-      const user = userCredential.user;
+      const user = userCredential.user
       await firestore().collection('users').doc(email).set({
         username,
         surname,
         address,
         canon,
-      });
-      navigation.navigate('home');
+      })
+      navigation.navigate('home')
     } catch (error) {
-      console.error(error);
-      
+      console.error(error)
     }
-  };
+  }
 
   const renderStep = () => {
     switch (currentStep) {
@@ -74,28 +75,25 @@ const Registration = ({ handleValidation, userDetails, errorMessage }: any) => {
           <Flex direction="column" style={{ gap: 14 }}>
             <TextInput
               onChangeText={(value: any) => {
-                handleValidation('username', value);
+                handleValidation('username', value)
               }}
               value={userDetails.username}
-              style={{ height: 40 }}
               outlineStyle={{ borderWidth: 0 }}
               placeholder={t('INPUT_TEXT.NAME_PLACEHOLDER')}
             />
             <TextInput
               onChangeText={(value: any) => {
-                handleValidation('surname', value);
+                handleValidation('surname', value)
               }}
               value={userDetails.surname}
-              style={{ height: 40 }}
               outlineStyle={{ borderWidth: 0 }}
               placeholder={t('INPUT_TEXT.SURNAME_PLACEHOLDER')}
             />
             <TextInput
               onChangeText={(value: any) => {
-                handleValidation('email', value);
+                handleValidation('email', value)
               }}
               value={userDetails.email}
-              style={{ height: 40 }}
               placeholder={t('INPUT_TEXT.EMAIL_PLACEHOLDER')}
               outlineStyle={{ borderWidth: 0 }}
               left={
@@ -109,50 +107,46 @@ const Registration = ({ handleValidation, userDetails, errorMessage }: any) => {
               error={errorMessage.email}
             />
           </Flex>
-        );
+        )
       case 2:
         return (
           <Flex direction="column" style={{ gap: 14 }}>
             <TextInput
               onChangeText={(value: any) => {
-                handleValidation('address', value);
+                handleValidation('address', value)
               }}
               value={userDetails.address}
-              style={{ height: 40 }}
               outlineStyle={{ borderWidth: 0 }}
               placeholder={t('INPUT_TEXT.ADDRESS_PLACEHOLDER')}
             />
             <TextInput
               onChangeText={(value: any) => {
-                handleValidation('canon', value);
+                handleValidation('canon', value)
               }}
               value={userDetails.canon}
-              style={{ height: 40 }}
               outlineStyle={{ borderWidth: 0 }}
               placeholder={t('INPUT_TEXT.CANTON_PLACEHOLDER')}
             />
           </Flex>
-        );
+        )
       case 3:
         return (
           <Flex direction="column" style={{ gap: 14 }}>
             <PasswordTextInput
               onChangeText={(value: any) => {
-                handleValidation('password', value);
+                handleValidation('password', value)
               }}
               value={userDetails.password}
               placeholder={t('INPUT_TEXT.PASSWORD_PLACEHOLDER')}
-              style={{ height: 40 }}
               errorMessage={errorMessage.password}
             />
 
             <PasswordTextInput
               onChangeText={(value: any) => {
-                handleValidation('confirmPassword', value);
+                handleValidation('confirmPassword', value)
               }}
               value={userDetails.confirmPassword}
               placeholder={t('INPUT_TEXT.CONFIRM_PASSWORD_PLACEHOLDER')}
-              style={{ height: 40 }}
               errorMessage={errorMessage.confirmPassword}
             />
 
@@ -179,11 +173,11 @@ const Registration = ({ handleValidation, userDetails, errorMessage }: any) => {
               </Text>
             </Flex>
           </Flex>
-        );
+        )
       default:
-        return null;
+        return null
     }
-  };
+  }
 
   return (
     <Flex direction="column">
@@ -220,7 +214,7 @@ const Registration = ({ handleValidation, userDetails, errorMessage }: any) => {
         />
       </Flex>
     </Flex>
-  );
-};
+  )
+}
 
-export default Registration;
+export default Registration

@@ -7,16 +7,14 @@ import {
   useWindowDimensions,
 } from 'react-native'
 import { Surface, useTheme } from 'react-native-paper'
-import { useNavigation, useNavigationState } from '@react-navigation/native'
+import { useNavigation } from '@react-navigation/native'
 import { Icon } from '@libs/native-icons'
 import { spacing } from '@libs/theme'
 
 export const BottomNavLayout = () => {
   const { colors } = useTheme()
-  const navigation = useNavigation()
-  const currentRoute = useNavigationState(
-    (state) => state?.routes?.[state.routes.length - 1] || { name: 'home' },
-  )
+  const navigation: any = useNavigation()
+  const currentRoute = navigation.getCurrentRoute()
   const windowWidth = useWindowDimensions().width
   const routeNames = ['home', 'maps', 'search', 'profile', 'savedEvents']
 

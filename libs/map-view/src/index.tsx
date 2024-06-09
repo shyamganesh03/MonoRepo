@@ -39,8 +39,8 @@ const Map = ({
       provider={getProvider()}
       customMapStyle={locationCardMapStyle}
       initialRegion={{
-        latitude: Number('37.4220936'),
-        longitude: Number('-122.083922'),
+        latitude: Number(coordinates),
+        longitude: Number(coordinates),
         latitudeDelta: latitudeDelta,
         longitudeDelta: longitudeDelta,
       }}
@@ -55,8 +55,8 @@ const Map = ({
     >
       <Marker
         coordinate={{
-          latitude: Number('37.4220936'),
-          longitude: Number('-122.083922'),
+          latitude: Number(coordinates),
+          longitude: Number(coordinates),
         }}
       >
         <Icon name="Pin2" />

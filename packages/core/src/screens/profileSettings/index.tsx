@@ -39,9 +39,7 @@ const ProfileSettings = () => {
       [key]: value,
     }))
   }
-  const saveUserDetails = () => {
-    console.log(userDetails)
-  }
+  const saveUserDetails = () => {}
 
   const viewProps = {
     handleBackNavigation,

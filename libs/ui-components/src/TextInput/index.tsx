@@ -16,14 +16,14 @@ const TextInput = (props: any) => {
             onSurface: props.style?.color || colors.textPrimary,
           },
         }}
-        mode={props?.mode || 'outlined'}
+        mode="outlined"
         outlineColor={props.outlineColor || 'transparent'}
         activeOutlineColor={colors.onSurface}
         placeholderTextColor={props.placeholderTextColor || colors.onSecondary}
         style={{
           ...props?.style,
           backgroundColor: colors.elevation.level5,
-          height: 40,
+          height: 36,
         }}
         onFocus={() => {
           props?.onFocus?.()

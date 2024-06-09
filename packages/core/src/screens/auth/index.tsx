@@ -32,7 +32,6 @@ const Auth = (props: any) => {
   const currentRoute = props.route
 
   const handleValidation = (name: string, value: string) => {
-    console.log({name,value})
     setUserDetails({ ...userDetails, [name]: value })
 
     if (name === 'email') {

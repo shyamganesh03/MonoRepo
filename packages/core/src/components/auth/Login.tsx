@@ -5,23 +5,25 @@ import { Icon } from '@libs/native-icons'
 import { useNavigation } from '@react-navigation/native'
 import { PasswordTextInput } from '@libs/components'
 import { View } from 'react-native'
-import {handleLogin} from '@izzo/api/src/auth'
+import { handleLogin } from '@izzo/api/src/auth'
 
 const Login = ({ handleValidation, userDetails, errorMessage }: any) => {
   const { colors } = useTheme<any>()
   const { t } = useTranslation()
-  const navigation:any = useNavigation()
+  const navigation: any = useNavigation()
   const handleSubmit = async () => {
     try {
-      const isLoggedIn = await handleLogin(userDetails.email, userDetails.password);
+      const isLoggedIn = await handleLogin(
+        userDetails.email,
+        userDetails.password,
+      )
       if (isLoggedIn) {
-        navigation.navigate('home');
+        navigation.navigate('home')
       }
     } catch (error) {
-      console.error('Error during login:', error);
-      
+      console.error('Error during login:', error)
     }
-  };
+  }
 
   const renderTitle = () => (
     <Text variant="headlineMedium" color={colors.textPrimary}>
@@ -66,7 +68,6 @@ const Login = ({ handleValidation, userDetails, errorMessage }: any) => {
       }}
       value={userDetails.password}
       placeholder={t('INPUT_TEXT.PASSWORD_PLACEHOLDER')}
-      style={{ height: 40 }}
       errorMessage={errorMessage.password}
     />
   )
@@ -74,7 +75,7 @@ const Login = ({ handleValidation, userDetails, errorMessage }: any) => {
   const renderLoginButton = () => (
     <Button
       style={{ backgroundColor: colors.primary }}
-      onPress={()=>handleSubmit()}
+      onPress={() => handleSubmit()}
       label={t('BUTTON.LOGIN')}
       labelStyle={{ color: colors.textPrimary }}
     />

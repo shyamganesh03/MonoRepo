@@ -16,16 +16,15 @@ const LoginAndSignUp = ({
   const { colors } = useTheme<any>()
   const { t } = useTranslation()
 
-  const navigation:any = useNavigation()
+  const navigation: any = useNavigation()
 
-  const handleSubmit = async()=>{
-   const isExists = await checkEmailExists(userDetails.email)
-   if(isExists){
-    navigation.navigate('login')
-   }else{
-    navigation.navigate('register')
-   }
-
+  const handleSubmit = async () => {
+    const isExists = await checkEmailExists(userDetails.email)
+    if (isExists) {
+      navigation.navigate('login')
+    } else {
+      navigation.navigate('register')
+    }
   }
 
   return (
@@ -49,12 +48,15 @@ const LoginAndSignUp = ({
           onChangeText={(value: string) => handleValidation('email', value)}
           value={userDetails.email}
           outlineStyle={{ borderWidth: 0 }}
-          style={{ height: 40 }}
           placeholder={t('INPUT_TEXT.EMAIL_PLACEHOLDER')}
           left={
             <TextInput.Icon
               icon={() => (
-                <Icon name="AtIcon" color={colors.onSurfaceVariant} />
+                <Icon
+                  name="AtIcon"
+                  color={colors.onSurfaceVariant}
+                  height={40}
+                />
               )}
               style={{ position: 'absolute', left: -18 }}
             />
@@ -77,7 +79,6 @@ const LoginAndSignUp = ({
       <Button
         style={{ marginTop: 32, backgroundColor: colors.secondaryContainer }}
         onPress={() => {
-          setItemAsync('userType','GuestUser');
           navigation.navigate('home')
         }}
         label={t('BUTTON.USE_AS_GUEST')}

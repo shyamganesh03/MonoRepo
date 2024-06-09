@@ -14,46 +14,34 @@ import ProfileSettings from '../screens/profileSettings'
 import SavedEvents from '../screens/savedEvents'
 import PdfView from '../screens/pdfView'
 import { Flex, IconButton, Text } from '@libs/components'
-import { useNavigation } from '@react-navigation/native'
 import { useTheme } from 'react-native-paper'
 import { t } from 'i18next'
 import LanguageSelector from '../screens/language'
 import { View } from 'react-native'
-import auth from '@react-native-firebase/auth';
+import auth from '@react-native-firebase/auth'
 
 const Stack = createNativeStackNavigator()
 
-
-
-
-
 const Stacks = () => {
+  const [routeName, setRoteName] = useState('loginAndSignUp')
 
-  const [routeName,setRoteName] = useState('loginAndSignUp')
- 
-  const handleAuth = (user:any) => {
+  const handleAuth = (user: any) => {
     if (user) {
       setRoteName('home')
-
     } else {
-      setRoteName('login')
-
+      setRoteName('loginAndSignUp')
     }
-  };
-  
+  }
+
   const { colors } = useTheme<any>()
   useEffect(() => {
-    const unsubscribe = auth().onAuthStateChanged(handleAuth);
-    
-    return () => unsubscribe();
-  }, [routeName]);
- 
+    const unsubscribe = auth().onAuthStateChanged(handleAuth)
 
+    return () => unsubscribe()
+  }, [routeName])
 
-
-  
   return (
-    <Stack.Navigator initialRouteName={routeName}>
+    <Stack.Navigator initialRouteName={'loginAndSignUp'}>
       <Stack.Screen
         name="home"
         component={HomePage}
