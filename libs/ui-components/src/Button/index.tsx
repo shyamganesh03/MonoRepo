@@ -37,7 +37,7 @@ const Button = ({
 }: ButtonProps) => {
   if (isLinearGradient) {
     return (
-      <TouchableOpacity onPress={onPress}>
+      <TouchableOpacity onPress={onPress} disabled={disabled}>
         <LinearGradient
           colors={gradientColors}
           style={[

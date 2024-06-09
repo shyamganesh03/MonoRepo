@@ -19,11 +19,13 @@ import { t } from 'i18next'
 import LanguageSelector from '../screens/language'
 import { View } from 'react-native'
 import auth from '@react-native-firebase/auth'
+import { useNavigation } from '@react-navigation/native'
 
 const Stack = createNativeStackNavigator()
 
 const Stacks = () => {
   const [routeName, setRoteName] = useState('loginAndSignUp')
+  const navigation: any = useNavigation()
 
   const handleAuth = (user: any) => {
     if (user) {
@@ -41,7 +43,7 @@ const Stacks = () => {
   }, [routeName])
 
   return (
-    <Stack.Navigator initialRouteName={'loginAndSignUp'}>
+    <Stack.Navigator initialRouteName={routeName}>
       <Stack.Screen
         name="home"
         component={HomePage}

@@ -3,8 +3,6 @@ import { View } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 import { useTheme } from 'react-native-paper'
 import { useTranslation } from 'react-i18next'
-import auth from '@react-native-firebase/auth'
-import firestore from '@react-native-firebase/firestore'
 import {
   Button,
   CheckBox,
@@ -16,8 +14,13 @@ import {
 } from '@libs/components'
 import { Icon } from '@libs/native-icons'
 
-const Registration = ({ handleValidation, userDetails, errorMessage }: any) => {
-  const { colors } = useTheme()
+const Registration = ({
+  handleValidation,
+  userDetails,
+  errorMessage,
+  handleSubmit,
+}: any) => {
+  const { colors } = useTheme<any>()
   const { t } = useTranslation()
   const [currentStep, setCurrentStep] = useState(1)
   const navigation = useNavigation()
@@ -34,39 +37,20 @@ const Registration = ({ handleValidation, userDetails, errorMessage }: any) => {
 
   useEffect(() => {
     const checkIfAllFieldsFilled = () => {
-      const stepFields = {
-        1: ['username', 'surname', 'email'],
+      const stepFields: any = {
+        1: ['name', 'surname', 'email'],
         2: ['address', 'canon'],
         3: ['password', 'confirmPassword', 'agb'],
       }
       const fields = stepFields[currentStep]
-      const allFieldsFilled = fields.every((field) => !!userDetails[field])
+      const allFieldsFilled = fields.every(
+        (field: string) => !!userDetails[field],
+      )
       setIsButtonDisabled(!allFieldsFilled)
     }
 
     checkIfAllFieldsFilled()
   }, [userDetails, currentStep])
-
-  const handleRegistration = async () => {
-    try {
-      const { email, password, username, surname, address, canon } = userDetails
-      const userCredential = await auth().createUserWithEmailAndPassword(
-        email,
-        password,
-      )
-
-      const user = userCredential.user
-      await firestore().collection('users').doc(email).set({
-        username,
-        surname,
-        address,
-        canon,
-      })
-      navigation.navigate('home')
-    } catch (error) {
-      console.error(error)
-    }
-  }
 
   const renderStep = () => {
     switch (currentStep) {
@@ -75,9 +59,9 @@ const Registration = ({ handleValidation, userDetails, errorMessage }: any) => {
           <Flex direction="column" style={{ gap: 14 }}>
             <TextInput
               onChangeText={(value: any) => {
-                handleValidation('username', value)
+                handleValidation('name', value)
               }}
-              value={userDetails.username}
+              value={userDetails.name}
               outlineStyle={{ borderWidth: 0 }}
               placeholder={t('INPUT_TEXT.NAME_PLACEHOLDER')}
             />
@@ -181,7 +165,7 @@ const Registration = ({ handleValidation, userDetails, errorMessage }: any) => {
 
   return (
     <Flex direction="column">
-      <ProgressBar progress={(currentStep - 1) / 2} color={colors.primary} />
+      <ProgressBar progress={(currentStep - 1) / 3} color={colors.primary} />
       <Flex direction="column" style={{ marginTop: 32 }}>
         <Text variant="headlineMedium" color={colors.textPrimary}>
           {t('AUTH.TITLE')}
@@ -200,7 +184,11 @@ const Registration = ({ handleValidation, userDetails, errorMessage }: any) => {
       <Flex direction="column" style={{ gap: 14, marginTop: 32 }}>
         <Button
           style={{ backgroundColor: colors.primary }}
-          onPress={currentStep === 3 ? handleRegistration : handleNextStep}
+          onPress={() =>
+            currentStep === 3
+              ? handleSubmit({ type: 'register' })
+              : handleNextStep()
+          }
           disabled={isButtonDisabled}
           label={currentStep === 3 ? t('BUTTON.SIGN_UP') : t('BUTTON.NEXT')}
           labelStyle={{ color: colors.textPrimary }}

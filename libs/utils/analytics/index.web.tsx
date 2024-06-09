@@ -48,7 +48,6 @@ class Analytics {
 
   static onSignIn = async (userObject) => {
     const { userId } = userObject
-    console.log({ userId })
     ReactGA.set({ userId })
   }
 }

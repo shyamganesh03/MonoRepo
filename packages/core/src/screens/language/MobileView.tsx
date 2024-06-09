@@ -3,7 +3,7 @@ import { RadioButton, Text } from '@libs/components'
 import { TouchableOpacity, View } from 'react-native'
 import { useTheme } from 'react-native-paper'
 import { Icon } from '@libs/native-icons'
-import MobileContainer from '../../../../../libs/container/MobileContainer'
+import { MobileContainer } from '@libs/container'
 import { ShimmerPlaceholder } from '@libs/skeletons'
 
 const MobileView = ({

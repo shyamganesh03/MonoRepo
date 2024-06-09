@@ -77,7 +77,8 @@ const PdfView = (props: any) => {
         style={{ flex: 1 }}
         resource={resources?.url}
         resourceType="url"
-        onError={(error) => console.log('Cannot render PDF', error)}
+        onError={(_) => {}}
+        //@ts-ignore
         onLoadStart={() => setIsLoading(true)}
         onLoad={() => setIsLoading(false)}
         onPageChanged={(page, numberOfPages) => {

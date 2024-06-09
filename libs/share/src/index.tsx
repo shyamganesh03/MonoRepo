@@ -44,7 +44,6 @@ export const ShareComponent = (props: ShareComponentProps) => {
     await Share.open(options)
       .then(() => {
         onClick()
-        console.log('Share Successfully')
       })
       .catch((err) => {
         console.log('error', err)

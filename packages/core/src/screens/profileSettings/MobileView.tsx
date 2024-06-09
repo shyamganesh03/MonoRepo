@@ -36,7 +36,7 @@ const MobileView = (props: any) => {
               onChangeText={(onChangeSurName: string) =>
                 handleChangeText('surname', onChangeSurName)
               }
-              value={userDetails?.surname}
+              value={userDetails?.surName}
               outlineStyle={{ borderWidth: 0 }}
               dense={true}
             />
@@ -112,7 +112,7 @@ const MobileView = (props: any) => {
         </Flex>
         <Button
           style={{ backgroundColor: colors.primary, marginTop: 32 }}
-          onPress={() => {}}
+          onPress={() => props.saveUserDetails()}
           label={t('PROFILE_SETTINGS.SAVE')}
           labelVariant="titleLarge"
           labelStyle={{ color: colors.textPrimary }}
@@ -127,7 +127,7 @@ const MobileView = (props: any) => {
               marginTop: 16,
               marginBottom: 40,
             }}
-            onPress={() => {}}
+            onPress={() => props.handleAccountDelete()}
             label={t('PROFILE_SETTINGS.DELETE_BUTTON')}
             labelVariant="titleLarge"
             labelStyle={{ color: colors.textPrimary }}

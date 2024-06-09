@@ -25,6 +25,8 @@ import {
   privacyPolicyUrl,
   supportUrl,
 } from '../../utils/redirectUrl'
+import { isValidEmail } from '@libs/utils'
+import { ShimmerPlaceholder } from '@libs/skeletons'
 
 const ProfileTab = ({
   leftIconName,
@@ -86,10 +88,11 @@ const ProfileTab = ({
 
 const MobileView = ({
   drunkMode,
-  email,
+  isFetching,
+  userDetail,
   userDetails,
   setDrunkMode,
-  setEmail,
+  setUserDetail,
   handlePress,
   handleLogin,
   handleNavigation,
@@ -98,6 +101,140 @@ const MobileView = ({
   const { t } = useTranslation()
   const { colors } = useTheme<any>()
 
+  if (isFetching) {
+    return (
+      <Flex
+        direction="column"
+        style={{
+          paddingHorizontal: spacing.spacing7,
+          paddingVertical: spacing.spacing8,
+          backgroundColor: colors.background,
+        }}
+      >
+        <Flex
+          direction="row"
+          style={{
+            justifyContent: 'center',
+            paddingHorizontal: 16,
+          }}
+        >
+          <ShimmerPlaceholder
+            style={{ height: 80, width: 80, borderRadius: 16 }}
+          />
+        </Flex>
+        <Flex direction="column">
+          <View style={{ marginTop: 16 }}>
+            <ShimmerPlaceholder style={{ height: 40, borderRadius: 16 }} />
+            <ShimmerPlaceholder
+              style={{ marginTop: 16, height: 40, borderRadius: 16 }}
+            />
+            <Flex direction="column" style={{ marginTop: 32, rowGap: 5 }}>
+              <ShimmerPlaceholder
+                style={{
+                  marginTop: 16,
+                  height: 40,
+                  borderRadius: 16,
+                  width: '100%',
+                }}
+              />
+            </Flex>
+            <ShimmerPlaceholder
+              style={{
+                marginVertical: 16,
+                height: 40,
+                borderRadius: 16,
+                width: '100%',
+              }}
+            />
+          </View>
+          <ShimmerPlaceholder
+            style={{
+              marginBottom: 32,
+              height: 40,
+              borderRadius: 16,
+              width: '100%',
+            }}
+          />
+
+          <Flex
+            direction="column"
+            style={{ marginBottom: 32, rowGap: !userDetails ? 0 : 8 }}
+          >
+            <ShimmerPlaceholder
+              style={{
+                marginBottom: 32,
+                height: 40,
+                borderRadius: 16,
+                width: '100%',
+              }}
+            />
+          </Flex>
+          <Flex
+            style={{
+              paddingHorizontal: spacing.spacing5,
+              paddingVertical: spacing.spacing3,
+              borderRadius: spacing.spacing5,
+              justifyContent: 'space-between',
+              marginBottom: 32,
+            }}
+            direction="row"
+          >
+            <ShimmerPlaceholder
+              style={{
+                marginBottom: 32,
+                height: 40,
+                borderRadius: 16,
+                width: '100%',
+              }}
+            />
+          </Flex>
+          <Flex direction="column" style={{ gap: spacing.spacing3 }}>
+            <ShimmerPlaceholder
+              style={{
+                marginBottom: 32,
+                height: 40,
+                borderRadius: 16,
+                width: '100%',
+              }}
+            />
+            <ShimmerPlaceholder
+              style={{
+                marginBottom: 32,
+                height: 40,
+                borderRadius: 16,
+                width: '100%',
+              }}
+            />
+            <ShimmerPlaceholder
+              style={{
+                marginBottom: 32,
+                height: 40,
+                borderRadius: 16,
+                width: '100%',
+              }}
+            />
+            <ShimmerPlaceholder
+              style={{
+                marginBottom: 32,
+                height: 40,
+                borderRadius: 16,
+                width: '100%',
+              }}
+            />
+          </Flex>
+          <ShimmerPlaceholder
+            style={{
+              marginBottom: 32,
+              height: 40,
+              borderRadius: 16,
+              width: '100%',
+            }}
+          />
+        </Flex>
+      </Flex>
+    )
+  }
+
   return (
     <KeyboardAvoidingView
       style={{ flex: 1, backgroundColor: colors.background }}
@@ -105,7 +242,8 @@ const MobileView = ({
     >
       <ScrollView
         contentContainerStyle={{
-          paddingHorizontal: 16,
+          paddingHorizontal: spacing.spacing7,
+          paddingVertical: spacing.spacing8,
         }}
       >
         <Flex
@@ -118,7 +256,7 @@ const MobileView = ({
           <Image imageUrl={Izzo} size={80} resizeMode="contain" />
         </Flex>
         <Flex direction="column">
-          {userDetails ? (
+          {Object.keys(userDetails).length > 0 ? (
             <ProfileTab
               heading={userDetails.name}
               description={userDetails.email}
@@ -136,10 +274,21 @@ const MobileView = ({
                 <TextInput
                   placeholder={t('INPUT_TEXT.EMAIL_PLACEHOLDER')}
                   outlineStyle={{ borderWidth: 0 }}
-                  onChangeText={(value: string) => setEmail(value)}
-                  value={email}
+                  onChangeText={(value: string) => {
+                    if (value !== '' && !isValidEmail(value)) {
+                      setUserDetail({
+                        email: value,
+                        errorMessage: t('ERROR_MESSAGE.INVALID_EMAIL'),
+                      })
+                    } else {
+                      setUserDetail({
+                        email: value,
+                        errorMessage: '',
+                      })
+                    }
+                  }}
+                  value={userDetail.email}
                   dense={true}
-                  contentStyle={{ fontSize: 16, fontWeight: '500' }}
                   left={
                     <TextInput.Icon
                       icon={() => (
@@ -148,6 +297,7 @@ const MobileView = ({
                       style={{ position: 'absolute', left: -20 }}
                     />
                   }
+                  error={userDetail.errorMessage || !userDetail.email}
                 />
               </Flex>
               <Button
@@ -159,6 +309,9 @@ const MobileView = ({
                 isLinearGradient
                 gradientColors={colors.gradient.primary}
                 style={{ marginTop: 18, marginBottom: 32 }}
+                disabled={
+                  !!userDetail.errorMessage || userDetail.email.length <= 0
+                }
               />
             </View>
           )}
@@ -239,7 +392,7 @@ const MobileView = ({
               handlePress={() => handleNavigation(privacyPolicyUrl, true)}
             />
           </Flex>
-          {userDetails && (
+          {Object.keys(userDetails).length > 0 && (
             <Button
               onPress={() => handleSignOut()}
               mode="contained"
@@ -253,7 +406,6 @@ const MobileView = ({
             />
           )}
         </Flex>
-        <View style={{ marginBottom: 100 }} />
       </ScrollView>
     </KeyboardAvoidingView>
   )

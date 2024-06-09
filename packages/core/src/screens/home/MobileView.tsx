@@ -187,6 +187,7 @@ const MobileView = (props: any) => {
           blogPost={blogPost}
           t={t}
           colors={colors}
+          routeName={props.route?.name}
         />
       ) : (
         <FlatList
@@ -206,15 +207,17 @@ const MobileView = (props: any) => {
   const placeholderData = [{}]
 
   return (
-    <FlatList
-      data={placeholderData}
-      keyExtractor={(_, index) => index.toString()}
-      showsVerticalScrollIndicator={false}
-      contentContainerStyle={{ marginTop: 20, paddingBottom: 100 }}
-      ListHeaderComponent={renderHeader}
-      renderItem={() => null}
-      style={{ backgroundColor: colors.background }}
-    />
+    <>
+      <FlatList
+        data={placeholderData}
+        keyExtractor={(_, index) => index.toString()}
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={{ marginTop: 20, paddingBottom: 100 }}
+        ListHeaderComponent={renderHeader}
+        renderItem={() => null}
+        style={{ backgroundColor: colors.background }}
+      />
+    </>
   )
 }
 
@@ -222,16 +225,30 @@ const SkeletonLoader = ({ title, colors, t, blogPost }: any) => {
   const findHeight = (title: any) => {
     switch (title) {
       case 'Genres':
-        return { height: 88, width: 150 }
+        return {
+          height: 88,
+          width: 150,
+          marginHorizontal: 16,
+          marginVertical: 16,
+        }
       case 'Today':
-        return { height: 175, width: 316 }
+        return {
+          height: 175,
+          width: 316,
+          marginHorizontal: 16,
+          marginVertical: 16,
+        }
       case 'This Weekend':
-        return { height: 175, width: 316 }
+        return {
+          height: 175,
+          width: 316,
+          marginHorizontal: 16,
+          marginVertical: 16,
+        }
       case 'News':
         return {
-          width: '95%',
-          marginHorizontal: 16,
           height: 150,
+          marginHorizontal: 16,
           marginVertical: 16,
         }
       default: {

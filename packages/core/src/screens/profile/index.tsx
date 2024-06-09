@@ -5,32 +5,39 @@ import MobileView from './MobileView'
 import React from 'react'
 import { useQuery } from '@tanstack/react-query'
 import { useNavigation } from '@react-navigation/native'
-import { getItemAsync } from '../../../../shared-async-storage' 
+import { deleteItemAsync, getItemAsync } from '@izzo/shared-async-storage'
 import auth from '@react-native-firebase/auth'
+import { checkEmailExists } from '@izzo/api/src/auth'
 
 const Profile = () => {
   const [drunkMode, setDrunkMode] = useState(false)
+  const [userDetail, setUserDetail] = useState<any>({ email: '', error: '' })
+
   const LayoutView = useCallback(
     ScreenLayout.withLayoutView(DesktopView, MobileView, MobileView),
     [],
   )
 
-  const navigation:any = useNavigation()
+  const navigation: any = useNavigation()
 
-  const { data: userDetails } = useQuery({
+  const { data: userDetails, isFetching } = useQuery({
     queryKey: ['userDetails'],
-    queryFn: () => {
-      const details = getItemAsync('userDetails');
-      return details;
+    queryFn: async () => {
+      const details: any = await getItemAsync('userDetails')
+      const finalData = await JSON.parse(details || {})
+      return { ...finalData, nam: finalData.name + finalData.surName }
     },
-   initialData: null
+    initialData: {},
   })
-  
 
-  const handleSignOut= async()=>{
-   await auth().signOut().catch(((error) => console.log({error})))
-   navigation.navigate('login')
+  const handleSignOut = async () => {
+    await auth()
+      .signOut()
+      .catch((error) => console.log({ error }))
+    deleteItemAsync('userDetails')
+    navigation.navigate('loginAndSignUp')
   }
+
   const handleNavigation = (path: string, isWeb: boolean) => {
     if (isWeb && path.endsWith('.pdf')) {
       return navigation.navigate('pdfView', { uri: path })
@@ -45,18 +52,26 @@ const Profile = () => {
     setDrunkMode(!drunkMode)
   }
 
-  const handleLogin = () => {
-
+  const handleLogin = async () => {
+    const isExists = await checkEmailExists(userDetail.email)
+    if (isExists) {
+      navigation.navigate('login', { email: userDetail.email })
+    } else {
+      navigation.navigate('register', { email: userDetail.email })
+    }
   }
 
   const viewProps = {
     drunkMode,
+    userDetail,
     userDetails,
+    isFetching,
     handleToggleDrunkMode,
     handleLogin,
     handleNavigation,
     handleSignOut,
     setDrunkMode,
+    setUserDetail,
   }
   return (
     <Suspense fallback={<></>}>

@@ -4,9 +4,11 @@ import { MobileContainer } from '@libs/container'
 
 const MobileView = (props: any) => {
   return (
-    <MobileContainer>
-      <Text>Map MobileView</Text>
-    </MobileContainer>
+    <>
+      <MobileContainer>
+        <Text>Map MobileView</Text>
+      </MobileContainer>
+    </>
   )
 }
 export default MobileView

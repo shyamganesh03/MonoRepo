@@ -5,27 +5,17 @@ import { useTranslation } from 'react-i18next'
 import { Icon } from '@libs/native-icons'
 import { useNavigation } from '@react-navigation/native'
 import { View } from 'react-native'
-import { checkEmailExists } from '@izzo/api/src/auth'
-import { setItemAsync } from '@izzo/shared-async-storage'
 
 const LoginAndSignUp = ({
   handleValidation,
   userDetails,
   errorMessage,
+  handleSubmit,
 }: any) => {
   const { colors } = useTheme<any>()
   const { t } = useTranslation()
 
   const navigation: any = useNavigation()
-
-  const handleSubmit = async () => {
-    const isExists = await checkEmailExists(userDetails.email)
-    if (isExists) {
-      navigation.navigate('login')
-    } else {
-      navigation.navigate('register')
-    }
-  }
 
   return (
     <Flex direction="column">
@@ -69,7 +59,7 @@ const LoginAndSignUp = ({
             marginBottom: 32,
             backgroundColor: colors.primary,
           }}
-          onPress={() => handleSubmit()}
+          onPress={() => handleSubmit({ type: 'loginAndSignup' })}
           mode="contained"
           label={t('BUTTON.Login_And_SIGN_UP')}
           labelStyle={{ color: colors.textPrimary }}

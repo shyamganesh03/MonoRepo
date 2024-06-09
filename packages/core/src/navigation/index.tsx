@@ -3,14 +3,9 @@ import Stacks from './stack'
 import { Linking, View } from 'react-native'
 import { BottomNavLayout } from '../components/index'
 import { useNavigation } from '@react-navigation/native'
-import auth from '@react-native-firebase/auth'
 
 export function AppNavigator() {
   const navigation: any = useNavigation()
-
-  useEffect(() => {
-    auth().signOut()
-  }, [])
 
   useEffect(() => {
     const handleOpenURL = ({ url }: any) => {

@@ -1,4 +1,4 @@
-import React, { Suspense, useCallback, useState } from 'react'
+import React, { Suspense, useCallback, useEffect, useState } from 'react'
 import { ScreenLayout } from '@libs/utils'
 import DesktopView from './DesktopView'
 import MobileView from './MobileView'
@@ -6,12 +6,20 @@ import { isValidEmail } from '@libs/utils'
 import Login from '../../components/auth/Login'
 import LoginAndSignUp from '../../components/auth/LoginAndSignUp'
 import Registration from '../../components/auth/Registration'
+import {
+  checkEmailExists,
+  handleCreateNewUser,
+  handleCreateOrUpdateUserData,
+  handleLogin,
+} from '@izzo/api/src/auth'
+import { useNavigation } from '@react-navigation/native'
+import { useTranslation } from 'react-i18next'
 
 const Auth = (props: any) => {
   const [userDetails, setUserDetails] = useState({
-    email: '',
+    email: props.route?.params?.email || '',
     password: '',
-    username: '',
+    name: '',
     surname: '',
     address: '',
     canon: '',
@@ -21,13 +29,15 @@ const Auth = (props: any) => {
   const [errorMessage, setErrorMessage] = useState<any>({
     email: '',
     password: '',
-    username: '',
+    name: '',
     surname: '',
     address: '',
     canon: '',
     agb: false,
     canSendOfferAndNews: false,
   })
+  const navigation: any = useNavigation()
+  const { t } = useTranslation()
 
   const currentRoute = props.route
 
@@ -38,7 +48,7 @@ const Auth = (props: any) => {
       if (value !== '' && !isValidEmail(value)) {
         setErrorMessage({
           ...errorMessage,
-          email: 'Enter a Valid E-Mail Address',
+          email: t('ERROR_MESSAGE.INVALID_EMAIL'),
         })
       } else {
         setErrorMessage('')
@@ -47,7 +57,7 @@ const Auth = (props: any) => {
       if (value.length < 8) {
         setErrorMessage({
           ...errorMessage,
-          password: 'Password must be at least 8 characters long',
+          password: t('ERROR_MESSAGE.INVALID_PASSWORD'),
         })
       } else {
         setErrorMessage('')
@@ -56,11 +66,73 @@ const Auth = (props: any) => {
       if (value !== userDetails.password) {
         setErrorMessage({
           ...errorMessage,
-          confirmPassword: 'Passwords do not match',
+          confirmPassword: t('ERROR_MESSAGE.PASSWORD_NOT_MATCH'),
         })
       } else {
         setErrorMessage('')
       }
+    }
+  }
+
+  const handleSubmit = async ({ type }: { type: string }) => {
+    switch (type) {
+      case 'login':
+        try {
+          const response: any = await handleLogin(
+            userDetails.email,
+            userDetails.password,
+          )
+          if (response.errorMessage) {
+            //@ts-ignore
+            toast.hideAll()
+            //@ts-ignore
+            toast.show(t(response.errorMessage), {
+              type: 'danger',
+            })
+          } else {
+            navigation.navigate('home')
+          }
+        } catch (error) {
+          console.log('=> ', { error })
+          //@ts-ignore
+          toast.hideAll()
+          //@ts-ignore
+          toast.show(t('ERROR_MESSAGE.INVALID_EMAIL_OR_PASSWORD'), {
+            type: 'danger',
+          })
+          console.error('Error during login:', error)
+        }
+        break
+      case 'loginAndSignup':
+        const isExists = await checkEmailExists(userDetails.email)
+        if (isExists) {
+          navigation.navigate('login', { email: userDetails.email })
+        } else {
+          navigation.navigate('register', { email: userDetails.email })
+        }
+        break
+      case 'register':
+        try {
+          const { email, password, name, surname, address, canon } = userDetails
+          const userCredential: any = await handleCreateNewUser(email, password)
+
+          if (userCredential?.user) {
+            const payload = {
+              name,
+              surname,
+              address,
+              canon,
+            }
+            await handleCreateOrUpdateUserData(email, payload)
+          }
+          navigation.navigate('home')
+        } catch (error) {
+          console.error(error)
+        }
+        break
+
+      default:
+        break
     }
   }
   const LayoutView = useCallback(
@@ -71,6 +143,7 @@ const Auth = (props: any) => {
     loginAndSignUp: (
       <LoginAndSignUp
         handleValidation={handleValidation}
+        handleSubmit={handleSubmit}
         userDetails={userDetails}
         errorMessage={errorMessage}
       />
@@ -78,6 +151,7 @@ const Auth = (props: any) => {
     login: (
       <Login
         handleValidation={handleValidation}
+        handleSubmit={handleSubmit}
         userDetails={userDetails}
         errorMessage={{ ...errorMessage }}
       />
@@ -85,6 +159,7 @@ const Auth = (props: any) => {
     register: (
       <Registration
         handleValidation={handleValidation}
+        handleSubmit={handleSubmit}
         userDetails={userDetails}
         errorMessage={{ ...errorMessage }}
       />
