@@ -13,6 +13,7 @@ interface LocationCardProps {
   borderRadius?: number
   latitudeDelta?: number
   eventData: any
+  isPastEvent?: boolean
 }
 
 const LocationCard = ({
@@ -20,6 +21,7 @@ const LocationCard = ({
   width = 335,
   borderRadius = 10,
   eventData,
+  isPastEvent,
 }: LocationCardProps) => {
   const { t } = useTranslation()
   const { colors } = useTheme<any>()
@@ -61,20 +63,22 @@ const LocationCard = ({
         )}
       </Flex>
 
-      <Button
-        onPress={() =>
-          navigation.navigate('webView', {
-            uri: eventData?.ticketLink,
-          })
-        }
-        mode="contained"
-        label={t('BUTTON.BUY_TICKETS')}
-        labelVariant="titleLarge"
-        labelStyle={{ color: colors.textPrimary }}
-        disabled={!eventData?.ticketLink}
-        isLinearGradient
-        gradientColors={colors.gradient.primary}
-      />
+      {!isPastEvent && (
+        <Button
+          onPress={() =>
+            navigation.navigate('webView', {
+              uri: eventData?.ticketLink,
+            })
+          }
+          mode="contained"
+          label={t('BUTTON.BUY_TICKETS')}
+          labelVariant="titleLarge"
+          labelStyle={{ color: colors.textPrimary }}
+          disabled={!eventData?.ticketLink}
+          isLinearGradient
+          gradientColors={colors.gradient.primary}
+        />
+      )}
     </Surface>
   )
 }

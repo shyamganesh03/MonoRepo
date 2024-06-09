@@ -224,7 +224,7 @@ const MobileView: React.FC<MobileViewProps> = ({
             </View>
           </TouchableOpacity>
         </Flex>
-        <LocationCard eventData={eventData} />
+        <LocationCard eventData={eventData} isPastEvent={isPastEvent} />
         <Flex
           direction="row"
           style={{ gap: spacing.spacing7, justifyContent: 'center' }}

@@ -74,6 +74,7 @@ const Button = ({
         style={[{ borderRadius: 18 }, style]}
         //@ts-ignore
         labelStyle={[labelStyle, typography[labelVariant]]}
+        uppercase={false}
       >
         {label}
       </RNPButton>
