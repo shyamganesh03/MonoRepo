@@ -127,8 +127,10 @@ const MobileView: React.FC<MobileViewProps> = ({
           direction="column"
           style={{ paddingBottom: spacing.spacing7, alignItems: 'center' }}
         >
-          <Text variant="headlineMedium">{eventData?.name}</Text>
-          <Text variant="bodyLarge">
+          <Text variant="headlineMedium" color={colors.textPrimary}>
+            {eventData?.name}
+          </Text>
+          <Text variant="bodyLarge" color={colors.textPrimary}>
             {t('EVENT_DETAIL.BY')} {eventData?.company?.name}
           </Text>
           <Share

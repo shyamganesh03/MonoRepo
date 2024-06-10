@@ -14,6 +14,7 @@ import {
 } from '@izzo/api/src/auth'
 import { useNavigation } from '@react-navigation/native'
 import { useTranslation } from 'react-i18next'
+import { getItemAsync } from '@izzo/shared-async-storage'
 
 const Auth = (props: any) => {
   const [userDetails, setUserDetails] = useState({
@@ -40,6 +41,18 @@ const Auth = (props: any) => {
   const { t } = useTranslation()
 
   const currentRoute = props.route
+
+  useEffect(() => {
+    ;(async () => {
+      const userData: any = await getItemAsync('userDetails')
+      const finalUserData = JSON.parse(userData || {})
+      if (Object.keys(finalUserData).length > 0) {
+        navigation.navigate('home')
+      } else {
+        navigation.navigate('loginAndSignUp')
+      }
+    })()
+  }, [])
 
   const handleValidation = (name: string, value: string) => {
     setUserDetails({ ...userDetails, [name]: value })
