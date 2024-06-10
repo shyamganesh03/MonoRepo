@@ -13,6 +13,7 @@ import {
   ScrollView,
   TouchableOpacity,
   View,
+  useWindowDimensions,
 } from 'react-native'
 import { Izzo } from 'assets'
 import { Icon } from '@libs/native-icons'
@@ -40,7 +41,6 @@ const ProfileTab = ({
   const { colors } = useTheme<any>()
   const hasLeftIcon = !!leftIconName
   const hasRightIcon = !!rightIconName
-
   return (
     <TouchableOpacity onPress={handlePress}>
       <Flex
@@ -88,6 +88,7 @@ const ProfileTab = ({
 
 const MobileView = ({
   drunkMode,
+  
   isFetching,
   userDetail,
   userDetails,
@@ -100,6 +101,8 @@ const MobileView = ({
 }: any) => {
   const { t } = useTranslation()
   const { colors } = useTheme<any>()
+  const {height} = useWindowDimensions()
+
 
   if (isFetching) {
     return (
@@ -237,13 +240,14 @@ const MobileView = ({
 
   return (
     <KeyboardAvoidingView
-      style={{ flex: 1, backgroundColor: colors.background }}
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
     >
       <ScrollView
         contentContainerStyle={{
+          height: height - 56 ,
           paddingHorizontal: spacing.spacing7,
           paddingVertical: spacing.spacing8,
+          backgroundColor: colors.background
         }}
       >
         <Flex
@@ -288,6 +292,7 @@ const MobileView = ({
                     }
                   }}
                   value={userDetail.email}
+               
                   dense={true}
                   left={
                     <TextInput.Icon

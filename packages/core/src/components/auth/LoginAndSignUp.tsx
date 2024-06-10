@@ -1,10 +1,10 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Button, Flex, Text, TextInput } from '@libs/components'
 import { Divider, useTheme } from 'react-native-paper'
 import { useTranslation } from 'react-i18next'
 import { Icon } from '@libs/native-icons'
 import { useNavigation } from '@react-navigation/native'
-import { View } from 'react-native'
+import { Keyboard, KeyboardAvoidingView, TouchableWithoutFeedback, View } from 'react-native'
 
 const LoginAndSignUp = ({
   handleValidation,
@@ -14,10 +14,25 @@ const LoginAndSignUp = ({
 }: any) => {
   const { colors } = useTheme<any>()
   const { t } = useTranslation()
-
   const navigation: any = useNavigation()
 
+  // State for email input and button disabled status
+  const [email, setEmail] = useState(userDetails.email || '')
+  const [isButtonDisabled, setIsButtonDisabled] = useState(true)
+
+  // Effect to update button disabled status based on email input
+  useEffect(() => {
+    setIsButtonDisabled(email.trim() === ''|| !!errorMessage)
+  }, [email])
+
+  // Function to handle email input change
+  const handleEmailChange = (value: string) => {
+    setEmail(value)
+    handleValidation('email', value)
+  }
+
   return (
+    
     <Flex direction="column">
       <Flex direction="column">
         <Text variant="headlineMedium" color={colors.textPrimary}>
@@ -27,16 +42,17 @@ const LoginAndSignUp = ({
           style={{
             paddingTop: 24,
             paddingBottom: 27,
-            maxWidth: 240,
+            maxWidth: 280,
           }}
         >
-          <Text variant="labelMedium">{t('AUTH.SUBTITLE')}</Text>
+          <Text variant="titleSmall">{t('AUTH.SUBTITLE')}</Text>
         </View>
       </Flex>
       <Flex direction="column">
         <TextInput
-          onChangeText={(value: string) => handleValidation('email', value)}
-          value={userDetails.email}
+          onChangeText={handleEmailChange}
+          value={email}
+          variant="titleMedium"
           outlineStyle={{ borderWidth: 0 }}
           placeholder={t('INPUT_TEXT.EMAIL_PLACEHOLDER')}
           left={
@@ -52,6 +68,8 @@ const LoginAndSignUp = ({
             />
           }
           error={errorMessage.email}
+          dense={true}
+          // style={{height:40}}
         />
         <Button
           style={{
@@ -62,6 +80,8 @@ const LoginAndSignUp = ({
           onPress={() => handleSubmit({ type: 'loginAndSignup' })}
           mode="contained"
           label={t('BUTTON.Login_And_SIGN_UP')}
+          labelVariant="titleLarge"
+          disabled={isButtonDisabled}
           labelStyle={{ color: colors.textPrimary }}
         />
       </Flex>
@@ -69,12 +89,15 @@ const LoginAndSignUp = ({
       <Button
         style={{ marginTop: 32, backgroundColor: colors.secondaryContainer }}
         onPress={() => {
+          Keyboard.dismiss(); 
           navigation.navigate('home')
         }}
         label={t('BUTTON.USE_AS_GUEST')}
+        labelVariant="titleLarge"
         labelStyle={{ color: colors.textPrimary }}
       />
     </Flex>
+    
   )
 }
 

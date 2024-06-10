@@ -46,6 +46,7 @@ const Button = ({
               height: spacing.spacing8,
               alignItems: 'center',
               justifyContent: 'center',
+              opacity: disabled ? 0.5:1
             },
             style,
           ]}
@@ -71,7 +72,7 @@ const Button = ({
         icon={icon}
         mode={mode || 'text'}
         onPress={onPress}
-        style={[{ borderRadius: 18 }, style]}
+        style={[{ borderRadius: 18 ,opacity: disabled ? 0.5:1}, style]}
         //@ts-ignore
         labelStyle={[labelStyle, typography[labelVariant]]}
         uppercase={false}

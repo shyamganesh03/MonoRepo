@@ -15,6 +15,8 @@ import {
 import { useNavigation } from '@react-navigation/native'
 import { useTranslation } from 'react-i18next'
 import { getItemAsync } from '@izzo/shared-async-storage'
+import { useQuery } from '@tanstack/react-query'
+import { getRegions } from '@izzo/api'
 
 const Auth = (props: any) => {
   const [userDetails, setUserDetails] = useState({
@@ -45,16 +47,17 @@ const Auth = (props: any) => {
   useEffect(() => {
     ;(async () => {
       const userData: any = await getItemAsync('userDetails')
-      const finalUserData = JSON.parse(userData || {})
+      const finalUserData = JSON.parse(userData || '{}')
       if (Object.keys(finalUserData).length > 0) {
         navigation.navigate('home')
-      } else {
+      } else if(currentRoute.name === 'loginAndSignUp') {
         navigation.navigate('loginAndSignUp')
       }
     })()
   }, [])
 
   const handleValidation = (name: string, value: string) => {
+    
     setUserDetails({ ...userDetails, [name]: value })
 
     if (name === 'email') {
@@ -67,6 +70,7 @@ const Auth = (props: any) => {
         setErrorMessage('')
       }
     } else if (name === 'password') {
+      
       if (value.length < 8) {
         setErrorMessage({
           ...errorMessage,
@@ -110,7 +114,7 @@ const Auth = (props: any) => {
           //@ts-ignore
           toast.hideAll()
           //@ts-ignore
-          toast.show(t('ERROR_MESSAGE.INVALID_EMAIL_OR_PASSWORD'), {
+          toast.show(t('ERROR_MESSAGE.INVALID_PASSWORD_CREDENTIAL'), {
             type: 'danger',
           })
           console.error('Error during login:', error)
@@ -148,6 +152,12 @@ const Auth = (props: any) => {
         break
     }
   }
+
+  const { data: regionsData } = useQuery({
+    queryKey: ['getRegions'],
+    queryFn: () => getRegions(),
+  })
+
   const LayoutView = useCallback(
     ScreenLayout.withLayoutView(DesktopView, MobileView, MobileView),
     [],
@@ -175,6 +185,7 @@ const Auth = (props: any) => {
         handleSubmit={handleSubmit}
         userDetails={userDetails}
         errorMessage={{ ...errorMessage }}
+        regionsData={regionsData}
       />
     ),
   }
@@ -184,6 +195,7 @@ const Auth = (props: any) => {
     errorMessage,
     //@ts-ignore
     renderComponent: routes[currentRoute.name],
+    regionsData
   }
 
   return (

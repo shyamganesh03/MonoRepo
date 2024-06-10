@@ -6,6 +6,7 @@ import { useTranslation } from 'react-i18next'
 import {
   Button,
   CheckBox,
+  DropDown,
   Flex,
   PasswordTextInput,
   ProgressBar,
@@ -19,12 +20,14 @@ const Registration = ({
   userDetails,
   errorMessage,
   handleSubmit,
+  regionsData
 }: any) => {
   const { colors } = useTheme<any>()
   const { t } = useTranslation()
   const [currentStep, setCurrentStep] = useState(1)
   const navigation = useNavigation()
   const [isButtonDisabled, setIsButtonDisabled] = useState(true)
+
 
   const handleNextStep = () => {
     setCurrentStep(currentStep + 1)
@@ -44,7 +47,7 @@ const Registration = ({
       }
       const fields = stepFields[currentStep]
       const allFieldsFilled = fields.every(
-        (field: string) => !!userDetails[field],
+        (field: string) => !!userDetails[field]
       )
       setIsButtonDisabled(!allFieldsFilled)
     }
@@ -63,6 +66,7 @@ const Registration = ({
               }}
               value={userDetails.name}
               outlineStyle={{ borderWidth: 0 }}
+              variant="titleMedium"
               placeholder={t('INPUT_TEXT.NAME_PLACEHOLDER')}
             />
             <TextInput
@@ -70,6 +74,7 @@ const Registration = ({
                 handleValidation('surname', value)
               }}
               value={userDetails.surname}
+              variant="titleMedium"
               outlineStyle={{ borderWidth: 0 }}
               placeholder={t('INPUT_TEXT.SURNAME_PLACEHOLDER')}
             />
@@ -79,6 +84,7 @@ const Registration = ({
               }}
               value={userDetails.email}
               placeholder={t('INPUT_TEXT.EMAIL_PLACEHOLDER')}
+              variant="titleMedium"
               outlineStyle={{ borderWidth: 0 }}
               left={
                 <TextInput.Icon
@@ -101,15 +107,16 @@ const Registration = ({
               }}
               value={userDetails.address}
               outlineStyle={{ borderWidth: 0 }}
+              variant="titleMedium"
               placeholder={t('INPUT_TEXT.ADDRESS_PLACEHOLDER')}
             />
-            <TextInput
-              onChangeText={(value: any) => {
-                handleValidation('canon', value)
-              }}
-              value={userDetails.canon}
-              outlineStyle={{ borderWidth: 0 }}
-              placeholder={t('INPUT_TEXT.CANTON_PLACEHOLDER')}
+            <DropDown
+              dense={true}
+              list={regionsData}
+              placeholder={t('SEARCH.SELECT')}
+              setValue={(value: any) => handleValidation('canon', value)}
+              field="region"
+              value={userDetails?.canon}
             />
           </Flex>
         )
@@ -121,7 +128,9 @@ const Registration = ({
                 handleValidation('password', value)
               }}
               value={userDetails.password}
+              variant="titleMedium"
               placeholder={t('INPUT_TEXT.PASSWORD_PLACEHOLDER')}
+              outlineStyle={{ borderWidth: 0 }}
               errorMessage={errorMessage.password}
             />
 
@@ -131,6 +140,8 @@ const Registration = ({
               }}
               value={userDetails.confirmPassword}
               placeholder={t('INPUT_TEXT.CONFIRM_PASSWORD_PLACEHOLDER')}
+              outlineStyle={{ borderWidth: 0 }}
+              variant="titleMedium"
               errorMessage={errorMessage.confirmPassword}
             />
 
@@ -174,10 +185,10 @@ const Registration = ({
           style={{
             paddingTop: 24,
             paddingBottom: 27,
-            maxWidth: 240,
+            maxWidth: 280,
           }}
         >
-          <Text variant="labelMedium">{t('AUTH.SUBTITLE')}</Text>
+          <Text variant="titleSmall">{t('AUTH.SUBTITLE')}</Text>
         </View>
       </Flex>
       {renderStep()}
@@ -190,12 +201,16 @@ const Registration = ({
               : handleNextStep()
           }
           disabled={isButtonDisabled}
+          labelVariant="titleLarge"
+          isLinearGradient
+          gradientColors={colors.gradient.primary}
           label={currentStep === 3 ? t('BUTTON.SIGN_UP') : t('BUTTON.NEXT')}
           labelStyle={{ color: colors.textPrimary }}
         />
 
         <Button
           style={{ backgroundColor: colors.secondaryContainer }}
+          labelVariant="titleLarge"
           onPress={handlePreviousStep}
           label={t('BUTTON.BACK')}
           labelStyle={{ color: colors.textPrimary }}

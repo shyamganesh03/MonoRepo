@@ -6,7 +6,7 @@ import React, {
   useEffect,
   useState,
 } from 'react'
-import { Platform, ScrollView, View } from 'react-native'
+import { Keyboard, Platform, ScrollView, View } from 'react-native'
 import { Checkbox, Menu, TouchableRipple, useTheme } from 'react-native-paper'
 import { Icon } from '@libs/native-icons'
 import TextInput from '../TextInput'
@@ -121,6 +121,7 @@ const DropDown = forwardRef((props: any, ref) => {
         <TouchableRipple
           ref={ref}
           onPress={() => {
+            Keyboard.dismiss()
             setShowDropDown(true)
             props?.onFocus?.()
           }}

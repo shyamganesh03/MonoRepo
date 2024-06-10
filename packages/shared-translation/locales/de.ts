@@ -17,6 +17,7 @@ export default {
     SHOW_LESS: 'Weniger anzeigen',
     SHOW_MORE: 'Mehr anzeigen',
     SIGN_OUT: 'Abmelden',
+    FORGOT_PASSWORD: 'Passwort vergessen?',
     SIGN_UP: 'Registrieren',
     USE_AS_GUEST: 'Als Gast verwenden',
   },
@@ -31,8 +32,7 @@ export default {
     EMAIL_ALREADY_IN_USE:
       'Die angegebene E-Mail-Adresse ist bereits vorhanden. Bitte anmelden.',
     INVALID_EMAIL_FORMAT: 'Die angegebene E-Mail-Adresse ist ungültig.',
-    INVALID_EMAIL_OR_PASSWORD:
-      'Die angegebene E-Mail oder das Passwort ist ungültig.',
+    INVALID_PASSWORD_CREDENTIAL: 'Die angegebene Passwort ist ungültig.',
   },
   EVENT_CARD: {
     AT: 'um',

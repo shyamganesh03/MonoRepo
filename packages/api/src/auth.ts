@@ -4,9 +4,12 @@ import firestore from '@react-native-firebase/firestore'
 
 export const handleLogin = async (email: string, password: string) => {
   return await auth()
-    .signInWithEmailAndPassword(email, password)
+    .signInWithEmailAndPassword(email.toLowerCase(), password)
     .then(async () => {
-      let users: any = await firestore().collection('users').doc(email).get()
+      let users: any = await firestore()
+        .collection('users')
+        .doc(email.toLowerCase())
+        .get()
 
       users = {
         email,
@@ -24,13 +27,16 @@ export const handleLogin = async (email: string, password: string) => {
         return { errorMessage: 'ERROR_MESSAGE.INVALID_EMAIL_FORMAT' }
       }
 
-      return { errorMessage: 'ERROR_MESSAGE.INVALID_EMAIL_OR_PASSWORD' }
+      return { errorMessage: 'ERROR_MESSAGE.INVALID_PASSWORD_CREDENTIAL' }
     })
 }
 
 export const checkEmailExists = async (email: string) => {
   try {
-    const users = await firestore().collection('users').doc(email).get()
+    const users = await firestore()
+      .collection('users')
+      .doc(email.toLowerCase())
+      .get()
     return users.exists
   } catch (error) {
     console.error('Error checking email existence: ', error)
@@ -41,7 +47,7 @@ export const checkEmailExists = async (email: string) => {
 export const handleCreateNewUser = async (email: string, password: string) => {
   try {
     const userCredential = await auth().createUserWithEmailAndPassword(
-      email,
+      email.toLowerCase(),
       password,
     )
 
