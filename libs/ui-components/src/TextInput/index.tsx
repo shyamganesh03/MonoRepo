@@ -39,6 +39,7 @@ const TextInput = (props: any) => {
         contentStyle={{
           ...props?.style,
           marginTop: 2.5,
+          paddingTop: 10,
         }}
         outlineStyle={{ borderRadius: 16, ...props?.outlineStyle }}
         cursorColor={colors.textPrimary}
