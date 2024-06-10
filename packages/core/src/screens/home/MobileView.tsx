@@ -225,38 +225,17 @@ const SkeletonLoader = ({ title, colors, t, blogPost }: any) => {
   const findHeight = (title: any) => {
     switch (title) {
       case 'Genres':
-        return {
-          height: 88,
-          width: 150,
-          marginHorizontal: 16,
-          marginVertical: 16,
-        }
+        return { height: 88, width: 150 }
       case 'Today':
-        return {
-          height: 175,
-          width: 316,
-          marginHorizontal: 16,
-          marginVertical: 16,
-        }
+        return { height: 175, width: 316 }
       case 'This Weekend':
-        return {
-          height: 175,
-          width: 316,
-          marginHorizontal: 16,
-          marginVertical: 16,
-        }
-      case 'News':
-        return {
-          height: 150,
-          marginHorizontal: 16,
-          marginVertical: 16,
-        }
+        return { height: 175, width: 316 }
       default: {
         return { height: 175, width: 316 }
       }
     }
   }
-  return (
+  return !blogPost ? (
     <>
       <Flex
         direction="row"
@@ -294,7 +273,7 @@ const SkeletonLoader = ({ title, colors, t, blogPost }: any) => {
         keyExtractor={(_, index) => index.toString()}
       />
     </>
-  )
+  ) : null
 }
 
 export default MobileView
