@@ -20,14 +20,13 @@ const Registration = ({
   userDetails,
   errorMessage,
   handleSubmit,
-  regionsData
+  regionsData,
 }: any) => {
   const { colors } = useTheme<any>()
   const { t } = useTranslation()
   const [currentStep, setCurrentStep] = useState(1)
   const navigation = useNavigation()
   const [isButtonDisabled, setIsButtonDisabled] = useState(true)
-
 
   const handleNextStep = () => {
     setCurrentStep(currentStep + 1)
@@ -47,7 +46,7 @@ const Registration = ({
       }
       const fields = stepFields[currentStep]
       const allFieldsFilled = fields.every(
-        (field: string) => !!userDetails[field]
+        (field: string) => !!userDetails[field],
       )
       setIsButtonDisabled(!allFieldsFilled)
     }
@@ -142,6 +141,46 @@ const Registration = ({
               placeholder={t('INPUT_TEXT.CONFIRM_PASSWORD_PLACEHOLDER')}
               outlineStyle={{ borderWidth: 0 }}
               variant="titleMedium"
+              errorMessage={errorMessage.confirmPassword}
+            />
+
+            <Flex direction="row" style={{ gap: 10, alignItems: 'center' }}>
+              <CheckBox
+                style={{ backgroundColor: colors.secondaryContainer }}
+                onPress={(value: any) => handleValidation('agb', value)}
+                status={userDetails.agb}
+              />
+              <Text variant="titleLarge" color={colors.textPrimary}>
+                {t('AUTH.CHECKBOX1')}
+              </Text>
+            </Flex>
+            <Flex direction="row" style={{ gap: 10, alignItems: 'center' }}>
+              <CheckBox
+                onPress={(value: any) =>
+                  handleValidation('canSendOfferAndNews', value)
+                }
+                style={{ backgroundColor: colors.secondaryContainer }}
+                status={userDetails.canSendOfferAndNews}
+              />
+              <Text variant="titleLarge" color={colors.textPrimary}>
+                {t('AUTH.CHECKBOX2')}
+              </Text>
+            </Flex>
+            <PasswordTextInput
+              onChangeText={(value: any) => {
+                handleValidation('password', value)
+              }}
+              value={userDetails.password}
+              placeholder={t('INPUT_TEXT.PASSWORD_PLACEHOLDER')}
+              errorMessage={errorMessage.password}
+            />
+
+            <PasswordTextInput
+              onChangeText={(value: any) => {
+                handleValidation('confirmPassword', value)
+              }}
+              value={userDetails.confirmPassword}
+              placeholder={t('INPUT_TEXT.CONFIRM_PASSWORD_PLACEHOLDER')}
               errorMessage={errorMessage.confirmPassword}
             />
 

@@ -71,6 +71,7 @@ export default {
     NAME_PLACEHOLDER: 'Name',
     PASSWORD_PLACEHOLDER: 'Password',
     SURNAME_PLACEHOLDER: 'Surname',
+    ADDRESS_SEARCH_PLACEHOLDER: 'Address Search',
   },
   IZZ0: 'Izzo',
   LOCATION_CARD: {

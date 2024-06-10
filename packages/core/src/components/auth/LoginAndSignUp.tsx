@@ -4,7 +4,12 @@ import { Divider, useTheme } from 'react-native-paper'
 import { useTranslation } from 'react-i18next'
 import { Icon } from '@libs/native-icons'
 import { useNavigation } from '@react-navigation/native'
-import { Keyboard, KeyboardAvoidingView, TouchableWithoutFeedback, View } from 'react-native'
+import {
+  Keyboard,
+  KeyboardAvoidingView,
+  TouchableWithoutFeedback,
+  View,
+} from 'react-native'
 
 const LoginAndSignUp = ({
   handleValidation,
@@ -22,7 +27,7 @@ const LoginAndSignUp = ({
 
   // Effect to update button disabled status based on email input
   useEffect(() => {
-    setIsButtonDisabled(email.trim() === ''|| !!errorMessage)
+    setIsButtonDisabled(email.trim() === '' || !!errorMessage)
   }, [email])
 
   // Function to handle email input change
@@ -32,7 +37,6 @@ const LoginAndSignUp = ({
   }
 
   return (
-    
     <Flex direction="column">
       <Flex direction="column">
         <Text variant="headlineMedium" color={colors.textPrimary}>
@@ -89,7 +93,7 @@ const LoginAndSignUp = ({
       <Button
         style={{ marginTop: 32, backgroundColor: colors.secondaryContainer }}
         onPress={() => {
-          Keyboard.dismiss(); 
+          Keyboard.dismiss()
           navigation.navigate('home')
         }}
         label={t('BUTTON.USE_AS_GUEST')}
@@ -97,7 +101,6 @@ const LoginAndSignUp = ({
         labelStyle={{ color: colors.textPrimary }}
       />
     </Flex>
-    
   )
 }
 

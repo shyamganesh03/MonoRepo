@@ -371,6 +371,40 @@ const SvgInstagramIcon = (props) =>
     }),
   )
 
+const SvgLocateFixedIcon = (props) =>
+  /*#__PURE__*/ React.createElement(
+    Svg,
+    _extends(
+      {
+        xmlns: 'http://www.w3.org/2000/svg',
+        width: 24,
+        height: 24,
+        viewBox: '0 0 24 24',
+        fill: 'none',
+        stroke: props.color || 'currentColor',
+        strokeWidth: 2,
+        strokeLinecap: 'round',
+        strokeLinejoin: 'round',
+        className:
+          'LocateFixedIcon_svg__lucide LocateFixedIcon_svg__lucide-locate-fixed',
+      },
+      props,
+    ),
+    /*#__PURE__*/ React.createElement(Path, {
+      d: 'M2 12h3M19 12h3M12 2v3M12 19v3',
+    }),
+    /*#__PURE__*/ React.createElement(Circle, {
+      cx: 12,
+      cy: 12,
+      r: 7,
+    }),
+    /*#__PURE__*/ React.createElement(Circle, {
+      cx: 12,
+      cy: 12,
+      r: 3,
+    }),
+  )
+
 const SvgLocationIcon = (props) =>
   /*#__PURE__*/ React.createElement(
     Svg,
@@ -851,6 +885,9 @@ const Icon = (props) => {
   }
   if (props.name === 'InstagramIcon') {
     return /*#__PURE__*/ React__default.createElement(SvgInstagramIcon, props)
+  }
+  if (props.name === 'LocateFixedIcon') {
+    return /*#__PURE__*/ React__default.createElement(SvgLocateFixedIcon, props)
   }
   if (props.name === 'LocationIcon') {
     return /*#__PURE__*/ React__default.createElement(SvgLocationIcon, props)

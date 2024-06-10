@@ -10,7 +10,9 @@ import { spacing } from '@libs/theme'
 const EventCard = ({
   eventDetail,
   handleEventDetailNavigation,
+  handleClose,
   isSearch,
+  isMap,
 }: any) => {
   const { colors } = useTheme<any>()
   const { t } = useTranslation()
@@ -41,26 +43,42 @@ const EventCard = ({
           borderRadius: spacing.spacing4,
         }}
         right={() =>
-          isSearch && (
+          (isSearch || isMap) && (
             <View style={{ marginTop: 5 }}>
               <Flex direction="column" style={{ paddingRight: 18 }}>
-                <Text variant="headlineSmall" color={colors.primary}>
-                  {dateformat(eventDetail?.startDate)}
-                </Text>
-                <Text
-                  variant="bodyMedium"
-                  color={colors.textSecondary}
-                  textAlign="right"
-                >
-                  {t('EVENT_CARD.AT')} {eventDetail?.startTime}
-                </Text>
+                {!isMap ? (
+                  <>
+                    <Text variant="headlineSmall" color={colors.primary}>
+                      {dateformat(eventDetail?.startDate)}
+                    </Text>
+                    <Text
+                      variant="bodyMedium"
+                      color={colors.textSecondary}
+                      textAlign="right"
+                    >
+                      {t('EVENT_CARD.AT')} {eventDetail?.startTime}
+                    </Text>
+                  </>
+                ) : (
+                  <TouchableOpacity
+                    style={{
+                      alignSelf: 'flex-end',
+                      position: 'absolute',
+                      top: -30,
+                      right: 12,
+                    }}
+                    onPress={() => handleClose()}
+                  >
+                    <Icon name="CloseRoundIcon" />
+                  </TouchableOpacity>
+                )}
                 <TouchableOpacity
                   style={{
                     backgroundColor: colors.tertiary,
                     alignSelf: 'flex-end',
                     position: 'absolute',
                     right: 0,
-                    bottom: -111,
+                    bottom: isMap ? -131 : -111,
                     paddingVertical: 6,
                     paddingHorizontal: 14,
                     borderTopLeftRadius: spacing.spacing4,

@@ -1,9 +1,8 @@
 import React from 'react'
-import { View } from 'react-native'
 import { spacing } from '@libs/theme'
-import KeyBoardView from '../KeyBoardView'
 import { Flex } from '@libs/components'
 import { useTheme } from 'react-native-paper'
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 const MobileContainer = (props: any) => {
   const {
@@ -20,8 +19,17 @@ const MobileContainer = (props: any) => {
 
   if (hasKeyBoard) {
     return (
-      <KeyBoardView>
-        <View
+      <KeyboardAwareScrollView
+        contentContainerStyle={{
+          backgroundColor: colors.background,
+          flexGrow: 1,
+        }}
+        resetScrollToCoords={{ x: 0, y: 0 }}
+        keyboardShouldPersistTaps="handled"
+        scrollEnabled
+      >
+        <Flex
+          direction={direction}
           style={[
             hasPadding
               ? {
@@ -39,8 +47,8 @@ const MobileContainer = (props: any) => {
           {...rest}
         >
           {children}
-        </View>
-      </KeyBoardView>
+        </Flex>
+      </KeyboardAwareScrollView>
     )
   }
   return (

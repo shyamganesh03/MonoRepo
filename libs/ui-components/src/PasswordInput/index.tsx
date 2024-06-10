@@ -6,21 +6,7 @@ import { View } from 'react-native'
 import TextInput from '../TextInput'
 import { Icon } from '@libs/native-icons'
 
-interface PasswordTextInputProps {
-  onFocus?: any
-  placeholder: string
-  onBlur?: any
-  onChangeText?: any
-  errorMessage?: any
-  outlineColor?: string
-  mode?: 'outlined' | 'flat' | undefined
-  placeholderTextColor?: string
-  label?: string
-  value?: any
-  style?: any
-}
-
-const PasswordTextInput = (props: PasswordTextInputProps) => {
+const PasswordTextInput = (props: any) => {
   const {
     onFocus = () => {},
     placeholder,

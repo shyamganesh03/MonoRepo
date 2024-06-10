@@ -6,7 +6,6 @@ import { getNotificationNavigation } from './getNotificationNavigation'
 
 const notificationService = async () => {
   try {
-
     messaging().setBackgroundMessageHandler(async (remoteMessage) => {
       console.log('Message handled in the background!', remoteMessage)
     })

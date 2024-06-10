@@ -88,7 +88,7 @@ const ProfileTab = ({
 
 const MobileView = ({
   drunkMode,
-  
+
   isFetching,
   userDetail,
   userDetails,
@@ -101,8 +101,7 @@ const MobileView = ({
 }: any) => {
   const { t } = useTranslation()
   const { colors } = useTheme<any>()
-  const {height} = useWindowDimensions()
-
+  const { height } = useWindowDimensions()
 
   if (isFetching) {
     return (
@@ -244,10 +243,10 @@ const MobileView = ({
     >
       <ScrollView
         contentContainerStyle={{
-          height: height - 56 ,
+          height: height - 56,
           paddingHorizontal: spacing.spacing7,
           paddingVertical: spacing.spacing8,
-          backgroundColor: colors.background
+          backgroundColor: colors.background,
         }}
       >
         <Flex
@@ -292,7 +291,6 @@ const MobileView = ({
                     }
                   }}
                   value={userDetail.email}
-               
                   dense={true}
                   left={
                     <TextInput.Icon

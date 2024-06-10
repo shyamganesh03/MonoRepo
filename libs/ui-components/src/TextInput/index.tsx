@@ -23,7 +23,7 @@ const TextInput = (props: any) => {
         style={{
           ...props?.style,
           backgroundColor: colors.elevation.level5,
-          height:40
+          height: 40,
         }}
         onFocus={() => {
           props?.onFocus?.()
@@ -38,7 +38,7 @@ const TextInput = (props: any) => {
         }}
         contentStyle={{
           ...props.style,
-          height:40
+          height: 40,
         }}
         outlineStyle={{ borderRadius: 16, ...props?.outlineStyle }}
         cursorColor={colors.textPrimary}

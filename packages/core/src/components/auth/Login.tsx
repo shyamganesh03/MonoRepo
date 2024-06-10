@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import { Button, Flex, Text, TextInput } from '@libs/components';
-import { useTheme } from 'react-native-paper';
-import { useTranslation } from 'react-i18next';
-import { Icon } from '@libs/native-icons';
-import { PasswordTextInput } from '@libs/components';
-import { Keyboard, TouchableOpacity, View } from 'react-native';
+import React, { useState, useEffect } from 'react'
+import { Button, Flex, Text, TextInput } from '@libs/components'
+import { useTheme } from 'react-native-paper'
+import { useTranslation } from 'react-i18next'
+import { Icon } from '@libs/native-icons'
+import { PasswordTextInput } from '@libs/components'
+import { Keyboard, TouchableOpacity, View } from 'react-native'
 
 const Login = ({
   handleValidation,
@@ -12,36 +12,36 @@ const Login = ({
   errorMessage,
   handleSubmit,
 }: any) => {
-  const { colors } = useTheme<any>();
-  const { t } = useTranslation();
-  const [email, setEmail] = useState(userDetails.email || '');
-  const [password, setPassword] = useState(userDetails.password || '');
-  const [isButtonDisabled, setIsButtonDisabled] = useState(true);
+  const { colors } = useTheme<any>()
+  const { t } = useTranslation()
+  const [email, setEmail] = useState(userDetails.email || '')
+  const [password, setPassword] = useState(userDetails.password || '')
+  const [isButtonDisabled, setIsButtonDisabled] = useState(true)
 
   useEffect(() => {
     // Check if both email and password are filled
     if (email && password) {
-      setIsButtonDisabled(false);
+      setIsButtonDisabled(false)
     } else {
-      setIsButtonDisabled(true);
+      setIsButtonDisabled(true)
     }
-  }, [email, password]);
+  }, [email, password])
 
   const handleEmailChange = (value: any) => {
-    setEmail(value);
-    handleValidation('email', value);
-  };
+    setEmail(value)
+    handleValidation('email', value)
+  }
 
   const handlePasswordChange = (value: any) => {
-    setPassword(value);
-    handleValidation('password', value);
-  };
+    setPassword(value)
+    handleValidation('password', value)
+  }
 
   const renderTitle = () => (
     <Text variant="headlineMedium" color={colors.textPrimary}>
       {t('AUTH.TITLE')}
     </Text>
-  );
+  )
 
   const renderSubtitle = () => (
     <View
@@ -53,7 +53,7 @@ const Login = ({
     >
       <Text variant="titleSmall">{t('AUTH.SUBTITLE')}</Text>
     </View>
-  );
+  )
 
   const renderEmailInput = () => (
     <TextInput
@@ -70,7 +70,7 @@ const Login = ({
       }
       error={errorMessage.email}
     />
-  );
+  )
 
   const renderPasswordInput = () => (
     <PasswordTextInput
@@ -80,15 +80,13 @@ const Login = ({
       errorMessage={errorMessage.password}
       outlineStyle={{ borderWidth: 0 }}
     />
-  );
+  )
 
   const renderForgotPasswordLink = () => (
-    <TouchableOpacity onPress={() => { }}>
-      <Text color={colors.primary}>
-        {t('BUTTON.FORGOT_PASSWORD')}
-      </Text>
+    <TouchableOpacity onPress={() => {}}>
+      <Text color={colors.primary}>{t('BUTTON.FORGOT_PASSWORD')}</Text>
     </TouchableOpacity>
-  );
+  )
 
   const renderLoginButton = () => (
     <Button
@@ -96,20 +94,19 @@ const Login = ({
         backgroundColor: colors.primary,
       }}
       onPress={() => {
-        Keyboard.dismiss();
-        handleSubmit({ 
-        
-        type: 'login' })}
-      }
-      label={t('BUTTON.LOGIN')} 
-
+        Keyboard.dismiss()
+        handleSubmit({
+          type: 'login',
+        })
+      }}
+      label={t('BUTTON.LOGIN')}
       labelVariant="titleLarge"
       isLinearGradient
       gradientColors={colors.gradient.primary}
       labelStyle={{ color: colors.textPrimary }}
       disabled={isButtonDisabled} // Disable the button based on state
     />
-  );
+  )
 
   return (
     <Flex direction="column">
@@ -124,7 +121,7 @@ const Login = ({
         {renderLoginButton()}
       </Flex>
     </Flex>
-  );
-};
+  )
+}
 
-export default Login;
+export default Login

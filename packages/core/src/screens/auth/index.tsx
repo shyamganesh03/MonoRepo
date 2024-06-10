@@ -50,14 +50,13 @@ const Auth = (props: any) => {
       const finalUserData = JSON.parse(userData || '{}')
       if (Object.keys(finalUserData).length > 0) {
         navigation.navigate('home')
-      } else if(currentRoute.name === 'loginAndSignUp') {
+      } else if (currentRoute.name === 'loginAndSignUp') {
         navigation.navigate('loginAndSignUp')
       }
     })()
   }, [])
 
   const handleValidation = (name: string, value: string) => {
-    
     setUserDetails({ ...userDetails, [name]: value })
 
     if (name === 'email') {
@@ -70,7 +69,6 @@ const Auth = (props: any) => {
         setErrorMessage('')
       }
     } else if (name === 'password') {
-      
       if (value.length < 8) {
         setErrorMessage({
           ...errorMessage,
@@ -195,7 +193,7 @@ const Auth = (props: any) => {
     errorMessage,
     //@ts-ignore
     renderComponent: routes[currentRoute.name],
-    regionsData
+    regionsData,
   }
 
   return (

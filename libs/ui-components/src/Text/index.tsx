@@ -1,4 +1,3 @@
-import { StyleSheet } from 'react-native'
 import PropTypes from 'prop-types'
 import React from 'react'
 import { typography } from '@libs/theme'
@@ -66,11 +65,10 @@ Text.propTypes = {
   textAlign: PropTypes.oneOf(['left', 'center', 'right']),
   variant: PropTypes.oneOf(variants),
 }
-
 Text.defaultProps = {
   color: '',
   textAlign: 'left',
-  variant: 'bodyCompactBold2',
+  variant: 'bodySmall',
 }
 
 Text.variants = variants
