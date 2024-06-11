@@ -5,7 +5,7 @@ import { Flex, IconButton, Loader, Text } from '@libs/components'
 import { useTheme } from 'react-native-paper'
 import { useNavigation } from '@react-navigation/native'
 import { t } from 'i18next'
-import { getItemAsync } from '@izzo/shared-async-storage'
+import { getItemAsync } from '@monoRepo/shared-async-storage'
 
 const WebView = (props: any) => {
   const [currentUrl, setCurrentUrl] = useState(props?.uri)
@@ -81,7 +81,7 @@ const WebView = (props: any) => {
           source={{
             uri:
               targetLanguage === 'en'
-                ? currentUrl?.includes('izzo')
+                ? currentUrl?.includes('monoRepo')
                   ? `https://translate.google.com/translate?sl=auto&tl=${targetLanguage}&hl=en&u=${encodeURIComponent(props?.uri)}&client=webapp`
                   : props?.uri
                 : props?.uri,

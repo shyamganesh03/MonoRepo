@@ -37,7 +37,7 @@ export const ShareComponent = (props: ShareComponentProps) => {
       : `${data?.appUrl}/${data?.pathName}/${search(data?.params)}`
 
     const options = {
-      title: data?.title || 'Izzo',
+      title: data?.title || 'monoRepo',
       subject: data?.text || '',
       message: url,
     }

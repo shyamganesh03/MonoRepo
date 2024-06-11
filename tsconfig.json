@@ -25,14 +25,14 @@
       "@libs/blur-widget": ["./libs/blurWidget"],
       "@libs/container": ["./libs/container"],
       "@libs/bottom-sheet": ["./libs/bottom-sheet"],
-      "@izzo/core": ["./packages/core"],
-      "@izzo/jotai-storage": ["./packages/jotai-storage"],
-      "@izzo/shared-translation": ["./packages/shared-translation"],
-      "@izzo/hooks": ["./packages/shared-hooks"],
+      "@monoRepo/core": ["./packages/core"],
+      "@monoRepo/jotai-storage": ["./packages/jotai-storage"],
+      "@monoRepo/shared-translation": ["./packages/shared-translation"],
+      "@monoRepo/hooks": ["./packages/shared-hooks"],
       "@libs/pdf-view": ["./libs/pdf-view"],
       "@libs/map-view": ["./libs/map-view"],
       "@libs/web-view": ["./libs/web-view"],
-      "@izzo/shared-async-storage": ["./packages/shared-async-storage"]
+      "@monoRepo/shared-async-storage": ["./packages/shared-async-storage"]
     }
   },
   "include": ["packages/**/*", "libs/**/*", "apps/**/*"]

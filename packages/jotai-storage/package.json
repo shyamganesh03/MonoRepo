@@ -1,5 +1,5 @@
 {
-  "name": "@izzo/jotai-storage",
+  "name": "@monoRepo/jotai-storage",
   "version": "1.0.0",
   "main": "index.tsx",
   "license": "MIT"

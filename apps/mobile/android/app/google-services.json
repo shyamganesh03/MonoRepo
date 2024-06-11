@@ -1,15 +1,15 @@
 {
   "project_info": {
     "project_number": "670353450767",
-    "project_id": "izzo-app",
-    "storage_bucket": "izzo-app.appspot.com"
+    "project_id": "monoRepo-app",
+    "storage_bucket": "monoRepo-app.appspot.com"
   },
   "client": [
     {
       "client_info": {
         "mobilesdk_app_id": "1:670353450767:android:cabf07b59f7b874f99807a",
         "android_client_info": {
-          "package_name": "com.izzo"
+          "package_name": "com.monoRepo"
         }
       },
       "oauth_client": [],

@@ -20,8 +20,8 @@ const PdfView = (props: any) => {
 
   async function downloadPdf() {
     const fileName = resources?.url?.includes('agb')
-      ? 'IzzoAGBs.pdf'
-      : 'IzzoPrivacyPolicy.pdf'
+      ? 'monoRepoAGBs.pdf'
+      : 'monoRepoPrivacyPolicy.pdf'
     try {
       const { config, fs } = RNFetchBlob
       const downloads = fs.dirs.DownloadDir

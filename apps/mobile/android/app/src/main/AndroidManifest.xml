@@ -15,7 +15,7 @@
         <action android:name="android.intent.action.VIEW" />
         <category android:name="android.intent.category.DEFAULT" />
         <category android:name="android.intent.category.BROWSABLE" />
-        <data android:scheme="https" android:host="www.izzo-app.com" android:pathPrefix="/event"/>
+        <data android:scheme="https" android:host="www.monoRepo-app.com" android:pathPrefix="/event"/>
       </intent-filter>
     </activity>
     <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>

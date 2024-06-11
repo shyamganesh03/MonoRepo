@@ -28,7 +28,7 @@ if linkage != nil
   use_frameworks! :linkage => linkage.to_sym
 end
 
-target 'izzo' do
+target 'monoRepo' do
   config = use_native_modules!
   rn_maps_path = '../../../node_modules/react-native-maps'
   pdf_view_path='../../../node_modules/react-native-view-pdf'
@@ -61,7 +61,7 @@ target 'izzo' do
     :app_path => "#{Pod::Config.instance.installation_root}/.."
   )
 
-  target 'izzoTests' do
+  target 'monoRepoTests' do
     inherit! :complete
     # Pods for testing
   end

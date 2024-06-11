@@ -1,5 +1,5 @@
 {
-  "name": "@izzo/shared-async-storage",
+  "name": "@monoRepo/shared-async-storage",
   "version": "1.0.0",
   "description": "",
   "main": "index.ts",

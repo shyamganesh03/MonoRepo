@@ -1,5 +1,5 @@
 {
-  "name": "@izzo/api",
+  "name": "@monoRepo/api",
   "version": "1.0.0",
   "main": "src/api.ts",
   "license": "MIT"

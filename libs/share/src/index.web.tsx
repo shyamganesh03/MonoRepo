@@ -72,7 +72,7 @@ export const ShareComponent = (props: ShareComponentProps) => {
   }
 
   const options = {
-    title: data?.title || 'Izzo',
+    title: data?.title || 'monoRepo',
     text: data?.text,
     url,
   }

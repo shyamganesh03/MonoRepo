@@ -8,7 +8,7 @@
     "build-lib": "rollup -c"
   },
   "keywords": [
-    "mono-repo",
+    "monoRepo-repo",
     "components"
   ],
   "dependencies": {

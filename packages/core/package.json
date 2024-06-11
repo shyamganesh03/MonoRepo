@@ -1,5 +1,5 @@
 {
-  "name": "@izzo/core",
+  "name": "@monoRepo/core",
   "version": "1.0.0",
   "main": "src/App.tsx",
   "description": "",

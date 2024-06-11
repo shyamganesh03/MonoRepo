@@ -1,7 +1,7 @@
 import React from 'react'
 
 const WebView = (props: any) => {
-  const googleTranslateUrl = `https://translate.google.com/translate?hl=&sl=auto&tl=en&u=https://www.izzo-app.com/faq`
+  const googleTranslateUrl = `https://translate.google.com/translate?hl=&sl=auto&tl=en&u=https://www.monoRepo-app.com/faq`
 
   const openInNewTab = (url: string) => {
     window.open(url, '_blank', 'noopener,noreferrer')

@@ -1,6 +1,6 @@
-# Izzo
+# monoRepo
 
-Izzo is an event ticket booking application designed for concerts, parties, and various events. The app features age restrictions for events and provides a comprehensive, user-friendly experience for browsing, booking, and managing event tickets.
+monoRepo is an event ticket booking application designed for concerts, parties, and various events. The app features age restrictions for events and provides a comprehensive, user-friendly experience for browsing, booking, and managing event tickets.
 
 # Modules
 
@@ -58,7 +58,7 @@ To get started with this project, clone the repository to your local machine and
 **Clone this Repo**
 
 ```
-git clonehttps://github.com/increscotech/izzo-app.git
+git clonehttps://github.com/increscotech/monoRepo-app.git
 ```
 
 **Run yarn command from root folder**
@@ -98,7 +98,7 @@ The details for deployed app will be Update later...
 
 # Figma
 
-[Izzo](https://www.figma.com/design/TCySYmVMRjCqXX87ChXKNz/IZZO-App-Design-System?node-id=51-2884&t=wt197lZ4aMgrlaWG-0)
+[monoRepo](https://www.figma.com/design/TCySYmVMRjCqXX87ChXKNz/monoRepo-App-Design-System?node-id=51-2884&t=wt197lZ4aMgrlaWG-0)
 
 ## Commands
 

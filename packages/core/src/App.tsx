@@ -22,8 +22,8 @@ import { Analytics } from '@libs/utils'
 import * as RootNavigator from './navigation/RootNavigator'
 import { AppNavigator } from './navigation'
 import { useAtom, Provider as JotaiProvider } from 'jotai'
-import { themeSwitchAtom } from '@izzo/jotai-storage'
-import '@izzo/shared-translation'
+import { themeSwitchAtom } from '@monoRepo/jotai-storage'
+import '@monoRepo/shared-translation'
 import {
   MD2DarkTheme,
   MD2LightTheme,
@@ -31,7 +31,7 @@ import {
   configureFonts,
 } from 'react-native-paper'
 import notificationService from './utils/notificationHandler'
-import { setItemAsync, getItemAsync } from '@izzo/shared-async-storage'
+import { setItemAsync, getItemAsync } from '@monoRepo/shared-async-storage'
 
 Analytics.init()
 
@@ -179,7 +179,7 @@ export const App = () => {
 
       <NavigationContainer
         documentTitle={{
-          formatter: (options) => `Izzo | ${options?.title || ''}`,
+          formatter: (options) => `monoRepo | ${options?.title || ''}`,
         }}
         ref={RootNavigator.navigationRef}
         onReady={() => {
