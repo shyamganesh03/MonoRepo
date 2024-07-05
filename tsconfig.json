@@ -1,39 +1,54 @@
 {
+  "extends": "@react-native/typescript-config/tsconfig.json",
   "compilerOptions": {
-    "resolveJsonModule": true,
-    "jsx": "react",
-    "esModuleInterop": true,
-    "sourceMap": true,
-    "removeComments": true,
-    "strict": true,
-    "noImplicitAny": true,
-    "strictNullChecks": true,
-    "strictFunctionTypes": true,
-    "noImplicitThis": true,
-    "alwaysStrict": true,
-    "allowJs": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true,
-    "rootDir": "./",
     "paths": {
-      "@libs/components": ["./libs/ui-components"],
-      "@libs/theme": ["./libs/theme"],
-      "@libs/utils": ["./libs/utils"],
-      "@libs/native-icons": ["./libs/icons"],
-      "@libs/blur-widget": ["./libs/blurWidget"],
-      "@libs/container": ["./libs/container"],
-      "@libs/bottom-sheet": ["./libs/bottom-sheet"],
-      "@monoRepo/core": ["./packages/core"],
-      "@monoRepo/jotai-storage": ["./packages/jotai-storage"],
-      "@monoRepo/shared-translation": ["./packages/shared-translation"],
-      "@monoRepo/hooks": ["./packages/shared-hooks"],
-      "@libs/pdf-view": ["./libs/pdf-view"],
-      "@libs/map-view": ["./libs/map-view"],
-      "@libs/web-view": ["./libs/web-view"],
-      "@monoRepo/shared-async-storage": ["./packages/shared-async-storage"]
+      "@libs/components": [
+        "./libs/ui-components"
+      ],
+      "@libs/theme": [
+        "./libs/theme"
+      ],
+      "@libs/utils": [
+        "./libs/utils"
+      ],
+      "@libs/native-icons": [
+        "./libs/icons"
+      ],
+      "@libs/container": [
+        "./libs/container"
+      ],
+      "@libs/bottom-sheet": [
+        "./libs/bottom-sheet"
+      ],
+      "@izzo/core": [
+        "./packages/core"
+      ],
+      "@izzo/jotai-storage": [
+        "./packages/jotai-storage"
+      ],
+      "@izzo/shared-translation": [
+        "./packages/shared-translation"
+      ],
+      "@izzo/hooks": [
+        "./packages/shared-hooks"
+      ],
+      "@libs/pdf-view": [
+        "./libs/pdf-view"
+      ],
+      "@libs/map-view": [
+        "./libs/map-view"
+      ],
+      "@libs/web-view": [
+        "./libs/web-view"
+      ],
+      "@izzo/mailer": [
+        "./packages/camped-mailer"
+      ]
     }
   },
-  "include": ["packages/**/*", "libs/**/*", "apps/**/*"]
+  "include": [
+    "packages/**/*",
+    "libs/**/*",
+    "apps/**/*"
+  ]
 }
