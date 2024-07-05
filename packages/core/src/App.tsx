@@ -11,7 +11,7 @@ import { Provider as JotaiProvider } from 'jotai'
 
 import { ThemeProvider } from '@libs/theme'
 import { Analytics } from '@libs/utils'
-import '@izzo/shared-translation'
+import '@monoRepo/shared-translation'
 
 import * as RootNavigator from './navigation/RootNavigator'
 import { AppNavigator } from './navigation'
@@ -35,7 +35,7 @@ const AppSubWrapper = () => {
       )}
       <NavigationContainer
         documentTitle={{
-          formatter: (options) => `Izzo | ${options?.title || ''}`,
+          formatter: (options) => `monoRepo | ${options?.title || ''}`,
         }}
         ref={RootNavigator.navigationRef}
         linking={{ enabled: true, prefixes: [] }}

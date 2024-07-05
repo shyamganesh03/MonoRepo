@@ -20,16 +20,16 @@
       "@libs/bottom-sheet": [
         "./libs/bottom-sheet"
       ],
-      "@izzo/core": [
+      "@monoRepo/core": [
         "./packages/core"
       ],
-      "@izzo/jotai-storage": [
+      "@monoRepo/jotai-storage": [
         "./packages/jotai-storage"
       ],
-      "@izzo/shared-translation": [
+      "@monoRepo/shared-translation": [
         "./packages/shared-translation"
       ],
-      "@izzo/hooks": [
+      "@monoRepo/hooks": [
         "./packages/shared-hooks"
       ],
       "@libs/pdf-view": [
@@ -41,9 +41,6 @@
       "@libs/web-view": [
         "./libs/web-view"
       ],
-      "@izzo/mailer": [
-        "./packages/camped-mailer"
-      ]
     }
   },
   "include": [
